@@ -1,0 +1,292 @@
+{
+	"SimpleAction": {
+		"alias": "Kleine Schritte",
+		"icon": ["fa-solid", "fa-meteor"],
+		"content": 
+			[
+			"Mach 10 Liegestütze",
+			"Trink ein Glas Wasser",
+			"Nimm 5 tiefe Atemzüge",
+			"Steh auf und geh im Raum umher",
+			"Räume einen kleinen Bereich auf deinem Schreibtisch auf",
+			"Gieße eine Pflanze im Haus",
+			"Mach 20 Kniebeugen",
+			"Schließe die Augen und singe mental dein Lieblingslied",
+			"Schaue 10 Mal nach oben, unten, links und rechts",
+			"Massiere die Mitte deiner Handfläche",
+			"Nenne 5 Dinge, die du sehen kannst, 4 die du berühren kannst, 3 die du hören kannst, 2 die du riechen kannst und 1 das du schmecken kannst"
+			]
+	},
+  
+	"Informational": {
+		"alias": "Jetzt weißt du es",
+		"icon": ["fa-solid", "fa-dragon"],
+		"static": "Jetzt weiß ich es",
+		"content": 
+			[
+			{"title": "Psychische Gesundheit", "text": "Pornografie kann zu Angstzuständen, Depressionen und Stress führen, wie durch <a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>Forschung</a> gezeigt. Es kann auch Abhängigkeit erzeugen, die Selbstkontrolle verringern und die psychische Gesundheit schädigen."},
+			{"title": "Ehe", "text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>Forschung</a> zeigt, dass Erwachsene, die im letzten Jahr Pornos geschaut haben, eher geschieden sind, eine außereheliche Affäre haben und weniger wahrscheinlich mit ihrer Ehe oder allgemein glücklich sind."},
+			{"title": "Pornhub hostet Menschenhandel und Vergewaltigungsvideos", "text": "Es gab mehrere schockierende Fälle von Menschenhandel und Vergewaltigungsfilmen mit Minderjährigen, die auf Pornhub gehostet wurden.<br><br>Ein 15-jähriges Mädchen, das ein Jahr lang vermisst wurde, wurde schließlich gefunden, nachdem ihre Mutter den Hinweis erhielt, dass ihre Tochter auf der Seite gezeigt wurde. <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>Mehr...</a>" },
+			{"title": "Kognitive und emotionale Auswirkungen", "text": "Pornografie wurde mit Depressionen, Aggressionen und beeinträchtigter <a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>exekutiver Funktion</a> in Verbindung gebracht."},
+			{"title": "Sexuelle Gewalt", "text": "Pornografie wird mit ungesunden sexuellen Überzeugungen in Verbindung gebracht, fördert <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>sexuelle Gewalt</a> und schädigt das Selbstwertgefühl."},
+			{"title": "Gehirnfunktion", "text": "Die negativen Auswirkungen von Pornografie umfassen <a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>verringerte graue Substanz im präfrontalen Kortex</a>, was zu Sucht und beeinträchtigter Entscheidungsfindung führt."},
+			{"title": "Erektile Dysfunktion", "text": "Pornografie wird mit <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>erektiler Dysfunktion</a>, Kontrollverlust und negativen Auswirkungen auf das sexuelle Wohlbefinden in Verbindung gebracht."},
+			{"title": "Nur vier Wochen", "text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>Vier Wochen</a> Abstinenz können zu verschiedenen psychologischen Verbesserungen führen, einschließlich erhöhter Motivation, Stimmung und sozialem Verhalten."},
+			{"title": "Beziehungsqualität", "text": "Pornografiekonsum wird mit einer geringeren <a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>Beziehungszufriedenheit</a> bei Männern und Frauen in Verbindung gebracht."},
+			{"title": "Untreue und Scheidung", "text": "Pornografiekonsum wird mit einer erhöhten Wahrscheinlichkeit von <a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>Untreue</a> und <a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>Scheidung</a> in Beziehungen bei Männern und Frauen in Verbindung gebracht."}
+			]
+	},
+  
+	"PictureSelection": {
+		"alias": "Wohin gehen",
+		"icon": ["fa-solid", "fa-compass"],
+		"static": 
+		{
+			"h1": "Wähle eine Option", 
+			"chooseImageButton": "Wählen",
+			"confirmChoiceButton": "Bestätigen"
+		},
+		"content": 
+			[
+			{"image": "https://i.imgur.com/oeuMAQt.jpeg", "desc": "Ein echter Tiger ist jemand, der Tigerbilder auswählt..."},
+			{"image": "https://i.imgur.com/wc4nJqB.jpeg", "desc": "Übrigens, ich kann eine Wassermelone mit meinem Mund zerquetschen."},
+			{"image": "https://i.imgur.com/969Fh4l.jpeg", "desc": "Du musst irgendwann nach Japan gehen..."},
+			{"image": "https://i.imgur.com/vklfSZb.jpeg", "desc": "Der Süße schaut den Süßen an."},
+			{"image": "https://i.imgur.com/Ip8mskP.jpeg", "desc": "Nur eine Erinnerung daran, wie schön die Welt ist."},
+			{"image": "https://i.imgur.com/q0pDtIF.jpeg", "desc": "Haha, ich hoffe, ich habe dich zum Lächeln gebracht."},
+			{"image": "https://i.imgur.com/Fo3iSkq.jpeg", "desc": "Wow, du hast einen goldenen Fisch gefangen! Moment, das ist kein Fisch..."},
+			{"image": "https://i.imgur.com/yHIqEnU.jpeg", "desc": "Auch im Dreck kannst du dich entscheiden, sauber zu bleiben."},
+			{"image": "https://i.imgur.com/WgRFKdd.jpeg", "desc": "Bin ich das Mädchen, das du gesucht hast?"},
+			{"image": "https://i.imgur.com/jat35sC.jpeg", "desc": "In Zeiten der Not gebe ich dir eine Pfote."},
+			{"image": "https://i.imgur.com/DSCPFfV.jpeg", "desc": "Sei ein Hund, sei kein Pilz."},
+			{"image": "https://i.imgur.com/z4LXvFX.jpeg", "desc": "Jeder Pfeil, den du schießt, könnte ein Flugzeug voller Menschen sein..."},
+			{"image": "https://i.imgur.com/gsoXN2C.jpeg", "desc": "Dein inneres Kind zählt auf dich."},
+			{"image": "https://i.imgur.com/fC9Drxf.jpeg", "desc": "Freundschaft."},
+			{"image": "https://i.imgur.com/gi63tHf.jpeg", "desc": "Du verdienst es, frei von Sucht zu sein."},
+			{"image": "https://i.imgur.com/RwrQLKd.jpeg", "desc": "Die schönsten Dinge sind nur die richtige Kombination aus einfachen Elementen."},
+			{"image": "https://i.imgur.com/yK26epW.jpeg", "desc": "Imitieren Kultur und Kunst einfach das Leben oder können sie es übertreffen?"},
+			{"image": "https://i.imgur.com/b13aVLK.jpeg", "desc": "Kirkjufell, Island. Einer der besten Orte, um die Nordlichter zu sehen."},
+			{"image": "https://i.imgur.com/cm2uxlK.jpeg", "desc": "Aussehen über Substanz oder Substanz über Stil? Balance?"},
+			{"image": "https://i.imgur.com/KY5L79Q.jpeg", "desc": "Wasser kann buchstäblich alles werden. Es kann fließen oder es kann zerschmettern.<br>Sei Wasser, mein Freund."},
+			{"image": "https://i.imgur.com/wwWQAUy.png", "desc": "Eine <a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>Genealogie</a> der Technologie und Macht seit 1500"},
+			{"image": "https://i.imgur.com/P4Qb0ra.png", "desc": "Völlig üblicher Mönch und seine Katze lesen zusammen, Frankreich, 13. Jahrhundert.<br>Welches Buch möchtest du lesen? Und deine Katze? "},
+			{"image": "https://i.imgur.com/lkoBWsy.jpeg", "desc": "Weltraumnebel. Kann so etwas durch bloßen Zufall existieren<br>oder erfordert es nur einen kleinen Hauch von Wille?"},
+			{"image": "https://i.imgur.com/hD9kvAw.jpeg", "desc": "Thingvellir, Island."},
+			{"image": "https://i.imgur.com/BRoBRIt.jpeg", "desc": "Nacht im Wald, Himmel-Zeitraffer."},
+			{"image": "https://i.imgur.com/IRAz1xm.jpeg", "desc": "Ungewöhnliche Bäume in Neuseeland."},
+			{"image": "https://i.imgur.com/912SXeD.jpeg", "desc": "Voynich-Manuskript. Immer noch eine Art von Geheimnis."},
+			{"image": "https://i.imgur.com/1qrlqgK.jpeg", "desc": "Wassermelonen-Turmalin-Scheibe."},
+			{"image": "https://i.imgur.com/EyU2nRq.jpeg", "desc": "Wie lange ist es her, dass du den Sonnenaufgang begrüßt hast?"},
+			{"image": "https://i.imgur.com/jhWIkWq.jpeg", "desc": "Lichtbrechung durch Glas. Versuch es selbst!"}
+			]
+	},
+  
+	"Video": {
+		"alias": "Sieh es dir selbst an",
+		"icon": ["fa-solid", "fa-star"],
+		"static": "Bestätigen",
+		"content":
+			[
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+			]
+	},
+  
+	"MessageToYourself": {
+		"alias": "Selbstliebe",
+		"icon": ["fa-solid", "fa-dove"],
+		"static": "Bestätigen",
+		"content":
+			[
+			{"text": "Der Ort sein, an dem der gefallene Engel den aufsteigenden Affen trifft<br><br>(Du kannst <a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>deine eigene</a> Seite wie diese erstellen)", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"}
+			]
+	},
+  
+	"Quote": {
+		"alias": "Ecke der Weisheit",
+		"icon": ["fa-solid", "fa-hat-wizard"],
+		"static": 
+		{
+			"question": "Stimmst du dem Zitat zu? Warum?", 
+			"quoteReflection": "Gib hier deine Reflexion ein...",
+			"quoteReflectionButton": "Bestätigen"
+		},
+		"content":
+			[
+			"<em>«Ich bin kein Produkt meiner Umstände. Ich bin ein Produkt meiner Entscheidungen.»</em> — Stephen Covey",
+			"<em>«Der einzige Weg hinaus ist hindurch.»</em> — Robert Frost",
+			"<em>«Jeder Moment des Widerstands gegen Versuchung ist ein Sieg.»</em> — Frederick William Faber",
+			"<em>«Das Geheimnis des Wandels ist, all deine Energie darauf zu richten, nicht das Alte zu bekämpfen, sondern das Neue zu erschaffen.»</em> — Sokrates",
+			"<em>«Sucht beginnt mit der Hoffnung, dass etwas 'da draußen' die innere Leere sofort füllen kann.»</em> — Jean Kilbourne",
+			"<em>«Beurteile jeden Tag nicht nach der Ernte, die du einfährst, sondern nach den Samen, die du pflanzt.»</em> — Robert Louis Stevenson",
+			"<em>«Was oft kostenlos gegeben wird, erweist sich als das teuerste.»</em> — Takemura",
+			"<em>«Wenn du nur einen Hammer hast, sieht alles wie ein Nagel aus.»</em> — Sprichwort",
+			"<em>«Keiner ist hoffnungsloser versklavt als der, der fälschlicherweise glaubt, frei zu sein.»</em> — Johann Wolfgang von Goethe",
+			"<em>«Dunkelheit kann Dunkelheit nicht vertreiben.»</em> — Martin Luther King Jr.",
+			"<em>«Die Definition von Wahnsinn ist, immer wieder dasselbe zu tun und andere Ergebnisse zu erwarten.»</em> — Albert Einstein",
+			"<em>«Es sind unsere Entscheidungen, die zeigen, wer wir wirklich sind, viel mehr als unsere Fähigkeiten.»</em> ― J.K. Rowling",
+			"<em>«Bestimmte Dinge ziehen dein Auge an, aber verfolge nur die, die dein Herz erobern.»</em> — Sprichwort",
+			"<em>«Risikiere mehr, als andere für sicher halten. Träume mehr, als andere für praktisch halten.»</em> — Howard Schulz",
+			"<em>«Ich habe nicht versagt. Ich habe nur 10.000 Wege gefunden, die nicht funktionieren.»</em> ― Thomas A. Edison",
+			"<em>«Es ist nicht der Mann, der zu wenig hat, sondern der Mann, der mehr begehrt, der arm ist.»</em> — Seneca",
+			"<em>«Kein Mensch ist frei, der nicht Herr über sich selbst ist.»</em> — Epiktet",
+			"<em>«Freiheit ist Sklaverei.»</em> — George Orwell, 1984",
+			"<em>«Begehrlichkeiten werden durch Genuss niemals gestillt. Wie Feuer wachsen sie, wenn sie befriedigt werden.»</em> — Bhagavat Gita",
+			"<em>«Wenn du für einen Tag aufhören kannst, kannst du für ein Leben lang aufhören.»</em> — Benjamin Alire Sáenz",
+			"<em>«Schwierigkeiten bereiten oft gewöhnliche Menschen auf ein außergewöhnliches Schicksal vor.»</em> — C.S. Lewis",
+			"<em>«Du musst nicht die ganze Treppe sehen, mach einfach den nächsten Schritt.»</em> — Martin Luther King Jr."
+			]
+	},
+  
+	"Trigger": {
+		"alias": "Der Auslöser",
+		"icon": ["fa-solid", "fa-jedi"],
+		"static": 
+		{
+			"h1": "Auslöser identifizieren", 
+			"p": "Versuche, den Auslöser zu identifizieren, der zur Entstehung des Verlangens beigetragen hat",
+			"triggerDescription": "Gib hier den Auslöser ein...", 
+			"triggerButton": "Bestätigen"
+		}
+	},
+	
+	"ImagineWords": {
+		"alias": "Vorstellen",
+		"icon": ["fa-solid", "fa-hands-praying"],
+		"static": 
+		{
+			"p": "Ein enger Freund möchte dich unterstützen.<br>Stell dir vor, welche Worte könnten dir jetzt wirklich helfen?", 
+			"wordsDescription": "...", 
+			"wordsButton": "Bestätigen"
+		}
+	},
+	
+	"Wife": {
+		"alias": "Muse",
+		"icon": ["fa-solid", "fa-heart"],
+		"static": 
+		{
+			"h1": "Stelle dir einen zukünftigen Moment vor, den du mit deiner Frau erleben möchtest", 
+			"wifeDescription": "Gib hier deine Beschreibung ein...", 
+			"confirmDescriptionButton": "Bestätigen"
+		}
+	},
+	
+	"CardSelection": {
+		"static": 
+		{
+			"h1": "Wähle eine Karte", 
+			"chooseCard": "Wählen", 
+			"confirmChoice": "Bestätigen"
+		}
+	},
+	
+	"UrgeTest_initial": {
+		"static": 
+		{
+			"h1": "Bewerte die Stärke deines Verlangens", 
+			"textMain": "Du hast die ClearMind-Erweiterung gebeten, <span id='blockedDomain'></span> zu blockieren<br /><br />Das Verlangen, das du erlebst, ist an sich völlig normal, aber sollten wir das zwanghafte Verhalten der Sucht übernehmen lassen?<br /><br />Zusammen können wir es überwinden!",
+			"confirmButton": "Bestätigen",
+			"textSecondary": "Du hast die ClearMind-Erweiterung gebeten, <span id='blockedDomainOverlay'></span>"
+		}
+	},
+	
+	"UrgeTest_final": {
+		"static": 
+		{
+			"mainHeader": "Bewerte die Stärke deines Verlangens",
+			"mainHeaderResult": "Die Stärke deines Verlangens ist von <span id='initialUrgeValueSpan'></span> auf <span id='currentUrgeValueSpan'></span> gesunken",
+			"motivationalText_lessUrge": "Du schaffst das!",
+			"confirmButton": "Bestätigen",
+			"resetUrgeButton": "Noch eine Runde",
+			"leaveUrgeButton": "Ich bin bereit zu gehen"
+		}
+	},
+	
+	"customBlockControl_popup": {
+		"static": 
+		{
+			"h2": "Blockliste verwalten",
+			"domainInput": "*domain_name*",
+			"addDomainBtn": "Zur benutzerdefinierten Blockliste hinzufügen",
+			"deleteDomainBtn": "Aus benutzerdefinierten Blockliste löschen",
+			"settingsButton": "Einstellungen",
+			"supportButton": "Unterstützung"
+		}
+	},
+	
+	"ProgressionPopup": {
+		"static": 
+		{
+			"p": "Glückwunsch, Sir! Hier ist ein mächtiges Artefakt, das dir auf deiner Reise helfen wird!",
+			"closeButton": "Weiter",
+			"claimButton": "Hol es dir!"
+		},
+		"rewards":
+		{
+			"1": 
+			{
+				"title": "«Beste Begleiter-Erweiterung, um deinen Verstand zu schützen»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": 
+			{
+				"title": "«Kühn, aber kraftvoll emotionaler Biss»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": 
+			{
+				"title": "«Wie man YouTube heilt»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": 
+			{
+				"title": "«Wie tief das Kaninchenloch geht...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": 
+			{
+				"title": "«Die ultimative Lösung»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	
+	"About": {
+		"static": 
+		{
+			"h1": "Danke, dass du ClearMind verwendest",
+			"h2About": "Über",
+			"p1": "ClearMind ist eine Browser-Erweiterung, die hilft, Pornosucht zu überwinden.<br><br>Wir haben sie erstellt, weil wir glauben, dass das Überangebot an Pornografie im digitalen Raum eines der größten Probleme unserer Zeit ist, das jeden, insbesondere junge Menschen, negativ beeinflusst.<br><br>Im Gegensatz zu anderen Erweiterungen verwendet ClearMind Prinzipien der KVT, Gamifizierung und Aufmerksamkeitsmanagement, um das Verlangen zu unterdrücken, anstatt den Zugang zu Websites mechanisch zu blockieren.<br><br>Was als persönliches Projekt begann, wurde zu etwas, das wir gerne mit allen teilen würden.", 
+			"p3": "Wir hoffen aufrichtig, dass es dir auf deiner Reise helfen wird!",
+			"p4": "Erstellt von: A'n'A",
+			"sourceButton": "Quellcode",
+			"contactButton": "Kontakt",
+			"supportButton": "Unterstützung",
+			"OwnPage": "Erstelle deine eigene Seite",
+			"p5": "Sende eine inspirierende Nachricht aus einem Moment des Friedens an dein zukünftiges Ich in seiner dunkelsten Stunde. Alle Daten werden offline gespeichert.",
+			"openTab1": "=== Option (1) ===",
+			"openTab2": "=== Option (2) ===",
+			"openTab3": "=== Option (3) ===",
+			"deleteUserContentButton": "Löschen",
+			"saveUserContentButton": "Speichern",
+			"languageSelectLabel": "Sprache:",
+			"themeSelectLabel": "Thema:",
+			"themeLabelLight": "Hell",
+			"themeLabelDark": "Dunkel"
+		}
+	},
+	
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

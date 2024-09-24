@@ -1,0 +1,292 @@
+{
+	"SimpleAction": {
+		"alias": "Pequeños Pasos",
+		"icon": ["fa-solid", "fa-meteor"],
+		"content": 
+			[
+			"Haz 10 flexiones",
+			"Bebe un vaso de agua",
+			"Toma 5 respiraciones profundas",
+			"Ponte de pie y camina por la habitación",
+			"Limpia un área pequeña de tu escritorio",
+			"Riega alguna planta de la casa",
+			"Haz 20 sentadillas",
+			"Cierra los ojos y canta mentalmente tu canción favorita",
+			"Mira arriba, abajo, izquierda y derecha 10 veces",
+			"Masajea el centro de tu palma",
+			"Nombra 5 cosas que puedas ver, 4 que puedas tocar, 3 que puedas oír, 2 que puedas oler y 1 que puedas saborear"
+			]
+	},
+  
+	"Informational": {
+		"alias": "Ahora lo Sabes",
+		"icon": ["fa-solid", "fa-dragon"],
+		"static": "Ahora lo Sé",
+		"content": 
+			[
+			{"title": "Salud mental", "text": "Ver pornografía puede llevar a ansiedad, depresión y estrés, como lo muestra la <a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>investigación</a>. También puede crear dependencia, reducir el autocontrol y dañar la salud mental."},
+			{"title": "Matrimonio", "text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>Investigaciones</a> muestran que los adultos que vieron pornografía en el último año tenían más probabilidades de estar divorciados, más probabilidades de tener una aventura extramatrimonial y menos probabilidades de reportar ser felices con su matrimonio o en general."},
+			{"title": "Pornhub alojando videos de tráfico sexual y violación", "text": "Ha habido varios casos impactantes de tráfico sexual y películas de violación de menores que se alojaron en Pornhub.<br><br>Una niña de 15 años que había estado desaparecida durante un año finalmente fue encontrada después de que su madre recibió un aviso de que su hija aparecía en el sitio. <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>Más...</a>" },
+			{"title": "Impactos Cognitivos y Emocionales", "text": "La pornografía ha sido vinculada a la depresión, la agresión y al funcionamiento <a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>ejecutivo deteriorado</a>."},
+			{"title": "Violencia sexual", "text": "La pornografía está vinculada a creencias sexuales poco saludables, fomentando la <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>violencia sexual</a> y dañando la autoestima."},
+			{"title": "Función cerebral", "text": "Los efectos negativos de la pornografía incluyen una <a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>disminución de la materia gris en la corteza prefrontal</a>, lo que lleva a la adicción y a una toma de decisiones deficiente."},
+			{"title": "Disfunción eréctil", "text": "La pornografía está asociada con la <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>disfunción eréctil</a>, pérdida de control y un impacto negativo en el bienestar sexual."},
+			{"title": "Solo cuatro semanas", "text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>Cuatro semanas</a> de abstinencia pueden llevar a varias mejoras psicológicas, incluyendo una mayor motivación, estado de ánimo y comportamientos sociales."},
+			{"title": "Calidad de la relación", "text": "El uso de la pornografía está vinculado a una menor <a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>satisfacción en la relación</a> tanto para hombres como para mujeres."},
+			{"title": "Infidelidad y divorcio", "text": "El consumo de pornografía está asociado con una mayor probabilidad de <a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>infidelidad</a> y <a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>divorcio</a> en las relaciones, tanto para hombres como para mujeres."}
+			]
+	},
+  
+	"PictureSelection": {
+		"alias": "Dónde Ir",
+		"icon": ["fa-solid", "fa-compass"],
+		"static": 
+		{
+			"h1": "Elige Uno", 
+			"chooseImageButton": "Elegir",
+			"confirmChoiceButton": "Confirmar"
+		},
+		"content": 
+			[
+			{"image": "https://i.imgur.com/oeuMAQt.jpeg", "desc": "Un verdadero tigre es alguien que elige imágenes de tigres..."},
+			{"image": "https://i.imgur.com/wc4nJqB.jpeg", "desc": "Hablando de eso, puedo aplastar una sandía con mi boca."},
+			{"image": "https://i.imgur.com/969Fh4l.jpeg", "desc": "Tienes que ir a Japón algún día..."},
+			{"image": "https://i.imgur.com/vklfSZb.jpeg", "desc": "El lindo mira al lindo."},
+			{"image": "https://i.imgur.com/Ip8mskP.jpeg", "desc": "Solo un recordatorio de lo hermoso que es el mundo."},
+			{"image": "https://i.imgur.com/q0pDtIF.jpeg", "desc": "Jaja, espero haberte hecho sonreír."},
+			{"image": "https://i.imgur.com/Fo3iSkq.jpeg", "desc": "¡Guau, atrapaste un pez dorado! Espera, eso no es un pez..."},
+			{"image": "https://i.imgur.com/yHIqEnU.jpeg", "desc": "Incluso en la suciedad, puedes elegir mantenerte limpio."},
+			{"image": "https://i.imgur.com/WgRFKdd.jpeg", "desc": "¿Soy la chica que has estado buscando?"},
+			{"image": "https://i.imgur.com/jat35sC.jpeg", "desc": "En tiempos de necesidad, te daré una pata."},
+			{"image": "https://i.imgur.com/DSCPFfV.jpeg", "desc": "Sé un perro, no seas un hongo."},
+			{"image": "https://i.imgur.com/z4LXvFX.jpeg", "desc": "Cada flecha que disparas podría ser un avión lleno de personas..."},
+			{"image": "https://i.imgur.com/gsoXN2C.jpeg", "desc": "Tu niño interior cuenta contigo."},
+			{"image": "https://i.imgur.com/fC9Drxf.jpeg", "desc": "Amistad."},
+			{"image": "https://i.imgur.com/gi63tHf.jpeg", "desc": "Mereces estar libre de adicciones."},
+			{"image": "https://i.imgur.com/RwrQLKd.jpeg", "desc": "Las cosas más bellas son solo la combinación correcta de elementos simples."},
+			{"image": "https://i.imgur.com/yK26epW.jpeg", "desc": "¿La cultura y el arte simplemente imitan la vida o son capaces de trascenderla?"},
+			{"image": "https://i.imgur.com/b13aVLK.jpeg", "desc": "Kirkjufell, Islandia. Uno de los mejores lugares para ver las auroras boreales."},
+			{"image": "https://i.imgur.com/cm2uxlK.jpeg", "desc": "¿Apariencia sobre sustancia o sustancia sobre estilo? ¿Equilibrio?"},
+			{"image": "https://i.imgur.com/KY5L79Q.jpeg", "desc": "El agua puede convertirse literalmente en cualquier cosa. Puede fluir o puede chocar.<br>Sé agua, amigo mío."},
+			{"image": "https://i.imgur.com/wwWQAUy.png", "desc": "Una <a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>Genealogía</a> de Tecnología y Poder Desde 1500"},
+			{"image": "https://i.imgur.com/P4Qb0ra.png", "desc": "Monje totalmente usual y su gato leyendo juntos, Francia, siglo XIII.<br>¿Qué libro quieres leer? ¿Y tu gato? "},
+			{"image": "https://i.imgur.com/lkoBWsy.jpeg", "desc": "Nebulosa espacial. ¿Puede algo así existir por mera circunstancia<br>o requiere solo un pequeño toque de voluntad?"},
+			{"image": "https://i.imgur.com/hD9kvAw.jpeg", "desc": "Thingvellir, Islandia."},
+			{"image": "https://i.imgur.com/BRoBRIt.jpeg", "desc": "Noche en el bosque, lapso de tiempo del cielo."},
+			{"image": "https://i.imgur.com/IRAz1xm.jpeg", "desc": "Árboles inusuales en Nueva Zelanda."},
+			{"image": "https://i.imgur.com/912SXeD.jpeg", "desc": "Manuscrito Voynich. Todavía un misterio."},
+			{"image": "https://i.imgur.com/1qrlqgK.jpeg", "desc": "Rebanada de turmalina de sandía."},
+			{"image": "https://i.imgur.com/EyU2nRq.jpeg", "desc": "¿Cuánto tiempo ha pasado desde la última vez que saludaste al amanecer?"},
+			{"image": "https://i.imgur.com/jhWIkWq.jpeg", "desc": "Caústica de luz por vidrio. ¡Inténtalo tú mismo!"}
+			]
+	},
+  
+	"Video": {
+		"alias": "Velo Tú Mismo",
+		"icon": ["fa-solid", "fa-star"],
+		"static": "Confirmar",
+		"content":
+			[
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+			]
+	},
+  
+	"MessageToYourself": {
+		"alias": "Amor Propio",
+		"icon": ["fa-solid", "fa-dove"],
+		"static": "Confirmar",
+		"content":
+			[
+			{"text": "Ser el lugar donde el ángel caído se encuentra con el simio ascendente<br><br>(Puedes <a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>hacer tu propia</a> página como esta)", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"}
+			]
+	},
+  
+	"Quote": {
+		"alias": "Rincón de Sabiduría",
+		"icon": ["fa-solid", "fa-hat-wizard"],
+		"static": 
+		{
+			"question": "¿Estás de acuerdo con la cita? ¿Por qué?", 
+			"quoteReflection": "Ingresa tu reflexión aquí...",
+			"quoteReflectionButton": "Confirmar"
+		},
+		"content":
+			[
+			"<em>«No soy producto de mis circunstancias. Soy producto de mis decisiones.»</em> — Stephen Covey",
+			"<em>«La única salida es a través.»</em> — Robert Frost",
+			"<em>«Cada momento de resistencia a la tentación es una victoria.»</em> — Frederick William Faber",
+			"<em>«El secreto del cambio es enfocar toda tu energía no en luchar contra lo viejo, sino en construir lo nuevo.»</em> — Sócrates",
+			"<em>«La adicción comienza con la esperanza de que algo 'afuera' pueda llenar instantáneamente el vacío interior.»</em> — Jean Kilbourne",
+			"<em>«No juzgues cada día por la cosecha que recoges, sino por las semillas que plantas.»</em> — Robert Louis Stevenson",
+			"<em>«Lo que a menudo se da gratis, resulta ser lo más costoso.»</em> — Takemura",
+			"<em>«Si todo lo que tienes es un martillo, todo te parece un clavo.»</em> — Proverbio",
+			"<em>«Nadie está más irremediablemente esclavizado que aquellos que falsamente creen que son libres.»</em> — Johann Wolfgang von Goethe",
+			"<em>«La oscuridad no puede expulsar a la oscuridad.»</em> — Martin Luther King Jr.",
+			"<em>«La definición de locura es hacer lo mismo una y otra vez, pero esperar resultados diferentes.»</em> — Albert Einstein",
+			"<em>«Son nuestras elecciones, las que muestran lo que realmente somos, mucho más que nuestras habilidades.»</em> ― J.K. Rowling",
+			"<em>«Ciertas cosas captan tu atención, pero persigue solo aquellas que capturan el corazón.»</em> — Proverbio",
+			"<em>«Arriesga más de lo que otros piensan que es seguro. Sueña más de lo que otros piensan que es práctico.»</em> — Howard Schulz",
+			"<em>«No he fallado. Solo he encontrado 10,000 maneras que no funcionarán.»</em> ― Thomas A. Edison",
+			"<em>«No es el hombre que tiene demasiado poco, sino el hombre que desea más, el que es pobre.»</em> — Séneca",
+			"<em>«Ningún hombre es libre si no es dueño de sí mismo.»</em> — Epicteto",
+			"<em>«La libertad es esclavitud.»</em> — George Orwell, 1984",
+			"<em>«Los deseos nunca se sacian con el disfrute. Como el fuego, crecen cuando se gratifican.»</em> — Bhagavad Gita",
+			"<em>«Si puedes dejarlo por un día, puedes dejarlo para toda la vida.»</em> — Benjamin Alire Sáenz",
+			"<em>«Las dificultades a menudo preparan a personas comunes para un destino extraordinario.»</em> — C.S. Lewis",
+			"<em>«No tienes que ver toda la escalera, solo el siguiente paso.»</em> — Martin Luther King Jr."
+			]
+	},
+  
+	"Trigger": {
+		"alias": "El Gancho",
+		"icon": ["fa-solid", "fa-jedi"],
+		"static": 
+		{
+			"h1": "Identificar Disparador", 
+			"p": "Intenta identificar el disparador que contribuyó a la formación del deseo",
+			"triggerDescription": "Ingresa el disparador aquí...", 
+			"triggerButton": "Confirmar"
+		}
+	},
+	
+	"ImagineWords": {
+		"alias": "Imagina",
+		"icon": ["fa-solid", "fa-hands-praying"],
+		"static": 
+		{
+			"p": "Un amigo cercano quiere apoyarte.<br>Imagina, ¿qué palabras podrían realmente ayudarte ahora?", 
+			"wordsDescription": "...", 
+			"wordsButton": "Confirmar"
+		}
+	},
+	
+	"Wife": {
+		"alias": "Musa",
+		"icon": ["fa-solid", "fa-heart"],
+		"static": 
+		{
+			"h1": "Visualiza un momento futuro que desees tener con tu esposa", 
+			"wifeDescription": "Ingresa tu descripción aquí...", 
+			"confirmDescriptionButton": "Confirmar"
+		}
+	},
+	
+	"CardSelection": {
+		"static": 
+		{
+			"h1": "Elige una Carta", 
+			"chooseCard": "Elegir", 
+			"confirmChoice": "Confirmar"
+		}
+	},
+	
+	"UrgeTest_initial": {
+		"static": 
+		{
+			"h1": "Evalúa la fuerza de tu impulso", 
+			"textMain": "Has solicitado a la extensión ClearMind que bloquee <span id='blockedDomain'></span><br /><br />El deseo que estás experimentando es perfectamente normal en sí mismo, pero ¿debemos permitir que el comportamiento compulsivo de la adicción tome el control?<br /><br />¡Juntos podemos superarlo!",
+			"confirmButton": "Confirmar",
+			"textSecondary": "Has solicitado a la extensión ClearMind que bloquee <span id='blockedDomainOverlay'></span>"
+		}
+	},
+	
+	"UrgeTest_final": {
+		"static": 
+		{
+			"mainHeader": "Evalúa la fuerza de tu impulso",
+			"mainHeaderResult": "Tu fuerza de impulso cambió de <span id='initialUrgeValueSpan'></span> a <span id='currentUrgeValueSpan'></span>",
+			"motivationalText_lessUrge": "¡Tú puedes hacerlo!",
+			"confirmButton": "Confirmar",
+			"resetUrgeButton": "Una ronda más",
+			"leaveUrgeButton": "Estoy listo para irme"
+		}
+	},
+	
+	"customBlockControl_popup": {
+		"static": 
+		{
+			"h2": "Gestionar Lista de Bloqueo",
+			"domainInput": "*nombre_del_dominio*",
+			"addDomainBtn": "Agregar a bloqueos personalizados",
+			"deleteDomainBtn": "Eliminar de bloqueos personalizados",
+			"settingsButton": "Configuraciones",
+			"supportButton": "Soporte"
+		}
+	},
+	
+	"ProgressionPopup": {
+		"static": 
+		{
+			"p": "¡Felicidades, señor! Aquí hay un poderoso artefacto para ayudarte en tu viaje.",
+			"closeButton": "Continuar",
+			"claimButton": "¡Consíguelo!"
+		},
+		"rewards":
+		{
+			"1": 
+			{
+				"title": "«Mejor compañero-extensión para proteger tu cordura»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": 
+			{
+				"title": "«Audaz, pero poderoso fragmento emocional»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": 
+			{
+				"title": "«Cómo sanar YouTube»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": 
+			{
+				"title": "«Qué tan profundo es el agujero del conejo...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": 
+			{
+				"title": "«La Solución Definitiva»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	
+	"About": {
+		"static": 
+		{
+			"h1": "Gracias por usar ClearMind",
+			"h2About": "Acerca de",
+			"p1": "ClearMind es una extensión de navegador que ayuda a superar la adicción a la pornografía.<br><br>La creamos porque creemos que la sobreabundancia de pornografía en el espacio digital es uno de los problemas más serios de nuestro tiempo, afectando negativamente a todos, especialmente a los jóvenes.<br><br>A diferencia de otras extensiones, ClearMind emplea principios de TCC, gamificación y gestión de la atención para suprimir el deseo en lugar de bloquear mecánicamente el acceso a los sitios web.<br><br>Lo que comenzó como un proyecto personal se convirtió en algo que estaríamos felices de compartir con todos.",
+			"p3": "¡Esperamos sinceramente que te ayude en tu viaje!",
+			"p4": "Creado por: A'n'A",
+			"sourceButton": "Código fuente",
+			"contactButton": "Contacto",
+			"supportButton": "Soporte",
+			"OwnPage": "Haz tu propia página",
+			"p5": "Envía un mensaje inspirador desde un momento de paz a tu futuro yo en su hora más oscura. Todos los datos se almacenan sin conexión.",
+			"openTab1": "=== Opción (1) ===",
+			"openTab2": "=== Opción (2) ===",
+			"openTab3": "=== Opción (3) ===",
+			"deleteUserContentButton": "Eliminar",
+			"saveUserContentButton": "Guardar",
+			"languageSelectLabel": "Idioma:",
+			"themeSelectLabel": "Tema:",
+			"themeLabelLight": "Claro",
+			"themeLabelDark": "Oscuro"
+		}
+	},
+	
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

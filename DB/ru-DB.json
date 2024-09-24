@@ -1,0 +1,292 @@
+{
+	"SimpleAction": {
+		"alias": "Маленькие шаги",
+		"icon": ["fa-solid", "fa-meteor"],
+		"content": 
+			[
+			"Сделайте 10 отжиманий",
+			"Выпейте стакан воды",
+			"Сделайте 5 глубоких вдохов",
+			"Встаньте и пройдитесь по комнате",
+			"Очистите небольшую область на вашем столе",
+			"Полейте любое растение в доме",
+			"Сделайте 20 приседаний",
+			"Закройте глаза и мысленно спойте свою любимую песню",
+			"Посмотрите вверх, вниз, влево и вправо 10 раз",
+			"Массируйте центр своей ладони",
+			"Назовите 5 предметов - которые вы видите, 4 - которые можете потрогать, 3 - которые слышите, 2 - которые чувствуете запахом, и 1 - который можете попробовать на вкус"
+			]
+	},
+  
+	"Informational": {
+		"alias": "Теперь вы знаете",
+		"icon": ["fa-solid", "fa-dragon"],
+		"static": "Теперь я знаю",
+		"content": 
+			[
+			{"title": "Психическое здоровье", "text": "Просмотр порнографии может привести к тревоге, депрессии и стрессу, как показано в <a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>исследовании</a>. Это также может создать зависимость, снизить самоконтроль и навредить психическому здоровью."},
+			{"title": "Брак", "text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>Исследование</a> показывает, что взрослые, которые смотрели порнографию в прошлом году, с большей вероятностью были разведены, имели внебрачные связи и реже сообщали о счастье в браке или в целом."},
+			{"title": "Pornhub размещает видео c субъектами сексуального рабства и изнасилованиями", "text": "Было несколько шокирующих случаев торговли людьми и фильмов с изнасилованиями несовершеннолетних, которые размещались на Pornhub.<br><br>15-летняя девочка, которая пропала без вести в течение года, была наконец найдена после того, как ее мать получила информацию о том, что ее дочь фигурирует на сайте. <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>Подробнее...</a>" },
+			{"title": "Когнитивные и эмоциональные воздействия", "text": "Порнография связана с депрессией, агрессией и нарушением <a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>исполнительных функций</a>."},
+			{"title": "Сексуальное насилие", "text": "Порнография связана с нездоровыми сексуальными убеждениями, способствует <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>сексуальному насилию</a> и снижает самооценку."},
+			{"title": "Функция мозга", "text": "Негативные эффекты порнографии включают <a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>уменьшение серого вещества префронтальной коры</a>, что приводит к зависимости и ухудшению принятия решений."},
+			{"title": "Эректильная дисфункция", "text": "Порнография связана с <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>эректильной дисфункцией</a>, потерей контроля и негативным влиянием на сексуальное благополучие."},
+			{"title": "Всего четыре недели", "text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>Четыре недели</a> воздержания могут привести к различным психологическим улучшениям, включая повышение мотивации, настроения и социального поведения."},
+			{"title": "Качество отношений", "text": "Использование порнографии связано с более низким <a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>удовлетворением отношениями</a> как у мужчин, так и у женщин."},
+			{"title": "Неверность и развод", "text": "Использование порнографии связано с повышенной вероятностью <a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>измен</a> и <a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>развода</a> в отношениях, как у мужчин, так и у женщин."}
+			]
+	},
+  
+	"PictureSelection": {
+		"alias": "Куда пойти",
+		"icon": ["fa-solid", "fa-compass"],
+		"static": 
+		{
+			"h1": "Выберите одно", 
+			"chooseImageButton": "Выбрать",
+			"confirmChoiceButton": "Подтвердить"
+		},
+		"content": 
+			[
+			{"image": "https://i.imgur.com/oeuMAQt.jpeg", "desc": "Настоящий тигр — это тот, кто выбирает изображения с тиграми..."},
+			{"image": "https://i.imgur.com/wc4nJqB.jpeg", "desc": "Кстати, я могу раздавить арбуз ртом."},
+			{"image": "https://i.imgur.com/969Fh4l.jpeg", "desc": "Вы должны когда-нибудь поехать в Японию..."},
+			{"image": "https://i.imgur.com/vklfSZb.jpeg", "desc": "Милашка смотрит на милашку."},
+			{"image": "https://i.imgur.com/Ip8mskP.jpeg", "desc": "Просто напоминание о том, насколько красив мир."},
+			{"image": "https://i.imgur.com/q0pDtIF.jpeg", "desc": "Ха-ха, надеюсь, я заставил вас улыбнуться."},
+			{"image": "https://i.imgur.com/Fo3iSkq.jpeg", "desc": "Вау, вы поймали золотую рыбку! Подождите, это не рыбка..."},
+			{"image": "https://i.imgur.com/yHIqEnU.jpeg", "desc": "Даже в грязи можно выбрать оставаться чистым."},
+			{"image": "https://i.imgur.com/WgRFKdd.jpeg", "desc": "Я та девушка, которую ты искал?"},
+			{"image": "https://i.imgur.com/jat35sC.jpeg", "desc": "В трудные времена я подам вам лапу."},
+			{"image": "https://i.imgur.com/DSCPFfV.jpeg", "desc": "Будь собакой, не будь грибом."},
+			{"image": "https://i.imgur.com/z4LXvFX.jpeg", "desc": "Каждая стрела, которую вы выпускаете, может быть самолетом забитым людьми..."},
+			{"image": "https://i.imgur.com/gsoXN2C.jpeg", "desc": "Ваш внутренний ребенок рассчитывает на вас."},
+			{"image": "https://i.imgur.com/fC9Drxf.jpeg", "desc": "Дружба."},
+			{"image": "https://i.imgur.com/gi63tHf.jpeg", "desc": "Вы заслуживаете быть свободным от зависимости."},
+			{"image": "https://i.imgur.com/RwrQLKd.jpeg", "desc": "Самые красивые вещи — это просто правильное сочетание простых элементов."},
+			{"image": "https://i.imgur.com/yK26epW.jpeg", "desc": "Культура и искусство просто подражают жизни или они способны её превосходить?"},
+			{"image": "https://i.imgur.com/b13aVLK.jpeg", "desc": "Киркьюфелл, Исландия. Одно из лучших мест для наблюдения за северным сиянием."},
+			{"image": "https://i.imgur.com/cm2uxlK.jpeg", "desc": "Внешность или содержание? Баланс?"},
+			{"image": "https://i.imgur.com/KY5L79Q.jpeg", "desc": "Вода может стать буквально чем угодно. Она может течь или разбиваться.<br>Будь водой, мой друг."},
+			{"image": "https://i.imgur.com/wwWQAUy.png", "desc": "<a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>Генеалогия</a> технологий и власти с 1500 года"},
+			{"image": "https://i.imgur.com/P4Qb0ra.png", "desc": "Совершенно обычный монах и его кот читают вместе, Франция, 13 век.<br>Какую книгу вы хотите прочитать? А ваш кот? "},
+			{"image": "https://i.imgur.com/lkoBWsy.jpeg", "desc": "Космическая туманность. Может ли что-то подобное существовать случайно<br>или это требует хоть немного воли?"},
+			{"image": "https://i.imgur.com/hD9kvAw.jpeg", "desc": "Тингведлир, Исландия."},
+			{"image": "https://i.imgur.com/BRoBRIt.jpeg", "desc": "Ночь в лесу, таймлапс неба."},
+			{"image": "https://i.imgur.com/IRAz1xm.jpeg", "desc": "Необычные деревья в Новой Зеландии."},
+			{"image": "https://i.imgur.com/912SXeD.jpeg", "desc": "Рукопись Войнича. Всё ещё загадка."},
+			{"image": "https://i.imgur.com/1qrlqgK.jpeg", "desc": "Срез арбузного турмалина."},
+			{"image": "https://i.imgur.com/EyU2nRq.jpeg", "desc": "Как давно вы в последний раз встречали рассвет?"},
+			{"image": "https://i.imgur.com/jhWIkWq.jpeg", "desc": "Каустика света от стекла. Попробуйте сами!"}
+			]
+	},
+  
+	"Video": {
+		"alias": "Посмотрите сами",
+		"icon": ["fa-solid", "fa-star"],
+		"static": "Подтвердить",
+		"content":
+			[
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+			]
+	},
+  
+	"MessageToYourself": {
+		"alias": "Любовь к себе",
+		"icon": ["fa-solid", "fa-dove"],
+		"static": "Подтвердить",
+		"content":
+			[
+			{"text": "Быть местом, где падший ангел встречает восходящую обезьяну<br><br>(Вы можете <a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>создать свою собственную</a> страницу, как эта)", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"}
+			]
+	},
+  
+	"Quote": {
+		"alias": "Уголок мудрости",
+		"icon": ["fa-solid", "fa-hat-wizard"],
+		"static": 
+		{
+			"question": "Вы согласны с цитатой? Почему?", 
+			"quoteReflection": "Введите ваше размышление здесь...",
+			"quoteReflectionButton": "Подтвердить"
+		},
+		"content":
+			[
+			"<em>«Я не жертва обстоятельств, я - результат моих решений.»</em> — Стивен Кови",
+			"<em>«Единственный выход — всегда насквозь.»</em> — Роберт Фрост",
+			"<em>«Каждый миг сопротивления искушению — это победа.»</em> — Фредерик Уильям Фабер",
+			"<em>«Секрет перемен в том, чтобы сосредоточить всю свою энергию не на борьбе со старым, а на создании нового.»</em> — Сократ",
+			"<em>«Зависимость начинается с надежды, что что-то 'там' может мгновенно заполнить пустоту внутри.»</em> — Джин Килборн",
+			"<em>«Не судите каждый день по урожаю, который вы собрали, а по семенам, которые вы посадили.»</em> — Роберт Льюис Стивенсон",
+			"<em>«За бесплатное часто приходится дорого заплатить.»</em> — Такемура",
+			"<em>«Если у вас есть только молоток, все выглядит как гвоздь.»</em> — Пословица",
+			"<em>«Никто не более порабощен, чем те, кто ложно верит в собственную свободу.»</em> — Иоганн Вольфганг фон Гёте",
+			"<em>«Тьма не может изгнать тьму.»</em> — Мартин Лютер Кинг мл.",
+			"<em>«Определение безумия — делать одно и то же снова и снова, ожидая разных результатов.»</em> — Альберт Эйнштейн",
+			"<em>«Наши выборы показывают, кто мы на самом деле, гораздо больше, чем наши способности.»</em> ― Дж. К. Роулинг",
+			"<em>«Некоторые вещи привлекают ваш взгляд, но следуйте только за теми, что захватывают сердце.»</em> — Пословица",
+			"<em>«Рискуйте больше, чем другие считают безопасным. Мечтайте больше, чем другие считают практичным.»</em> — Говард Шульц",
+			"<em>«Я не потерпел неудачу. Я просто нашел 10,000 способов, которые не работают.»</em> ― Томас А. Эдисон",
+			"<em>«Беден не тот, у кого мало, а тот, кто жаждет большего.»</em> — Сенека",
+			"<em>«Ни один человек не свободен, если он не хозяин самому себе.»</em> — Эпиктет",
+			"<em>«Свобода — это рабство.»</em> — Джордж Оруэлл, 1984",
+			"<em>«Желания никогда не уталить наслаждением. Как огонь, они растут, когда удовлетворены.»</em> — Бхагавад Гита",
+			"<em>«Если вы можете бросить на день, вы можете бросить на всю жизнь.»</em> — Бенджамин Алире Саэнс",
+			"<em>«Трудности часто готовят обычных людей к необычной судьбе.»</em> — К.С. Льюис",
+			"<em>«Вам не нужно видеть всю лестницу, просто следующий шаг.»</em> — Мартин Лютер Кинг мл."
+			]
+	},
+  
+	"Trigger": {
+		"alias": "Крючок",
+		"icon": ["fa-solid", "fa-jedi"],
+		"static": 
+		{
+			"h1": "Определите триггер", 
+			"p": "Попробуйте определить триггер, который способствовал формированию желания",
+			"triggerDescription": "Введите триггер здесь...", 
+			"triggerButton": "Подтвердить"
+		}
+	},
+	
+	"ImagineWords": {
+		"alias": "Представьте",
+		"icon": ["fa-solid", "fa-hands-praying"],
+		"static": 
+		{
+			"p": "Близкий друг хочет поддержать вас.<br>Представьте, какие слова могли бы действительно помочь вам прямо сейчас?", 
+			"wordsDescription": "...", 
+			"wordsButton": "Подтвердить"
+		}
+	},
+	
+	"Wife": {
+		"alias": "Муза",
+		"icon": ["fa-solid", "fa-heart"],
+		"static": 
+		{
+			"h1": "Визуализируйте один будущий момент, который вы хотите провести вместе с вашей женой", 
+			"wifeDescription": "Введите ваше описание здесь...", 
+			"confirmDescriptionButton": "Подтвердить"
+		}
+	},
+	
+	"CardSelection": {
+		"static": 
+		{
+			"h1": "Выберите карту", 
+			"chooseCard": "Выбрать", 
+			"confirmChoice": "Подтвердить"
+		}
+	},
+	
+	"UrgeTest_initial": {
+		"static": 
+		{
+			"h1": "Оцените силу вашего желания", 
+			"textMain": "Вы попросили расширение ClearMind заблокировать <span id='blockedDomain'></span><br /><br />Желание, которое вы испытываете, само по себе совершенно нормально, но стоит ли позволять навязчивому поведению зависимости взять верх?<br /><br />Вместе мы можем преодолеть это!",
+			"confirmButton": "Подтвердить",
+			"textSecondary": "Вы попросили расширение ClearMind заблокировать <span id='blockedDomainOverlay'></span>"
+		}
+	},
+	
+	"UrgeTest_final": {
+		"static": 
+		{
+			"mainHeader": "Оцените силу вашего желания",
+			"mainHeaderResult": "Сила желания изменилась с <span id='initialUrgeValueSpan'></span> до <span id='currentUrgeValueSpan'></span>",
+			"motivationalText_lessUrge": "Вы можете это сделать!",
+			"confirmButton": "Подтвердить",
+			"resetUrgeButton": "Еще один раунд",
+			"leaveUrgeButton": "Я готов уйти"
+		}
+	},
+	
+	"customBlockControl_popup": {
+		"static": 
+		{
+			"h2": "Управление списком блокировок",
+			"domainInput": "*название_домена*",
+			"addDomainBtn": "Добавить в пользовательские блокировки",
+			"deleteDomainBtn": "Удалить из пользовательских блокировок",
+			"settingsButton": "Настройки",
+			"supportButton": "Поддержка"
+		}
+	},
+	
+	"ProgressionPopup": {
+		"static": 
+		{
+			"p": "Поздравляю, сэр! Вот мощный артефакт, который поможет в вашем путешествии!",
+			"closeButton": "Продолжить",
+			"claimButton": "Получить!"
+		},
+		"rewards":
+		{
+			"1": 
+			{
+				"title": "«Лучшее компаньон-расширение для охраны вашего разума»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": 
+			{
+				"title": "«Смелый, но мощный эмоциональный бит»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": 
+			{
+				"title": "«Как исцелить Youtube»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": 
+			{
+				"title": "«Насколько глубока кроличья нора...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": 
+			{
+				"title": "«Ультимативное решение»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	
+	"About": {
+		"static": 
+		{
+			"h1": "Спасибо за использование ClearMind",
+			"h2About": "О нас",
+			"p1": "ClearMind — это расширение для браузера, которое помогает преодолеть зависимость от порнографии.<br><br>Мы создали его, потому что считаем, что изобилие порнографии в цифровом пространстве — одна из самых серьезных проблем нашего времени, негативно влияющая на всех, особенно на молодежь.<br><br>В отличие от других расширений, ClearMind использует принципы КПТ, геймификации и управления вниманием, чтобы подавить желание, а не механически блокировать доступ к сайтам.<br><br>То, что началось как личный проект, стало чем-то большим, чем мы с радостью делимся со всеми.", 
+			"p3": "Мы искренне надеемся, что это поможет вам в вашем путешествии!",
+			"p4": "Создано: A'n'A",
+			"sourceButton": "Исходный код",
+			"contactButton": "Контакт",
+			"supportButton": "Поддержка",
+			"OwnPage": "Создать свою страницу",
+			"p5": "Отправьте вдохновляющее сообщение из момента покоя вашему будущему 'я' в его темный час. Все данные хранятся оффлайн.",
+			"openTab1": "=== Вариант (1) ===",
+			"openTab2": "=== Вариант (2) ===",
+			"openTab3": "=== Вариант (3) ===",
+			"deleteUserContentButton": "Удалить",
+			"saveUserContentButton": "Сохранить",
+			"languageSelectLabel": "Язык:",
+			"themeSelectLabel": "Тема:",
+			"themeLabelLight": "Светлая",
+			"themeLabelDark": "Тёмная"
+		}
+	},
+	
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

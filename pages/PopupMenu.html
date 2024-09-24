@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Redirector</title>
+    <style>
+        body {
+            width: 300px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #486684;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+            gap: 8px;
+        }
+        button:hover {
+            background-color: #2c3e50;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .settings-button {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+		.settings-button:hover {
+            background-color: #16a085;
+        }
+        .support-button {
+            background-color: #f96854;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .support-button:hover {
+            background-color: #d84231;
+        }
+        #message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+        .separator {
+            margin: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        /* Dark theme styles */
+		.dark-theme {
+			background-color: #2c3e50;
+		}
+		.dark-theme .container {
+			background-color: #333;
+		}
+		.dark-theme h1, .dark-theme h2, .dark-theme .quote {
+			color: #ecf0f1;
+		}
+		.dark-theme textarea {
+			background-color: #444;
+			color: #ecf0f1;
+			border: 1px solid #555;
+		}
+		.dark-theme button {
+			background-color: #16a085;
+		}
+		.dark-theme button:hover {
+			background-color: #1abc9c;
+		}
+		.dark-theme footer {
+			background-color: #333;
+		}
+		.dark-theme .scale div {
+			background-color: #555;
+		}
+		.scale div.filled {
+			background-color: #2ecc71;
+		}
+		.dark-theme .scale div.reward {
+			background-color: #16a085;
+		}
+        .dark-theme .support-button {
+			background-color: #f96854;
+		}
+        .dark-theme .settings-button {
+			background-color: #1abc9c;
+		}
+        .dark-theme button {
+			background-color: #486684;
+		}
+
+        .dark-theme #message {
+			color: #ecf0f1;
+		}
+    </style>
+	<link rel="stylesheet" href="../assets/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2></h2>
+		<div class="separator"></div>
+        <input type="text" id="domainInput" placeholder="*domain_name*" readonly>
+        <button id="addDomainBtn" disabled></button>
+        <button id="deleteDomainBtn" disabled></button>
+        <p id="message"></p>
+        <div class="separator"></div>
+		<button class="settings-button" id="settingsButton">
+            <i class="fas fa-info-circle"></i><span></span>
+        </button>
+        <button class="support-button" id="supportButton">
+            <i class="fas fa-heart"></i><span></span>
+        </button>
+    </div>
+
+	<script src="../scripts/global/ThemeController.js"></script>
+    <script src="../scripts/PopupMenu.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Selection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            max-width: 800px;
+            width: 100%;
+        }
+		h1 {
+           color: #2c3e50;
+		}
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            transition: all 0.5s ease-in-out;
+        }
+        .card-option {
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.5s ease-in-out;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            background-color: #f9f9f9;
+        }
+        .card-option.selected {
+            border-color: #1abc9c;
+        }
+        .card-option i {
+			color: #2c3e50;
+            font-size: 48px;
+			margin-top: 30px;
+            margin-bottom: 10px;
+            transition: all 0.5s ease-in-out;
+        }
+        .card-option p {
+			font-weight: bold;
+			color: #2c3e50;
+			margin-top: 20px;
+			margin-bottom: 35px;
+            transition: all 0.5s ease-in-out;
+        }
+        button {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #16a085;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);		  
+        }
+        #wiseWords {
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+		footer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			padding: 20px 0;
+			background-color: #fff;
+			box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+		}
+		.scale {
+			display: flex;
+			width: 80%;
+			max-width: 1200px;
+			justify-content: center;
+		}
+		.scale div {
+			flex: 1;
+			height: 20px;
+			margin: 0 2px;
+			background-color: #ecf0f1;
+			transition: background-color 0.3s;
+			border-radius: 10px;
+		}
+		.scale div.filled {
+			background-color: #2ecc71;
+		}
+		.scale div.reward {
+			background-color: #16a085;
+			position: relative;
+		}
+		.scale div.reward::after {
+			content: '?';
+			position: absolute;
+			top: 45%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: #fff;
+			font-weight: bold;
+		}
+        /* Dark theme styles */
+		.dark-theme {
+			background-color: #2c3e50;
+		}
+		.dark-theme .container {
+			background-color: #333;
+		}
+		.dark-theme h1, .dark-theme h2, .dark-theme .quote {
+			color: #ecf0f1;
+		}
+		.dark-theme textarea {
+			background-color: #444;
+			color: #ecf0f1;
+			border: 1px solid #555;
+		}
+		.dark-theme button {
+			background-color: #16a085;
+		}
+		.dark-theme button:hover {
+			background-color: #1abc9c;
+		}
+		.dark-theme footer {
+			background-color: #333;
+		}
+		.dark-theme .scale div {
+			background-color: #555;
+		}
+		.scale div.filled {
+			background-color: #2ecc71;
+		}
+		.dark-theme .scale div.reward {
+			background-color: #16a085;
+		}
+		.dark-theme .card-option {
+			background-color: #444;
+		}
+		.dark-theme .card-option i {
+			color: #ecf0f1;
+        }
+        .dark-theme .card-option p {
+			color: #ecf0f1;
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <h1></h1>
+        <div class="card-container" id="cardContainer">
+            <div class="card-option" id="selectCard0">
+                <i></i>
+                <p></p>
+            </div>
+            <div class="card-option" id="selectCard1">
+                <i></i>
+                <p></p>
+            </div>
+            <div class="card-option" id="selectCard2">
+                <i></i>
+                <p></p>
+            </div>
+        </div>
+        <button id="chooseCard"></button>
+        <div id="wiseWords"></div>
+        <button id="confirmChoice" style="display: none;"></button>
+    </div>
+	
+    <footer>
+        <div class="scale" id="scale">
+            <!-- 70 divisions -->
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div class="reward"></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div class="reward"></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div class="reward"></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div class="reward"></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+            <div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div class="reward"></div>
+        </div>
+    </footer>
+
+	<script src="../scripts/global/ThemeController.js"></script>
+    <script src="../scripts/global/ProgressionManager.js"></script>
+    <script src="../scripts/global/CardRandomizer.js"></script>
+    <script src="../scripts/CardSelection.js"></script>
+</body>
+</html>
