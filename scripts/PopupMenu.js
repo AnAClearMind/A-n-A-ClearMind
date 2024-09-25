@@ -12,12 +12,18 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function extractDomain(url) {
         const urlObj = new URL(url);
-        const domain = urlObj.hostname;
-        const domainPattern = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (domainPattern.test(domain)) {
-            return domain;
+        if (urlObj.origin === `chrome-extension://${chrome.runtime.id}`) {
+            const blockedDomain = urlObj.searchParams.get('blocked');
+            return blockedDomain ? blockedDomain : '';
         }
-        return '';
+        else {
+            const domain = urlObj.hostname;
+            const domainPattern = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (domainPattern.test(domain)) {
+                return domain;
+            }
+            return '';
+        }
     }
 
     // Get current tab's URL and fill in the domain
