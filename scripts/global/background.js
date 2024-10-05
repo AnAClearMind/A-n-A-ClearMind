@@ -279,6 +279,6 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === "myContextMenu") {
-        chrome.tabs.create({ url: chrome.runtime.getURL("../pages/UrgeTest_initial.html?blocked=$ALERT_BUTTON") });
+        chrome.tabs.create({ url: chrome.runtime.getURL("../pages/UrgeTest_initial.html?blocked=via alert button") });
     }
 });
