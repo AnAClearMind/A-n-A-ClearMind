@@ -222,6 +222,7 @@
 			"domainInput": "*domain_name*",
 			"addDomainBtn": "Add to custom blocks",
 			"deleteDomainBtn": "Delete from custom blocks",
+			"alertButton": "ALERT-MODE",
 			"settingsButton": "Settings",
 			"supportButton": "Support"
 		}

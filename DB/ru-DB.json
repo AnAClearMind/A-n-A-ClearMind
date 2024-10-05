@@ -217,6 +217,7 @@
 			"domainInput": "*название_домена*",
 			"addDomainBtn": "Добавить в пользовательские блокировки",
 			"deleteDomainBtn": "Удалить из пользовательских блокировок",
+			"alertButton": "РЕЖИМ ТРЕВОГИ",
 			"settingsButton": "Настройки",
 			"supportButton": "Поддержка"
 		}

@@ -217,6 +217,7 @@
 			"domainInput": "*domain_name*",
 			"addDomainBtn": "Zur benutzerdefinierten Blockliste hinzufügen",
 			"deleteDomainBtn": "Aus benutzerdefinierten Blockliste löschen",
+			"alertButton": "ALARM-MODUS",
 			"settingsButton": "Einstellungen",
 			"supportButton": "Unterstützung"
 		}

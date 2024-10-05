@@ -217,6 +217,7 @@
 			"domainInput": "*nom_de_domaine*",
 			"addDomainBtn": "Ajouter aux blocages personnalisés",
 			"deleteDomainBtn": "Supprimer des blocages personnalisés",
+			"alertButton": "MODE-ALERTE",
 			"settingsButton": "Paramètres",
 			"supportButton": "Support"
 		}

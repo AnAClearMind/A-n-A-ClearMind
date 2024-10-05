@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('settingsButton').addEventListener('click', function () {
         window.open('About.html');
     });
+	document.getElementById('alertButton').addEventListener('click', function () {
+		window.open('UrgeTest_initial.html');
+	});
+	
 
     function extractDomain(url) {
         const urlObj = new URL(url);
@@ -95,6 +99,7 @@ function dataLoadFromBase(customBlockControl_popup, Sys_links) {
     const domainInput = document.getElementById('domainInput');
     const addDomainBtn = document.getElementById('addDomainBtn');
     const deleteDomainBtn = document.getElementById('deleteDomainBtn');
+	const alertButton = document.getElementById('alertButton');
     const settingsButton = document.getElementById('settingsButton').querySelector('span');
     const supportButton = document.getElementById('supportButton').querySelector('span');
 
@@ -102,6 +107,7 @@ function dataLoadFromBase(customBlockControl_popup, Sys_links) {
     domainInput.placeholder = customBlockControl_popup.static.domainInput;
     addDomainBtn.textContent = customBlockControl_popup.static.addDomainBtn;
     deleteDomainBtn.textContent = customBlockControl_popup.static.deleteDomainBtn;
+	alertButton.textContent = customBlockControl_popup.static.alertButton;
     settingsButton.textContent = customBlockControl_popup.static.settingsButton;
     supportButton.textContent = customBlockControl_popup.static.supportButton;
     document.getElementById('supportButton').addEventListener('click', function () {
