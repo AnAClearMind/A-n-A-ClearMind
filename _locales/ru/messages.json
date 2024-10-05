@@ -4,5 +4,8 @@
   },
   "extensionDescription": {
     "message": "ClearMind — это расширение для браузера, которое помогает преодолеть зависимость от порнографии."
-  }
+  },
+  	"contextMenuTitle": {
+        "message": "ClearMind => открыть ТРЕВОЖНЫЙ режим"
+    }
 }

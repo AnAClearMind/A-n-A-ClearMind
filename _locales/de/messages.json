@@ -4,5 +4,8 @@
   },
   "extensionDescription": {
     "message": "ClearMind ist eine Browser-Erweiterung, die hilft, Pornosucht zu überwinden."
-  }
+  },
+  "contextMenuTitle": {
+        "message": "ClearMind => Alarmmodus öffnen"
+    }
 }

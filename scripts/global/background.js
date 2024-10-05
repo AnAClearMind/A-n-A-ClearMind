@@ -267,3 +267,18 @@ async function loadData() {
         console.error('Error loading JSON:', error);
     }
 }
+
+chrome.runtime.onInstalled.addListener(() => {
+    const title = chrome.i18n.getMessage("contextMenuTitle");
+    chrome.contextMenus.create({
+        id: "myContextMenu",
+        title: title,
+        contexts: ["page"]
+    });
+});
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === "myContextMenu") {
+        chrome.tabs.create({ url: chrome.runtime.getURL("../pages/UrgeTest_initial.html?blocked=$ALERT_BUTTON") });
+    }
+});

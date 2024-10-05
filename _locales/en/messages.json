@@ -4,5 +4,8 @@
   },
   "extensionDescription": {
     "message": "ClearMind is a browser extension that helps overcome porn addiction."
-  }
+  },
+	"contextMenuTitle": {
+        "message": "ClearMind => enter ALERT mode"
+    }
 }
