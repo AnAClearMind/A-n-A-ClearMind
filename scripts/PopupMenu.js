@@ -16,11 +16,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function extractDomain(url) {
         const urlObj = new URL(url);
-        if (urlObj.origin === `chrome-extension://${chrome.runtime.id}`) {
+        console.log(urlObj.origin);
+        if (urlObj.origin.includes('chrome-extension://') || urlObj.origin.includes('moz-extension://')) {
             const blockedDomain = urlObj.searchParams.get('blocked');
-            return blockedDomain ? blockedDomain : '';
+            if (blockedDomain) {
+                return blockedDomain ? blockedDomain : '';
+            }
+            return '';
         }
-        else {
+        else{
             const domain = urlObj.hostname;
             const domainPattern = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if (domainPattern.test(domain)) {
