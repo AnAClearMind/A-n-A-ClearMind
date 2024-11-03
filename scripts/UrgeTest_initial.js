@@ -50,10 +50,17 @@ function dataLoadFromBase(UrgeTest_initial) {
 
 function checkSize() {
     var overlay = document.getElementById('overlay');
-    if (window.innerWidth < 1000 || window.innerHeight < 600) {
-        overlay.style.display = 'flex';
-    } else {
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isMobile = userAgent.includes('mobile') || userAgent.includes('android') || userAgent.includes('iphone');
+
+    if (isMobile) {
         overlay.style.display = 'none';
+    } else {
+        if (window.innerWidth < 1000 || window.innerHeight < 600) {
+            overlay.style.display = 'flex';
+        } else {
+            overlay.style.display = 'none';
+        }
     }
 }
 

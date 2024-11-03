@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "storage",
@@ -49,7 +49,10 @@
     "gecko": {
       "id": "{a50b0ef8-7ffe-4628-b2f7-57ea96a6ae84}",
       "strict_min_version": "113.0"
-    }
+    },
+	"gecko_android": {
+    "strict_min_version": "128.0"
+  }
   },
   "declarative_net_request": {
     "rule_resources": [
