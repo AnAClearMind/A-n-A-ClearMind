@@ -16,7 +16,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
         chrome.storage.local.set({ lastInstalled: Date.now() });
         chrome.storage.local.set({ progress: 0 });
         console.log('Extension installed');
-        chrome.tabs.create({ url: "../pages/About.html" });
+        
+		// Add isNewInstall parameter to the URL
+        chrome.tabs.create({ url: "../pages/About.html?isNewInstall=true" });
 
         chrome.storage.local.set({ SlidesDataVar_Informational: 0 });
         chrome.storage.local.set({ SlidesDataVar_MessageToYourself: 0 });

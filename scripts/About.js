@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await getDB();
     SetupDynamicDataFromDB(data.Sys_links);
     dataLoadFromBase(data.About);
+	setTimeout(function() {loadOperaAlert(data.About.static.OperaAlert); }, 500);
 });
 
 window.onload = async function () {
@@ -234,4 +235,20 @@ function dataLoadFromBase(About) {
     themeSelectLabel.textContent = About.static.themeSelectLabel;
     themeLabelLight.textContent = About.static.themeLabelLight;
     themeLabelDark.textContent = About.static.themeLabelDark;
+}
+
+function loadOperaAlert(Message) {
+	const urlParams = new URLSearchParams(window.location.search);
+    let isNewInstall = urlParams.get('isNewInstall') === 'true' && !localStorage.getItem('alertShown');
+    
+    // Only show alert if it's Opera AND a new installation
+    if (isNewInstall && (navigator.userAgent.indexOf("OPR") > -1 || navigator.userAgent.indexOf("Opera") > -1)) {
+        alert(Message);
+        
+        // Set isNewInstall to false within the current function call
+        isNewInstall = false;
+        
+        // Store a flag to indicate that the alert has been shown
+        localStorage.setItem('alertShown', 'true');
+    }
 }
