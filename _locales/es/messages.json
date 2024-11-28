@@ -6,6 +6,33 @@
     "message": "ClearMind es una extensión de navegador que ayuda a superar la adicción a la pornografía."
   },
   "contextMenuTitle": {
-        "message": "ClearMind => abrir modo de alarma"
-    }
+    "message": "ClearMind => abrir modo de alarma"
+  },
+  "invalidDomainFormat": {
+    "message": "Formato de dominio no válido. Por favor, ingrese algo como: 'nombreDeDominio.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "El bloqueo de 'google' no está disponible"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Se alcanzó el límite de 100 dominios en la lista de bloqueo personalizada"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Error al actualizar las reglas de bloqueo"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "El dominio ya está en la lista de bloqueo"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Este dominio no está bloqueado por una regla de usuario. No se puede agregar a la lista blanca."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Dominio no encontrado en la lista de bloqueo personalizada"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Dominio agregado a la lista de bloqueo"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Dominio eliminado de la lista de bloqueo"
+  }
 }

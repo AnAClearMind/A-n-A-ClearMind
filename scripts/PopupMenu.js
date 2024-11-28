@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (domain) {
             chrome.runtime.sendMessage({ action: "addDomain", domain: domain }, function (response) {
                 if (response.success) {
-                    message.textContent = `Domain "${domain}" added to custom blocklist.`;
+                    message.textContent = response.message;
                     domainInput.value = '';
                     toggleButtons();
                 } else {
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (domain) {
             chrome.runtime.sendMessage({ action: "deleteDomain", domain: domain }, function (response) {
                 if (response.success) {
-                    message.textContent = `Domain "${domain}" deleted from custom blocklist.`;
+                    message.textContent = response.message;
                     domainInput.value = '';
                     toggleButtons();
                 } else {

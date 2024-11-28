@@ -16,8 +16,8 @@ chrome.runtime.onInstalled.addListener(function (details) {
         chrome.storage.local.set({ lastInstalled: Date.now() });
         chrome.storage.local.set({ progress: 0 });
         console.log('Extension installed');
-        
-		// Add isNewInstall parameter to the URL
+
+        // Add isNewInstall parameter to the URL
         chrome.tabs.create({ url: "../pages/About.html?isNewInstall=true" });
 
         chrome.storage.local.set({ SlidesDataVar_Informational: 0 });
@@ -55,15 +55,45 @@ async function loadDomainsFromFile(filename) {
 // Handle messages from popup
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.action === "addDomain") {
-        const domain = request.domain.toLowerCase();
+        let domain = request.domain.toLowerCase();
+
+        // Check if the input is a URL and extract the domain
+        try {
+            const url = new URL(domain);
+            domain = url.hostname;
+        } catch (e) {
+            // Not a valid URL, continue with domain as is
+        }
+
+        // Strip "www." if present
+        if (domain.startsWith("www.")) {
+            domain = domain.substring(4);
+        }
+
+        // Validate the domain format
+        const domainPattern = /^[a-z0-9.-]+\.[a-z]{2,}$/;
+        if (!domainPattern.test(domain)) {
+            sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
+            return;
+        }
+
+        // Check if the domain is a simple word like "youtube"
+        if (!domain.includes('.')) {
+            sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
+            return;
+        }
+
+        // Specific check for 'google'
         if (domain.includes('google')) {
-            sendResponse({ success: false, error: "Blocking 'google' is not availible" });
+            sendResponse({ success: false, error: chrome.i18n.getMessage("blockingGoogleNotAvailable") });
             return;
         }
+
         if (customBlockedDomains.length >= 100) {
-            sendResponse({ success: false, error: "Custom blocklist limit of 100 domains reached" });
+            sendResponse({ success: false, error: chrome.i18n.getMessage("customBlocklistLimitReached") });
             return;
         }
+
         if (!customBlockedDomains.includes(domain)) {
             customBlockedDomains.push(domain);
             saveCustomDomains();
@@ -73,19 +103,22 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     setTimeout(() => {
                         console.log('Trigger page reload', domain);
                         reloadActiveTab();
-                        sendResponse({ success: true });
+                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully") });
                     }, 100); // 100ms delay, adjust if needed
                 } else {
-                    sendResponse({ success: false, error: "Failed to update blocking rules" });
+                    sendResponse({ success: false, error: chrome.i18n.getMessage("failedToUpdateBlockingRules") });
                 }
             });
             console.log('Domain added to custom blocklist:', domain);
         } else {
-            sendResponse({ success: false, error: "Domain already in blocklist" });
+            sendResponse({ success: false, error: chrome.i18n.getMessage("domainAlreadyInBlocklist") });
         }
-    }
-    else if (request.action === "deleteDomain") {
-        const domain = request.domain.toLowerCase();
+    } else if (request.action === "deleteDomain") {
+        let domain = request.domain.toLowerCase();
+        // Strip "www." if present
+        if (domain.startsWith("www.")) {
+            domain = domain.substring(4);
+        }
         const index = customBlockedDomains.indexOf(domain);
         if (index !== -1) {
             customBlockedDomains.splice(index, 1);
@@ -96,19 +129,18 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     setTimeout(() => {
                         console.log('Trigger page reload', domain);
                         reloadActiveTab(domain);
-                        sendResponse({ success: true });
+                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainRemovedSuccessfully") });
                     }, 100); // 100ms delay, adjust if needed
                 } else {
-                    sendResponse({ success: false, error: "Failed to update blocking rules" });
+                    sendResponse({ success: false, error: chrome.i18n.getMessage("failedToUpdateBlockingRules") });
                 }
             });
             console.log('Domain removed from custom blocklist:', domain);
         } else {
             if (blockedDomains.includes(domain)) {
-                sendResponse({ success: false, error: "This domain is not blocked by user rule. It can not be whitelisted." });
-            }
-            else {
-                sendResponse({ success: false, error: "Domain not found in custom blocklist" });
+                sendResponse({ success: false, error: chrome.i18n.getMessage("domainNotBlockedByUserRule") });
+            } else {
+                sendResponse({ success: false, error: chrome.i18n.getMessage("domainNotFoundInCustomBlocklist") });
             }
         }
     }

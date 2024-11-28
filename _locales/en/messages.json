@@ -1,11 +1,38 @@
 {
-  "extensionName": {
-    "message": "ClearMind — Block Porn/Adult Websites"
-  },
-  "extensionDescription": {
-    "message": "ClearMind is a browser extension that helps overcome porn addiction."
-  },
-	"contextMenuTitle": {
+    "extensionName": {
+        "message": "ClearMind — Block Porn/Adult Websites"
+    },
+    "extensionDescription": {
+        "message": "ClearMind is a browser extension that helps overcome porn addiction."
+    },
+    "contextMenuTitle": {
         "message": "ClearMind => enter ALERT mode"
+    },
+    "invalidDomainFormat": {
+        "message": "Invalid domain format. Please enter something like: 'domainName.com'"
+    },
+    "blockingGoogleNotAvailable": {
+        "message": "Blocking 'google' is not available"
+    },
+    "customBlocklistLimitReached": {
+        "message": "Custom blocklist limit of 100 domains reached"
+    },
+    "failedToUpdateBlockingRules": {
+        "message": "Failed to update blocking rules"
+    },
+    "domainAlreadyInBlocklist": {
+        "message": "Domain already in blocklist"
+    },
+    "domainNotBlockedByUserRule": {
+        "message": "This domain is not blocked by user rule. It cannot be whitelisted."
+    },
+    "domainNotFoundInCustomBlocklist": {
+        "message": "Domain not found in custom blocklist"
+    },
+    "domainAddedSuccessfully": {
+        "message": "Domain added to blocklist"
+    },
+    "domainRemovedSuccessfully": {
+        "message": "Domain removed from blocklist"
     }
 }

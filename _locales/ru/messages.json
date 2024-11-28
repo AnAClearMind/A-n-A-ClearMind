@@ -5,7 +5,34 @@
   "extensionDescription": {
     "message": "ClearMind — это расширение для браузера, которое помогает преодолеть зависимость от порнографии."
   },
-  	"contextMenuTitle": {
-        "message": "ClearMind => открыть ТРЕВОЖНЫЙ режим"
-    }
+  "contextMenuTitle": {
+    "message": "ClearMind => открыть ТРЕВОЖНЫЙ режим"
+  },
+  "invalidDomainFormat": {
+    "message": "Неверный формат домена. Пожалуйста, введите что-то вроде: 'domainName.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Блокировка 'google' недоступна"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Достигнут лимит пользовательского списка блокировки в 100 доменов"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Не удалось обновить правила блокировки"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Домен уже в списке блокировки"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Этот домен не заблокирован пользовательским правилом. Его нельзя добавить в белый список."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Домен не найден в пользовательском списке блокировки"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Домен добавлен в список блокировки"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Домен удален из списка блокировки"
+  }
 }
