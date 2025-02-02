@@ -282,7 +282,11 @@
 			"themeSelectLabel": "Tema:",
 			"themeLabelLight": "Claro",
 			"themeLabelDark": "Oscuro",
-			"OperaAlert": "¡Hola! Parece que estás usando el navegador Opera. Para que la extensión funcione correctamente, necesitarás ajustar manualmente una pequeña cosa.\n\nVe a 'Administrar extensiones' y marca la casilla para permitir el acceso a los resultados de la página de búsqueda.\n\nDe lo contrario, la extensión no podrá bloquear sitios que se abran desde la página de búsqueda."
+			"OperaAlert": "¡Hola! Parece que estás usando el navegador Opera. Para que la extensión funcione correctamente, necesitarás ajustar manualmente una pequeña cosa.\n\nVe a 'Administrar extensiones' y marca la casilla para permitir el acceso a los resultados de la página de búsqueda.\n\nDe lo contrario, la extensión no podrá bloquear sitios que se abran desde la página de búsqueda.",
+			"OwnBlocklist": "Lista de bloqueo personalizada",
+			"ownblocknotice": "Se utiliza como complemento a la lista <a href='https://github.com/AnAClearMind/A-n-A-ClearMind/blob/main/DB/blocklist.json' target='_blank'>predeterminada</a>.",
+			"exportBlocklistButton": "Exportar",
+			"importBlocklistButton": "Importar"
 		}
 	},
 	

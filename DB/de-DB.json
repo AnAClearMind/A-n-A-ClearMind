@@ -282,7 +282,11 @@
 			"themeSelectLabel": "Thema:",
 			"themeLabelLight": "Hell",
 			"themeLabelDark": "Dunkel",
-			"OperaAlert": "Hey! Es sieht so aus, als ob du den Opera-Browser verwendest. Damit die Erweiterung richtig funktioniert, musst du eine kleine Einstellung manuell anpassen.\n\nGehe zu 'Erweiterungen verwalten' und aktiviere das Kontrollkästchen, um Zugriff auf die Suchergebnisseite zu gewähren.\n\nAndernfalls kann die Erweiterung keine Seiten blockieren, die von der Suchergebnisseite aus geöffnet werden."
+			"OperaAlert": "Hey! Es sieht so aus, als ob du den Opera-Browser verwendest. Damit die Erweiterung richtig funktioniert, musst du eine kleine Einstellung manuell anpassen.\n\nGehe zu 'Erweiterungen verwalten' und aktiviere das Kontrollkästchen, um Zugriff auf die Suchergebnisseite zu gewähren.\n\nAndernfalls kann die Erweiterung keine Seiten blockieren, die von der Suchergebnisseite aus geöffnet werden.",
+			"OwnBlocklist": "Benutzerdefinierte Sperrliste",
+			"ownblocknotice": "Wird als Ergänzung zur <a href='https://github.com/AnAClearMind/A-n-A-ClearMind/blob/main/DB/blocklist.json' target='_blank'>Standardliste</a> verwendet.",
+			"exportBlocklistButton": "Exportieren",
+			"importBlocklistButton": "Importieren"
 		}
 	},
 	

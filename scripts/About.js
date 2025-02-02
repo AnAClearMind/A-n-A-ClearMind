@@ -214,6 +214,10 @@ function dataLoadFromBase(About) {
     const themeSelectLabel = document.getElementById('themeSelectLabel');
     const themeLabelLight = document.getElementById('themeLabelLight');
     const themeLabelDark = document.getElementById('themeLabelDark');
+	const OwnBlocklist = document.getElementById('OwnBlocklist');
+	const ownblocknotice = document.getElementById('ownblocknotice');
+	const exportBlocklistButton = document.getElementById('exportBlocklistButton').querySelector('span');
+	const importBlocklistButton = document.getElementById('importBlocklistButton').querySelector('span');
 
     h1.textContent = About.static.h1;
     h2About.textContent = About.static.h2About;
@@ -238,6 +242,10 @@ function dataLoadFromBase(About) {
     themeSelectLabel.textContent = About.static.themeSelectLabel;
     themeLabelLight.textContent = About.static.themeLabelLight;
     themeLabelDark.textContent = About.static.themeLabelDark;
+	OwnBlocklist.textContent = About.static.OwnBlocklist;
+	ownblocknotice.innerHTML = About.static.ownblocknotice;
+	exportBlocklistButton.textContent = About.static.exportBlocklistButton;
+	importBlocklistButton.textContent = About.static.importBlocklistButton;
 }
 
 function loadOperaAlert(Message) {
