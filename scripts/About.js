@@ -31,7 +31,10 @@ window.onload = async function () {
         document.getElementById(`deleteUserContentButton${index}`).addEventListener('click', () => deleteUserContent(index));
         document.getElementById(`imageFile${index}`).addEventListener('change', () => previewImage(index));
     });
-
+    //
+    document.getElementById('exportBlocklistButton').addEventListener('click', exportBlocklist);
+    document.getElementById('importBlocklistButton').addEventListener('click', importBlocklist);
+    //
     loadUserContentFromStorage();
     openTab(1);
 };
@@ -251,4 +254,128 @@ function loadOperaAlert(Message) {
         // Store a flag to indicate that the alert has been shown
         localStorage.setItem('alertShown', 'true');
     }
+}
+
+// Function to export blocklist
+async function exportBlocklist() {
+    chrome.storage.local.get('customBlockedDomains', function(result) {
+        let domains = result.customBlockedDomains || [];
+        let formatString = "# Format: domainName.domainZone, e.g. site.com, 1 per line.";
+        let text = formatString + '\n' + domains.join('\n');
+        let filename = "customBlockedDomains.txt";
+        let blob = new Blob([text], { type: 'text/plain' });
+        let downloadLink = URL.createObjectURL(blob);
+
+        let a = document.createElement('a');
+        a.href = downloadLink;
+        a.download = filename;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadLink);
+    });
+}
+
+// Function to import blocklist
+async function importBlocklist() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.txt'; // Accept only .txt files
+
+    input.onchange = async function(event) {
+        const file = event.target.files[0];
+
+        if (!file) {
+            alert("No file selected.");
+            console.log("No file selected.");
+            return;
+        }
+
+        if (file.type !== 'text/plain') {
+            alert("Please select a .txt file.");
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = async function(event) {
+            const fileContent = event.target.result;
+            const lines = fileContent.split('\n');
+            const domainsToAdd = [];
+
+            for (const line of lines) {
+                const trimmedLine = line.trim();
+                if (trimmedLine && !trimmedLine.startsWith('#')) { // Ignore empty lines and comments
+                    domainsToAdd.push(trimmedLine);
+                }
+            }
+
+            if (domainsToAdd.length === 0) {
+                alert("No domains to add found in the file.");
+                return;
+            }
+
+            if (domainsToAdd.length > 100) {
+                alert("Import limit exceeded.\n\nDue to technical limitations, you can import a maximum of 100 custom blocks.\n\nPlease reduce the number of entries in your file and try again.");
+                return; // Stop import if limit exceeded
+            }
+
+            let importSuccess = true; // Flag to track overall import success
+            let importErrors = [];
+            let successfulImports = 0;
+
+            for (const domain of domainsToAdd) {
+                await new Promise(resolve => { // Use promise to wait for each sendMessage response
+                    chrome.runtime.sendMessage({ action: "addDomain", domain: domain }, function (response) {
+                        if (response && response.success) {
+                            console.log(`Domain "${domain}" added successfully: ${response.message}`);
+                            successfulImports++;
+                        } else {
+                            importSuccess = false;
+                            let errorMessage = `Domain "${domain}": `;
+                            if (response && response.error) {
+                                errorMessage += `${response.error}`;
+                                if (response.message) { // Include "type" text if available
+                                    errorMessage += ` (Type: ${response.message})`;
+                                }
+                            } else {
+                                errorMessage += 'Unknown error';
+                            }
+                            importErrors.push(errorMessage);
+                            console.log(`Error adding domain "${domain}": ${response ? response.error : 'Unknown error'}`, response);
+                        }
+                        resolve(); // Resolve promise to move to the next domain
+                    });
+                });
+            }
+
+            let message = "";
+            if (importSuccess) {
+                message = `Successfully imported ${successfulImports} domains.`;
+            } else {
+                message = `Import completed with errors.\n\n`;
+                message += `Successfully imported ${successfulImports} out of ${domainsToAdd.length} domains.\n\n`;
+                if (importErrors.length > 0) {
+                    message += `Errors encountered:\n`;
+                    importErrors.forEach(error => {
+                        message += `- ${error}\n`;
+                    });
+                    console.log("Import errors:", importErrors.join("\n")); // Log detailed errors in console
+                } else {
+                    message += `Unknown errors during import.`; // In case importSuccess is false but no errors are collected.
+                }
+            }
+            alert(message);
+        };
+
+        reader.onerror = function(event) {
+            alert("Error reading the file.");
+            console.log("Error reading file:", event);
+        };
+
+        reader.readAsText(file);
+    };
+
+    input.click(); // Programmatically open file selection dialog
 }

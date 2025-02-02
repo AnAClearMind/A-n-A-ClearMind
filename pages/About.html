@@ -44,6 +44,10 @@
             margin-top: 40px;
         }
 
+        #OwnBlocklist {
+            margin-top: 40px;
+        }
+
         img {
             max-height: 150px;
             object-fit: contain;
@@ -231,23 +235,50 @@
         .dark-theme button:hover {
             background-color: #1abc9c;
         }
+
         .dark-theme .guidelines p {
             color: #ecf0f1;
         }
+
         .dark-theme p {
             color: #ecf0f1;
         }
+
         .dark-theme .language-container label {
             color: #ecf0f1;
         }
+
         .dark-theme .support-button {
             background-color: #f96854;
         }
+
         .dark-theme .support-button:hover {
             background-color: #d84231;
         }
-        .dark-theme .tab.active{
+
+        .dark-theme .tab.active {
             background-color: #15836d;
+        }
+
+        a:link {
+            color: #1abc9c;
+            /* Light Gray for unvisited links */
+        }
+
+        a:visited {
+            color: #1abc9c;
+            /* Slightly darker gray for visited links */
+        }
+
+        a:hover {
+            color: #1abc9c;
+            /* White on hover for more emphasis */
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #1abc9c;
+            /* Slightly lighter gray when active */
         }
     </style>
     <link rel="stylesheet" href="../assets/css/all.min.css">
@@ -299,6 +330,18 @@
                     <option value="dark" id="themeLabelDark">Dark</option>
                 </select>
             </div>
+            <h2 id="OwnBlocklist">Custom blocklist</h2>
+            <p id="ownblocknotice">Used as an addition to the <a
+                    href="https://github.com/AnAClearMind/A-n-A-ClearMind/blob/main/DB/blocklist.json" target="_blank">default</a> one.
+            </p>
+            <div class="top-buttons">
+                <button class="feedback-button" id="exportBlocklistButton">
+                    <i class="fas fa-upload"></i> <span>Export</span>
+                </button>
+                <button class="feedback-button" id="importBlocklistButton">
+                    <i class="fas fa-download"></i> <span>Import</span>
+                </button>
+            </div>
             <h2 id="OwnPage">Make your own page</h2>
             <p id="p5"></p>
             <div class="tab" id="openTab1"><b class="center-text">=== Option (1) ===</b>
@@ -349,7 +392,7 @@
         </div>
     </div>
 
-	<script src="../scripts/global/ThemeController.js"></script>
+    <script src="../scripts/global/ThemeController.js"></script>
     <script src="../scripts/About.js"></script>
 </body>
 
