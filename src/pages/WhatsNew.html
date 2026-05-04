@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's New in ClearMind 2.0</title>
+    <script src="../scripts/global/ThemePreload.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 4vh 0;
+            box-sizing: border-box;
+            margin: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 860px;
+            width: 90%;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .page-wrapper {
+            width: 95%;
+            max-width: 1500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2%;
+        }
+
+        .content-section-wrap {
+            width: 72%;
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: clamp(14px, 2.2vh, 22px) 24px;
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: clamp(1.5em, 4vw, 2em);
+            color: white;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: clamp(0.9em, 1.8vh, 1em);
+            font-weight: bold;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-content {
+            padding: clamp(24px, 3.5vh, 38px) clamp(30px, 4vw, 50px) clamp(28px, 4vh, 40px);
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: clamp(1.05em, 2vw, 1.2em);
+            line-height: 1.6;
+            margin: 0 0 clamp(24px, 3.5vh, 36px);
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .content-grid {
+            display: block;
+        }
+
+        .side-banner-wrapper {
+            width: 26%;
+            min-width: 240px;
+            max-width: 420px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .side-banner-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .banner-caption {
+            text-align: center;
+            font-size: clamp(1em, 1.8vw, 1.1em);
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0 0 24px;
+            line-height: 1.4;
+            white-space: normal;
+        }
+
+        .banner-card {
+            width: 100%;
+            max-width: 100%;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .banner-card img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+            transition: transform 0.2s ease;
+        }
+
+        .banner-card img[hidden] {
+            display: none !important;
+        }
+
+        .banner-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .whats-new-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .whats-new-list li {
+            margin-bottom: clamp(18px, 2.8vh, 28px);
+            padding: clamp(14px, 2.2vh, 18px) clamp(18px, 3vw, 24px);
+            position: relative;
+            font-size: clamp(1em, 2vh, 1.15em);
+            line-height: 1.55;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: rgba(26, 188, 156, 0.04);
+            animation: slideIn 0.4s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-12px);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .whats-new-list li:nth-child(1) { animation-delay: 0.15s; }
+        .whats-new-list li:nth-child(2) { animation-delay: 0.28s; }
+        .whats-new-list li:nth-child(3) { animation-delay: 0.41s; }
+
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .feature-icon {
+            flex: 0 0 auto;
+            width: 1.6rem;
+            height: 1.6rem;
+            margin-top: 0.1rem;
+            color: #1abc9c;
+        }
+
+        .feature-icon svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .whats-new-list li strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            font-size: 1.05em;
+        }
+
+        .continue-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 28px;
+            padding: clamp(12px, 2vh, 16px) 18px;
+            background-color: #1abc9c;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: clamp(1em, 2vh, 1.15em);
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .continue-btn:hover {
+            background-color: #16a085;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 188, 156, 0.3);
+        }
+
+        /* ── Dark theme ─────────────────────────────────── */
+        .dark-theme {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .dark-theme .container {
+            background-color: #16213e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-theme .whats-new-list li {
+            border-color: #2a3b5c;
+            background: rgba(26, 188, 156, 0.1);
+            color: #ecf0f1;
+        }
+
+        .dark-theme .whats-new-list li strong {
+            color: #ecf0f1;
+        }
+
+        .dark-theme .intro-text,
+        .dark-theme .banner-caption {
+            color: #ecf0f1;
+        }
+
+        .dark-theme .banner-card img {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+        }
+
+        .banner-light {
+            display: block;
+        }
+
+        .banner-dark {
+            display: none;
+        }
+
+        .dark-theme .banner-light {
+            display: none;
+        }
+
+        .dark-theme .banner-dark {
+            display: block;
+        }
+
+        .dark-theme .continue-btn {
+            background-color: #15836d;
+        }
+
+        .dark-theme .continue-btn:hover {
+            background-color: #1abc9c;
+        }
+        @media (max-width: 900px) {
+            .page-wrapper {
+                width: 92%;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .content-section-wrap {
+                width: 100%;
+            }
+
+            .side-banner-wrapper {
+                width: 100%;
+                min-width: 0;
+                max-width: 500px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="content-section-wrap">
+            <div class="container" id="mainContainer">
+                <div class="page-header">
+                    <h1 id="whatsNewTitle">What's New</h1>
+                </div>
+                <div class="section-content">
+                    <p class="intro-text" id="whatsNewIntro">Hello! It's been a rough year, but we're back with good news! Say hey to ClearMind 2.0 and all its amazing features.</p>
+
+                    <div class="content-grid">
+                        <ul class="whats-new-list">
+                            <li id="whatsNewPerformance">
+                                <span class="feature-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="8"></circle>
+                                        <path d="M12 12l4-4"></path>
+                                        <path d="M8 16a5.7 5.7 0 0 1 8 0"></path>
+                                    </svg>
+                                </span>
+                                <span id="whatsNewPerformanceText">Refined Experience — A faster filtering and smoother, more intuitive interface.</span>
+                            </li>
+                            <li id="whatsNewProtection">
+                                <span class="feature-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12 3l7 3v5c0 4.5-2.8 8.3-7 10-4.2-1.7-7-5.5-7-10V6l7-3z"></path>
+                                        <path d="M9.5 12.5l1.8 1.8 3.7-4"></path>
+                                    </svg>
+                                </span>
+                                <span id="whatsNewProtectionText">Enhanced Security — Now with advanced multi-layered shield against adult materials.</span>
+                            </li>
+                            <li id="whatsNewLocalization">
+                                <span class="feature-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="9"></circle>
+                                        <path d="M3 12h18"></path>
+                                        <path d="M12 3a13 13 0 0 1 0 18"></path>
+                                        <path d="M12 3a13 13 0 0 0 0 18"></path>
+                                    </svg>
+                                </span>
+                                <span id="whatsNewLocalizationText">Universal Support — Now supporting 13 languages, helping people stay clear and focused across the globe.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button class="continue-btn" id="continueBtn">
+                        <i class="fas fa-check"></i> <span>Continue</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-banner-wrapper">
+            <div class="side-banner-section">
+                <div class="banner-caption" id="bounderlyCaption">Check out our new project!<br>Get premium with "FREE500" promo.</div>
+                <a href="https://bounderly.app" target="_blank" rel="noopener noreferrer" class="banner-card" title="Visit Bounderly">
+                    <img class="banner-light" src="../assets/images/bounderly_banner_light.jpg" alt="Bounderly">
+                    <img class="banner-dark" src="../assets/images/bounderly_banner_dark.jpg" alt="Bounderly">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/global/ThemeController.js"></script>
+    <script src="../scripts/WhatsNew.js"></script>
+</body>
+
+</html>

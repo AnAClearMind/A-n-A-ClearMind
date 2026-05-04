@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "क्लियरमाइंड (ClearMind) एक ब्राउज़र एक्सटेंशन है जो पोर्न की लत से उबरने में मदद करता है।"
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => ALERT मोड चालू करें"
+  },
+  "invalidDomainFormat": {
+    "message": "अमान्य डोमेन प्रारूप। कृपया कुछ इस तरह दर्ज करें: 'domainName.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "'google' को ब्लॉक करना उपलब्ध नहीं है"
+  },
+  "customBlocklistLimitReached": {
+    "message": "कस्टम ब्लॉकलिस्ट की 4900 डोमेन की सीमा पूरी हो गई है"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "ब्लॉकिंग नियम अपडेट करने में विफल"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "डोमेन पहले से ही ब्लॉकलिस्ट में है"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "यह डोमेन उपयोगकर्ता नियम द्वारा ब्लॉक नहीं किया गया है। इसे व्हाइटलिस्ट नहीं किया जा सकता।"
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "कस्टम ब्लॉकलिस्ट में डोमेन नहीं मिला"
+  },
+  "domainAddedSuccessfully": {
+    "message": "डोमेन ब्लॉकलिस्ट में जोड़ा गया"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "डोमेन ब्लॉकलिस्ट से हटा दिया गया"
+  },
+  "whatsNewTitle": {
+    "message": "क्लियरमाइंड (ClearMind) 2.0 में आपका स्वागत है"
+  },
+  "whatsNewVersionBadge": {
+    "message": "संस्करण 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "नमस्ते! साल कठिन रहा, लेकिन हमारे पास फिर से अच्छी खबर है! ClearMind 2.0 और उसकी सारी शानदार सुविधाओं को देखें।"
+  },
+  "whatsNewPerformance": {
+    "message": "परिष्कृत अनुभव — एक तेज़ फ़िल्टरिंग और एक अधिक सहज, सुगम इंटरफ़ेस।"
+  },
+  "whatsNewProtection": {
+    "message": "उन्नत सुरक्षा — अब वयस्क सामग्री के खिलाफ उन्नत बहु-स्तरीय शील्ड के साथ।"
+  },
+  "whatsNewLocalization": {
+    "message": "सार्वभौमिक समर्थन — अब 13 भाषाओं का समर्थन, जिससे लोग दुनिया भर में स्पष्ट और केंद्रित रह सकें।"
+  },
+  "whatsNewAboutUpdate": {
+    "message": "आसान पहुंच — सहायता और संसाधनों के लिए हमारे नए 'About' पेज को देखें।"
+  },
+  "bounderlyCaption": {
+    "message": "हमारा नया प्रोजेक्ट देखें!\n\"FREE500\" प्रोमो के साथ मुफ्त प्रीमियम पाएं।"
+  },
+  "continue_btn": {
+    "message": "जारी रखें"
+  }
+}

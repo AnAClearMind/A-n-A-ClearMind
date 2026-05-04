@@ -1,0 +1,426 @@
+{
+	"SimpleAction": {
+		"alias": "छोटे कदम (Small Steps)",
+		"icon": [
+			"fa-solid",
+			"fa-meteor"
+		],
+		"content": [
+			"10 पुशअप्स करें",
+			"एक गिलास पानी पिएं",
+			"5 गहरी सांसें लें",
+			"खड़े हों और कमरे में थोड़ा टहलें",
+			"अपनी डेस्क की थोड़ी जगह साफ करें",
+			"घर में किसी पौधे को पानी दें",
+			"20 स्क्वैट्स करें",
+			"आंखें बंद करें और मानसिक रूप से अपना पसंदीदा गाना गाएं",
+			"ऊपर, नीचे, बाएं और दाएं 10 बार देखें",
+			"अपनी हथेली के बीच में मालिश करें",
+			"ऐसी 5 चीजें बताएं जिन्हें आप देख सकते हैं, 4 जिन्हें छू सकते हैं, 3 जिन्हें सुन सकते हैं, 2 जिन्हें सूंघ सकते हैं, और 1 जिसे चख सकते हैं"
+		]
+	},
+	"Informational": {
+		"alias": "अब आप जानते हैं (Now you Know)",
+		"icon": [
+			"fa-solid",
+			"fa-dragon"
+		],
+		"static": "अब मुझे पता है",
+		"content": [
+			{
+				"title": "मानसिक स्वास्थ्य",
+				"text": "पोर्न देखने से चिंता, अवसाद और तनाव हो सकता है, जैसा कि <a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>शोध</a> से पता चला है। यह निर्भरता भी पैदा कर सकता है, आत्म-नियंत्रण को कम कर सकता है और मानसिक स्वास्थ्य को नुकसान पहुंचा सकता है।"
+			},
+			{
+				"title": "विवाह",
+				"text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>शोध</a> से पता चलता है कि जिन वयस्कों ने पिछले एक साल में पोर्न देखा था, उनमें तलाक की संभावना अधिक थी, विवाहेतर संबंध होने की संभावना अधिक थी, और वे अपनी शादी या समग्र जीवन से खुश रहने की रिपोर्ट करने की संभावना कम रखते थे।"
+			},
+			{
+				"title": "पोर्नहब पर सेक्स तस्करी और बलात्कार के वीडियो",
+				"text": "ऐसे कई चौंकाने वाले मामले सामने आए हैं जिनमें सेक्स तस्करी और कम उम्र की लड़कियों के बलात्कार के वीडियो पोर्नहब पर होस्ट किए गए थे।<br><br>एक 15 साल की लड़की जो एक साल से लापता थी, वह तब जाकर मिली जब उसकी माँ को एक टिप मिली कि उनकी बेटी की वीडियो वेबसाइट पर उपलब्ध है। <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>और पढ़ें...</a>"
+			},
+			{
+				"title": "संज्ञानात्मक और भावनात्मक प्रभाव",
+				"text": "पोर्नोग्राफी को अवसाद, आक्रामकता और बिगड़ी हुई <a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>कार्यकारी कार्यप्रणाली (executive functioning)</a> से जोड़ा गया है।"
+			},
+			{
+				"title": "यौन हिंसा",
+				"text": "पोर्नोग्राफी अस्वस्थ यौन मान्यताओं से जुड़ी है, जो <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>यौन हिंसा</a> को बढ़ावा देती है, और आत्मसम्मान को कम करती है।"
+			},
+			{
+				"title": "मस्तिष्क की कार्यप्रणाली",
+				"text": "पोर्नोग्राफी के नकारात्मक प्रभावों में <a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>प्रीफ्रंटल कॉर्टेक्स ग्रे मैटर में कमी</a> शामिल है, जो लत और निर्णय लेने की क्षमता में गिरावट की ओर ले जाती है।"
+			},
+			{
+				"title": "इरेक्टाइल डिसफंक्शन",
+				"text": "पोर्नोग्राफी का संबंध <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>इरेक्टाइल डिसफंक्शन</a>, नियंत्रण खोने और यौन कल्याण पर नकारात्मक प्रभाव से है।"
+			},
+			{
+				"title": "सिर्फ चार सप्ताह",
+				"text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>चार सप्ताह</a> तक दूर रहने से कई मनोवैज्ञानिक सुधार हो सकते हैं, जिनमें बेहतर प्रेरणा, मनोदशा और सामाजिक व्यवहार शामिल हैं।"
+			},
+			{
+				"title": "रिश्तों की गुणवत्ता",
+				"text": "पोर्नोग्राफी का उपयोग पुरुषों और महिलाओं दोनों के लिए रिश्ते की कम <a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>संतुष्टि</a> से जुड़ा है।"
+			},
+			{
+				"title": "बेवफाई और तलाक",
+				"text": "पोर्नोग्राफी का सेवन रिश्तों में <a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>बेवफाई</a> और <a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>तलाक</a> की संभावना में वृद्धि से जुड़ा है, दोनों पुरुषों और महिलाओं के लिए।"
+			}
+		]
+	},
+	"PictureSelection": {
+		"alias": "कहाँ जाएँ (Where to Go)",
+		"icon": [
+			"fa-solid",
+			"fa-compass"
+		],
+		"static": {
+			"h1": "एक चुनें",
+			"chooseImageButton": "चुनें",
+			"confirmChoiceButton": "पुष्टि करें"
+		},
+		"content": [
+			{
+				"image": "https://i.imgur.com/oeuMAQt.jpeg",
+				"desc": "असली टाइगर वह है जो टाइगर की तस्वीरें चुनता है..."
+			},
+			{
+				"image": "https://i.imgur.com/wc4nJqB.jpeg",
+				"desc": "वैसे, मैं अपने मुंह से एक तरबूज को कुचल सकता हूं।"
+			},
+			{
+				"image": "https://i.imgur.com/969Fh4l.jpeg",
+				"desc": "आपको किसी दिन जापान जाना चाहिए..."
+			},
+			{
+				"image": "https://i.imgur.com/vklfSZb.jpeg",
+				"desc": "प्यारा इंसान प्यारे को देखता है।"
+			},
+			{
+				"image": "https://i.imgur.com/Ip8mskP.jpeg",
+				"desc": "यह सिर्फ एक याद दिलाने के लिए है कि दुनिया कितनी खूबसूरत है।"
+			},
+			{
+				"image": "https://i.imgur.com/q0pDtIF.jpeg",
+				"desc": "हाहा, मुझे उम्मीद है कि मैंने आपके चेहरे पर मुस्कान ला दी।"
+			},
+			{
+				"image": "https://i.imgur.com/Fo3iSkq.jpeg",
+				"desc": "वाह, आपने एक सुनहरी मछली पकड़ी! रुको, यह मछली नहीं है..."
+			},
+			{
+				"image": "https://i.imgur.com/yHIqEnU.jpeg",
+				"desc": "गंदगी में भी, आप साफ़ रहने का चुनाव कर सकते हैं।"
+			},
+			{
+				"image": "https://i.imgur.com/WgRFKdd.jpeg",
+				"desc": "क्या मैं वही लड़की हूँ जिसे आप ढूंढ रहे हैं?"
+			},
+			{
+				"image": "https://i.imgur.com/jat35sC.jpeg",
+				"desc": "ज़रूरत के समय में, मैं हमेशा आपकी मदद के लिए हूँ।"
+			},
+			{
+				"image": "https://i.imgur.com/DSCPFfV.jpeg",
+				"desc": "कुत्ते की तरह वफादार बनो, मशरूम की तरह नहीं।"
+			},
+			{
+				"image": "https://i.imgur.com/z4LXvFX.jpeg",
+				"desc": "आपका चलाया हुआ हर तीर, लोगों से भरे हवाई जहाज को लग सकता है..."
+			},
+			{
+				"image": "https://i.imgur.com/gsoXN2C.jpeg",
+				"desc": "आपके अंदर का बच्चा आप पर भरोसा कर रहा है।"
+			},
+			{
+				"image": "https://i.imgur.com/fC9Drxf.jpeg",
+				"desc": "दोस्ती।"
+			},
+			{
+				"image": "https://i.imgur.com/gi63tHf.jpeg",
+				"desc": "आप इस लत से मुक्त होने के हकदार हैं।"
+			},
+			{
+				"image": "https://i.imgur.com/RwrQLKd.jpeg",
+				"desc": "सबसे खूबसूरत चीजें बस साधारण तत्वों का सही संयोजन होती हैं।"
+			},
+			{
+				"image": "https://i.imgur.com/yK26epW.jpeg",
+				"desc": "क्या संस्कृति और कला बस जीवन की नकल करते हैं या वे इससे परे जाने में सक्षम हैं?"
+			},
+			{
+				"image": "https://i.imgur.com/b13aVLK.jpeg",
+				"desc": "किर्कजुफेल (Kirkjufell), आइसलैंड। उत्तरी रोशनी (Northern Lights) देखने के लिए सबसे अच्छी जगहों में से एक।"
+			},
+			{
+				"image": "https://i.imgur.com/cm2uxlK.jpeg",
+				"desc": "रूप ज्यादा जरूरी है या भीतर का तत्व? संतुलन?"
+			},
+			{
+				"image": "https://i.imgur.com/KY5L79Q.jpeg",
+				"desc": "पानी कुछ भी बन सकता है। यह बह सकता है या यह टकरा सकता है।<br>पानी बनो, मेरे दोस्त।"
+			},
+			{
+				"image": "https://i.imgur.com/wwWQAUy.png",
+				"desc": "1500 के बाद से प्रौद्योगिकी और शक्ति की एक <a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>वंशावली</a>"
+			},
+			{
+				"image": "https://i.imgur.com/P4Qb0ra.png",
+				"desc": "एक भिक्षु और उसकी बिल्ली एक साथ पढ़ते हुए, फ्रांस, 13वीं सदी।<br>आप कौन सी किताब पढ़ना चाहते हैं? और आपकी बिल्ली?"
+			},
+			{
+				"image": "https://i.imgur.com/lkoBWsy.jpeg",
+				"desc": "अंतरिक्ष निहारिका (Space nebula)। क्या ऐसी चीज सिर्फ संयोग से मौजूद हो सकती है<br>या इसके लिए किसी इच्छा शक्ति की जरूरत होती है?"
+			},
+			{
+				"image": "https://i.imgur.com/hD9kvAw.jpeg",
+				"desc": "थिंगवेल्लिर (Thingvellir), आइसलैंड।"
+			},
+			{
+				"image": "https://i.imgur.com/BRoBRIt.jpeg",
+				"desc": "जंगल में रात, आकाश का टाइमलैप्स।"
+			},
+			{
+				"image": "https://i.imgur.com/IRAz1xm.jpeg",
+				"desc": "न्यूजीलैंड में असामान्य पेड़।"
+			},
+			{
+				"image": "https://i.imgur.com/912SXeD.jpeg",
+				"desc": "वॉयनिच पांडुलिपि (Voynich manuscript)। अभी भी एक रहस्य बनी हुई है।"
+			},
+			{
+				"image": "https://i.imgur.com/1qrlqgK.jpeg",
+				"desc": "तरबूज के रंग वाला टूमलाइन (tourmaline) टुकड़ा।"
+			},
+			{
+				"image": "https://i.imgur.com/EyU2nRq.jpeg",
+				"desc": "पिछली बार आपने सुबह की पहली किरण का स्वागत कब किया था?"
+			},
+			{
+				"image": "https://i.imgur.com/jhWIkWq.jpeg",
+				"desc": "कांच के माध्यम से प्रकाश की किरणें (caustic)। आप भी खुद कोशिश करें!"
+			}
+		]
+	},
+	"Video": {
+		"alias": "खुद ही देख लो (See it Yourself)",
+		"icon": [
+			"fa-solid",
+			"fa-star"
+		],
+		"static": "पुष्टि करें",
+		"content": [
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+		]
+	},
+	"MessageToYourself": {
+		"alias": "खुद से प्यार (Self Love)",
+		"icon": [
+			"fa-solid",
+			"fa-dove"
+		],
+		"static": "पुष्टि करें",
+		"content": [
+			{
+				"text": "वह जगह बनने के लिए जहां एक गिरा हुआ देवदूत (fallen angel) एक ऊपर उठते हुए इंसान से मिलता है<br><br>(आप <a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>अपनी खुद की</a> ऐसी ही एक जगह बना सकते हैं)",
+				"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"
+			}
+		]
+	},
+	"Quote": {
+		"alias": "ज्ञान का कोना (Wisdom Corner)",
+		"icon": [
+			"fa-solid",
+			"fa-hat-wizard"
+		],
+		"static": {
+			"question": "क्या आप इस उद्धरण (quote) से सहमत हैं? क्यों?",
+			"quoteReflection": "अपने विचार यहाँ दर्ज करें...",
+			"quoteReflectionButton": "पुष्टि करें"
+		},
+		"content": [
+			"<em>«मैं अपनी परिस्थितियों का परिणाम नहीं हूँ। मैं अपने निर्णयों का परिणाम हूँ।»</em> — स्टीफन कोवे",
+			"<em>«बाहर निकलने का एकमात्र रास्ता इससे होकर गुजरना है।»</em> — रॉबर्ट फ्रॉस्ट",
+			"<em>«प्रलोभन (temptation) का विरोध करने का हर क्षण एक जीत है।»</em> — फ्रेडरिक विलियम फेबर",
+			"<em>«बदलाव का रहस्य अपनी सारी ऊर्जा पुरानी चीजों से लड़ने में नहीं, बल्कि नई चीजों को बनाने में लगाने में है।»</em> — सुकरात",
+			"<em>«लत इस उम्मीद के साथ शुरू होती है कि 'वहाँ' मौजूद कुछ चीज़ पल भर में अंदर के खालीपन को भर सकती है।»</em> — जीन किलबॉर्न",
+			"<em>«हर दिन का मूल्यांकन उस फसल से न करें जो आप काटते हैं, बल्कि उन बीजों से करें जो आप बोते हैं।»</em> — रॉबर्ट लुई स्टीवेन्सन",
+			"<em>«जो अक्सर मुफ्त में दिया जाता है, वही सबसे महंगा साबित होता है।»</em> — ताकेमुरा",
+			"<em>«अगर आपके पास केवल एक हथौड़ा है, तो हर चीज़ कील जैसी लगती है।»</em> — कहावत",
+			"<em>«उन लोगों से ज्यादा कोई और निराश गुलाम नहीं हो सकता जो यह गलतफहमी पाल लेते हैं कि वे आज़ाद हैं।»</em> — जोहान वोल्फगैंग वॉन गोएथे",
+			"<em>«अँधेरा, अँधेरे को दूर नहीं कर सकता; केवल प्रकाश ही ऐसा कर सकता है।»</em> — मार्टिन लूथर किंग जूनियर",
+			"<em>«पागलपन की परिभाषा है एक ही काम को बार-बार करना, लेकिन हर बार अलग परिणाम की उम्मीद करना।»</em> — अल्बर्ट आइंस्टीन",
+			"<em>«हमारी क्षमताएं नहीं, बल्कि हमारे विकल्प यह दिखाते हैं कि हम असल में क्या हैं।»</em> ― जे.के. राउलिंग",
+			"<em>«कुछ चीज़ें आपकी आँखों को भाती हैं, लेकिन केवल उसी का पीछा करें जो आपके दिल को छू ले।»</em> — कहावत",
+			"<em>«दूसरों के अनुसार जो सुरक्षित है, उससे ज्यादा जोखिम लें। दूसरों के अनुसार जो व्यावहारिक है, उससे ज्यादा सपने देखें।»</em> — हॉवर्ड शुल्ज़",
+			"<em>«मैं विफल नहीं हुआ हूँ। मैंने बस 10,000 ऐसे तरीके खोजे हैं जो काम नहीं करते।»</em> ― थॉमस ए. एडिसन",
+			"<em>«वह इंसान गरीब नहीं है जिसके पास बहुत कम है, बल्कि गरीब वह है जो और अधिक की लालसा रखता है।»</em> — सेनेका",
+			"<em>«कोई भी व्यक्ति जो स्वयं का स्वामी नहीं है, वह आज़ाद नहीं है।»</em> — एपिक्टेटस",
+			"<em>«आजादी ही गुलामी है।»</em> — जॉर्ज ऑरवेल, 1984",
+			"<em>«इच्छाएं कभी भी आनंद से तृप्त नहीं होतीं। आग की तरह, जब उन्हें तृप्त किया जाता है तो वे और बढ़ जाती हैं।»</em> — भगवत गीता",
+			"<em>«यदि आप एक दिन के लिए छोड़ सकते हैं, तो आप जीवन भर के लिए छोड़ सकते हैं।»</em> — बेंजामिन अलीरे साएंज़",
+			"<em>«कठिनाइयाँ अक्सर सामान्य लोगों को एक असाधारण भाग्य के लिए तैयार करती हैं।»</em> — सी.एस. लुईस",
+			"<em>«आपको पूरी सीढ़ियाँ देखने की ज़रूरत नहीं है, बस अगला कदम उठाइए।»</em> — मार्टिन लूथर किंग जूनियर"
+		]
+	},
+	"Trigger": {
+		"alias": "ट्रिगर (The Hook)",
+		"icon": [
+			"fa-solid",
+			"fa-jedi"
+		],
+		"static": {
+			"h1": "ट्रिगर को पहचानें",
+			"p": "उस ट्रिगर को पहचानने का प्रयास करें जिसने इस इच्छा को जन्म दिया",
+			"triggerDescription": "यहाँ ट्रिगर दर्ज करें...",
+			"triggerButton": "पुष्टि करें"
+		}
+	},
+	"ImagineWords": {
+		"alias": "कल्पना करें (Imagine)",
+		"icon": [
+			"fa-solid",
+			"fa-hands-praying"
+		],
+		"static": {
+			"p": "एक करीबी दोस्त आपका समर्थन करना चाहता है।<br>कल्पना करें कि इस समय किन शब्दों से वास्तव में आपको मदद मिल सकती थी?",
+			"wordsDescription": "...",
+			"wordsButton": "पुष्टि करें"
+		}
+	},
+	"Wife": {
+		"alias": "प्रेरणा (Muse)",
+		"icon": [
+			"fa-solid",
+			"fa-heart"
+		],
+		"static": {
+			"h1": "भविष्य के उस एक पल की कल्पना करें जो आप अपनी पत्नी के साथ बिताना चाहते हैं",
+			"wifeDescription": "अपना विवरण यहाँ दर्ज करें...",
+			"confirmDescriptionButton": "पुष्टि करें"
+		}
+	},
+	"CardSelection": {
+		"static": {
+			"h1": "एक कार्ड चुनें",
+			"chooseCard": "चुनें",
+			"confirmChoice": "पुष्टि करें"
+		}
+	},
+	"UrgeTest_initial": {
+		"static": {
+			"h1": "अपनी इच्छा की शक्ति (urge strength) का मूल्यांकन करें",
+			"textMain": "आपने ClearMind एक्सटेंशन से <span id='blockedDomain'></span> को ब्लॉक करने के लिए कहा था<br /><br />आप जो इच्छा महसूस कर रहे हैं वह अपने आप में पूरी तरह से सामान्य है, लेकिन क्या हमें लत के इस बाध्यकारी व्यवहार को हम पर हावी होने देना चाहिए?<br /><br />हम एक साथ मिलकर इससे पार पा सकते हैं!",
+			"confirmButton": "पुष्टि करें",
+			"textSecondary": "आपने ClearMind एक्सटेंशन से <span id='blockedDomainOverlay'></span> को ब्लॉक करने के लिए कहा था"
+		}
+	},
+	"UrgeTest_final": {
+		"static": {
+			"mainHeader": "अपनी इच्छा की शक्ति का मूल्यांकन करें",
+			"mainHeaderResult": "आपकी इच्छा की शक्ति <span id='initialUrgeValueSpan'></span> से बदलकर <span id='currentUrgeValueSpan'></span> हो गई है",
+			"motivationalText_lessUrge": "आप यह कर सकते हैं!",
+			"confirmButton": "पुष्टि करें",
+			"resetUrgeButton": "एक और राउंड",
+			"leaveUrgeButton": "मैं छोड़ने के लिए तैयार हूँ"
+		}
+	},
+	"customBlockControl_popup": {
+		"static": {
+			"h2": "ब्लॉकलिस्ट प्रबंधित करें",
+			"domainInput": "*domain_name*",
+			"addDomainBtn": "कस्टम ब्लॉक्स में जोड़ें",
+			"deleteDomainBtn": "कस्टम ब्लॉक्स से हटाएँ",
+			"alertButton": "ALERT-MODE",
+			"settingsButton": "सेटिंग्स",
+			"supportButton": "समर्थन"
+		}
+	},
+	"ProgressionPopup": {
+		"static": {
+			"p": "बधाई हो, महोदय! यहाँ आपकी यात्रा में मदद करने के लिए एक शक्तिशाली आर्टिफैक्ट है!",
+			"closeButton": "जारी रखें",
+			"claimButton": "प्राप्त करें!"
+		},
+		"rewards": {
+			"1": {
+				"title": "«आपकी मानसिक शांति की रक्षा करने वाला बेहतरीन साथी-एक्सटेंशन»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": {
+				"title": "«साहसिक, फिर भी शक्तिशाली भावनात्मक हिस्सा»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": {
+				"title": "«यूट्यूब को कैसे ठीक करें»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": {
+				"title": "«यह खरगोश का बिल कितना गहरा है...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": {
+				"title": "«परम समाधान (The Ultimate Solution)»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	"About": {
+		"static": {
+			"h1": "ClearMind का उपयोग करने के लिए धन्यवाद",
+			"h2About": "हमारे बारे में",
+			"p1": "क्लियरमाइंड एक ब्राउज़र एक्सटेंशन है जो पोर्न की लत से उबरने में मदद करता है।<br><br>हमने इसे इसलिए बनाया क्योंकि हमारा मानना है कि डिजिटल स्पेस में पोर्नोग्राफी की अधिकता हमारे समय की सबसे गंभीर समस्याओं में से एक है, जो हर किसी को, विशेषकर युवाओं को नकारात्मक रूप से प्रभावित कर रही है।<br><br>अन्य एक्सटेंशन के विपरीत, क्लियरमाइंड वेबसाइटों तक पहुंच को केवल यंत्रवत् रूप से ब्लॉक करने के बजाय, सीबीटी (CBT) सिद्धांतों, गेमिफिकेशन और ध्यान प्रबंधन का उपयोग करके इस इच्छा को दबाने का काम करता है।<br><br>जो एक व्यक्तिगत प्रोजेक्ट के रूप में शुरू हुआ, वह कुछ ऐसा बन गया जिसे हम सभी के साथ साझा करके खुश होंगे।",
+			"p3": "हमें पूरी उम्मीद है कि यह आपकी यात्रा में आपकी मदद करेगा!",
+			"p4": "निर्माता: A'n'A",
+			"sourceButton": "सोर्स कोड",
+			"contactButton": "संपर्क करें",
+			"supportButton": "समर्थन (Support)",
+			"OwnPage": "अपना खुद का पेज बनाएं",
+			"p5": "शांति के एक क्षण से भविष्य के अपने आप को सबसे अंधेरे घंटे में एक प्रेरक संदेश भेजें। सभी डेटा ऑफ़लाइन स्टोर किया जाता है।",
+			"openTab1": " विकल्प (1) ",
+			"openTab2": " विकल्प (2) ",
+			"openTab3": " विकल्प (3) ",
+			"deleteUserContentButton": "हटाएँ",
+			"saveUserContentButton": "सहेजें",
+			"aboutTab": "हमारे बारे में",
+			"settingsTab": "सेटिंग्स",
+			"blocklistTab": "कस्टम ब्लॉकलिस्ट",
+			"reminderTab": "खुद को याद दिलाना",
+			"languageSelectLabel": "भाषा:",
+			"themeSelectLabel": "थीम:",
+			"themeLabelLight": "लाइट",
+			"themeLabelDark": "डार्क",
+			"safeSearchToggleLabel": "सुरक्षित खोज सुरक्षा (Safe search protection)",
+			"safeSearchToggleHint": "जब भी संभव हो, समर्थित खोज इंजनों पर सुरक्षित खोज (safe search) लागू करता है।",
+			"contentScanToggleLabel": "सामग्री स्कैन ब्लॉकिंग",
+			"contentScanToggleHint": "पृष्ठों को केवल डोमेन नियमों से नहीं, बल्कि पेज-सामग्री टैग द्वारा भी ब्लॉक करता है।",
+			"OperaAlert": "अरे! ऐसा लगता है कि आप Opera ब्राउज़र का उपयोग कर रहे हैं। दुर्भाग्य से, एक्सटेंशन को सही ढंग से काम करने के लिए, आपको मैन्युअल रूप से 1 छोटी सी चीज़ बदलनी होगी।\n\n'Manage Extensions' में जाएँ और खोज पृष्ठ परिणामों तक पहुँच की अनुमति देने वाले बॉक्स को चेक करें।\n\nअन्यथा, एक्सटेंशन खोज पृष्ठ से साइटों को खोले जाने से ब्लॉक करने में असमर्थ होगा।",
+			"ownblocknotice": "डिफ़ॉल्ट ब्लॉकलिस्ट के अतिरिक्त उपयोग किया जाता है।",
+			"exportBlocklistButton": "निर्यात (Export)",
+			"importBlocklistButton": "आयात (Import)",
+			"domainPatternToggleLabel": "डोमेन पैटर्न ब्लॉकिंग",
+			"domainPatternToggleHint": "उच्च-विश्वास वाले डोमेन पैटर्न को ब्लॉक करता है",
+			"blocklistHeaderTitle": "कस्टम ब्लॉकलिस्ट",
+			"blocklistHeaderHint": "वे डोमेन या URL जोड़ें जिन्हें आप ब्लॉक करना चाहते हैं",
+			"addDomainBtn": "जोड़ें",
+			"domainInput": "domain.com या https://domain.com/page",
+			"blocklistSearchInput": "डोमेन खोजें...",
+			"customBlocklistEmpty": "अभी तक कोई कस्टम डोमेन नहीं है।",
+			"customBlocklistSearchEmpty": "कोई मेल खाने वाला डोमेन नहीं मिला।"
+		}
+	},
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

@@ -1,0 +1,426 @@
+{
+	"SimpleAction": {
+		"alias": "小小一步",
+		"icon": [
+			"fa-solid",
+			"fa-meteor"
+		],
+		"content": [
+			"做 10 个俯卧撑",
+			"喝一杯水",
+			"深呼吸 5 次",
+			"站起来在房间里走一小会儿",
+			"整理一下书桌上的一小块区域",
+			"给家里的一盆植物浇水",
+			"做 20 个深蹲",
+			"闭上眼睛，在心里默唱你最喜欢的歌",
+			"向上、向下、向左、向右各看 10 次",
+			"按摩一下手掌心",
+			"说出 5 件你能看到的东西，4 件你能摸到的东西，3 件你能听到的东西，2 件你能闻到的东西，和 1 件你能尝到的东西"
+		]
+	},
+	"Informational": {
+		"alias": "现在你知道了",
+		"icon": [
+			"fa-solid",
+			"fa-dragon"
+		],
+		"static": "我现在知道了",
+		"content": [
+			{
+				"title": "心理健康",
+				"text": "<a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>研究</a>表明，观看色情内容可能导致焦虑、抑郁和压力。它还可能造成依赖，降低自控力，并损害心理健康。"
+			},
+			{
+				"title": "婚姻",
+				"text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>研究</a>表明，在过去一年内观看过色情内容的成年人，离婚的可能性更高，发生婚外情的可能性更高，并且对婚姻或整体生活感到幸福的可能性更低。"
+			},
+			{
+				"title": "Pornhub 托管性交易和强奸视频",
+				"text": "Pornhub 曾发生过多起令人震惊的托管性交易和未成年人强奸视频的案件。<br><br>一名失踪一年的 15 岁女孩，最终是因为她的母亲收到女儿出现在该网站上的线索后才被找到。 <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>阅读更多...</a>"
+			},
+			{
+				"title": "认知和情感影响",
+				"text": "色情内容被发现与抑郁、攻击性和受损的<a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>执行功能 (executive functioning)</a>有关。"
+			},
+			{
+				"title": "性暴力",
+				"text": "色情内容与不健康的性观念有关，助长了<a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>性暴力</a>并损害了自尊。"
+			},
+			{
+				"title": "大脑功能",
+				"text": "色情内容的负面影响包括<a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>前额叶皮层灰质减少</a>，这会导致成瘾和决策能力受损。"
+			},
+			{
+				"title": "勃起功能障碍",
+				"text": "色情内容被发现与<a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>勃起功能障碍</a>、失去控制以及对性健康产生负面影响有关。"
+			},
+			{
+				"title": "仅仅四周时间",
+				"text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>四周</a>的禁欲可以带来各种心理上的改善，包括提高动机、改善情绪和更好的社交行为。"
+			},
+			{
+				"title": "关系质量",
+				"text": "使用色情内容与男性和女性<a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>关系满意度</a>的降低有关。"
+			},
+			{
+				"title": "不忠与离婚",
+				"text": "消费色情内容与男性和女性在关系中<a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>不忠</a>和<a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>离婚</a>的可能性增加有关。"
+			}
+		]
+	},
+	"PictureSelection": {
+		"alias": "去哪里",
+		"icon": [
+			"fa-solid",
+			"fa-compass"
+		],
+		"static": {
+			"h1": "选择一张",
+			"chooseImageButton": "选择",
+			"confirmChoiceButton": "确认"
+		},
+		"content": [
+			{
+				"image": "https://i.imgur.com/oeuMAQt.jpeg",
+				"desc": "真正的老虎，是那些选择老虎图片的人..."
+			},
+			{
+				"image": "https://i.imgur.com/wc4nJqB.jpeg",
+				"desc": "顺便说一下，我能用嘴把西瓜咬碎。"
+			},
+			{
+				"image": "https://i.imgur.com/969Fh4l.jpeg",
+				"desc": "总有一天你得去趟日本..."
+			},
+			{
+				"image": "https://i.imgur.com/vklfSZb.jpeg",
+				"desc": "可爱在注视着可爱。"
+			},
+			{
+				"image": "https://i.imgur.com/Ip8mskP.jpeg",
+				"desc": "只是提醒一下，这个世界有多美。"
+			},
+			{
+				"image": "https://i.imgur.com/q0pDtIF.jpeg",
+				"desc": "哈哈，希望我能让你露出一丝微笑。"
+			},
+			{
+				"image": "https://i.imgur.com/Fo3iSkq.jpeg",
+				"desc": "哇，你抓到了一条金鱼！等等，那不是鱼..."
+			},
+			{
+				"image": "https://i.imgur.com/yHIqEnU.jpeg",
+				"desc": "即使身处泥淖，你依然可以选择保持洁净。"
+			},
+			{
+				"image": "https://i.imgur.com/WgRFKdd.jpeg",
+				"desc": "我就是你在找的那个女孩吗？"
+			},
+			{
+				"image": "https://i.imgur.com/jat35sC.jpeg",
+				"desc": "在你需要的时候，我会借给你一只爪子。"
+			},
+			{
+				"image": "https://i.imgur.com/DSCPFfV.jpeg",
+				"desc": "做一只狗，别做一朵蘑菇。"
+			},
+			{
+				"image": "https://i.imgur.com/z4LXvFX.jpeg",
+				"desc": "你射出的每一支箭，很可能就是一架满载乘客的飞机..."
+			},
+			{
+				"image": "https://i.imgur.com/gsoXN2C.jpeg",
+				"desc": "你内心的那个孩子正指望着你。"
+			},
+			{
+				"image": "https://i.imgur.com/fC9Drxf.jpeg",
+				"desc": "友谊。"
+			},
+			{
+				"image": "https://i.imgur.com/gi63tHf.jpeg",
+				"desc": "你值得摆脱成瘾，重获自由。"
+			},
+			{
+				"image": "https://i.imgur.com/RwrQLKd.jpeg",
+				"desc": "最美丽的事物，只是简单元素的正确组合。"
+			},
+			{
+				"image": "https://i.imgur.com/yK26epW.jpeg",
+				"desc": "文化和艺术仅仅是模仿生活，还是能够超越它？"
+			},
+			{
+				"image": "https://i.imgur.com/b13aVLK.jpeg",
+				"desc": "冰岛，教会山 (Kirkjufell)。观看北极光的最佳地点之一。"
+			},
+			{
+				"image": "https://i.imgur.com/cm2uxlK.jpeg",
+				"desc": "外表重要，还是内涵胜过风格？平衡？"
+			},
+			{
+				"image": "https://i.imgur.com/KY5L79Q.jpeg",
+				"desc": "水字面意义上可以变成任何东西。它可以流动，也可以冲击。<br>像水一样吧，我的朋友。"
+			},
+			{
+				"image": "https://i.imgur.com/wwWQAUy.png",
+				"desc": "1500 年以来技术与权力的<a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>系谱</a>"
+			},
+			{
+				"image": "https://i.imgur.com/P4Qb0ra.png",
+				"desc": "法国，13世纪，一位普通的僧侣和他的猫一起阅读。<br>你想读什么书？你的猫呢？"
+			},
+			{
+				"image": "https://i.imgur.com/lkoBWsy.jpeg",
+				"desc": "太空星云。这样的东西可能纯属巧合而存在吗，<br>还是需要一点点意志的介入？"
+			},
+			{
+				"image": "https://i.imgur.com/hD9kvAw.jpeg",
+				"desc": "冰岛，辛格韦德利 (Thingvellir)。"
+			},
+			{
+				"image": "https://i.imgur.com/BRoBRIt.jpeg",
+				"desc": "森林之夜，天空延时摄影。"
+			},
+			{
+				"image": "https://i.imgur.com/IRAz1xm.jpeg",
+				"desc": "新西兰不寻常的树木。"
+			},
+			{
+				"image": "https://i.imgur.com/912SXeD.jpeg",
+				"desc": "伏尼契手稿 (Voynich manuscript)。它仍然是个谜。"
+			},
+			{
+				"image": "https://i.imgur.com/1qrlqgK.jpeg",
+				"desc": "西瓜碧玺切片。"
+			},
+			{
+				"image": "https://i.imgur.com/EyU2nRq.jpeg",
+				"desc": "你上一次迎接黎明是什么时候？"
+			},
+			{
+				"image": "https://i.imgur.com/jhWIkWq.jpeg",
+				"desc": "光穿过玻璃产生的焦散 (Caustic) 效果。你自己试试看！"
+			}
+		]
+	},
+	"Video": {
+		"alias": "亲眼看看",
+		"icon": [
+			"fa-solid",
+			"fa-star"
+		],
+		"static": "确认",
+		"content": [
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+		]
+	},
+	"MessageToYourself": {
+		"alias": "自爱",
+		"icon": [
+			"fa-solid",
+			"fa-dove"
+		],
+		"static": "确认",
+		"content": [
+			{
+				"text": "成为堕落天使与进化的猿类相遇的地方<br><br>(你可以<a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>制作你自己的</a>页面，就像这样)",
+				"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"
+			}
+		]
+	},
+	"Quote": {
+		"alias": "智慧角落",
+		"icon": [
+			"fa-solid",
+			"fa-hat-wizard"
+		],
+		"static": {
+			"question": "你同意这句话吗？为什么？",
+			"quoteReflection": "在这里输入你的想法...",
+			"quoteReflectionButton": "确认"
+		},
+		"content": [
+			"<em>«我不是我所处环境的产物。我是我决定的产物。»</em> — 史蒂芬·柯维 (Stephen Covey)",
+			"<em>«唯一的出路就是穿过去。»</em> — 罗伯特·弗罗斯特 (Robert Frost)",
+			"<em>«每一次抵抗诱惑的时刻，都是一次胜利。»</em> — 弗雷德里克·威廉·法伯 (Frederick William Faber)",
+			"<em>«改变的秘密，在于把所有的精力不是放在与过去抗争上，而是放在构建新事物上。»</em> — 苏格拉底",
+			"<em>«成瘾始于一种希望：希望‘外面’的某种东西能立刻填补内心的空虚。»</em> — 让·基尔伯恩 (Jean Kilbourne)",
+			"<em>«不要以你收获了多少来评价每一天，而要以你播种了多少来评价。»</em> — 罗伯特·路易斯·史蒂文森 (Robert Louis Stevenson)",
+			"<em>«很多时候，免费提供的往往被证明是最昂贵的。»</em> — Takemura",
+			"<em>«如果你拥有的唯一工具是一把锤子，那么一切看起来都像钉子。»</em> — 谚语",
+			"<em>«没有人比那些错误地认为自己自由的人被奴役得更绝望。»</em> — 约翰·沃尔夫冈·冯·歌德",
+			"<em>«黑暗不能驱除黑暗；只有光可以。»</em> — 马丁·路德·金",
+			"<em>«疯狂的定义是，一遍又一遍地做着同样的事情，却期望得到不同的结果。»</em> — 阿尔伯特·爱因斯坦",
+			"<em>«决定我们成为什么样的人的，不是我们的能力，而是我们的选择。»</em> ― J.K. 罗琳",
+			"<em>«有些东西会吸引你的眼球，但只有那些能抓住你心的，才值得你去追求。»</em> — 谚语",
+			"<em>«承担比别人认为安全的更多的风险。梦想比别人认为实际的更多的梦想。»</em> — 霍华德·舒尔茨 (Howard Schulz)",
+			"<em>«我没有失败。我只是找到了 10,000 种行不通的方法。»</em> ― 托马斯·爱迪生",
+			"<em>«穷人不是拥有的太少的人，而是渴望得到更多的人。»</em> — 塞内卡",
+			"<em>«如果不能做自己的主人，就没有人是自由的。»</em> — 爱比克泰德 (Epictetus)",
+			"<em>«自由即奴役。»</em> — 乔治·奥威尔，《1984》",
+			"<em>«欲望永远不会因享受而满足。就像火一样，当你满足它们时，它们反而会越烧越旺。»</em> — 《薄伽梵歌》",
+			"<em>«如果你能戒掉一天，你就能戒掉一辈子。»</em> — 本杰明·阿里雷·萨恩斯 (Benjamin Alire Sáenz)",
+			"<em>«困难常常是为普通人准备了不平凡的命运。»</em> — C.S. 刘易斯",
+			"<em>«你不需要看到整个楼梯，只要迈出第一步就好。»</em> — 马丁·路德·金"
+		]
+	},
+	"Trigger": {
+		"alias": "触发源",
+		"icon": [
+			"fa-solid",
+			"fa-jedi"
+		],
+		"static": {
+			"h1": "识别触发源",
+			"p": "尝试识别促成这种冲动形成的诱因（触发源）",
+			"triggerDescription": "在这里输入触发源...",
+			"triggerButton": "确认"
+		}
+	},
+	"ImagineWords": {
+		"alias": "想象一下",
+		"icon": [
+			"fa-solid",
+			"fa-hands-praying"
+		],
+		"static": {
+			"p": "一个好朋友想要支持你。<br>想象一下：现在什么话对你来说才是真正有帮助的？",
+			"wordsDescription": "...",
+			"wordsButton": "确认"
+		}
+	},
+	"Wife": {
+		"alias": "缪斯",
+		"icon": [
+			"fa-solid",
+			"fa-heart"
+		],
+		"static": {
+			"h1": "想象一个未来你想和妻子一起度过的时刻",
+			"wifeDescription": "在这里输入你的描述...",
+			"confirmDescriptionButton": "确认"
+		}
+	},
+	"CardSelection": {
+		"static": {
+			"h1": "选择一张卡片",
+			"chooseCard": "选择",
+			"confirmChoice": "确认"
+		}
+	},
+	"UrgeTest_initial": {
+		"static": {
+			"h1": "评估你的冲动强度",
+			"textMain": "你已要求 ClearMind 扩展封锁 <span id='blockedDomain'></span><br /><br />你正在经历的渴望本身是完全正常的，但是我们应该让成瘾的强迫行为控制我们吗？<br /><br />我们可以一起战胜它！",
+			"confirmButton": "确认",
+			"textSecondary": "你已要求 ClearMind 扩展封锁 <span id='blockedDomainOverlay'></span>"
+		}
+	},
+	"UrgeTest_final": {
+		"static": {
+			"mainHeader": "评估你的冲动强度",
+			"mainHeaderResult": "你的冲动强度已从 <span id='initialUrgeValueSpan'></span> 变为 <span id='currentUrgeValueSpan'></span>",
+			"motivationalText_lessUrge": "你能做到的！",
+			"confirmButton": "确认",
+			"resetUrgeButton": "再来一次",
+			"leaveUrgeButton": "我准备好离开了"
+		}
+	},
+	"customBlockControl_popup": {
+		"static": {
+			"h2": "管理封锁列表",
+			"domainInput": "*域名*",
+			"addDomainBtn": "添加到自定义封锁",
+			"deleteDomainBtn": "从自定义封锁中删除",
+			"alertButton": "警报 (ALERT) 模式",
+			"settingsButton": "设置",
+			"supportButton": "支持"
+		}
+	},
+	"ProgressionPopup": {
+		"static": {
+			"p": "恭喜你，先生！这是一个可以帮助你旅程的强大神器！",
+			"closeButton": "继续",
+			"claimButton": "领取！"
+		},
+		"rewards": {
+			"1": {
+				"title": "«保护你理智的最佳伴侣扩展»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": {
+				"title": "«一部大胆而情感震撼的作品»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": {
+				"title": "«如何治愈 YouTube»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": {
+				"title": "«兔子洞到底有多深...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": {
+				"title": "«终极解决方案»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	"About": {
+		"static": {
+			"h1": "感谢您使用 ClearMind",
+			"h2About": "关于我们",
+			"p1": "ClearMind 是一个帮助你克服色情成瘾的浏览器扩展。<br><br>我们创建它是因为我们相信数字空间中过度的色情内容是当今时代最严重的问题之一，负面地影响着每个人，尤其是年轻人。<br><br>与其他扩展不同，ClearMind 采用 CBT（认知行为疗法）原则、游戏化和注意力管理来抑制冲动，而不仅仅是机械地封锁网站的访问。<br><br>最初只是一个个人项目，现在变成了一个我们乐意与所有人分享的东西。",
+			"p3": "我们深切地希望它能对你的旅程有所帮助！",
+			"p4": "创建者：A'n'A",
+			"sourceButton": "源代码",
+			"contactButton": "联系",
+			"supportButton": "支持",
+			"OwnPage": "创建你自己的页面",
+			"p5": "在一个平静的时刻，向处于最黑暗时刻的未来的自己发送一条鼓舞人心的信息。所有数据离线存储。",
+			"openTab1": " 选项 (1) ",
+			"openTab2": " 选项 (2) ",
+			"openTab3": " 选项 (3) ",
+			"deleteUserContentButton": "删除",
+			"saveUserContentButton": "保存",
+			"aboutTab": "关于我们",
+			"settingsTab": "设置",
+			"blocklistTab": "自定义封锁列表",
+			"reminderTab": "给自己的提醒",
+			"languageSelectLabel": "语言:",
+			"themeSelectLabel": "主题:",
+			"themeLabelLight": "浅色",
+			"themeLabelDark": "深色",
+			"safeSearchToggleLabel": "安全搜索保护",
+			"safeSearchToggleHint": "在可能的情况下强制支持的搜索引擎使用安全搜索 (safe search)。",
+			"contentScanToggleLabel": "内容扫描封锁",
+			"contentScanToggleHint": "通过页面内容标签封锁页面，而不仅仅是通过域名规则。",
+			"OperaAlert": "嘿！看起来你正在使用 Opera 浏览器。不幸的是，为了让扩展正常工作，你需要手动调整 1 个小设置。\n\n前往“管理扩展”，并勾选允许访问搜索页面结果的框。\n\n否则扩展将无法阻止网站从搜索页面打开。",
+			"ownblocknotice": "作为此默认列表的补充使用。",
+			"exportBlocklistButton": "导出",
+			"importBlocklistButton": "导入",
+			"domainPatternToggleLabel": "域名模式封锁",
+			"domainPatternToggleHint": "封锁高置信度的域名模式",
+			"blocklistHeaderTitle": "自定义黑名单",
+			"blocklistHeaderHint": "添加您想要封锁的域名或 URL",
+			"addDomainBtn": "添加",
+			"domainInput": "domain.com 或 https://domain.com/page",
+			"blocklistSearchInput": "搜索域名...",
+			"customBlocklistEmpty": "尚无自定义域名。",
+			"customBlocklistSearchEmpty": "未找到匹配的域名。"
+		}
+	},
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

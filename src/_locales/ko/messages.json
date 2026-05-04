@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind는 포르노 중독을 극복하는 데 도움을 주는 브라우저 확장 프로그램입니다."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => 경고(ALERT) 모드 진입"
+  },
+  "invalidDomainFormat": {
+    "message": "잘못된 도메인 형식입니다. 'domainName.com'과 같이 입력해주세요."
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "'google' 차단은 사용할 수 없습니다"
+  },
+  "customBlocklistLimitReached": {
+    "message": "사용자 지정 차단 목록 제한인 4900개 도메인에 도달했습니다"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "차단 규칙 업데이트에 실패했습니다"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "도메인이 이미 차단 목록에 있습니다"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "이 도메인은 사용자 규칙에 의해 차단되지 않았습니다. 화이트리스트에 추가할 수 없습니다."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "사용자 지정 차단 목록에서 도메인을 찾을 수 없습니다"
+  },
+  "domainAddedSuccessfully": {
+    "message": "도메인이 차단 목록에 추가되었습니다"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "도메인이 차단 목록에서 제거되었습니다"
+  },
+  "whatsNewTitle": {
+    "message": "ClearMind 2.0에 오신 것을 환영합니다"
+  },
+  "whatsNewVersionBadge": {
+    "message": "버전 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "안녕하세요! 힘든 한 해였지만 다시 좋은 소식을 전해드립니다! ClearMind 2.0과 그 놀라운 기능들을 만나보세요."
+  },
+  "whatsNewPerformance": {
+    "message": "정교해진 경험 — 더 빠른 필터링과 더 부드럽고 직관적인 인터페이스."
+  },
+  "whatsNewProtection": {
+    "message": "강화된 보호 — 이제 성인물 차단을 위한 고급 다계층 보호막이 적용됩니다."
+  },
+  "whatsNewLocalization": {
+    "message": "글로벌 지원 — 이제 13개 언어를 지원하여 전 세계 사람들의 마음의 평화를 돕습니다."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "손쉬운 접근 — 새롭게 디자인된 About 페이지에서 지원 및 리소스를 간편하게 확인하세요."
+  },
+  "bounderlyCaption": {
+    "message": "새 프로젝트를 확인해 보세요!\n\"FREE500\" 프로모로 무료 프리미엄을 받으세요."
+  },
+  "continue_btn": {
+    "message": "계속"
+  }
+}

@@ -1,0 +1,426 @@
+{
+	"SimpleAction": {
+		"alias": "Küçük Adımlar",
+		"icon": [
+			"fa-solid",
+			"fa-meteor"
+		],
+		"content": [
+			"10 şınav çek",
+			"Bir bardak su iç",
+			"5 kez derin nefes al",
+			"Ayağa kalk ve odanın içinde biraz yürü",
+			"Masanın küçük bir alanını topla",
+			"Evdeki bir bitkiyi sula",
+			"20 squat yap",
+			"Gözlerini kapat ve en sevdiğin şarkıyı içinden söyle",
+			"10 kez yukarı, aşağı, sola ve sağa bak",
+			"Avucunun ortasına masaj yap",
+			"Görebildiğin 5 şeyi, dokunabildiğin 4 şeyi, duyabildiğin 3 şeyi, koklayabildiğin 2 şeyi ve tadabildiğin 1 şeyi say"
+		]
+	},
+	"Informational": {
+		"alias": "Şimdi Biliyorsun",
+		"icon": [
+			"fa-solid",
+			"fa-dragon"
+		],
+		"static": "Şimdi biliyorum",
+		"content": [
+			{
+				"title": "Ruh Sağlığı",
+				"text": "<a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>Araştırmaların</a> gösterdiği gibi porno izlemek kaygı, depresyon ve strese yol açabilir. Ayrıca bağımlılık yaratabilir, öz kontrolü azaltabilir ve ruh sağlığına zarar verebilir."
+			},
+			{
+				"title": "Evlilik",
+				"text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>Araştırmalar</a>, son bir yılda porno izleyen yetişkinlerin boşanma olasılığının daha yüksek olduğunu, evlilik dışı ilişki yaşama olasılığının daha yüksek olduğunu ve evliliklerinden veya genel olarak hayatlarından mutlu olduklarını bildirme olasılıklarının daha düşük olduğunu göstermektedir."
+			},
+			{
+				"title": "Pornhub seks ticareti ve tecavüz videolarına ev sahipliği yapıyor",
+				"text": "Pornhub'da seks ticareti ve reşit olmayan çocukların tecavüz videolarının barındırıldığına dair şok edici birkaç vaka olmuştur.<br><br>Bir yıldır kayıp olan 15 yaşındaki bir kız çocuğu, annesinin kızının bu web sitesinde göründüğüne dair bir ipucu alması üzerine nihayet bulundu. <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>Devamını Oku...</a>"
+			},
+			{
+				"title": "Bilişsel ve Duygusal Etkiler",
+				"text": "Pornografinin depresyon, saldırganlık ve zayıflamış <a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>yürütücü işlevlerle (executive functioning)</a> bağlantılı olduğu bulunmuştur."
+			},
+			{
+				"title": "Cinsel Şiddet",
+				"text": "Pornografi, sağlıksız cinsel inançlarla bağlantılıdır, <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>cinsel şiddeti</a> teşvik eder ve özgüvene zarar verir."
+			},
+			{
+				"title": "Beyin Fonksiyonu",
+				"text": "Pornografinin olumsuz etkileri arasında <a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>prefrontal korteks gri maddesinin azalması</a> da yer alır; bu durum bağımlılığa ve karar verme yetisinin bozulmasına yol açar."
+			},
+			{
+				"title": "Sertleşme Sorunu",
+				"text": "Pornografi, <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>sertleşme sorunu</a>, kontrol kaybı ve cinsel sağlığın olumsuz etkilenmesiyle ilişkilidir."
+			},
+			{
+				"title": "Sadece dört hafta",
+				"text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>Dört haftalık</a> uzak durma (yoksunluk); artan motivasyon, iyileşen ruh hali ve daha iyi sosyal davranışlar dahil olmak üzere çeşitli psikolojik iyileşmelere yol açabilir."
+			},
+			{
+				"title": "İlişki Kalitesi",
+				"text": "Pornografi kullanımı hem erkekler hem de kadınlar için daha düşük <a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>ilişki tatminiyle</a> ilişkilidir."
+			},
+			{
+				"title": "Sadakatsizlik ve Boşanma",
+				"text": "Pornografi tüketimi, hem erkekler hem de kadınlar için ilişkilerde <a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>sadakatsizlik</a> ve <a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>boşanma</a> olasılığının artmasıyla bağlantılıdır."
+			}
+		]
+	},
+	"PictureSelection": {
+		"alias": "Nereye Gitmeli",
+		"icon": [
+			"fa-solid",
+			"fa-compass"
+		],
+		"static": {
+			"h1": "Birini Seç",
+			"chooseImageButton": "Seç",
+			"confirmChoiceButton": "Onayla"
+		},
+		"content": [
+			{
+				"image": "https://i.imgur.com/oeuMAQt.jpeg",
+				"desc": "Gerçek bir kaplan, kaplan resimlerini seçen kişidir..."
+			},
+			{
+				"image": "https://i.imgur.com/wc4nJqB.jpeg",
+				"desc": "Bu arada, ağzımla bir karpuzu ezebilirim."
+			},
+			{
+				"image": "https://i.imgur.com/969Fh4l.jpeg",
+				"desc": "Bir gün Japonya'ya gitmelisin..."
+			},
+			{
+				"image": "https://i.imgur.com/vklfSZb.jpeg",
+				"desc": "Tatlılık tatlılığa bakıyor."
+			},
+			{
+				"image": "https://i.imgur.com/Ip8mskP.jpeg",
+				"desc": "Sadece dünyanın ne kadar güzel olduğunun bir hatırlatıcısı."
+			},
+			{
+				"image": "https://i.imgur.com/q0pDtIF.jpeg",
+				"desc": "Haha, umarım yüzünde bir gülümseme oluşturabilmişimdir."
+			},
+			{
+				"image": "https://i.imgur.com/Fo3iSkq.jpeg",
+				"desc": "Vay canına, bir Japon balığı yakaladın! Bekle, bu bir balık değil..."
+			},
+			{
+				"image": "https://i.imgur.com/yHIqEnU.jpeg",
+				"desc": "Çamurun içinde bile temiz kalmayı seçebilirsin."
+			},
+			{
+				"image": "https://i.imgur.com/WgRFKdd.jpeg",
+				"desc": "Aradığın kız ben miyim?"
+			},
+			{
+				"image": "https://i.imgur.com/jat35sC.jpeg",
+				"desc": "İhtiyacın olduğunda sana bir pati uzatacağım."
+			},
+			{
+				"image": "https://i.imgur.com/DSCPFfV.jpeg",
+				"desc": "Bir köpek ol, mantar olma."
+			},
+			{
+				"image": "https://i.imgur.com/z4LXvFX.jpeg",
+				"desc": "Attığın her ok, insanlarla dolu bir uçak olabilir..."
+			},
+			{
+				"image": "https://i.imgur.com/gsoXN2C.jpeg",
+				"desc": "İçindeki çocuk sana güveniyor."
+			},
+			{
+				"image": "https://i.imgur.com/fC9Drxf.jpeg",
+				"desc": "Dostluk."
+			},
+			{
+				"image": "https://i.imgur.com/gi63tHf.jpeg",
+				"desc": "Bağımlılıktan kurtulmayı hak ediyorsun."
+			},
+			{
+				"image": "https://i.imgur.com/RwrQLKd.jpeg",
+				"desc": "En güzel şeyler, sadece basit unsurların doğru birleşiminden ibarettir."
+			},
+			{
+				"image": "https://i.imgur.com/yK26epW.jpeg",
+				"desc": "Kültür ve sanat sadece hayatı mı taklit eder, yoksa onu aşabilirler mi?"
+			},
+			{
+				"image": "https://i.imgur.com/b13aVLK.jpeg",
+				"desc": "Kirkjufell, İzlanda. Kuzey Işıklarını görmek için en iyi yerlerden biri."
+			},
+			{
+				"image": "https://i.imgur.com/cm2uxlK.jpeg",
+				"desc": "Görünüş mü önemlidir, yoksa öz mü stilden üstündür? Denge?"
+			},
+			{
+				"image": "https://i.imgur.com/KY5L79Q.jpeg",
+				"desc": "Su tam anlamıyla her şeye dönüşebilir. Akabilir de, çarpabilir de.<br>Su ol dostum."
+			},
+			{
+				"image": "https://i.imgur.com/wwWQAUy.png",
+				"desc": "1500'den Bugüne Teknoloji ve Gücün <a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>Şeceresi</a>"
+			},
+			{
+				"image": "https://i.imgur.com/P4Qb0ra.png",
+				"desc": "Rastgele bir keşiş ve kedisi birlikte okuyor, Fransa, 13. Yüzyıl.<br>Hangi kitabı okumak istersin? Peki ya kedin?"
+			},
+			{
+				"image": "https://i.imgur.com/lkoBWsy.jpeg",
+				"desc": "Uzay bulutsusu (Nebula). Böyle bir şey sadece tesadüfen mi var olabilir<br>yoksa sadece küçük bir irade dokunuşuna mı ihtiyacı var?"
+			},
+			{
+				"image": "https://i.imgur.com/hD9kvAw.jpeg",
+				"desc": "Thingvellir, İzlanda."
+			},
+			{
+				"image": "https://i.imgur.com/BRoBRIt.jpeg",
+				"desc": "Ormanda gece, gökyüzünün zaman atlaması (timelapse)."
+			},
+			{
+				"image": "https://i.imgur.com/IRAz1xm.jpeg",
+				"desc": "Yeni Zelanda'da alışılmadık ağaçlar."
+			},
+			{
+				"image": "https://i.imgur.com/912SXeD.jpeg",
+				"desc": "Voynich el yazması. Hala bir nevi gizem."
+			},
+			{
+				"image": "https://i.imgur.com/1qrlqgK.jpeg",
+				"desc": "Karpuz turmalin dilimi."
+			},
+			{
+				"image": "https://i.imgur.com/EyU2nRq.jpeg",
+				"desc": "Şafağı selamlamayalı ne kadar zaman oldu?"
+			},
+			{
+				"image": "https://i.imgur.com/jhWIkWq.jpeg",
+				"desc": "Camdan geçen ışık yansımaları (caustic). Sen de dene!"
+			}
+		]
+	},
+	"Video": {
+		"alias": "Kendin Gör",
+		"icon": [
+			"fa-solid",
+			"fa-star"
+		],
+		"static": "Onayla",
+		"content": [
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+		]
+	},
+	"MessageToYourself": {
+		"alias": "Kendini Sev",
+		"icon": [
+			"fa-solid",
+			"fa-dove"
+		],
+		"static": "Onayla",
+		"content": [
+			{
+				"text": "Düşmüş meleğin yükselen maymunla buluştuğu yer olmak<br><br>(Bunun gibi <a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>kendi sayfanı yapabilirsin</a>)",
+				"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"
+			}
+		]
+	},
+	"Quote": {
+		"alias": "Bilgelik Köşesi",
+		"icon": [
+			"fa-solid",
+			"fa-hat-wizard"
+		],
+		"static": {
+			"question": "Alıntıya katılıyor musun? Neden?",
+			"quoteReflection": "Düşüncelerini buraya gir...",
+			"quoteReflectionButton": "Onayla"
+		},
+		"content": [
+			"<em>«Ben koşullarımın bir ürünü değilim. Kararlarımın bir ürünüyüm.»</em> — Stephen Covey",
+			"<em>«Tek çıkış yolu içinden geçmektir.»</em> — Robert Frost",
+			"<em>«Ayartmaya (temptation) direndiğin her an bir zaferdir.»</em> — Frederick William Faber",
+			"<em>«Değişimin sırrı, tüm enerjinizi eskiyle savaşmaya değil, yeniyi inşa etmeye odaklamaktır.»</em> — Sokrates",
+			"<em>«Bağımlılık, 'dışarıdaki' bir şeyin içteki boşluğu anında doldurabileceği umuduyla başlar.»</em> — Jean Kilbourne",
+			"<em>«Her günü biçtiğiniz hasada göre değil, ektiğiniz tohumlara göre değerlendirin.»</em> — Robert Louis Stevenson",
+			"<em>«Çoğunlukla bedavaya verilen şeyin, en pahalı olduğu kanıtlanmıştır.»</em> — Takemura",
+			"<em>«Sahip olduğunuz tek alet bir çekiçse, her şey bir çivi gibi görünmeye başlar.»</em> — Atasözü",
+			"<em>«Özgür olduklarına yanlışlıkla inananlar kadar umutsuz bir şekilde köleleştirilmiş hiç kimse yoktur.»</em> — Johann Wolfgang von Goethe",
+			"<em>«Karanlık karanlığı defedemez; bunu sadece ışık yapabilir.»</em> — Martin Luther King Jr.",
+			"<em>«Deliliğin tanımı, aynı şeyi tekrar tekrar yapıp farklı sonuçlar beklemektir.»</em> — Albert Einstein",
+			"<em>«Yeteneklerimizden çok, gerçekte kim olduğumuzu gösteren şey seçimlerimizdir.»</em> ― J.K. Rowling",
+			"<em>«Bazı şeyler gözünüze çarpacaktır, ancak yalnızca kalbi fethedenlerin peşinden gidin.»</em> — Atasözü",
+			"<em>«Başkalarının güvenli olduğunu düşündüğünden daha fazla risk al. Başkalarının pratik olduğunu düşündüğünden daha fazlasını hayal et.»</em> — Howard Schulz",
+			"<em>«Başarısız olmadım. Sadece işe yaramayan 10.000 yol buldum.»</em> ― Thomas A. Edison",
+			"<em>«Fakir olan, çok az şeye sahip olan adam değil, daha fazlasını arzulayan adamdır.»</em> — Seneca",
+			"<em>«Kendisinin efendisi olmayan hiçbir insan özgür değildir.»</em> — Epiktetos",
+			"<em>«Özgürlük Köleliktir.»</em> — George Orwell, 1984",
+			"<em>«Arzular, tatmin olmakla asla doyurulmaz. Tıpkı ateş gibi, tatmin edildiklerinde büyürler.»</em> — Bhagavad Gita",
+			"<em>«Eğer bir gün için bırakabiliyorsan, bir ömür boyu bırakabilirsin.»</em> — Benjamin Alire Sáenz",
+			"<em>«Zorluklar, çoğu zaman sıradan insanları olağanüstü bir kadere hazırlar.»</em> — C.S. Lewis",
+			"<em>«Merdivenin tamamını görmenize gerek yok, sadece ilk adımı atın.»</em> — Martin Luther King Jr."
+		]
+	},
+	"Trigger": {
+		"alias": "Tetikleyici",
+		"icon": [
+			"fa-solid",
+			"fa-jedi"
+		],
+		"static": {
+			"h1": "Tetikleyiciyi (Trigger) Tanımla",
+			"p": "Bu arzunun oluşmasına katkıda bulunan tetikleyiciyi belirlemeye çalışın",
+			"triggerDescription": "Tetikleyiciyi buraya gir...",
+			"triggerButton": "Onayla"
+		}
+	},
+	"ImagineWords": {
+		"alias": "Hayal Et",
+		"icon": [
+			"fa-solid",
+			"fa-hands-praying"
+		],
+		"static": {
+			"p": "Yakın bir arkadaşınız sizi desteklemek istiyor.<br>Hayal edin: tam şu anda hangi kelimeler size gerçekten yardımcı olurdu?",
+			"wordsDescription": "...",
+			"wordsButton": "Onayla"
+		}
+	},
+	"Wife": {
+		"alias": "İlham Perisi",
+		"icon": [
+			"fa-solid",
+			"fa-heart"
+		],
+		"static": {
+			"h1": "Gelecekte eşinizle birlikte geçirmek istediğiniz tek bir anı gözünüzde canlandırın",
+			"wifeDescription": "Açıklamanızı buraya girin...",
+			"confirmDescriptionButton": "Onayla"
+		}
+	},
+	"CardSelection": {
+		"static": {
+			"h1": "Bir Kart Seç",
+			"chooseCard": "Seç",
+			"confirmChoice": "Onayla"
+		}
+	},
+	"UrgeTest_initial": {
+		"static": {
+			"h1": "Dürtünüzün gücünü değerlendirin",
+			"textMain": "ClearMind eklentisinden <span id='blockedDomain'></span> adresini engellemesini istediniz<br /><br />Yaşadığınız arzu aslında tamamen normal, ancak bağımlılığın bu zorlayıcı davranışının bizi ele geçirmesine izin vermeli miyiz?<br /><br />Bunu birlikte aşabiliriz!",
+			"confirmButton": "Onayla",
+			"textSecondary": "ClearMind eklentisinden <span id='blockedDomainOverlay'></span> adresini engellemesini istediniz"
+		}
+	},
+	"UrgeTest_final": {
+		"static": {
+			"mainHeader": "Dürtünüzün gücünü değerlendirin",
+			"mainHeaderResult": "Dürtünüzün gücü <span id='initialUrgeValueSpan'></span> seviyesinden <span id='currentUrgeValueSpan'></span> seviyesine değişti",
+			"motivationalText_lessUrge": "Bunu başarabilirsin!",
+			"confirmButton": "Onayla",
+			"resetUrgeButton": "Bir tur daha",
+			"leaveUrgeButton": "Ayrılmaya hazırım"
+		}
+	},
+	"customBlockControl_popup": {
+		"static": {
+			"h2": "Engelleme Listesini Yönet",
+			"domainInput": "*alanadi*",
+			"addDomainBtn": "Özel engellemelere ekle",
+			"deleteDomainBtn": "Özel engellemelerden sil",
+			"alertButton": "UYARI (ALERT) MODU",
+			"settingsButton": "Ayarlar",
+			"supportButton": "Destek"
+		}
+	},
+	"ProgressionPopup": {
+		"static": {
+			"p": "Tebrikler beyefendi! İşte yolculuğunuzda size yardımcı olacak güçlü bir eser!",
+			"closeButton": "Devam Et",
+			"claimButton": "Al!"
+		},
+		"rewards": {
+			"1": {
+				"title": "«Akıl sağlığınızı koruyacak en iyi yol arkadaşı eklentisi»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": {
+				"title": "«Cesur, ancak duygusal olarak güçlü bir parça»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": {
+				"title": "«Youtube Nasıl İyileştirilir»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": {
+				"title": "«Tavşan deliği ne kadar derin...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": {
+				"title": "«Nihai Çözüm (The Ultimate Solution)»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	"About": {
+		"static": {
+			"h1": "ClearMind'ı kullandığınız için teşekkürler",
+			"h2About": "Hakkımızda",
+			"p1": "ClearMind, porno bağımlılığını yenmenize yardımcı olan bir tarayıcı eklentisidir.<br><br>Bunu yarattık çünkü dijital alandaki porno fazlalığının çağımızın en vahim sorunlarından biri olduğuna ve herkesi, özellikle de gençleri olumsuz etkilediğine inanıyoruz.<br><br>Diğer eklentilerin aksine, ClearMind sadece web sitelerine erişimi mekanik olarak engellemek yerine, arzuyu bastırmak için BDT (Bilişsel Davranışçı Terapi) ilkelerini, oyunlaştırmayı (gamification) ve dikkat yönetimini kullanır.<br><br>Kişisel bir proje olarak başlayan şey, herkesle paylaşmaktan mutluluk duyacağımız bir şeye dönüştü.",
+			"p3": "Yolculuğunuzda size yardımcı olacağını içtenlikle umuyoruz!",
+			"p4": "Oluşturan: A'n'A",
+			"sourceButton": "Kaynak kod",
+			"contactButton": "İletişim",
+			"supportButton": "Destek",
+			"OwnPage": "Kendi sayfanı oluştur",
+			"p5": "En karanlık anında gelecekteki benliğine huzurlu bir andan ilham verici bir mesaj gönder. Tüm veriler çevrimdışı olarak depolanır.",
+			"openTab1": " Seçenek (1) ",
+			"openTab2": " Seçenek (2) ",
+			"openTab3": " Seçenek (3) ",
+			"deleteUserContentButton": "Sil",
+			"saveUserContentButton": "Kaydet",
+			"aboutTab": "Hakkımızda",
+			"settingsTab": "Ayarlar",
+			"blocklistTab": "Özel engelleme listesi",
+			"reminderTab": "Kendine hatırlatma",
+			"languageSelectLabel": "Dil:",
+			"themeSelectLabel": "Tema:",
+			"themeLabelLight": "Açık",
+			"themeLabelDark": "Koyu",
+			"safeSearchToggleLabel": "Güvenli arama koruması",
+			"safeSearchToggleHint": "Mümkün olduğunda desteklenen arama motorlarında güvenli aramayı (safe search) zorlar.",
+			"contentScanToggleLabel": "İçerik tarama engellemesi",
+			"contentScanToggleHint": "Sayfaları yalnızca alan adı kurallarına göre değil, sayfa içerik etiketlerine göre de engeller.",
+			"OperaAlert": "Hey! Görünüşe göre Opera tarayıcısını kullanıyorsun. Ne yazık ki eklentinin doğru çalışması için küçük bir şeyi manuel olarak ayarlaman gerekecek.\n\n'Eklentileri Yönet' (Manage Extensions) bölümüne git ve arama sayfası sonuçlarına erişime izin veren kutuyu işaretle.\n\nAksi takdirde, eklenti sitelerin arama sayfasından açılmasını engelleyemeyecektir.",
+			"ownblocknotice": "Varsayılan listeye ek olarak kullanılır.",
+			"exportBlocklistButton": "Dışa Aktar",
+			"importBlocklistButton": "İçe Aktar",
+			"domainPatternToggleLabel": "Alan adı kalıbı engelleme",
+			"domainPatternToggleHint": "Yüksek güvenilirliğe sahip alan adı kalıplarını engeller",
+			"blocklistHeaderTitle": "Özel Engel Listesi",
+			"blocklistHeaderHint": "Engellemek istediğiniz alan adlarını veya URL'leri ekleyin",
+			"addDomainBtn": "Ekle",
+			"domainInput": "alan-adi.com veya https://alan-adi.com/sayfa",
+			"blocklistSearchInput": "Alan adı ara...",
+			"customBlocklistEmpty": "Henüz özel alan adı yok.",
+			"customBlocklistSearchEmpty": "Eşleşen alan adı bulunamadı."
+		}
+	},
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

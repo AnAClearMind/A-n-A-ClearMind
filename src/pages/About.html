@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <script src="../scripts/global/ThemePreload.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2vh 0;
+            box-sizing: border-box;
+            margin: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .main-header {
+            margin-bottom: clamp(15px, 3vh, 30px);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: clamp(2em, 5vw, 2.8em);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        #h1text {
+            white-space: nowrap;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: clamp(15px, 3vh, 30px);
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            max-width: 950px;
+            width: 95%;
+            max-height: 85vh;
+            overflow: hidden;
+        }
+
+        .main-tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -ms-overflow-style: none; /* IE/Edge */
+            scrollbar-width: none; /* Firefox */
+            /* Edge-to-edge scroll within the padded container */
+            margin: 0 calc(-1 * clamp(15px, 3vh, 30px)) clamp(10px, 2vh, 20px);
+            padding: 0 clamp(15px, 3vh, 30px) 2px;
+        }
+
+        .main-tabs::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .main-tab {
+            padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.5vw, 18px);
+            cursor: pointer;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column; /* Stack icon and text */
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: clamp(0.85em, 1.5vw, 1em);
+            flex-shrink: 0;
+            white-space: normal;
+            text-align: center;
+            width: clamp(100px, 12vw, 140px);
+            line-height: 1.2;
+            min-height: 70px;
+            border: 2px solid transparent;
+        }
+
+        .main-tab i {
+            font-size: 1.4em;
+        }
+
+        .main-tab:hover {
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+
+        .main-tab.active {
+            color: #1abc9c;
+            border-color: #1abc9c;
+            background-color: rgba(26, 188, 156, 0.05);
+            box-shadow: 0 4px 12px rgba(26, 188, 156, 0.1);
+        }
+
+        .section-content {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding-right: 10px;
+            align-items: center;
+        }
+
+        .section-content>* {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .section-content.active {
+            display: flex;
+        }
+
+        /* Scrollbar styles */
+        .section-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .section-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .section-content::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        .section-content::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: clamp(1.8em, 4vw, 2.2em);
+            text-align: center;
+        }
+
+        img {
+            max-height: clamp(100px, 15vh, 150px);
+            object-fit: contain;
+        }
+
+        .guidelines {
+            text-align: center;
+        }
+
+        .guidelines p {
+            line-height: 1.6;
+            margin-bottom: clamp(10px, 1.5vh, 15px);
+            font-size: clamp(1.1em, 2vw, 1.3em);
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(8px, 1.5vh, 12px);
+            margin-top: auto;
+            padding-top: clamp(10px, 2vh, 20px);
+            width: 100%;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+        }
+
+        button,
+        input[type="file"],
+        input[type="text"] {
+            width: 100%;
+            padding: clamp(10px, 1.5vh, 14px) 18px;
+            margin-top: clamp(6px, 1vh, 10px);
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: clamp(1em, 2vh, 1.15em);
+            box-sizing: border-box;
+            font-weight: 500;
+        }
+
+        button {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .support-button {
+            background-color: #f96854;
+            padding: clamp(12px, 2vh, 18px);
+            font-size: clamp(1.1em, 2.5vh, 1.3em);
+        }
+
+        .feedback-button {
+            flex: 1;
+        }
+
+        .support-button:hover {
+            background-color: #d84231;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(249, 104, 84, 0.3);
+        }
+
+        button:hover {
+            background-color: #16a085;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 188, 156, 0.3);
+        }
+
+        .user-input-section {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .inner-tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: clamp(8px, 1.5vh, 12px) clamp(12px, 2vw, 20px);
+            background-color: #eee;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            font-weight: bold;
+            color: #555;
+            transition: all 0.2s ease;
+            font-size: clamp(0.95em, 1.8vh, 1.1em);
+        }
+
+        .tab:hover {
+            background-color: #e0e0e0;
+        }
+
+        .tab.active {
+            background-color: #1abc9c;
+            color: white;
+        }
+
+        textarea {
+            width: 100%;
+            height: clamp(60px, 10vh, 80px);
+            padding: clamp(10px, 1.5vh, 14px) 18px;
+            margin-top: clamp(6px, 1vh, 10px);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: clamp(1em, 2vh, 1.15em);
+        }
+
+        select {
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: clamp(1em, 2vh, 1.15em);
+            text-align-last: center;
+        }
+
+        select:hover {
+            border-color: #16a085;
+        }
+
+        .language-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: clamp(10px, 1.5vh, 15px);
+            padding: clamp(8px, 1.5vh, 12px) 16px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .language-container label {
+            margin-right: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+            color: #444;
+            font-size: 1.3em;
+        }
+
+        .language-container img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            border-radius: 4px;
+        }
+
+        .language-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .feature-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            margin: 0 0 clamp(8px, 1.5vh, 15px);
+            padding: clamp(10px, 1.5vh, 14px) 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: rgba(26, 188, 156, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .feature-toggle:hover {
+            background: rgba(26, 188, 156, 0.08);
+            border-color: #1abc9c;
+        }
+
+        .feature-toggle .toggle-text {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(4px, 1vh, 6px);
+        }
+
+        .feature-toggle .toggle-text strong {
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+
+        .feature-toggle .toggle-text span {
+            font-size: clamp(0.95em, 1.5vh, 1.05em);
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .feature-toggle input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin: 0;
+            flex: 0 0 auto;
+            cursor: pointer;
+            accent-color: #1abc9c;
+        }
+
+        .blocklist-editor {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(16px, 2.5vh, 24px);
+            width: 100%;
+        }
+
+        /* --- Header --- */
+        .blocklist-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: clamp(8px, 1.5vh, 14px);
+            border-bottom: 2px solid #eee;
+        }
+
+        .blocklist-header-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(26, 188, 156, 0.1);
+            color: #1abc9c;
+            font-size: 1.15em;
+            flex: 0 0 auto;
+        }
+
+        .blocklist-header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .blocklist-header-text strong {
+            font-size: 1.25em;
+            color: #2c3e50;
+        }
+
+        .blocklist-header-text span {
+            font-size: clamp(0.9em, 1.4vh, 1em);
+            color: #777;
+            line-height: 1.3;
+        }
+
+        /* --- Add-domain card --- */
+        .blocklist-add-card {
+            padding: clamp(14px, 2vh, 20px);
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+
+        .blocklist-toolbar {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .blocklist-toolbar input[type="text"] {
+            margin-top: 0;
+        }
+
+        .blocklist-toolbar button {
+            width: auto;
+            min-width: 120px;
+            margin-top: 0;
+        }
+
+        /* --- Search & meta row --- */
+        .blocklist-search-row {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(8px, 1.2vh, 12px);
+        }
+
+        .blocklist-search-row input[type="text"] {
+            margin-top: 0;
+        }
+
+        .blocklist-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            color: #666;
+            font-size: clamp(0.95em, 1.6vh, 1.05em);
+            padding: 0 4px;
+        }
+
+        .blocklist-count-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(26, 188, 156, 0.1);
+            color: #15836d;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .blocklist-status {
+            min-height: 1.4em;
+            color: #15836d;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* --- Domain list card --- */
+        .blocklist-list-card {
+            padding: clamp(12px, 2vh, 18px);
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+
+        .blocklist-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .blocklist-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 16px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .blocklist-item:hover {
+            border-color: #c0c0c0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .blocklist-domain {
+            overflow-wrap: anywhere;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .blocklist-remove-btn {
+            width: auto;
+            flex: 0 0 auto;
+            margin: 0;
+            padding: 8px 12px;
+            background-color: #4b2e83;
+            font-size: 0.95em;
+            border-radius: 8px;
+        }
+
+        .blocklist-remove-btn:hover {
+            background-color: #36205c;
+            box-shadow: 0 4px 12px rgba(75, 46, 131, 0.28);
+        }
+
+        .blocklist-empty {
+            padding: clamp(28px, 5vh, 44px) 20px;
+            text-align: center;
+            color: #888;
+            border: 2px dashed #d5d5d5;
+            border-radius: 12px;
+            background: rgba(26, 188, 156, 0.03);
+        }
+
+        .blocklist-empty-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #bbb;
+        }
+
+        .blocklist-empty-text {
+            font-size: 1.05em;
+            line-height: 1.5;
+        }
+
+        /* --- Actions card --- */
+        .blocklist-actions-box {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: clamp(12px, 2vh, 16px);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            background: rgba(26, 188, 156, 0.03);
+            flex-wrap: wrap;
+        }
+
+        .blocklist-actions-box button {
+            width: auto;
+            min-width: 130px;
+            flex: 1 1 180px;
+            margin-top: 0;
+        }
+
+        /* Dark theme styles */
+        .dark-theme {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .dark-theme .container {
+            background-color: #16213e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-theme h1,
+        .dark-theme h2,
+        .dark-theme .feature-toggle .toggle-text strong {
+            color: #ecf0f1;
+        }
+
+        .dark-theme .main-tab {
+            color: #a0aab5;
+        }
+
+        .dark-theme .main-tab:hover {
+            color: #fff;
+            background-color: #1f2a4a;
+        }
+
+        .dark-theme .main-tab.active {
+            color: #1abc9c;
+        }
+
+        .dark-theme .main-tabs {
+            border-bottom-color: #2a3b5c;
+        }
+
+        .dark-theme textarea,
+        .dark-theme select,
+        .dark-theme input[type="text"],
+        .dark-theme input[type="file"] {
+            background-color: #0f172a;
+            color: #ecf0f1;
+            border: 1px solid #2a3b5c;
+        }
+
+        .dark-theme select {
+            background-color: #0f172a;
+        }
+
+        .dark-theme select option {
+            background-color: #0f172a;
+        }
+
+        .dark-theme button {
+            background-color: #15836d;
+        }
+
+        .dark-theme button:hover {
+            background-color: #1abc9c;
+        }
+
+        .dark-theme .language-container label {
+            color: #ecf0f1;
+        }
+
+        .dark-theme .language-container,
+        .dark-theme .user-input-section {
+            background: #1f2a4a;
+            border-color: #2a3b5c;
+        }
+
+        .dark-theme .feature-toggle {
+            background: rgba(26, 188, 156, 0.1);
+            border-color: #2a3b5c;
+        }
+
+        .dark-theme .feature-toggle:hover {
+            background: rgba(26, 188, 156, 0.15);
+            border-color: #15836d;
+        }
+
+        .dark-theme .feature-toggle .toggle-text span {
+            color: #a0aab5;
+        }
+
+        /* Dark theme — blocklist */
+        .dark-theme .blocklist-header {
+            border-bottom-color: #2a3b5c;
+        }
+
+        .dark-theme .blocklist-header-icon {
+            background: rgba(26, 188, 156, 0.15);
+        }
+
+        .dark-theme .blocklist-header-text strong {
+            color: #ecf0f1;
+        }
+
+        .dark-theme .blocklist-header-text span {
+            color: #a0aab5;
+        }
+
+        .dark-theme .blocklist-add-card,
+        .dark-theme .blocklist-list-card {
+            background: #1f2a4a;
+            border-color: #2a3b5c;
+        }
+
+        .dark-theme .blocklist-meta {
+            color: #a0aab5;
+        }
+
+        .dark-theme .blocklist-count-pill {
+            background: rgba(26, 188, 156, 0.15);
+            color: #1abc9c;
+        }
+
+        .dark-theme .blocklist-status {
+            color: #1abc9c;
+        }
+
+        .dark-theme .blocklist-item {
+            background: #0f172a;
+            border-color: #2a3b5c;
+        }
+
+        .dark-theme .blocklist-item:hover {
+            border-color: #3b4d73;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-theme .blocklist-empty {
+            color: #a0aab5;
+            border-color: #2a3b5c;
+            background: rgba(26, 188, 156, 0.04);
+        }
+
+        .dark-theme .blocklist-empty-icon {
+            color: #3b4d73;
+        }
+
+        .dark-theme .blocklist-actions-box {
+            background: rgba(26, 188, 156, 0.06);
+            border-color: #2a3b5c;
+        }
+
+        .dark-theme .blocklist-domain {
+            color: #ecf0f1;
+        }
+
+        .dark-theme .support-button {
+            background-color: #e74c3c;
+        }
+
+        .dark-theme .support-button:hover {
+            background-color: #c0392b;
+        }
+
+        .dark-theme .tab {
+            background-color: #2a3b5c;
+            color: #a0aab5;
+        }
+
+        .dark-theme .tab:hover {
+            background-color: #3b4d73;
+            color: #fff;
+        }
+
+        .dark-theme .tab.active {
+            background-color: #15836d;
+            color: white;
+        }
+
+        .dark-theme .section-content::-webkit-scrollbar-track {
+            background: #16213e;
+        }
+
+        .dark-theme .section-content::-webkit-scrollbar-thumb {
+            background: #2a3b5c;
+        }
+
+        .dark-theme .section-content::-webkit-scrollbar-thumb:hover {
+            background: #3b4d73;
+        }
+
+        a:link {
+            color: #1abc9c;
+        }
+
+        a:visited {
+            color: #1abc9c;
+        }
+
+        a:hover {
+            color: #16a085;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #15836d;
+        }
+
+        .tab-text {
+            pointer-events: none;
+        }
+
+        .page-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 0; /* Removed padding to allow full width for wrapper */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .banner-wrapper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: calc(50% - 400px); /* Exactly the space left of the main container */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .banner-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: clamp(250px, 80%, 500px);
+            transform: translateY(-12px);
+        }
+
+        .banner-text {
+            color: #2c3e50;
+            font-size: clamp(1.1em, 1.8vw, 1.5em);
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .dark-theme .banner-text {
+            color: #ecf0f1;
+        }
+
+        .static-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            overflow: visible;
+        }
+
+        .static-banner:hover {
+            transform: scale(1.02);
+        }
+
+        .dark-theme .static-banner {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-light, .banner-dark {
+            width: 100%;
+            height: auto;
+            max-height: none; /* Override global img max-height */
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .banner-dark {
+            display: none;
+        }
+
+        .dark-theme .banner-light {
+            display: none;
+        }
+
+        .dark-theme .banner-dark {
+            display: block;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            z-index: 5;
+        }
+
+        @media (max-width: 1400px) {
+            .page-wrapper {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+            .banner-wrapper {
+                position: static;
+                width: 100%;
+                height: auto;
+                margin-bottom: 40px;
+            }
+            .banner-section {
+                width: 90%;
+                max-width: 500px;
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="banner-wrapper">
+            <div class="banner-section">
+                <div class="banner-text" id="bannerText">Check out our new project!</div>
+                <a href="https://bounderly.app" target="_blank" class="static-banner" title="Visit Bounderly App">
+                    <img class="banner-light" src="../assets/images/bounderly_banner_light.jpg" alt="Bounderly App">
+                    <img class="banner-dark" src="../assets/images/bounderly_banner_dark.jpg" alt="Bounderly App">
+                </a>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="main-header">
+                <h1>
+                    <span id="h1text">Thank you for using ***ExtensionName***</span>
+                </h1>
+            </div>
+
+            <div class="container" id="mainContainer">
+        <div class="main-tabs">
+            <div class="main-tab active" data-target="about-section">
+                <i class="fas fa-info-circle"></i> <span class="tab-text" id="aboutTab">About</span>
+            </div>
+            <div class="main-tab" data-target="settings-section">
+                <i class="fas fa-cog"></i> <span class="tab-text" id="settingsTab">Settings</span>
+            </div>
+            <div class="main-tab" data-target="blocklist-section">
+                <i class="fas fa-ban"></i> <span class="tab-text" id="blocklistTab">Custom blocklist</span>
+            </div>
+            <div class="main-tab" data-target="reminder-section">
+                <i class="fas fa-sticky-note"></i> <span class="tab-text" id="reminderTab">Reminder</span>
+            </div>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <div class="section-content active" id="about-section">
+            <div class="guidelines">
+                <p id="p1">*Here are some guidelines*</p>
+                <p id="p3"></p>
+                <p id="p4">Created by: A'n'A</p>
+            </div>
+            <div class="button-group">
+                <div class="top-buttons">
+                    <button class="feedback-button" id="sourceButton">
+                        <i class="fa-brands fa-github"></i> <span>Source code</span>
+                    </button>
+                    <button class="feedback-button" id="contactButton">
+                        <i class="fas fa-envelope"></i> <span>Contact</span>
+                    </button>
+                </div>
+                <button class="support-button" id="supportButton">
+                    <i class="fas fa-heart"></i> <span>Support</span>
+                </button>
+                <p style="text-align: center; margin: clamp(8px, 1.5vh, 14px) 0 0; font-size: clamp(0.95em, 1.8vh, 1.1em);">
+                    <a href="WhatsNew.html" target="_blank" id="whatsNewLink">
+                        <i class="fas fa-star"></i> <span id="whatsNewLinkText">Version 2.0 — What's New?</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- SETTINGS SECTION -->
+        <div class="section-content" id="settings-section">
+            <div class="language-container">
+                <label for="languageSelect" id="languageSelectLabel">Preferred language:</label>
+                <div class="language-wrapper">
+                    <select id="languageSelect">
+                        <option value="zh-Hans" data-flag="../assets/flags/zh.svg">简体中文</option>
+                        <option value="es" data-flag="../assets/flags/es.svg">Español</option>
+                        <option value="en" data-flag="../assets/flags/en.svg">English</option>
+                        <option value="hi" data-flag="../assets/flags/hi.svg">Hindi</option>
+                        <option value="pt" data-flag="../assets/flags/pt.svg">Português</option>
+                        <option value="ru" data-flag="../assets/flags/ru.svg">Русский</option>
+                        <option value="ja" data-flag="../assets/flags/ja.svg">日本語</option>
+                        <option value="de" data-flag="../assets/flags/de.svg">Deutsch</option>
+                        <option value="fr" data-flag="../assets/flags/fr.svg">Français</option>
+                        <option value="ko" data-flag="../assets/flags/ko.svg">한국어</option>
+                        <option value="tr" data-flag="../assets/flags/tr.svg">Türkçe</option>
+                        <option value="it" data-flag="../assets/flags/it.svg">Italiano</option>
+                        <option value="pl" data-flag="../assets/flags/pl.svg">Polski</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="language-container">
+                <label for="themeSelect" id="themeSelectLabel">Theme:</label>
+                <div class="language-wrapper">
+                    <select id="themeSelect">
+                        <option value="light" id="themeLabelLight">Light</option>
+                        <option value="dark" id="themeLabelDark">Dark</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="feature-toggle">
+                <div class="toggle-text">
+                    <strong id="safeSearchToggleLabel">Safe search protection</strong>
+                    <span id="safeSearchToggleHint">Forces safe search on supported search engines when possible.</span>
+                </div>
+                <input type="checkbox" id="safeSearchToggle">
+            </div>
+
+            <div class="feature-toggle">
+                <div class="toggle-text">
+                    <strong id="contentScanToggleLabel">Content scan blocking</strong>
+                    <span id="contentScanToggleHint">Blocks pages by page-content tags, not just domain rules.</span>
+                </div>
+                <input type="checkbox" id="contentScanToggle">
+            </div>
+
+            <div class="feature-toggle">
+                <div class="toggle-text">
+                    <strong id="domainPatternToggleLabel">Domain pattern blocking</strong>
+                    <span id="domainPatternToggleHint">Blocks high-confidence domain patterns (rule34* and .xxx
+                        domains).</span>
+                </div>
+                <input type="checkbox" id="domainPatternToggle">
+            </div>
+        </div>
+
+        <!-- CUSTOM BLOCKLIST SECTION -->
+        <div class="section-content" id="blocklist-section">
+            <div class="blocklist-editor">
+
+                <!-- Header -->
+                <div class="blocklist-header">
+                    <div class="blocklist-header-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="blocklist-header-text">
+                        <strong id="blocklistHeaderTitle">Custom Blocklist</strong>
+                        <span id="blocklistHeaderHint">Add domains or URLs you want to block</span>
+                    </div>
+                </div>
+
+                <!-- Add domain -->
+                <div class="blocklist-add-card">
+                    <div class="blocklist-toolbar">
+                        <input type="text" id="customDomainInput" placeholder="domain.com or https://domain.com/page">
+                        <button id="addCustomDomainButton">
+                            <i class="fas fa-plus"></i> <span id="addCustomDomainButtonText">Add</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search & meta -->
+                <div class="blocklist-search-row">
+                    <input type="text" id="blocklistSearchInput" placeholder="Search domains...">
+                    <div class="blocklist-meta">
+                        <span class="blocklist-count-pill" id="blocklistCount">0 domains</span>
+                        <span class="blocklist-status" id="blocklistStatus" role="status" aria-live="polite"></span>
+                    </div>
+                </div>
+
+                <!-- Domain list -->
+                <div class="blocklist-list-card">
+                    <div class="blocklist-list" id="customBlocklistList"></div>
+                    <div class="blocklist-empty" id="customBlocklistEmpty">
+                        <div class="blocklist-empty-icon"><i class="fas fa-inbox"></i></div>
+                        <div class="blocklist-empty-text" id="blocklistEmptyText">No custom domains yet.</div>
+                    </div>
+                </div>
+
+                <!-- Import / Export -->
+                <div class="blocklist-actions-box">
+                    <button class="feedback-button" id="exportBlocklistButton">
+                        <i class="fas fa-upload"></i> <span>Export</span>
+                    </button>
+                    <button class="feedback-button" id="importBlocklistButton">
+                        <i class="fas fa-download"></i> <span>Import</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- REMINDER SECTION -->
+        <div class="section-content" id="reminder-section">
+            <h2 id="OwnPage">Make your own page</h2>
+            <p id="p5" style="margin-top: 0;"></p>
+
+            <div class="inner-tab-container">
+                <div class="tab active" id="openTab1"><span class="tab-text">Option (1)</span></div>
+                <div class="tab" id="openTab2"><span class="tab-text">Option (2)</span></div>
+                <div class="tab" id="openTab3"><span class="tab-text">Option (3)</span></div>
+            </div>
+
+            <div class="user-input-section" id="inputSection1" style="display: block;">
+                <img id="imagePreview1" style="width:100%; margin-bottom:10px; border-radius: 8px;">
+                <input type="file" id="imageFile1" accept="image/*">
+                <textarea id="userText1" placeholder="Enter your text here..."></textarea>
+                <div class="top-buttons">
+                    <button class="feedback-button" id="deleteUserContentButton1" style="background-color: #e74c3c;">
+                        <i class="fas fa-trash"></i> <span>Delete</span>
+                    </button>
+                    <button class="feedback-button" id="saveUserContentButton1">
+                        <i class="fas fa-save"></i> <span>Save</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="user-input-section" id="inputSection2">
+                <img id="imagePreview2" style="width:100%; margin-bottom:10px; border-radius: 8px;">
+                <input type="file" id="imageFile2" accept="image/*">
+                <textarea id="userText2" placeholder="Enter your text here..."></textarea>
+                <div class="top-buttons">
+                    <button class="feedback-button" id="deleteUserContentButton2" style="background-color: #e74c3c;">
+                        <i class="fas fa-trash"></i> <span>Delete</span>
+                    </button>
+                    <button class="feedback-button" id="saveUserContentButton2">
+                        <i class="fas fa-save"></i> <span>Save</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="user-input-section" id="inputSection3">
+                <img id="imagePreview3" style="width:100%; margin-bottom:10px; border-radius: 8px;">
+                <input type="file" id="imageFile3" accept="image/*">
+                <textarea id="userText3" placeholder="Enter your text here..."></textarea>
+                <div class="top-buttons">
+                    <button class="feedback-button" id="deleteUserContentButton3" style="background-color: #e74c3c;">
+                        <i class="fas fa-trash"></i> <span>Delete</span>
+                    </button>
+                    <button class="feedback-button" id="saveUserContentButton3">
+                        <i class="fas fa-save"></i> <span>Save</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <script src="../scripts/global/ThemeController.js"></script>
+    <script src="../scripts/About.js"></script>
+</body>
+
+</html>

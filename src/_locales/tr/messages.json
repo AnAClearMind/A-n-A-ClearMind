@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind, porno bağımlılığını yenmenize yardımcı olan bir tarayıcı eklentisidir."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => ALERT (UYARI) moduna gir"
+  },
+  "invalidDomainFormat": {
+    "message": "Geçersiz alan adı formatı. Lütfen şöyle bir şey girin: 'alanadi.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "'google' engellemesi kullanılamıyor"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Özel engelleme listesi sınırı olan 4900 alan adına ulaşıldı"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Engelleme kuralları güncellenemedi"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Alan adı zaten engelleme listesinde"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Bu alan adı kullanıcı kuralı ile engellenmemiştir. Güvenli listeye (whitelist) eklenemez."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Alan adı özel engelleme listesinde bulunamadı"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Alan adı engelleme listesine eklendi"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Alan adı engelleme listesinden çıkarıldı"
+  },
+  "whatsNewTitle": {
+    "message": "ClearMind 2.0'a Hoş Geldiniz"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Versiyon 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Merhaba! Zor bir yıldı, ama yine iyi haberlerle buradayız! ClearMind 2.0 ve onun harika özelliklerine merhaba deyin."
+  },
+  "whatsNewPerformance": {
+    "message": "Geliştirilmiş Deneyim — Daha hızlı filtreleme ve daha akıcı, daha sezgisel bir arayüz."
+  },
+  "whatsNewProtection": {
+    "message": "Güçlendirilmiş Koruma — Artık yetişkin içeriklerine karşı gelişmiş çok katmanlı kalkanla birlikte."
+  },
+  "whatsNewLocalization": {
+    "message": "Evrensel Destek — Artık 13 dili destekliyor, dünyanın her yerindeki insanların berrak ve odaklı kalmasına yardımcı oluyor."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Kesintisiz Erişim — Destek, kaynak kodu ve topluluk kaynaklarına kolayca ulaşmak için yenilenen Hakkında sayfamızı keşfedin."
+  },
+  "bounderlyCaption": {
+    "message": "Yeni projemize göz atın!\n\"FREE500\" promosuyla ücretsiz premium kazanın."
+  },
+  "continue_btn": {
+    "message": "Devam"
+  }
+}

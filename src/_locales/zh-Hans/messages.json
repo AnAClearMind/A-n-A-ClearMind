@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind 是一个帮助你克服色情成瘾的浏览器扩展。"
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => 进入警报模式 (ALERT)"
+  },
+  "invalidDomainFormat": {
+    "message": "无效的域名格式。请输入类似：'domainName.com' 的格式"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "无法封锁 'google'"
+  },
+  "customBlocklistLimitReached": {
+    "message": "已达到自定义封锁列表 4900 个域名的上限"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "更新封锁规则失败"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "该域名已在封锁列表中"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "此域名未被用户规则封锁。无法将其添加到白名单。"
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "在自定义封锁列表中未找到该域名"
+  },
+  "domainAddedSuccessfully": {
+    "message": "域名已添加到封锁列表"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "域名已从封锁列表中移除"
+  },
+  "whatsNewTitle": {
+    "message": "欢迎使用 ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "版本 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "你好！这一年不太容易，但我们带着好消息回来了！向 ClearMind 2.0 及其令人惊叹的功能问好。"
+  },
+  "whatsNewPerformance": {
+    "message": "精致体验 — 更快的过滤和更流畅、更直观的界面。"
+  },
+  "whatsNewProtection": {
+    "message": "增强防护 — 现已配备针对成人内容的高级多层防护。"
+  },
+  "whatsNewLocalization": {
+    "message": "全球支持 — 现已支持 13 种语言，帮助世界各地的人们保持清晰和专注。"
+  },
+  "whatsNewAboutUpdate": {
+    "message": "无缝访问 — 通过全新的“关于”页面轻松获取支持、源码及社区资源。"
+  },
+  "bounderlyCaption": {
+    "message": "看看我们的新项目！\n使用 \"FREE500\" 即可获得免费高级版。"
+  },
+  "continue_btn": {
+    "message": "继续"
+  }
+}

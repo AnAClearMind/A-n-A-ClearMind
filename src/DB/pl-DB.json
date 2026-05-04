@@ -1,0 +1,426 @@
+{
+	"SimpleAction": {
+		"alias": "Małe Kroki",
+		"icon": [
+			"fa-solid",
+			"fa-meteor"
+		],
+		"content": [
+			"Zrób 10 pompek",
+			"Wypij szklankę wody",
+			"Weź 5 głębokich oddechów",
+			"Wstań i przejdź się chwilę po pokoju",
+			"Uporządkuj mały obszar swojego biurka",
+			"Podlej roślinę w domu",
+			"Zrób 20 przysiadów",
+			"Zamknij oczy i zaśpiewaj w myślach swoją ulubioną piosenkę",
+			"Popatrz w górę, w dół, w lewo i w prawo po 10 razy",
+			"Pomasuj środek dłoni",
+			"Wymień 5 rzeczy, które widzisz, 4, których możesz dotknąć, 3, które słyszysz, 2, które możesz powąchać, i 1, którą możesz zasmakować"
+		]
+	},
+	"Informational": {
+		"alias": "Warto Wiedzieć",
+		"icon": [
+			"fa-solid",
+			"fa-dragon"
+		],
+		"static": "Teraz już wiem",
+		"content": [
+			{
+				"title": "Zdrowie psychiczne",
+				"text": "Oglądanie pornografii może prowadzić do lęku, depresji i stresu, co wykazały <a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>badania</a>. Może to również powodować uzależnienie, zmniejszać samokontrolę i szkodzić zdrowiu psychicznemu."
+			},
+			{
+				"title": "Małżeństwo",
+				"text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>Badania</a> pokazują, że dorośli, którzy w ciągu ostatniego roku oglądali pornografię, częściej się rozwodzili, częściej mieli romans pozamałżeński i rzadziej zgłaszali zadowolenie ze swojego małżeństwa lub życia w ogóle."
+			},
+			{
+				"title": "Pornhub udostępniał filmy dotyczące handlu ludźmi i gwałtów",
+				"text": "Było kilka szokujących przypadków hostowania na Pornhubie filmów z handlu ludźmi w celach seksualnych i gwałtów na nieletnich.<br><br>Piętnastoletnia dziewczyna, która zaginęła przez rok, została w końcu znaleziona po tym, jak jej matka otrzymała informację, że jej córka pojawia się na tej stronie. <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>Czytaj dalej...</a>"
+			},
+			{
+				"title": "Wpływ poznawczy i emocjonalny",
+				"text": "Pornografia została powiązana z depresją, agresją i osłabieniem <a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>funkcji wykonawczych (executive functioning)</a>."
+			},
+			{
+				"title": "Przemoc seksualna",
+				"text": "Pornografia jest powiązana z niezdrowymi przekonaniami seksualnymi, zachęca do <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>przemocy seksualnej</a> i niszczy poczucie własnej wartości."
+			},
+			{
+				"title": "Funkcje mózgu",
+				"text": "Negatywne skutki pornografii obejmują <a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>zmniejszenie istoty szarej w korze przedczołowej</a>, co prowadzi do uzależnienia i pogorszenia zdolności decyzyjnych."
+			},
+			{
+				"title": "Zaburzenia erekcji",
+				"text": "Pornografia jest powiązana z <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>zaburzeniami erekcji</a>, utratą kontroli i negatywnym wpływem na samopoczucie seksualne."
+			},
+			{
+				"title": "Zaledwie cztery tygodnie",
+				"text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>Cztery tygodnie</a> abstynencji mogą prowadzić do różnych ulepszeń psychologicznych, w tym lepszej motywacji, poprawy nastroju i zachowań społecznych."
+			},
+			{
+				"title": "Jakość relacji",
+				"text": "Korzystanie z pornografii wiąże się z niższą <a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>satysfakcją z relacji</a> zarówno dla mężczyzn, jak i kobiet."
+			},
+			{
+				"title": "Niewierność i rozwód",
+				"text": "Konsumpcja pornografii jest powiązana ze zwiększonym prawdopodobieństwem <a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>niewierności</a> w związkach oraz <a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>rozwodu</a>, zarówno u mężczyzn, jak i u kobiet."
+			}
+		]
+	},
+	"PictureSelection": {
+		"alias": "Gdzie Się Udać",
+		"icon": [
+			"fa-solid",
+			"fa-compass"
+		],
+		"static": {
+			"h1": "Wybierz jedno",
+			"chooseImageButton": "Wybierz",
+			"confirmChoiceButton": "Potwierdź"
+		},
+		"content": [
+			{
+				"image": "https://i.imgur.com/oeuMAQt.jpeg",
+				"desc": "Prawdziwy tygrys to ktoś, kto wybiera zdjęcia tygrysów..."
+			},
+			{
+				"image": "https://i.imgur.com/wc4nJqB.jpeg",
+				"desc": "Tak przy okazji, potrafię zgnieść arbuza ustami."
+			},
+			{
+				"image": "https://i.imgur.com/969Fh4l.jpeg",
+				"desc": "Kiedyś musisz pojechać do Japonii..."
+			},
+			{
+				"image": "https://i.imgur.com/vklfSZb.jpeg",
+				"desc": "Uroczystość patrzy na uroczystość."
+			},
+			{
+				"image": "https://i.imgur.com/Ip8mskP.jpeg",
+				"desc": "To tylko przypomnienie, jak piękny jest świat."
+			},
+			{
+				"image": "https://i.imgur.com/q0pDtIF.jpeg",
+				"desc": "Haha, mam nadzieję, że wywołałem uśmiech na Twojej twarzy."
+			},
+			{
+				"image": "https://i.imgur.com/Fo3iSkq.jpeg",
+				"desc": "Wow, złapałeś złotą rybkę! Czekaj, to nie jest ryba..."
+			},
+			{
+				"image": "https://i.imgur.com/yHIqEnU.jpeg",
+				"desc": "Nawet w brudzie możesz wybrać, by pozostać czystym."
+			},
+			{
+				"image": "https://i.imgur.com/WgRFKdd.jpeg",
+				"desc": "Czy to mnie szukałeś?"
+			},
+			{
+				"image": "https://i.imgur.com/jat35sC.jpeg",
+				"desc": "W razie potrzeby pożyczę Ci łapę."
+			},
+			{
+				"image": "https://i.imgur.com/DSCPFfV.jpeg",
+				"desc": "Bądź psem, nie bądź grzybem."
+			},
+			{
+				"image": "https://i.imgur.com/z4LXvFX.jpeg",
+				"desc": "Każda wystrzelona przez Ciebie strzała może okazać się samolotem pełnym ludzi..."
+			},
+			{
+				"image": "https://i.imgur.com/gsoXN2C.jpeg",
+				"desc": "Wewnętrzne dziecko liczy na Ciebie."
+			},
+			{
+				"image": "https://i.imgur.com/fC9Drxf.jpeg",
+				"desc": "Przyjaźń."
+			},
+			{
+				"image": "https://i.imgur.com/gi63tHf.jpeg",
+				"desc": "Zasługujesz na wolność od uzależnienia."
+			},
+			{
+				"image": "https://i.imgur.com/RwrQLKd.jpeg",
+				"desc": "Najpiękniejsze rzeczy to po prostu odpowiednie połączenie prostych elementów."
+			},
+			{
+				"image": "https://i.imgur.com/yK26epW.jpeg",
+				"desc": "Czy kultura i sztuka po prostu naśladują życie, czy potrafią je wykraczać?"
+			},
+			{
+				"image": "https://i.imgur.com/b13aVLK.jpeg",
+				"desc": "Kirkjufell, Islandia. Jedno z najlepszych miejsc na zobaczenie zorzy polarnej."
+			},
+			{
+				"image": "https://i.imgur.com/cm2uxlK.jpeg",
+				"desc": "Czy wygląd ma znaczenie, czy też treść przewyższa styl? Równowaga?"
+			},
+			{
+				"image": "https://i.imgur.com/KY5L79Q.jpeg",
+				"desc": "Woda może stać się dosłownie wszystkim. Może płynąć albo może niszczyć.<br>Bądź wodą, mój przyjacielu."
+			},
+			{
+				"image": "https://i.imgur.com/wwWQAUy.png",
+				"desc": "<a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>Genealogia</a> Technologii i Władzy od 1500 roku"
+			},
+			{
+				"image": "https://i.imgur.com/P4Qb0ra.png",
+				"desc": "Jakiś zwykły mnich i jego kot czytają razem, Francja, XIII wiek.<br>Jaką książkę chciałbyś przeczytać? A Twój kot?"
+			},
+			{
+				"image": "https://i.imgur.com/lkoBWsy.jpeg",
+				"desc": "Mgławica kosmiczna. Czy coś takiego może istnieć przez zwykły zbieg okoliczności,<br>czy wymaga odrobiny woli?"
+			},
+			{
+				"image": "https://i.imgur.com/hD9kvAw.jpeg",
+				"desc": "Thingvellir, Islandia."
+			},
+			{
+				"image": "https://i.imgur.com/BRoBRIt.jpeg",
+				"desc": "Noc w lesie, timelapse nieba."
+			},
+			{
+				"image": "https://i.imgur.com/IRAz1xm.jpeg",
+				"desc": "Niezwykłe drzewa w Nowej Zelandii."
+			},
+			{
+				"image": "https://i.imgur.com/912SXeD.jpeg",
+				"desc": "Manuskrypt Wojnicza. Wciąż pozostaje tajemnicą."
+			},
+			{
+				"image": "https://i.imgur.com/1qrlqgK.jpeg",
+				"desc": "Plaster turmalinu arbuzowego."
+			},
+			{
+				"image": "https://i.imgur.com/EyU2nRq.jpeg",
+				"desc": "Kiedy ostatnio witałeś świt?"
+			},
+			{
+				"image": "https://i.imgur.com/jhWIkWq.jpeg",
+				"desc": "Kaustyka świetlna przechodząca przez szkło. Spróbuj tego sam!"
+			}
+		]
+	},
+	"Video": {
+		"alias": "Zobacz Sam",
+		"icon": [
+			"fa-solid",
+			"fa-star"
+		],
+		"static": "Potwierdź",
+		"content": [
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+		]
+	},
+	"MessageToYourself": {
+		"alias": "Miłość Własna",
+		"icon": [
+			"fa-solid",
+			"fa-dove"
+		],
+		"static": "Potwierdź",
+		"content": [
+			{
+				"text": "Być miejscem, w którym upadły anioł spotyka się z wznoszącą się małpą<br><br>(Możesz <a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>stworzyć własną</a> stronę taką jak ta)",
+				"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"
+			}
+		]
+	},
+	"Quote": {
+		"alias": "Kącik Mądrości",
+		"icon": [
+			"fa-solid",
+			"fa-hat-wizard"
+		],
+		"static": {
+			"question": "Czy zgadzasz się z tym cytatem? Dlaczego?",
+			"quoteReflection": "Wpisz swoje przemyślenia tutaj...",
+			"quoteReflectionButton": "Potwierdź"
+		},
+		"content": [
+			"<em>«Nie jestem produktem moich okoliczności. Jestem produktem moich decyzji.»</em> — Stephen Covey",
+			"<em>«Jedynym wyjściem jest przejście przez to.»</em> — Robert Frost",
+			"<em>«Każdy moment opierania się pokusie jest zwycięstwem.»</em> — Frederick William Faber",
+			"<em>«Sekretem zmiany jest skupienie całej energii nie na walce ze starym, ale na budowaniu nowego.»</em> — Sokrates",
+			"<em>«Uzależnienie zaczyna się od nadziei, że coś 'tam' może natychmiast wypełnić wewnętrzną pustkę.»</em> — Jean Kilbourne",
+			"<em>«Nie oceniaj każdego dnia po plonach, które zbierasz, ale po nasionach, które sadzisz.»</em> — Robert Louis Stevenson",
+			"<em>«To, co często jest podawane za darmo, okazuje się być najdroższe.»</em> — Takemura",
+			"<em>«Jeśli jedynym narzędziem, jakie posiadasz, jest młotek, wszystko zaczyna wyglądać jak gwóźdź.»</em> — Przysłowie",
+			"<em>«Nikt nie jest bardziej beznadziejnie zniewolony niż ci, którzy fałszywie wierzą, że są wolni.»</em> — Johann Wolfgang von Goethe",
+			"<em>«Ciemność nie może wypędzić ciemności; może to zrobić tylko światło.»</em> — Martin Luther King Jr.",
+			"<em>«Definicją szaleństwa jest robienie wciąż tego samego, ale oczekiwanie innych rezultatów.»</em> — Albert Einstein",
+			"<em>«To nasze wybory ukazują, kim naprawdę jesteśmy, o wiele bardziej niż nasze zdolności.»</em> ― J.K. Rowling",
+			"<em>«Niektóre rzeczy przyciągną twój wzrok, ale dąż tylko do tych, które zdobędą twoje serce.»</em> — Przysłowie",
+			"<em>«Ryzykuj więcej, niż inni uważają za bezpieczne. Śnij więcej, niż inni uważają za praktyczne.»</em> — Howard Schulz",
+			"<em>«Nie poniosłem porażki. Znalazłem po prostu 10 000 sposobów, które nie działają.»</em> ― Thomas A. Edison",
+			"<em>«Biedny nie jest ten człowiek, który ma zbyt mało, ale ten, który pragnie więcej.»</em> — Seneka",
+			"<em>«Żaden człowiek nie jest wolny, jeśli nie jest panem samego siebie.»</em> — Epiktet",
+			"<em>«Wolność to niewola.»</em> — George Orwell, 1984",
+			"<em>«Pragnienia nigdy nie są zaspokajane przez przyjemność. Podobnie jak ogień, rosną, gdy się je zaspokaja.»</em> — Bhagawadgita",
+			"<em>«Jeśli możesz przestać na jeden dzień, możesz przestać na całe życie.»</em> — Benjamin Alire Sáenz",
+			"<em>«Trudności często przygotowują zwykłych ludzi na niezwykłe przeznaczenie.»</em> — C.S. Lewis",
+			"<em>«Nie musisz widzieć całych schodów, wystarczy, że zrobisz kolejny krok.»</em> — Martin Luther King Jr."
+		]
+	},
+	"Trigger": {
+		"alias": "Wyzwalacz (Trigger)",
+		"icon": [
+			"fa-solid",
+			"fa-jedi"
+		],
+		"static": {
+			"h1": "Zidentyfikuj wyzwalacz",
+			"p": "Postaraj się zidentyfikować czynnik zapalny (wyzwalacz), który przyczynił się do powstania pragnienia",
+			"triggerDescription": "Wprowadź wyzwalacz tutaj...",
+			"triggerButton": "Potwierdź"
+		}
+	},
+	"ImagineWords": {
+		"alias": "Wyobraź sobie",
+		"icon": [
+			"fa-solid",
+			"fa-hands-praying"
+		],
+		"static": {
+			"p": "Bliski przyjaciel chce cię wesprzeć.<br>Wyobraź to sobie: jakie słowa mogłyby ci teraz naprawdę pomóc?",
+			"wordsDescription": "...",
+			"wordsButton": "Potwierdź"
+		}
+	},
+	"Wife": {
+		"alias": "Muza",
+		"icon": [
+			"fa-solid",
+			"fa-heart"
+		],
+		"static": {
+			"h1": "Zwualizuj jeden moment w przyszłości, który chcesz spędzić ze swoją żoną",
+			"wifeDescription": "Wpisz swój opis tutaj...",
+			"confirmDescriptionButton": "Potwierdź"
+		}
+	},
+	"CardSelection": {
+		"static": {
+			"h1": "Wybierz Kartę",
+			"chooseCard": "Wybierz",
+			"confirmChoice": "Potwierdź"
+		}
+	},
+	"UrgeTest_initial": {
+		"static": {
+			"h1": "Oceń siłę swojego impulsu",
+			"textMain": "Poprosiłeś rozszerzenie ClearMind o zablokowanie <span id='blockedDomain'></span><br /><br />Pragnienie, którego doświadczasz, samo w sobie jest całkowicie normalne, ale czy powinniśmy pozwolić, aby kompulsywne zachowanie nałogu przejęło nad nami kontrolę?<br /><br />Razem możemy to pokonać!",
+			"confirmButton": "Potwierdź",
+			"textSecondary": "Poprosiłeś rozszerzenie ClearMind o zablokowanie <span id='blockedDomainOverlay'></span>"
+		}
+	},
+	"UrgeTest_final": {
+		"static": {
+			"mainHeader": "Oceń siłę swojego impulsu",
+			"mainHeaderResult": "Siła Twojego impulsu zmieniła się z <span id='initialUrgeValueSpan'></span> na <span id='currentUrgeValueSpan'></span>",
+			"motivationalText_lessUrge": "Możesz to zrobić!",
+			"confirmButton": "Potwierdź",
+			"resetUrgeButton": "Jeszcze jedna runda",
+			"leaveUrgeButton": "Jestem gotów stąd wyjść"
+		}
+	},
+	"customBlockControl_popup": {
+		"static": {
+			"h2": "Zarządzaj listą blokowania",
+			"domainInput": "*nazwa_domeny*",
+			"addDomainBtn": "Dodaj do własnych blokad",
+			"deleteDomainBtn": "Usuń z własnych blokad",
+			"alertButton": "TRYB ALERTU",
+			"settingsButton": "Ustawienia",
+			"supportButton": "Wsparcie"
+		}
+	},
+	"ProgressionPopup": {
+		"static": {
+			"p": "Gratulacje, proszę pana! Oto potężny artefakt, który pomoże ci w twojej podróży!",
+			"closeButton": "Kontynuuj",
+			"claimButton": "Odbierz!"
+		},
+		"rewards": {
+			"1": {
+				"title": "«Najlepsze rozszerzenie towarzyszące do strzeżenia twojego zdrowia psychicznego»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": {
+				"title": "«Odważny, a jednocześnie potężny emocjonalnie utwór»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": {
+				"title": "«Jak wyleczyć YouTube»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": {
+				"title": "«Jak głęboka jest królicza nora...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": {
+				"title": "«Ostateczne Rozwiązanie»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	"About": {
+		"static": {
+			"h1": "Dziękujemy za korzystanie z ClearMind",
+			"h2About": "O nas",
+			"p1": "ClearMind to rozszerzenie przeglądarki, które pomaga przezwyciężyć uzależnienie od pornografii.<br><br>Stworzyliśmy je, ponieważ uważamy, że przesyt pornografii w przestrzeni cyfrowej jest jednym z najpoważniejszych problemów naszych czasów, negatywnie wpływającym na wszystkich, a zwłaszcza na młodych ludzi.<br><br>W przeciwieństwie do innych rozszerzeń, ClearMind wykorzystuje zasady terapii poznawczo-behawioralnej (CBT), grywalizację i zarządzanie uwagą, aby tłumić pragnienia, zamiast tylko mechanicznie blokować dostęp do stron internetowych.<br><br>To, co zaczęło się jako osobisty projekt, stało się czymś, czym z przyjemnością dzielimy się ze wszystkimi.",
+			"p3": "Mamy głęboką nadzieję, że pomoże ci to w twojej podróży!",
+			"p4": "Stworzone przez: A'n'A",
+			"sourceButton": "Kod źródłowy",
+			"contactButton": "Kontakt",
+			"supportButton": "Wsparcie",
+			"OwnPage": "Stwórz własną stronę",
+			"p5": "Wyślij inspirującą wiadomość z chwili spokoju do swojego przyszłego ja w jego najczarniejszej godzinie. Wszystkie dane są przechowywane w trybie offline.",
+			"openTab1": " Opcja (1) ",
+			"openTab2": " Opcja (2) ",
+			"openTab3": " Opcja (3) ",
+			"deleteUserContentButton": "Usuń",
+			"saveUserContentButton": "Zapisz",
+			"aboutTab": "O nas",
+			"settingsTab": "Ustawienia",
+			"blocklistTab": "Niestandardowa lista blokowania",
+			"reminderTab": "Przypomnienie dla siebie",
+			"languageSelectLabel": "Język:",
+			"themeSelectLabel": "Motyw:",
+			"themeLabelLight": "Jasny",
+			"themeLabelDark": "Ciemny",
+			"safeSearchToggleLabel": "Ochrona Safe Search",
+			"safeSearchToggleHint": "Wymusza bezpieczne wyszukiwanie (safe search) w obsługiwanych wyszukiwarkach, jeśli to możliwe.",
+			"contentScanToggleLabel": "Blokowanie poprzez skanowanie treści",
+			"contentScanToggleHint": "Blokuje strony według tagów treści na stronie, a nie tylko według reguł domen.",
+			"OperaAlert": "Hej! Wygląda na to, że używasz przeglądarki Opera. Niestety, aby rozszerzenie działało poprawnie, musisz ręcznie dostosować 1 małą rzecz.\n\nPrzejdź do 'Zarządzaj rozszerzeniami' i zaznacz pole zezwalające na dostęp do wyników strony wyszukiwania.\n\nW przeciwnym razie rozszerzenie nie będzie mogło zablokować otwierania witryn ze strony wyszukiwania.",
+			"ownblocknotice": "Używana jako dodatek do tej domyślnej.",
+			"exportBlocklistButton": "Eksport",
+			"importBlocklistButton": "Import",
+			"domainPatternToggleLabel": "Blokowanie wzorców domen",
+			"domainPatternToggleHint": "Blokuje pewne wzorce domen",
+			"blocklistHeaderTitle": "Własna lista blokowania",
+			"blocklistHeaderHint": "Dodaj domeny lub adresy URL do zablokowania",
+			"addDomainBtn": "Dodaj",
+			"domainInput": "domena.com lub https://domena.com/strona",
+			"blocklistSearchInput": "Szukaj domen...",
+			"customBlocklistEmpty": "Brak własnych domen.",
+			"customBlocklistSearchEmpty": "Brak pasujących domen."
+		}
+	},
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

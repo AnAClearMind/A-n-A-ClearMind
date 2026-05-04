@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind to rozszerzenie przeglądarki, które pomaga przezwyciężyć uzależnienie od pornografii."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => wejdź w tryb ALERT"
+  },
+  "invalidDomainFormat": {
+    "message": "Nieprawidłowy format domeny. Wprowadź coś w stylu: 'nazwaDomeny.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Blokowanie 'google' jest niedostępne"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Osiągnięto limit 4900 domen dla niestandardowej listy blokowania"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Nie udało się zaktualizować reguł blokowania"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Domena jest już na liście blokowania"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Ta domena nie jest blokowana przez regułę użytkownika. Nie można jej dodać do białej listy."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Nie znaleziono domeny na niestandardowej liście blokowania"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Domena została dodana do listy blokowania"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Domena została usunięta z listy blokowania"
+  },
+  "whatsNewTitle": {
+    "message": "Witaj w ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Wersja 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Cześć! To był trudny rok, ale wracamy z dobrą wiadomością! Przywitaj się z ClearMind 2.0 i wszystkimi jego niesamowitymi funkcjami."
+  },
+  "whatsNewPerformance": {
+    "message": "Udoskonalone wrażenia — Szybsze filtrowanie oraz płynniejszy, bardziej intuicyjny interfejs."
+  },
+  "whatsNewProtection": {
+    "message": "Zwiększona ochrona — Teraz z zaawansowaną, wielowarstwową osłoną przed materiałami dla dorosłych."
+  },
+  "whatsNewLocalization": {
+    "message": "Globalne wsparcie — Teraz obsługuje 13 języków, pomagając zachować jasność umysłu ludziom na całym świecie."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Łatwy dostęp — Wszystkie ważne zasoby, kontakt i wsparcie znajdziesz na odświeżonej stronie O programie."
+  },
+  "bounderlyCaption": {
+    "message": "Sprawdź nasz nowy projekt!\nZyskaj premium za darmo z kodem \"FREE500\"."
+  },
+  "continue_btn": {
+    "message": "Kontynuuj"
+  }
+}

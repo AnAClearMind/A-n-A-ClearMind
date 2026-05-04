@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind est une extension de navigateur qui aide à surmonter la dépendance au porno."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => ouvrir le mode alarme"
+  },
+  "invalidDomainFormat": {
+    "message": "Format de domaine invalide. Veuillez entrer quelque chose comme : 'nomDeDomaine.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Le blocage de 'google' n'est pas disponible"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Limite de 4900 domaines atteinte pour la liste de blocage personnalisée"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Échec de la mise à jour des règles de blocage"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Domaine déjà dans la liste de blocage"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Ce domaine n'est pas bloqué par une règle utilisateur. Il ne peut pas être mis en liste blanche."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Domaine non trouvé dans la liste de blocage personnalisée"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Domaine ajouté à la liste de blocage"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Domaine retiré de la liste de blocage"
+  },
+  "whatsNewTitle": {
+    "message": "Bienvenue sur ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Version 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Bonjour ! L'année a été difficile, mais nous revenons avec une bonne nouvelle ! Dites bonjour à ClearMind 2.0 et à toutes ses fonctionnalités incroyables."
+  },
+  "whatsNewPerformance": {
+    "message": "Expérience Raffinée — Un filtrage plus rapide et une interface plus fluide et plus intuitive."
+  },
+  "whatsNewProtection": {
+    "message": "Protection Renforcée — Désormais avec un bouclier multicouche avancé contre les contenus pour adultes."
+  },
+  "whatsNewLocalization": {
+    "message": "Soutien Universel — Désormais disponible en 13 langues, aidant les personnes à rester lucides et concentrées partout dans le monde."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Accès Simplifié — Découvrez notre nouvelle page À Propos pour accéder facilement au support et aux ressources."
+  },
+  "bounderlyCaption": {
+    "message": "Découvrez notre nouveau projet !\nObtenez le premium gratuit avec le code promo \"FREE500\"."
+  },
+  "continue_btn": {
+    "message": "Continuer"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMindは、ポルノ依存症を克服するのに役立つブラウザ拡張機能です。"
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => 警告モード(ALERT)を起動"
+  },
+  "invalidDomainFormat": {
+    "message": "無効なドメイン形式です。次のように入力してください: 'domainName.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "'google'のブロックは利用できません"
+  },
+  "customBlocklistLimitReached": {
+    "message": "カスタムブロックリストの制限である4900ドメインに達しました"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "ブロックルールの更新に失敗しました"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "ドメインはすでにブロックリストにあります"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "このドメインはユーザールールによってブロックされていません。ホワイトリストに追加することはできません。"
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "カスタムブロックリストにドメインが見つかりません"
+  },
+  "domainAddedSuccessfully": {
+    "message": "ドメインがブロックリストに追加されました"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "ドメインがブロックリストから削除されました"
+  },
+  "whatsNewTitle": {
+    "message": "ClearMind 2.0 へようこそ"
+  },
+  "whatsNewVersionBadge": {
+    "message": "バージョン 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "こんにちは！大変な一年でしたが、うれしいニュースをお届けします！ClearMind 2.0 とその素晴らしい機能をご覧ください。"
+  },
+  "whatsNewPerformance": {
+    "message": "洗練された体験 — より高速なフィルタリングと、よりスムーズで直感的なインターフェース。"
+  },
+  "whatsNewProtection": {
+    "message": "強化された保護 — 成人向けコンテンツに対する高度な多層シールドを搭載。"
+  },
+  "whatsNewLocalization": {
+    "message": "グローバルサポート — 13の言語に対応し、世界中の人々がすっきりと集中できるよう支援します。"
+  },
+  "whatsNewAboutUpdate": {
+    "message": "シームレスなアクセス — 新しくなった About ページから、サポートやリソースに簡単にアクセスできます。"
+  },
+  "bounderlyCaption": {
+    "message": "新しいプロジェクトをご覧ください！\n\"FREE500\" プロモで無料プレミアムを入手できます。"
+  },
+  "continue_btn": {
+    "message": "続行"
+  }
+}

@@ -1,0 +1,426 @@
+{
+	"SimpleAction": {
+		"alias": "小さな一歩",
+		"icon": [
+			"fa-solid",
+			"fa-meteor"
+		],
+		"content": [
+			"腕立て伏せを10回する",
+			"コップ1杯の水を飲む",
+			"深呼吸を5回する",
+			"立ち上がって部屋を少し歩き回る",
+			"机の上の小さなスペースを片付ける",
+			"家にある植物に水をやる",
+			"スクワットを20回する",
+			"目を閉じて、お気に入りの歌を心の中で歌う",
+			"上下左右を10回見る",
+			"手のひらの中央をマッサージする",
+			"目に見えるものを5つ、触れるものを4つ、聞こえるものを3つ、匂いがするものを2つ、味わえるものを1つ挙げる"
+		]
+	},
+	"Informational": {
+		"alias": "豆知識",
+		"icon": [
+			"fa-solid",
+			"fa-dragon"
+		],
+		"static": "確認した",
+		"content": [
+			{
+				"title": "メンタルヘルス",
+				"text": "<a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>研究</a>によると、ポルノの視聴は不安、うつ病、ストレスにつながる可能性があります。また、依存症を引き起こし、自制心を低下させ、メンタルヘルスを害する恐れがあります。"
+			},
+			{
+				"title": "結婚",
+				"text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>研究</a>では、過去1年間にポルノを見た成人は、離婚する可能性が高く、不倫をする可能性が高く、結婚生活や人生全体に満足していると報告する可能性が低いことが示されています。"
+			},
+			{
+				"title": "性的人身売買やレイプの動画をホストするPornhub",
+				"text": "性的人身売買や未成年のレイプビデオがPornhubでホストされていたという衝撃的な事件がいくつかあります。<br><br>1年間行方不明になっていた15歳の少女は、娘がそのサイトに登場しているという母親への情報提供によってようやく発見されました。<a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>続きを読む...</a>"
+			},
+			{
+				"title": "認知的および感情的な影響",
+				"text": "ポルノは、うつ病、攻撃性、<a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>実行機能</a>の低下と関連付けられています。"
+			},
+			{
+				"title": "性暴力",
+				"text": "ポルノは不健全な性的信念に関連しており、<a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>性暴力</a>を助長し、自尊心を傷つけます。"
+			},
+			{
+				"title": "脳機能",
+				"text": "ポルノの悪影響には、<a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>前頭前皮質の灰白質の減少</a>が含まれ、これが依存症や意思決定の障害につながります。"
+			},
+			{
+				"title": "勃起不全（ED）",
+				"text": "ポルノは、<a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>勃起不全</a>、自制心の喪失、性的幸福への悪影響と関連付けられています。"
+			},
+			{
+				"title": "たった4週間",
+				"text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>4週間</a>の禁欲は、モチベーション、気分、社会的行動の向上など、さまざまな心理的改善をもたらす可能性があります。"
+			},
+			{
+				"title": "人間関係の質",
+				"text": "ポルノの使用は、男女ともに<a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>関係に対する満足度</a>の低下と関連付けられています。"
+			},
+			{
+				"title": "不貞と離婚",
+				"text": "ポルノの消費は、男女ともに人間関係における<a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>不貞</a>や<a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>離婚</a>の可能性の高まりと関連付けられています。"
+			}
+		]
+	},
+	"PictureSelection": {
+		"alias": "どこへ行くか",
+		"icon": [
+			"fa-solid",
+			"fa-compass"
+		],
+		"static": {
+			"h1": "1つ選んでください",
+			"chooseImageButton": "選択",
+			"confirmChoiceButton": "確認"
+		},
+		"content": [
+			{
+				"image": "https://i.imgur.com/oeuMAQt.jpeg",
+				"desc": "本物のトラは、トラの画像を選ぶ人のことです..."
+			},
+			{
+				"image": "https://i.imgur.com/wc4nJqB.jpeg",
+				"desc": "そういえば、私は口でスイカを砕くことができます。"
+			},
+			{
+				"image": "https://i.imgur.com/969Fh4l.jpeg",
+				"desc": "いつか日本に行かなければなりません..."
+			},
+			{
+				"image": "https://i.imgur.com/vklfSZb.jpeg",
+				"desc": "かわいいものがかわいいものを見つめています。"
+			},
+			{
+				"image": "https://i.imgur.com/Ip8mskP.jpeg",
+				"desc": "世界がどれほど美しいかを思い出させてくれます。"
+			},
+			{
+				"image": "https://i.imgur.com/q0pDtIF.jpeg",
+				"desc": "ふふ、あなたが笑顔になってくれますように。"
+			},
+			{
+				"image": "https://i.imgur.com/Fo3iSkq.jpeg",
+				"desc": "うわー、金魚を捕まえた！待って、これは魚じゃない..."
+			},
+			{
+				"image": "https://i.imgur.com/yHIqEnU.jpeg",
+				"desc": "泥の中にいても、清潔でいることを選ぶことができます。"
+			},
+			{
+				"image": "https://i.imgur.com/WgRFKdd.jpeg",
+				"desc": "私があなたが探していた女の子ですか？"
+			},
+			{
+				"image": "https://i.imgur.com/jat35sC.jpeg",
+				"desc": "必要な時は、手を（前足を）貸してあげます。"
+			},
+			{
+				"image": "https://i.imgur.com/DSCPFfV.jpeg",
+				"desc": "犬になりなさい。キノコにならないで。"
+			},
+			{
+				"image": "https://i.imgur.com/z4LXvFX.jpeg",
+				"desc": "あなたが放つすべての矢が、人々でいっぱいの飛行機である可能性があります..."
+			},
+			{
+				"image": "https://i.imgur.com/gsoXN2C.jpeg",
+				"desc": "あなたの内なる子供があなたを頼りにしています。"
+			},
+			{
+				"image": "https://i.imgur.com/fC9Drxf.jpeg",
+				"desc": "友情。"
+			},
+			{
+				"image": "https://i.imgur.com/gi63tHf.jpeg",
+				"desc": "あなたは依存症から解放される資格があります。"
+			},
+			{
+				"image": "https://i.imgur.com/RwrQLKd.jpeg",
+				"desc": "最も美しいものは、単純な要素のちょうど良い組み合わせにすぎません。"
+			},
+			{
+				"image": "https://i.imgur.com/yK26epW.jpeg",
+				"desc": "文化と芸術は単に人生を模倣するだけなのでしょうか、それとも人生を超越することができるのでしょうか？"
+			},
+			{
+				"image": "https://i.imgur.com/b13aVLK.jpeg",
+				"desc": "キルキュフェトル、アイスランド。オーロラを見るのに最適な場所の1つ。"
+			},
+			{
+				"image": "https://i.imgur.com/cm2uxlK.jpeg",
+				"desc": "見た目が重要ですか、それとも中身がスタイルを上回りますか？バランス？"
+			},
+			{
+				"image": "https://i.imgur.com/KY5L79Q.jpeg",
+				"desc": "水は文字通り何にでもなれます。流れることも、砕けることもできます。<br>友よ、水になれ。"
+			},
+			{
+				"image": "https://i.imgur.com/wwWQAUy.png",
+				"desc": "1500年以降の技術と権力の<a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>系譜</a>"
+			},
+			{
+				"image": "https://i.imgur.com/P4Qb0ra.png",
+				"desc": "ごく普通の修道士と猫が一緒に本を読んでいる、フランス、13世紀。<br>あなたはどの本を読みたいですか？あなたの猫は？"
+			},
+			{
+				"image": "https://i.imgur.com/lkoBWsy.jpeg",
+				"desc": "宇宙星雲。このようなものが単なる偶然で存在するのでしょうか、<br>それともほんの少しの意志が必要なのでしょうか？"
+			},
+			{
+				"image": "https://i.imgur.com/hD9kvAw.jpeg",
+				"desc": "シンクヴェトリル、アイスランド。"
+			},
+			{
+				"image": "https://i.imgur.com/BRoBRIt.jpeg",
+				"desc": "森の夜、空のタイムラプス。"
+			},
+			{
+				"image": "https://i.imgur.com/IRAz1xm.jpeg",
+				"desc": "ニュージーランドの珍しい木々。"
+			},
+			{
+				"image": "https://i.imgur.com/912SXeD.jpeg",
+				"desc": "ヴォイニッチ手稿。まだ一種の謎です。"
+			},
+			{
+				"image": "https://i.imgur.com/1qrlqgK.jpeg",
+				"desc": "ウォーターメロントルマリンのスライス。"
+			},
+			{
+				"image": "https://i.imgur.com/EyU2nRq.jpeg",
+				"desc": "最後に夜明けを迎えたのはいつですか？"
+			},
+			{
+				"image": "https://i.imgur.com/jhWIkWq.jpeg",
+				"desc": "ガラスを通した光のコースティック（集光）。自分で試してみてください！"
+			}
+		]
+	},
+	"Video": {
+		"alias": "自分で見る",
+		"icon": [
+			"fa-solid",
+			"fa-star"
+		],
+		"static": "確認",
+		"content": [
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+		]
+	},
+	"MessageToYourself": {
+		"alias": "自己愛",
+		"icon": [
+			"fa-solid",
+			"fa-dove"
+		],
+		"static": "確認",
+		"content": [
+			{
+				"text": "堕天使と上昇する類人猿が出会う場所になるために<br><br>（このようなページを<a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>自分で作成する</a>ことができます）",
+				"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"
+			}
+		]
+	},
+	"Quote": {
+		"alias": "知恵のコーナー",
+		"icon": [
+			"fa-solid",
+			"fa-hat-wizard"
+		],
+		"static": {
+			"question": "この言葉に同意しますか？その理由は？",
+			"quoteReflection": "ここにあなたの考えを入力してください...",
+			"quoteReflectionButton": "確認"
+		},
+		"content": [
+			"<em>«私は自分の環境の産物ではない。私は自分の決断の産物である。»</em> — スティーブン・コヴィー",
+			"<em>«唯一の出口は、通り抜けることだ。»</em> — ロバート・フロスト",
+			"<em>«誘惑に抵抗する瞬間はすべて、勝利である。»</em> — フレデリック・ウィリアム・フェイバー",
+			"<em>«変化の秘密は、古いものと戦うことではなく、新しいものを構築することにすべてのエネルギーを集中させることだ。»</em> — ソクラテス",
+			"<em>«依存症は、『そこにある』何かが心の空虚さを一瞬で満たしてくれるという希望から始まる。»</em> — ジーン・キルボーン",
+			"<em>«収穫した実りで毎日を判断するのではなく、植えた種で判断しなさい。»</em> — ロバート・ルイス・スティーヴンソン",
+			"<em>«しばしば無料で与えられるものが、最も高くつくことがわかる。»</em> — タケムラ",
+			"<em>«持っているのがハンマーだけなら、すべてが釘に見える。»</em> — 諺",
+			"<em>«自分が自由であると誤って信じている者ほど、絶望的に奴隷にされている者はいない。»</em> — ヨハン・ヴォルフガング・フォン・ゲーテ",
+			"<em>«闇で闇を追い払うことはできない。»</em> — マーティン・ルーサー・キング・ジュニア",
+			"<em>«狂気の定義とは、同じことを何度も繰り返し行い、違う結果を期待することだ。»</em> — アルベルト・アインシュタイン",
+			"<em>«私たちが本当に何者であるかを示すのは、私たちの能力ではなく、私たちの選択である。»</em> ― J.K. ローリング",
+			"<em>«特定のものは目を引くが、心を捉えるものだけを追求しなさい。»</em> — 諺",
+			"<em>«他の人が安全だと思う以上のリスクを冒しなさい。他の人が現実的だと思う以上の夢を見なさい。»</em> — ハワード・シュルツ",
+			"<em>«私は失敗したことがない。うまくいかない1万の方法を見つけただけだ。»</em> ― トーマス・A・エジソン",
+			"<em>«貧しいのは、持っているものが少なすぎる人ではなく、より多くを切望する人である。»</em> — セネカ",
+			"<em>«自分自身の主人でない者は、自由ではない。»</em> — エピクテトス",
+			"<em>«自由は隷従である。»</em> — ジョージ・オーウェル、1984年",
+			"<em>«欲望は楽しむことでは決して満たされない。火のように、満たされるとさらに大きくなる。»</em> — バガヴァッド・ギーター",
+			"<em>«1日やめることができれば、一生やめることができる。»</em> — ベンジャミン・アリーレ・サエンス",
+			"<em>«困難はしばしば、平凡な人々を並外れた運命に備えさせる。»</em> — C.S. ルイス",
+			"<em>«階段全体を見る必要はない。ただ次の一歩を踏み出しなさい。»</em> — マーティン・ルーサー・キング・ジュニア"
+		]
+	},
+	"Trigger": {
+		"alias": "きっかけ",
+		"icon": [
+			"fa-solid",
+			"fa-jedi"
+		],
+		"static": {
+			"h1": "トリガー（引き金）を特定する",
+			"p": "欲望の形成に寄与したトリガーを特定しようとしてください",
+			"triggerDescription": "ここにトリガーを入力してください...",
+			"triggerButton": "確認"
+		}
+	},
+	"ImagineWords": {
+		"alias": "想像する",
+		"icon": [
+			"fa-solid",
+			"fa-hands-praying"
+		],
+		"static": {
+			"p": "親しい友人があなたをサポートしたいと思っています。<br>今、実際にどのような言葉があなたの助けになったか想像してみてください。",
+			"wordsDescription": "...",
+			"wordsButton": "確認"
+		}
+	},
+	"Wife": {
+		"alias": "ミューズ",
+		"icon": [
+			"fa-solid",
+			"fa-heart"
+		],
+		"static": {
+			"h1": "将来、妻と一緒に過ごしたいと思う瞬間を一つ想像してください",
+			"wifeDescription": "ここに説明を入力してください...",
+			"confirmDescriptionButton": "確認"
+		}
+	},
+	"CardSelection": {
+		"static": {
+			"h1": "カードを選ぶ",
+			"chooseCard": "選択",
+			"confirmChoice": "確認"
+		}
+	},
+	"UrgeTest_initial": {
+		"static": {
+			"h1": "衝動の強さを評価する",
+			"textMain": "あなたはClearMind拡張機能に <span id='blockedDomain'></span> をブロックするように要求しました<br /><br />あなたが経験している欲望はそれ自体は完全に正常ですが、依存症という強迫的な行動に支配されるべきでしょうか？<br /><br />一緒に乗り越えることができます！",
+			"confirmButton": "確認",
+			"textSecondary": "あなたはClearMind拡張機能に <span id='blockedDomainOverlay'></span> をブロックするように要求しました"
+		}
+	},
+	"UrgeTest_final": {
+		"static": {
+			"mainHeader": "衝動の強さを評価する",
+			"mainHeaderResult": "あなたの衝動の強さは <span id='initialUrgeValueSpan'></span> から <span id='currentUrgeValueSpan'></span> に変わりました",
+			"motivationalText_lessUrge": "あなたならできます！",
+			"confirmButton": "確認",
+			"resetUrgeButton": "もう1ラウンド",
+			"leaveUrgeButton": "離れる準備ができました"
+		}
+	},
+	"customBlockControl_popup": {
+		"static": {
+			"h2": "ブロックリストの管理",
+			"domainInput": "*ドメイン名*",
+			"addDomainBtn": "カスタムブロックに追加",
+			"deleteDomainBtn": "カスタムブロックから削除",
+			"alertButton": "アラートモード",
+			"settingsButton": "設定",
+			"supportButton": "サポート"
+		}
+	},
+	"ProgressionPopup": {
+		"static": {
+			"p": "おめでとうございます！あなたの旅に役立つ強力なアーティファクトがあります！",
+			"closeButton": "続ける",
+			"claimButton": "手に入れる！"
+		},
+		"rewards": {
+			"1": {
+				"title": "«あなたの正気を守る最高のコンパニオン拡張機能»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": {
+				"title": "«大胆で、かつ強力な感情的要素»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": {
+				"title": "«Youtubeの治癒方法»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": {
+				"title": "«ウサギの穴はどれくらい深いか...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": {
+				"title": "«究極の解決策»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	"About": {
+		"static": {
+			"h1": "ClearMindをご利用いただきありがとうございます",
+			"h2About": "概要",
+			"p1": "ClearMindは、ポルノ依存症を克服するのに役立つブラウザ拡張機能です。<br><br>私たちがこれを作成したのは、デジタル空間におけるポルノの過剰供給が現代の最も深刻な問題の1つであり、すべての人、特に若者に悪影響を及ぼしていると信じているからです。<br><br>他の拡張機能とは異なり、ClearMindはウェブサイトへのアクセスを機械的にブロックするのではなく、CBTの原則、ゲーミフィケーション、注意管理を使用して欲望を抑圧します。<br><br>個人的なプロジェクトとして始まったものは、私たちが誰とでも喜んで共有できるものになりました。",
+			"p3": "あなたの旅の助けになることを心から願っています！",
+			"p4": "作成者: A'n'A",
+			"sourceButton": "ソースコード",
+			"contactButton": "連絡先",
+			"supportButton": "サポート",
+			"OwnPage": "独自のページを作成する",
+			"p5": "平和な瞬間から、最も暗い時間にいる未来の自分へ、インスピレーションを与えるメッセージを送信します。すべてのデータはオフラインで保存されます。",
+			"openTab1": " オプション (1) ",
+			"openTab2": " オプション (2) ",
+			"openTab3": " オプション (3) ",
+			"deleteUserContentButton": "削除",
+			"saveUserContentButton": "保存",
+			"aboutTab": "概要",
+			"settingsTab": "設定",
+			"blocklistTab": "カスタムブロックリスト",
+			"reminderTab": "自分へのリマインダー",
+			"languageSelectLabel": "言語:",
+			"themeSelectLabel": "テーマ:",
+			"themeLabelLight": "ライト",
+			"themeLabelDark": "ダーク",
+			"safeSearchToggleLabel": "セーフサーチ保護",
+			"safeSearchToggleHint": "可能な場合、サポートされている検索エンジンでセーフサーチを強制します。",
+			"contentScanToggleLabel": "コンテンツスキャンによるブロック",
+			"contentScanToggleHint": "ドメインルールだけでなく、ページコンテンツタグによってページをブロックします。",
+			"OperaAlert": "こんにちは！Operaブラウザを使用しているようです。残念ながら、拡張機能を正しく機能させるには、手動で1つ調整する必要があります。\n\n「拡張機能の管理」に移動し、検索結果ページへのアクセスを許可するチェックボックスをオンにしてください。\n\nそうしないと、拡張機能は検索ページからサイトが開かれるのをブロックできません。",
+			"ownblocknotice": "デフォルト のものに追加して使用されます。",
+			"exportBlocklistButton": "エクスポート",
+			"importBlocklistButton": "インポート",
+			"domainPatternToggleLabel": "ドメインパターンのブロック",
+			"domainPatternToggleHint": "信頼性の高いドメインパターンをブロックします",
+			"blocklistHeaderTitle": "カスタムブロックリスト",
+			"blocklistHeaderHint": "ブロックしたいドメインまたはURLを追加してください",
+			"addDomainBtn": "追加",
+			"domainInput": "domain.com または https://domain.com/page",
+			"blocklistSearchInput": "ドメインを検索...",
+			"customBlocklistEmpty": "カスタムドメインはまだありません。",
+			"customBlocklistSearchEmpty": "一致するドメインが見つかりません。"
+		}
+	},
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

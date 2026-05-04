@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind is a browser extension that helps overcome porn addiction."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => enter ALERT mode"
+  },
+  "invalidDomainFormat": {
+    "message": "Invalid domain format. Please enter something like: 'domainName.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Blocking 'google' is not available"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Custom blocklist limit of 4900 domains reached"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Failed to update blocking rules"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Domain already in blocklist"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "This domain is not blocked by user rule. It cannot be whitelisted."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Domain not found in custom blocklist"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Domain added to blocklist"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Domain removed from blocklist"
+  },
+  "whatsNewTitle": {
+    "message": "Welcome to ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Version 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Hello! It's been a rough year, but we're back with good news! Say hey to ClearMind 2.0 and all its amazing features."
+  },
+  "whatsNewPerformance": {
+    "message": "Refined Experience — A faster filtering and smoother, more intuitive interface."
+  },
+  "whatsNewProtection": {
+    "message": "Enhanced Security — Now with advanced multi-layered shield against adult materials."
+  },
+  "whatsNewLocalization": {
+    "message": "Universal Support — Now supporting 13 languages, helping people stay clear and focused across the globe."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Seamless Access — Explore our redesigned About page to easily find support, source code, and community resources."
+  },
+  "bounderlyCaption": {
+    "message": "Check out our new project!\nGet premium with \"FREE500\" promo."
+  },
+  "continue_btn": {
+    "message": "Continue"
+  }
+}

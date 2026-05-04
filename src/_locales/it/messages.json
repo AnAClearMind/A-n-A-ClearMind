@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind è un'estensione per browser che aiuta a superare la dipendenza dalla pornografia."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => entra in modalità ALERT"
+  },
+  "invalidDomainFormat": {
+    "message": "Formato dominio non valido. Inserisci qualcosa come: 'nomeDominio.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Il blocco di 'google' non è disponibile"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Raggiunto il limite della blocklist personalizzata di 4900 domini"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Impossibile aggiornare le regole di blocco"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Dominio già presente nella blocklist"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Questo dominio non è bloccato da una regola utente. Non può essere inserito nella whitelist."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Dominio non trovato nella blocklist personalizzata"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Dominio aggiunto alla blocklist"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Dominio rimosso dalla blocklist"
+  },
+  "whatsNewTitle": {
+    "message": "Benvenuto in ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Versione 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Ciao! È stato un anno difficile, ma siamo di nuovo qui con una buona notizia! Dai il benvenuto a ClearMind 2.0 e a tutte le sue fantastiche funzionalità."
+  },
+  "whatsNewPerformance": {
+    "message": "Esperienza Perfezionata — Un filtraggio più veloce e un'interfaccia più fluida e intuitiva."
+  },
+  "whatsNewProtection": {
+    "message": "Protezione Avanzata — Ora con uno scudo avanzato multistrato contro i contenuti per adulti."
+  },
+  "whatsNewLocalization": {
+    "message": "Supporto Globale — Ora supporta 13 lingue, aiutando le persone a mantenere la lucidità in tutto il mondo."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Accesso Semplice — Esplora la nostra nuova pagina Informazioni per trovare facilmente supporto e risorse della community."
+  },
+  "bounderlyCaption": {
+    "message": "Scopri il nostro nuovo progetto!\nOttieni il premium gratis con il promo \"FREE500\"."
+  },
+  "continue_btn": {
+    "message": "Continua"
+  }
+}

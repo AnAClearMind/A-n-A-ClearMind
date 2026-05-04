@@ -1,0 +1,426 @@
+{
+	"SimpleAction": {
+		"alias": "작은 발걸음",
+		"icon": [
+			"fa-solid",
+			"fa-meteor"
+		],
+		"content": [
+			"팔굽혀펴기 10회 하기",
+			"물 한 잔 마시기",
+			"심호흡 5번 하기",
+			"일어나서 방을 조금 걷기",
+			"책상 위 작은 공간 정리하기",
+			"집에 있는 식물에 물 주기",
+			"스쿼트 20회 하기",
+			"눈을 감고 마음속으로 좋아하는 노래 부르기",
+			"위, 아래, 왼쪽, 오른쪽을 10번씩 쳐다보기",
+			"손바닥 중앙 마사지하기",
+			"볼 수 있는 것 5가지, 만질 수 있는 것 4가지, 들을 수 있는 것 3가지, 냄새 맡을 수 있는 것 2가지, 맛볼 수 있는 것 1가지 말해보기"
+		]
+	},
+	"Informational": {
+		"alias": "알아두기",
+		"icon": [
+			"fa-solid",
+			"fa-dragon"
+		],
+		"static": "확인 완료",
+		"content": [
+			{
+				"title": "정신 건강",
+				"text": "<a href='https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.613244/full' target='_blank' rel='noopener noreferrer'>연구</a>에 따르면 포르노 시청은 불안, 우울증 및 스트레스를 유발할 수 있습니다. 또한 의존성을 유발하고 자제력을 감소시키며 정신 건강을 해칠 수 있습니다."
+			},
+			{
+				"title": "결혼 생활",
+				"text": "<a href='https://www.menoufia-med-j.com/journal/vol32/iss3/46/' target='_blank' rel='noopener noreferrer'>연구</a>에 따르면 지난 1년 동안 포르노를 시청한 성인은 이혼할 가능성이 더 높고, 혼외 관계를 맺을 가능성이 더 높으며, 결혼 생활이나 전반적인 삶에 만족한다고 보고할 가능성이 더 낮습니다."
+			},
+			{
+				"title": "성매매 및 강간 동영상을 호스팅하는 Pornhub",
+				"text": "성매매 및 미성년자 강간 영상이 Pornhub에 호스팅된 충격적인 사건이 여러 번 있었습니다.<br><br>1년 동안 실종되었던 15세 소녀는 딸이 해당 사이트에 출연하고 있다는 제보를 받은 어머니에 의해 마침내 발견되었습니다. <a href='https://traffickinghub.com/' target='_blank' rel='noopener noreferrer'>더 보기...</a>"
+			},
+			{
+				"title": "인지적, 감정적 영향",
+				"text": "포르노는 우울증, 공격성, <a href='https://kuey.net/index.php/kuey/article/view/3023' target='_blank' rel='noopener noreferrer'>실행 기능(executive functioning)</a> 손상과 연관되어 있습니다."
+			},
+			{
+				"title": "성폭력",
+				"text": "포르노는 건강하지 못한 성적 신념과 관련이 있으며 <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>성폭력</a>을 조장하고 자존감을 떨어뜨립니다."
+			},
+			{
+				"title": "뇌 기능",
+				"text": "포르노의 부정적인 영향으로는 <a href='https://typeset.io/papers/pornography-s-effect-on-the-brain-a-review-of-modifications-56g7jncs5k' target='_blank' rel='noopener noreferrer'>전전두엽 피질의 회백질 감소</a>가 있으며, 이는 중독 및 의사 결정 능력의 손상을 초래합니다."
+			},
+			{
+				"title": "발기 부전",
+				"text": "포르노는 <a href='https://link.springer.com/chapter/10.1007/978-3-030-66654-5_6' target='_blank' rel='noopener noreferrer'>발기 부전</a>, 통제력 상실 및 성적 안녕에 부정적인 영향을 미치는 것과 연관되어 있습니다."
+			},
+			{
+				"title": "단 4주",
+				"text": "<a href='https://link.springer.com/article/10.1007/s10508-020-01858-w' target='_blank' rel='noopener noreferrer'>4주</a>간의 금욕은 동기 부여, 기분, 사회적 행동 향상 등 다양한 심리적 개선을 가져올 수 있습니다."
+			},
+			{
+				"title": "관계의 질",
+				"text": "포르노 사용은 남녀 모두에게 관계에 대한 <a href='https://pubmed.ncbi.nlm.nih.gov/31897829/' target='_blank' rel='noopener noreferrer'>만족도 저하</a>와 연관되어 있습니다."
+			},
+			{
+				"title": "외도 및 이혼",
+				"text": "포르노 소비는 남녀 모두에게 관계 내 <a href='https://guilfordjournals.com/doi/abs/10.1521/jscp.2012.31.4.410' target='_blank' rel='noopener noreferrer'>외도</a> 및 <a href='https://www.tandfonline.com/doi/full/10.1080/00224499.2017.1317709' target='_blank' rel='noopener noreferrer'>이혼</a> 가능성 증가와 연관되어 있습니다."
+			}
+		]
+	},
+	"PictureSelection": {
+		"alias": "어디로 갈까",
+		"icon": [
+			"fa-solid",
+			"fa-compass"
+		],
+		"static": {
+			"h1": "하나를 선택하세요",
+			"chooseImageButton": "선택",
+			"confirmChoiceButton": "확인"
+		},
+		"content": [
+			{
+				"image": "https://i.imgur.com/oeuMAQt.jpeg",
+				"desc": "진짜 호랑이는 호랑이 사진을 고르는 사람입니다..."
+			},
+			{
+				"image": "https://i.imgur.com/wc4nJqB.jpeg",
+				"desc": "그러고 보니, 저는 입으로 수박을 부술 수 있어요."
+			},
+			{
+				"image": "https://i.imgur.com/969Fh4l.jpeg",
+				"desc": "언젠가는 일본에 꼭 가봐야 해요..."
+			},
+			{
+				"image": "https://i.imgur.com/vklfSZb.jpeg",
+				"desc": "귀여운 존재가 귀여운 것을 쳐다보고 있습니다."
+			},
+			{
+				"image": "https://i.imgur.com/Ip8mskP.jpeg",
+				"desc": "세상이 얼마나 아름다운지 다시 한번 상기시켜 줍니다."
+			},
+			{
+				"image": "https://i.imgur.com/q0pDtIF.jpeg",
+				"desc": "하하, 제가 당신을 미소 짓게 했기를 바랍니다."
+			},
+			{
+				"image": "https://i.imgur.com/Fo3iSkq.jpeg",
+				"desc": "와, 금붕어를 잡으셨네요! 잠깐, 이건 물고기가 아닌데..."
+			},
+			{
+				"image": "https://i.imgur.com/yHIqEnU.jpeg",
+				"desc": "진흙 속에 있더라도, 당신은 깨끗하게 머무는 것을 선택할 수 있습니다."
+			},
+			{
+				"image": "https://i.imgur.com/WgRFKdd.jpeg",
+				"desc": "제가 당신이 찾던 그 소녀인가요?"
+			},
+			{
+				"image": "https://i.imgur.com/jat35sC.jpeg",
+				"desc": "당신이 필요로 할 때, 제가 손을(앞발을) 빌려줄게요."
+			},
+			{
+				"image": "https://i.imgur.com/DSCPFfV.jpeg",
+				"desc": "버섯이 되지 말고 개가 되세요."
+			},
+			{
+				"image": "https://i.imgur.com/z4LXvFX.jpeg",
+				"desc": "당신이 쏘는 모든 화살은, 사람들로 가득 찬 비행기가 될 수도 있습니다..."
+			},
+			{
+				"image": "https://i.imgur.com/gsoXN2C.jpeg",
+				"desc": "당신 내면의 어린아이가 당신을 의지하고 있습니다."
+			},
+			{
+				"image": "https://i.imgur.com/fC9Drxf.jpeg",
+				"desc": "우정."
+			},
+			{
+				"image": "https://i.imgur.com/gi63tHf.jpeg",
+				"desc": "당신은 중독에서 자유로워질 자격이 있습니다."
+			},
+			{
+				"image": "https://i.imgur.com/RwrQLKd.jpeg",
+				"desc": "가장 아름다운 것들은 단지 단순한 요소들의 완벽한 조합일 뿐입니다."
+			},
+			{
+				"image": "https://i.imgur.com/yK26epW.jpeg",
+				"desc": "문화와 예술은 단순히 삶을 모방하는 것일까요, 아니면 삶을 초월할 수 있는 것일까요?"
+			},
+			{
+				"image": "https://i.imgur.com/b13aVLK.jpeg",
+				"desc": "키르큐펠(Kirkjufell), 아이슬란드. 오로라를 볼 수 있는 최고의 장소 중 하나입니다."
+			},
+			{
+				"image": "https://i.imgur.com/cm2uxlK.jpeg",
+				"desc": "외형이 중요합니까, 아니면 본질이 스타일을 능가합니까? 균형?"
+			},
+			{
+				"image": "https://i.imgur.com/KY5L79Q.jpeg",
+				"desc": "물은 말 그대로 무엇이든 될 수 있습니다. 흐를 수도 있고 부서질 수도 있죠.<br>물이 되세요, 친구여."
+			},
+			{
+				"image": "https://i.imgur.com/wwWQAUy.png",
+				"desc": "1500년 이후의 기술과 권력의 <a href='https://calculatingempires.net/' target='_blank' rel='noopener noreferrer'>계보</a>"
+			},
+			{
+				"image": "https://i.imgur.com/P4Qb0ra.png",
+				"desc": "아주 평범한 수도사와 그의 고양이가 함께 책을 읽는 모습, 프랑스, 13세기.<br>당신은 어떤 책을 읽고 싶나요? 고양이는요?"
+			},
+			{
+				"image": "https://i.imgur.com/lkoBWsy.jpeg",
+				"desc": "우주 성운. 이런 것이 단순한 우연으로 존재할 수 있을까요,<br>아니면 약간의 의지가 필요한 것일까요?"
+			},
+			{
+				"image": "https://i.imgur.com/hD9kvAw.jpeg",
+				"desc": "싱벨리어(Thingvellir), 아이슬란드."
+			},
+			{
+				"image": "https://i.imgur.com/BRoBRIt.jpeg",
+				"desc": "숲속의 밤, 하늘의 타임랩스."
+			},
+			{
+				"image": "https://i.imgur.com/IRAz1xm.jpeg",
+				"desc": "뉴질랜드의 특이한 나무들."
+			},
+			{
+				"image": "https://i.imgur.com/912SXeD.jpeg",
+				"desc": "보이니치 사본(Voynich manuscript). 여전히 수수께끼입니다."
+			},
+			{
+				"image": "https://i.imgur.com/1qrlqgK.jpeg",
+				"desc": "워터멜론 토르말린 조각."
+			},
+			{
+				"image": "https://i.imgur.com/EyU2nRq.jpeg",
+				"desc": "마지막으로 새벽을 맞이한 것이 언제인가요?"
+			},
+			{
+				"image": "https://i.imgur.com/jhWIkWq.jpeg",
+				"desc": "유리를 통과한 빛의 코스틱(Caustic). 직접 시도해보세요!"
+			}
+		]
+	},
+	"Video": {
+		"alias": "직접 확인하기",
+		"icon": [
+			"fa-solid",
+			"fa-star"
+		],
+		"static": "확인",
+		"content": [
+			"https://www.youtube.com/embed/FnveZCPyJRQ?si=R_AWMtcq_lUojm-9",
+			"https://www.youtube.com/embed/uZwzbA91Yno?si=iemyuA_ewj8knhQm",
+			"https://www.youtube.com/embed/9qJHRvHU8IM?si=Zsrfi2ogsWk86ADn",
+			"https://www.youtube.com/embed/scul66cSzh0?si=z9Jc_DfZwtAsF9z_",
+			"https://www.youtube.com/embed/y1CkUhfHSxQ?si=6-Z6W1OM_NBH1Bb7",
+			"https://www.youtube.com/embed/gRJ_QfP2mhU?si=UhcE_1E5LIotSudh",
+			"https://www.youtube.com/embed/mpRRix8m4SQ?si=UE--bSfry8eA17Tn&amp;start=12",
+			"https://www.youtube.com/embed/VUfOSj9TMLw?si=o5xxwtWAsK395Aug",
+			"https://www.youtube.com/embed/tYIkfkGJxTE?si=0_Sduu_1DgqhCHYU"
+		]
+	},
+	"MessageToYourself": {
+		"alias": "자기애",
+		"icon": [
+			"fa-solid",
+			"fa-dove"
+		],
+		"static": "확인",
+		"content": [
+			{
+				"text": "타락한 천사가 상승하는 유인원과 만나는 장소가 되기 위해<br><br>(<a href='../pages/About.html' target='_blank' rel='noopener noreferrer'>이와 같은 페이지를 직접 만들 수 있습니다</a>)",
+				"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg?20180807140542"
+			}
+		]
+	},
+	"Quote": {
+		"alias": "지혜의 코너",
+		"icon": [
+			"fa-solid",
+			"fa-hat-wizard"
+		],
+		"static": {
+			"question": "이 인용구에 동의하십니까? 이유는 무엇입니까?",
+			"quoteReflection": "여기에 당신의 생각을 입력하세요...",
+			"quoteReflectionButton": "확인"
+		},
+		"content": [
+			"<em>«나는 내 상황의 산물이 아니다. 나는 내 결정의 산물이다.»</em> — 스티븐 코비",
+			"<em>«유일한 탈출구는 뚫고 나가는 것이다.»</em> — 로버트 프로스트",
+			"<em>«유혹에 저항하는 매 순간은 승리이다.»</em> — 프레더릭 윌리엄 페이버",
+			"<em>«변화의 비밀은 과거와 싸우는 데 모든 에너지를 쏟는 것이 아니라, 새로운 것을 만드는 데 집중하는 것이다.»</em> — 소크라테스",
+			"<em>«중독은 '저기 어딘가에' 있는 무언가가 내면의 공허함을 순식간에 채워줄 수 있다는 희망에서 시작된다.»</em> — 진 킬본",
+			"<em>«당신이 수확한 것으로 하루를 판단하지 말고, 당신이 심은 씨앗으로 판단하라.»</em> — 로버트 루이스 스티븐슨",
+			"<em>«종종 무료로 주어지는 것이 가장 비싼 대가를 치르게 한다는 것이 증명된다.»</em> — 타케무라",
+			"<em>«당신이 가진 것이 망치뿐이라면 모든 것이 못으로 보일 것이다.»</em> — 속담",
+			"<em>«자신이 자유롭다고 착각하는 사람보다 더 절망적인 노예는 없다.»</em> — 요한 볼프강 폰 괴테",
+			"<em>«어둠은 어둠을 몰아낼 수 없다.»</em> — 마틴 루터 킹 주니어",
+			"<em>«광기의 정의는 같은 일을 반복하면서 다른 결과를 기대하는 것이다.»</em> — 알베르트 아인슈타인",
+			"<em>«우리가 진정 누구인지 보여주는 것은 우리의 능력이 아니라, 우리의 선택이다.»</em> ― J.K. 롤링",
+			"<em>«어떤 것들은 당신의 시선을 사로잡겠지만, 마음을 사로잡는 것만을 추구하라.»</em> — 속담",
+			"<em>«남들이 안전하다고 생각하는 것보다 더 많이 위험을 감수하라. 남들이 현실적이라고 생각하는 것보다 더 큰 꿈을 꾸어라.»</em> — 하워드 슐츠",
+			"<em>«나는 실패한 적이 없다. 그저 작동하지 않는 1만 가지 방법을 찾았을 뿐이다.»</em> ― 토마스 A. 에디슨",
+			"<em>«가난한 사람은 가진 것이 너무 적은 사람이 아니라, 더 많은 것을 갈망하는 사람이다.»</em> — 세네카",
+			"<em>«스스로의 주인이 되지 못한 자는 자유롭지 않다.»</em> — 에픽테토스",
+			"<em>«자유는 예속이다.»</em> — 조지 오웰, 1984",
+			"<em>«욕망은 결코 즐거움으로 채워지지 않는다. 불처럼 쾌락이 더해질수록 커진다.»</em> — 바가바드 기타",
+			"<em>«하루를 끊을 수 있다면 평생을 끊을 수 있다.»</em> — 벤자민 알리레 사엔스",
+			"<em>«시련은 종종 평범한 사람들을 비범한 운명으로 이끌기 위해 준비시킨다.»</em> — C.S. 루이스",
+			"<em>«계단 전체를 볼 필요는 없다. 그저 다음 한 걸음을 내딛어라.»</em> — 마틴 루터 킹 주니어"
+		]
+	},
+	"Trigger": {
+		"alias": "방아쇠 (Trigger)",
+		"icon": [
+			"fa-solid",
+			"fa-jedi"
+		],
+		"static": {
+			"h1": "방아쇠(트리거) 식별하기",
+			"p": "이러한 욕구가 형성되는 데 기여한 원인(방아쇠)을 파악해 보세요",
+			"triggerDescription": "여기에 트리거를 입력하세요...",
+			"triggerButton": "확인"
+		}
+	},
+	"ImagineWords": {
+		"alias": "상상해 보기",
+		"icon": [
+			"fa-solid",
+			"fa-hands-praying"
+		],
+		"static": {
+			"p": "친한 친구가 당신을 지원하고 싶어 합니다.<br>지금 당장 당신에게 어떤 말이 실제로 도움이 되었을지 상상해 보세요.",
+			"wordsDescription": "...",
+			"wordsButton": "확인"
+		}
+	},
+	"Wife": {
+		"alias": "뮤즈",
+		"icon": [
+			"fa-solid",
+			"fa-heart"
+		],
+		"static": {
+			"h1": "미래에 아내와 함께 나누고 싶은 순간 하나를 시각화해 보세요",
+			"wifeDescription": "여기에 설명을 입력하세요...",
+			"confirmDescriptionButton": "확인"
+		}
+	},
+	"CardSelection": {
+		"static": {
+			"h1": "카드 고르기",
+			"chooseCard": "선택",
+			"confirmChoice": "확인"
+		}
+	},
+	"UrgeTest_initial": {
+		"static": {
+			"h1": "충동의 강도를 평가하세요",
+			"textMain": "ClearMind 확장 프로그램에 <span id='blockedDomain'></span> 차단을 요청하셨습니다<br /><br />당신이 겪고 있는 욕구 자체는 지극히 정상적인 것이지만, 중독이라는 강박적인 행동이 우리를 지배하게 내버려두어야 할까요?<br /><br />우리는 함께 이겨낼 수 있습니다!",
+			"confirmButton": "확인",
+			"textSecondary": "ClearMind 확장 프로그램에 <span id='blockedDomainOverlay'></span> 차단을 요청하셨습니다"
+		}
+	},
+	"UrgeTest_final": {
+		"static": {
+			"mainHeader": "충동의 강도를 평가하세요",
+			"mainHeaderResult": "당신의 충동 강도가 <span id='initialUrgeValueSpan'></span>에서 <span id='currentUrgeValueSpan'></span>(으)로 바뀌었습니다",
+			"motivationalText_lessUrge": "당신은 할 수 있습니다!",
+			"confirmButton": "확인",
+			"resetUrgeButton": "한 번 더",
+			"leaveUrgeButton": "이제 떠날 준비가 되었습니다"
+		}
+	},
+	"customBlockControl_popup": {
+		"static": {
+			"h2": "차단 목록 관리",
+			"domainInput": "*도메인_이름*",
+			"addDomainBtn": "사용자 지정 차단에 추가",
+			"deleteDomainBtn": "사용자 지정 차단에서 삭제",
+			"alertButton": "경고(ALERT) 모드",
+			"settingsButton": "설정",
+			"supportButton": "지원"
+		}
+	},
+	"ProgressionPopup": {
+		"static": {
+			"p": "축하합니다! 당신의 여정에 도움이 될 강력한 아티팩트가 있습니다!",
+			"closeButton": "계속",
+			"claimButton": "받기!"
+		},
+		"rewards": {
+			"1": {
+				"title": "«당신의 정신을 지켜줄 최고의 동반자 확장 프로그램»",
+				"link": "https://chromewebstore.google.com/detail/nsfw-filter/kmgagnlkckiamnenbpigfaljmanlbbhh"
+			},
+			"2": {
+				"title": "«대담하면서도 강력한 감정의 조각»",
+				"link": "https://youtu.be/Oa5r6n5Mfp4?si=Cskbi2VNvnRslMtJ"
+			},
+			"3": {
+				"title": "«유튜브를 치유하는 방법»",
+				"link": "https://docs.google.com/document/d/1ZGLnJK3opJMg9qZqoPnfy3yYJM78Ms-Q"
+			},
+			"4": {
+				"title": "«토끼굴은 얼마나 깊을까...»",
+				"link": "https://youtu.be/Vtp31feyTfM?si=H4bH4Lu_bjYFdyz9"
+			},
+			"5": {
+				"title": "«궁극의 해결책»",
+				"link": "https://docs.google.com/document/d/1Bg2K0MeC30p0FkDeU04fbn0Opw4r-YHY"
+			}
+		}
+	},
+	"About": {
+		"static": {
+			"h1": "ClearMind를 이용해 주셔서 감사합니다",
+			"h2About": "정보",
+			"p1": "ClearMind는 포르노 중독을 극복하는 데 도움을 주는 브라우저 확장 프로그램입니다.<br><br>디지털 공간에서의 포르노의 과잉 공급이 현대 사회의 가장 심각한 문제 중 하나이며, 모든 사람, 특히 젊은이들에게 부정적인 영향을 미치고 있다고 믿기 때문에 이 프로그램을 만들었습니다.<br><br>다른 확장 프로그램과 달리, ClearMind는 단순히 웹사이트에 대한 액세스를 기계적으로 차단하는 대신 인지 행동 치료(CBT) 원칙, 게이미피케이션 및 주의력 관리 기능을 사용하여 욕구를 억제합니다.<br><br>개인적인 프로젝트로 시작된 것이 모두와 기꺼이 공유할 수 있는 것이 되었습니다.",
+			"p3": "이 프로그램이 당신의 여정에 큰 도움이 되기를 진심으로 바랍니다!",
+			"p4": "제작자: A'n'A",
+			"sourceButton": "소스 코드",
+			"contactButton": "연락처",
+			"supportButton": "지원",
+			"OwnPage": "자신만의 페이지 만들기",
+			"p5": "가장 어두운 시간에 있는 미래의 나에게 평화로운 순간에 영감을 주는 메시지를 보내세요. 모든 데이터는 오프라인에 저장됩니다.",
+			"openTab1": " 옵션 (1) ",
+			"openTab2": " 옵션 (2) ",
+			"openTab3": " 옵션 (3) ",
+			"deleteUserContentButton": "삭제",
+			"saveUserContentButton": "저장",
+			"aboutTab": "정보",
+			"settingsTab": "설정",
+			"blocklistTab": "사용자 지정 차단 목록",
+			"reminderTab": "자신에게 보내는 알림",
+			"languageSelectLabel": "언어:",
+			"themeSelectLabel": "테마:",
+			"themeLabelLight": "라이트",
+			"themeLabelDark": "다크",
+			"safeSearchToggleLabel": "안전 검색 보호",
+			"safeSearchToggleHint": "가능한 경우 지원되는 검색 엔진에서 안전 검색을 강제합니다.",
+			"contentScanToggleLabel": "콘텐츠 스캔 차단",
+			"contentScanToggleHint": "도메인 규칙뿐만 아니라 페이지 콘텐츠 태그를 기준으로 페이지를 차단합니다.",
+			"OperaAlert": "안녕하세요! Opera 브라우저를 사용 중이신 것 같습니다. 확장 프로그램이 올바르게 작동하려면 수동으로 작은 설정 하나를 조정해야 합니다.\n\n'확장 프로그램 관리'로 이동하여 검색 결과 페이지에 대한 액세스를 허용하는 확인란을 선택하세요.\n\n그렇지 않으면 확장 프로그램이 검색 페이지에서 사이트가 열리는 것을 차단할 수 없습니다.",
+			"ownblocknotice": "기본 목록에 추가로 사용됩니다.",
+			"exportBlocklistButton": "내보내기",
+			"importBlocklistButton": "가져오기",
+			"domainPatternToggleLabel": "도메인 패턴 차단",
+			"domainPatternToggleHint": "확실성이 높은 도메인 패턴을 차단합니다",
+			"blocklistHeaderTitle": "사용자 지정 차단 목록",
+			"blocklistHeaderHint": "차단하려는 도메인 또는 URL을 추가하세요",
+			"addDomainBtn": "추가",
+			"domainInput": "domain.com 또는 https://domain.com/page",
+			"blocklistSearchInput": "도메인 검색...",
+			"customBlocklistEmpty": "아직 사용자 지정 도메인이 없습니다.",
+			"customBlocklistSearchEmpty": "일치하는 도메인이 없습니다."
+		}
+	},
+	"Sys_links": {
+		"contact": "https://forms.gle/W2fzvbjsRszeQNip6",
+		"support": "https://www.donationalerts.com/r/ana_clearmind",
+		"source": "https://github.com/AnAClearMind/A-n-A-ClearMind"
+	}
+}

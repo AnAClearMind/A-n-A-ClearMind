@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind is a browser extension that helps overcome porn addiction."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => enter ALERT mode"
+  },
+  "invalidDomainFormat": {
+    "message": "Invalid domain format. Please enter something like: 'domainName.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Blocking 'google' is not available"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Custom blocklist limit of 4900 domains reached"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Failed to update blocking rules"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Domain already in blocklist"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "This domain is not blocked by user rule. It cannot be whitelisted."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Domain not found in custom blocklist"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Domain added to blocklist"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Domain removed from blocklist"
+  },
+  "whatsNewTitle": {
+    "message": "欢迎使用 ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "版本 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "你好！这一年不太容易，但我们带着好消息回来了！向 ClearMind 2.0 及其令人惊叹的功能问好。"
+  },
+  "whatsNewPerformance": {
+    "message": "极致体验 — 更快的后端和更流畅、更直观的界面。"
+  },
+  "whatsNewProtection": {
+    "message": "增强防护 — 现已配备针对成人内容的高级多层防护。"
+  },
+  "whatsNewLocalization": {
+    "message": "全球支持 — 现已支持 13 种语言，帮助世界各地的人们保持清晰和专注。"
+  },
+  "whatsNewAboutUpdate": {
+    "message": "无缝访问 — 通过全新的“关于”页面轻松获取支持、源码及社区资源。"
+  },
+  "bounderlyCaption": {
+    "message": "另外，也来看看我们的新项目！"
+  },
+  "continue_btn": {
+    "message": "继续"
+  }
+}

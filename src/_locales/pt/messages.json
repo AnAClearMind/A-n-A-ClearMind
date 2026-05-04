@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind é uma extensão de navegador que ajuda a superar o vício em pornografia."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => entrar no modo ALERT"
+  },
+  "invalidDomainFormat": {
+    "message": "Formato de domínio inválido. Por favor, insira algo como: 'nomeDoDominio.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "O bloqueio do 'google' não está disponível"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Limite de 4900 domínios da lista de bloqueio personalizada atingido"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Falha ao atualizar as regras de bloqueio"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "O domínio já está na lista de bloqueio"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Este domínio não está bloqueado por regra de usuário. Não pode ser adicionado à lista de permissões."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Domínio não encontrado na lista de bloqueio personalizada"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Domínio adicionado à lista de bloqueio"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Domínio removido da lista de bloqueio"
+  },
+  "whatsNewTitle": {
+    "message": "Bem-vindo ao ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Versão 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Olá! Foi um ano difícil, mas estamos de volta com uma boa notícia! Diga olá ao ClearMind 2.0 e a todos os seus recursos incríveis."
+  },
+  "whatsNewPerformance": {
+    "message": "Experiência Refinada — Uma filtragem mais rápida e uma interface mais fluida e intuitiva."
+  },
+  "whatsNewProtection": {
+    "message": "Proteção Avançada — Agora com escudo multicamadas avançado contra conteúdo adulto."
+  },
+  "whatsNewLocalization": {
+    "message": "Suporte Universal — Agora com suporte a 13 idiomas, ajudando pessoas de todo o planeta a manter a clareza e o foco."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Acesso Direto — Explore a nova página Sobre para encontrar suporte, código-fonte e recursos essenciais com facilidade."
+  },
+  "bounderlyCaption": {
+    "message": "Confira nosso novo projeto!\nGanhe premium grátis com o promo \"FREE500\"."
+  },
+  "continue_btn": {
+    "message": "Continuar"
+  }
+}

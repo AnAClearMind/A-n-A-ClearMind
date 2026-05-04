@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind — это расширение для браузера, которое помогает преодолеть зависимость от порнографии."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => открыть ТРЕВОЖНЫЙ режим"
+  },
+  "invalidDomainFormat": {
+    "message": "Неверный формат домена. Пожалуйста, введите что-то вроде: 'domainName.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Блокировка 'google' недоступна"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Достигнут лимит пользовательского списка блокировки в 4900 доменов"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Не удалось обновить правила блокировки"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Домен уже в списке блокировки"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Этот домен не заблокирован пользовательским правилом. Его нельзя добавить в белый список."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Домен не найден в пользовательском списке блокировки"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Домен добавлен в список блокировки"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Домен удален из списка блокировки"
+  },
+  "whatsNewTitle": {
+    "message": "Познакомьтесь с ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Версия 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Привет! Год выдался непростым, но у нас снова хорошие новости! Познакомьтесь с ClearMind 2.0 и всеми его потрясающими функциями."
+  },
+  "whatsNewPerformance": {
+    "message": "Новый уровень комфорта — Более быстрая фильтрация и более плавный, интуитивно понятный интерфейс."
+  },
+  "whatsNewProtection": {
+    "message": "Усиленная защита — Теперь с продвинутым многоуровневым щитом против материалов для взрослых."
+  },
+  "whatsNewLocalization": {
+    "message": "Поддержка по всему миру — Теперь поддерживаются 13 языков, помогая людям оставаться в ясном фокусе по всему миру."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Удобный доступ — Все важные ресурсы, контакты и поддержка теперь собраны на обновленной странице «О программе»."
+  },
+  "bounderlyCaption": {
+    "message": "Посмотрите наш новый проект!\nПолучите премиум бесплатно с промокодом \"FREE500\"."
+  },
+  "continue_btn": {
+    "message": "Продолжить"
+  }
+}

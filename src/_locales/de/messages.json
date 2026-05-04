@@ -1,0 +1,65 @@
+{
+  "extensionName": {
+    "message": "ClearMind"
+  },
+  "extensionDescription": {
+    "message": "ClearMind ist eine Browser-Erweiterung, die hilft, Pornosucht zu überwinden."
+  },
+  "contextMenuTitle": {
+    "message": "ClearMind => Alarmmodus öffnen"
+  },
+  "invalidDomainFormat": {
+    "message": "Ungültiges Domain-Format. Bitte geben Sie etwas ein wie: 'domainName.com'"
+  },
+  "blockingGoogleNotAvailable": {
+    "message": "Das Blockieren von 'google' ist nicht verfügbar"
+  },
+  "customBlocklistLimitReached": {
+    "message": "Das Limit von 4900 Domains in der benutzerdefinierten Blockliste wurde erreicht"
+  },
+  "failedToUpdateBlockingRules": {
+    "message": "Fehler beim Aktualisieren der Blockierungsregeln"
+  },
+  "domainAlreadyInBlocklist": {
+    "message": "Domain ist bereits in der Blockliste"
+  },
+  "domainNotBlockedByUserRule": {
+    "message": "Diese Domain wird nicht durch eine Benutzerregel blockiert. Sie kann nicht auf die Whitelist gesetzt werden."
+  },
+  "domainNotFoundInCustomBlocklist": {
+    "message": "Domain nicht in der benutzerdefinierten Blockliste gefunden"
+  },
+  "domainAddedSuccessfully": {
+    "message": "Domain zur Blockliste hinzugefügt"
+  },
+  "domainRemovedSuccessfully": {
+    "message": "Domain aus der Blockliste entfernt"
+  },
+  "whatsNewTitle": {
+    "message": "Willkommen bei ClearMind 2.0"
+  },
+  "whatsNewVersionBadge": {
+    "message": "Version 2.0"
+  },
+  "whatsNewIntro": {
+    "message": "Hallo! Es war ein hartes Jahr, aber wir sind mit guten Nachrichten zurück! Sag Hallo zu ClearMind 2.0 und all seinen großartigen Funktionen."
+  },
+  "whatsNewPerformance": {
+    "message": "Optimiertes Erlebnis — Ein schnelleres Filtern und eine flüssigere, intuitivere Benutzeroberfläche."
+  },
+  "whatsNewProtection": {
+    "message": "Erweiterte Sicherheit — Jetzt mit einem fortschrittlichen mehrschichtigen Schutzschild gegen Erwachseneninhalte."
+  },
+  "whatsNewLocalization": {
+    "message": "Weltweite Unterstützung — Jetzt mit 13 Sprachen, damit Menschen weltweit klar und fokussiert bleiben."
+  },
+  "whatsNewAboutUpdate": {
+    "message": "Nahtloser Zugriff — Alle wichtigen Ressourcen und Support-Optionen auf der neu gestalteten Infoseite."
+  },
+  "bounderlyCaption": {
+    "message": "Schau dir unser neues Projekt an!\nHol dir Premium gratis mit dem Promo-Code \"FREE500\"."
+  },
+  "continue_btn": {
+    "message": "Weiter"
+  }
+}
