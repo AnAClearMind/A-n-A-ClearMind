@@ -1,24 +1,47 @@
 # ClearMind
 
-![Extension Icon](assets/icons/icon128.png)
+<p align="center">
+  <img src="src/assets/icons/icon128.png" alt="ClearMind icon" width="128" height="128">
+</p>
 
-ClearMind is a browser extension that helps overcome porn addiction. It uses a static blocklist and also allows users to create custom blocks.
+<p align="center">
+  A browser extension designed to help reduce exposure to adult content.
+</p>
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/clearmind-%E2%80%94-block-pornadu/dgiopelblkcgmobjhbfpcdecdenihlcb">
+    <img src="readme_assets/badge-chrome.png" alt="Get ClearMind for Chrome">
+  </a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/clearmind-block-porn-websites/">
+    <img src="readme_assets/badge-amo.png" alt="Get ClearMind for Firefox">
+  </a>
+</p>
+
+## Features
+
+ClearMind uses several techniques to block adult content in the browser:
+
+- Static blocklist
+- Optional user-defined blocklist
+- Optional regex-based domain pattern blocking
+- Optional proactive local tag-based detection
+- Optional SafeSearch enforcement for search engines
 
 ## Installation
 
-You can install the extension from the following stores:
+Install the extension from one of the official stores:
 
-[![Chrome Extension](readme_assets/badge-chrome.png)](https://chromewebstore.google.com/detail/clearmind-%E2%80%94-block-pornadu/dgiopelblkcgmobjhbfpcdecdenihlcb)
-[![Firefox Add-on](readme_assets/badge-amo.png)](https://addons.mozilla.org/en-US/firefox/addon/clearmind-block-porn-websites/)
+- [Chrome Web Store](https://chromewebstore.google.com/detail/clearmind-%E2%80%94-block-pornadu/dgiopelblkcgmobjhbfpcdecdenihlcb)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/clearmind-block-porn-websites/)
 
 ## About
 
-The development of this extension has also made a humble contribution to Firefox, as confirmed by the [fixed bug report](https://bugzilla.mozilla.org/show_bug.cgi?id=1921353).
+This project also contributed, in a small way, to Firefox itself, as reflected in resolved [bug report](https://bugzilla.mozilla.org/show_bug.cgi?id=1921353).
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## Contact
 
-If you have any questions or suggestions, please feel free to contact us via Issues.
+Questions, suggestions, or bug reports are welcome through [Issues](../../issues).
