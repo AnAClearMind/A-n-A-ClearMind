@@ -57,7 +57,13 @@
     "message": "无缝访问 — 通过全新的“关于”页面轻松获取支持、源码及社区资源。"
   },
   "bounderlyCaption": {
-    "message": "看看我们的新项目！\n使用 \"FREE500\" 即可获得免费高级版。"
+    "message": "看看我们的新项目！"
+  },
+  "bounderlyOfferText": {
+    "message": "使用 \"FREE500\" 获取免费高级版！"
+  },
+  "bounderlyOfferEnd": {
+    "message": "优惠将于 5 月 31 日结束。"
   },
   "continue_btn": {
     "message": "继续"

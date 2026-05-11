@@ -57,7 +57,13 @@
     "message": "Accès Simplifié — Découvrez notre nouvelle page À Propos pour accéder facilement au support et aux ressources."
   },
   "bounderlyCaption": {
-    "message": "Découvrez notre nouveau projet !\nObtenez le premium gratuit avec le code promo \"FREE500\"."
+    "message": "Découvrez notre nouveau projet !"
+  },
+  "bounderlyOfferText": {
+    "message": "Utilisez \"FREE500\" pour obtenir le premium gratuit !"
+  },
+  "bounderlyOfferEnd": {
+    "message": "L'offre se termine le 31 mai."
   },
   "continue_btn": {
     "message": "Continuer"

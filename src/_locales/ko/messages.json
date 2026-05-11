@@ -57,7 +57,13 @@
     "message": "손쉬운 접근 — 새롭게 디자인된 About 페이지에서 지원 및 리소스를 간편하게 확인하세요."
   },
   "bounderlyCaption": {
-    "message": "새 프로젝트를 확인해 보세요!\n\"FREE500\" 프로모로 무료 프리미엄을 받으세요."
+    "message": "새 프로젝트를 확인해 보세요!"
+  },
+  "bounderlyOfferText": {
+    "message": "\"FREE500\"을 사용하면 무료 프리미엄을 받을 수 있어요!"
+  },
+  "bounderlyOfferEnd": {
+    "message": "혜택은 5월 31일에 종료됩니다."
   },
   "continue_btn": {
     "message": "계속"

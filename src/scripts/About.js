@@ -1,10 +1,92 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
+    hideExpiredOfferBanners();
+
     const data = await getDB();
     SetupDynamicDataFromDB(data.Sys_links);
     dataLoadFromBase(data.About);
+    const localizedMessages = await loadPreferredLocaleMessages();
+    localizeBounderlyOffer(localizedMessages);
 	setTimeout(function() {loadOperaAlert(data.About.static.OperaAlert); }, 500);
 });
+
+function hideExpiredOfferBanners() {
+    const today = new Date();
+
+    document.querySelectorAll('[data-offer-hide-after]').forEach((banner) => {
+        const [year, month, day] = banner.dataset.offerHideAfter.split('-').map(Number);
+        const hideFrom = new Date(year, month - 1, day + 1);
+
+        if (today >= hideFrom) {
+            banner.hidden = true;
+        }
+    });
+}
+
+function localizeBounderlyOffer(messages) {
+    const offerText = document.getElementById('bounderlyOfferText');
+    const offerEnd = document.getElementById('bounderlyOfferEnd');
+
+    if (offerText) {
+        offerText.textContent = getLocalizedMessage(messages, 'bounderlyOfferText')
+            || chrome.i18n.getMessage('bounderlyOfferText')
+            || 'Use "FREE500" to get free premium!';
+    }
+
+    if (offerEnd) {
+        offerEnd.textContent = getLocalizedMessage(messages, 'bounderlyOfferEnd')
+            || chrome.i18n.getMessage('bounderlyOfferEnd')
+            || 'Offer ends May 31.';
+    }
+}
+
+function getLocalizedMessage(messages, key) {
+    return messages && messages[key] && messages[key].message ? messages[key].message : '';
+}
+
+async function loadPreferredLocaleMessages() {
+    try {
+        const result = await new Promise((resolve) => {
+            chrome.storage.local.get('sys_language', resolve);
+        });
+        const preferredLang = (result.sys_language || chrome.i18n.getUILanguage() || 'en').toLowerCase();
+        const localeCandidates = buildLocaleCandidates(preferredLang);
+
+        for (const locale of localeCandidates) {
+            try {
+                const response = await fetch(chrome.runtime.getURL(`_locales/${locale}/messages.json`));
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (error) {
+                /* try next locale */
+            }
+        }
+    } catch (error) {
+        /* fall back to chrome.i18n */
+    }
+
+    return null;
+}
+
+function buildLocaleCandidates(language) {
+    const normalized = String(language || 'en').replace('_', '-').toLowerCase();
+    const candidates = [];
+
+    if (normalized === 'zh' || normalized === 'zh-cn' || normalized === 'zh-hans') {
+        candidates.push('zh-Hans', 'zh_CN');
+    } else {
+        candidates.push(normalized);
+
+        const baseLanguage = normalized.split('-')[0];
+        if (baseLanguage && baseLanguage !== normalized) {
+            candidates.push(baseLanguage);
+        }
+    }
+
+    candidates.push('en');
+    return [...new Set(candidates)];
+}
 
 window.onload = async function () {
     document.getElementById('mainContainer').style.opacity = '1';
@@ -343,19 +425,19 @@ function dataLoadFromBase(About) {
     const domainPatternToggleHint = document.getElementById('domainPatternToggleHint');
 
     const bannerTexts = {
-    en: 'Check out our new project!\nUse "FREE500" to get free premium!',
-    es: '¡Descubre nuestro nuevo proyecto!\n¡Usa "FREE500" para obtener premium gratis!',
-    fr: 'Découvrez notre nouveau projet !\nUtilisez "FREE500" pour obtenir le premium gratuit !',
-    de: 'Schau dir unser neues Projekt an!\nNutze "FREE500" für kostenloses Premium!',
-    ru: 'Посмотрите наш новый проект!\nИспользуйте "FREE500" для бесплатного премиума!',
-    hi: 'हमारा नया प्रोजेक्ट देखें!\nमुफ़्त प्रीमियम पाने के लिए "FREE500" का उपयोग करें!',
-    it: 'Scopri il nostro nuovo progetto!\nUsa "FREE500" per ottenere il premium gratuito!',
-    ja: '新しいプロジェクトをご覧ください！\n無料プレミアムには "FREE500" をご利用ください！',
-    ko: '새 프로젝트를 확인해 보세요!\n"FREE500"을 사용하면 무료 프리미엄을 받을 수 있어요!',
-    pl: 'Sprawdź nasz nowy projekt!\nUżyj "FREE500", aby otrzymać darmowe premium!',
-    pt: 'Confira nosso novo projeto!\nUse "FREE500" para obter o premium grátis!',
-    tr: 'Yeni projemize göz atın!\n"FREE500" kodunu kullanarak ücretsiz premium kazanın!',
-    'zh-Hans': '看看我们的新项目！\n使用 "FREE500" 获取免费高级版！'
+    en: 'Check out our new project!',
+    es: '¡Descubre nuestro nuevo proyecto!',
+    fr: 'Découvrez notre nouveau projet !',
+    de: 'Schau dir unser neues Projekt an!',
+    ru: 'Посмотрите наш новый проект!',
+    hi: 'हमारा नया प्रोजेक्ट देखें!',
+    it: 'Scopri il nostro nuovo progetto!',
+    ja: '新しいプロジェクトをご覧ください！',
+    ko: '새 프로젝트를 확인해 보세요!',
+    pl: 'Sprawdź nasz nowy projekt!',
+    pt: 'Confira nosso novo projeto!',
+    tr: 'Yeni projemize göz atın!',
+    'zh-Hans': '看看我们的新项目！'
     };
 
     h1.textContent = About.static.h1;

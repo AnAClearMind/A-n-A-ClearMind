@@ -57,7 +57,13 @@
     "message": "Kesintisiz Erişim — Destek, kaynak kodu ve topluluk kaynaklarına kolayca ulaşmak için yenilenen Hakkında sayfamızı keşfedin."
   },
   "bounderlyCaption": {
-    "message": "Yeni projemize göz atın!\n\"FREE500\" promosuyla ücretsiz premium kazanın."
+    "message": "Yeni projemize göz atın!"
+  },
+  "bounderlyOfferText": {
+    "message": "Ücretsiz premium almak için \"FREE500\" kodunu kullanın!"
+  },
+  "bounderlyOfferEnd": {
+    "message": "Teklif 31 Mayıs'ta sona erer."
   },
   "continue_btn": {
     "message": "Devam"

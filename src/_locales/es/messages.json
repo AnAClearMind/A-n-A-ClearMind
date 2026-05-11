@@ -57,7 +57,13 @@
     "message": "Acceso Directo — Explora nuestra página de Información rediseñada para encontrar soporte y recursos esenciales."
   },
   "bounderlyCaption": {
-    "message": "¡Mira nuestro nuevo proyecto!\nObtén premium gratis con el promo \"FREE500\"."
+    "message": "¡Mira nuestro nuevo proyecto!"
+  },
+  "bounderlyOfferText": {
+    "message": "¡Usa \"FREE500\" para obtener premium gratis!"
+  },
+  "bounderlyOfferEnd": {
+    "message": "La oferta termina el 31 de mayo."
   },
   "continue_btn": {
     "message": "Continuar"

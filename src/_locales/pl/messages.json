@@ -57,7 +57,13 @@
     "message": "Łatwy dostęp — Wszystkie ważne zasoby, kontakt i wsparcie znajdziesz na odświeżonej stronie O programie."
   },
   "bounderlyCaption": {
-    "message": "Sprawdź nasz nowy projekt!\nZyskaj premium za darmo z kodem \"FREE500\"."
+    "message": "Sprawdź nasz nowy projekt!"
+  },
+  "bounderlyOfferText": {
+    "message": "Użyj \"FREE500\", aby otrzymać darmowe premium!"
+  },
+  "bounderlyOfferEnd": {
+    "message": "Oferta kończy się 31 maja."
   },
   "continue_btn": {
     "message": "Kontynuuj"

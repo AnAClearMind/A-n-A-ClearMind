@@ -59,6 +59,12 @@
   "bounderlyCaption": {
     "message": "另外，也来看看我们的新项目！"
   },
+  "bounderlyOfferText": {
+    "message": "使用 \"FREE500\" 获取免费高级版！"
+  },
+  "bounderlyOfferEnd": {
+    "message": "优惠将于 5 月 31 日结束。"
+  },
   "continue_btn": {
     "message": "继续"
   }

@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    hideExpiredOfferBanners();
+
     // Fade in the container (consistent with other pages)
     const mainContainer = document.getElementById('mainContainer');
     if (mainContainer) {
@@ -20,6 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         { id: 'whatsNewProtectionText',   messageName: 'whatsNewProtection' },
         { id: 'whatsNewLocalizationText', messageName: 'whatsNewLocalization' },
         { id: 'bounderlyCaption',     messageName: 'bounderlyCaption' },
+        { id: 'bounderlyOfferText',   messageName: 'bounderlyOfferText' },
+        { id: 'bounderlyOfferEnd',    messageName: 'bounderlyOfferEnd' },
     ];
 
     elementsToLocalize.forEach(({ id, messageName }) => {
@@ -35,41 +39,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
     });
-
-    const lightBanner = document.querySelector('.banner-light');
-    const darkBanner = document.querySelector('.banner-dark');
-
-    const syncBannerVisibility = () => {
-        const isDarkTheme = document.documentElement.classList.contains('dark-theme')
-            || document.body?.classList.contains('dark-theme')
-            || document.documentElement.dataset.theme === 'dark'
-            || document.body?.dataset?.theme === 'dark';
-
-        if (lightBanner) {
-            lightBanner.hidden = isDarkTheme;
-            lightBanner.setAttribute('aria-hidden', String(isDarkTheme));
-        }
-
-        if (darkBanner) {
-            darkBanner.hidden = !isDarkTheme;
-            darkBanner.setAttribute('aria-hidden', String(!isDarkTheme));
-        }
-    };
-
-    syncBannerVisibility();
-
-    const themeObserver = new MutationObserver(syncBannerVisibility);
-    themeObserver.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['class', 'data-theme'],
-    });
-
-    if (document.body) {
-        themeObserver.observe(document.body, {
-            attributes: true,
-            attributeFilter: ['class', 'data-theme'],
-        });
-    }
 
     // Handle continue button
     const continueBtn = document.getElementById('continueBtn');
@@ -91,6 +60,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 });
+
+function hideExpiredOfferBanners() {
+    const today = new Date();
+
+    document.querySelectorAll('[data-offer-hide-after]').forEach((banner) => {
+        const [year, month, day] = banner.dataset.offerHideAfter.split('-').map(Number);
+        const hideFrom = new Date(year, month - 1, day + 1);
+
+        if (today >= hideFrom) {
+            banner.hidden = true;
+        }
+    });
+}
 
 function getLocalizedMessage(messages, key) {
     return messages && messages[key] && messages[key].message ? messages[key].message : '';

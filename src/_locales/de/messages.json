@@ -57,7 +57,13 @@
     "message": "Nahtloser Zugriff — Alle wichtigen Ressourcen und Support-Optionen auf der neu gestalteten Infoseite."
   },
   "bounderlyCaption": {
-    "message": "Schau dir unser neues Projekt an!\nHol dir Premium gratis mit dem Promo-Code \"FREE500\"."
+    "message": "Schau dir unser neues Projekt an!"
+  },
+  "bounderlyOfferText": {
+    "message": "Nutze \"FREE500\" für kostenloses Premium!"
+  },
+  "bounderlyOfferEnd": {
+    "message": "Das Angebot endet am 31. Mai."
   },
   "continue_btn": {
     "message": "Weiter"

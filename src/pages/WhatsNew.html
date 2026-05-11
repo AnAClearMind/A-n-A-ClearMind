@@ -258,20 +258,65 @@
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
         }
 
-        .banner-light {
-            display: block;
+        .banner-offer {
+            width: 100%;
+            margin-top: 14px;
+            padding: 14px 16px;
+            border: 1px solid rgba(26, 188, 156, 0.35);
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(26, 188, 156, 0.12), rgba(255, 255, 255, 0.92));
+            box-shadow: 0 8px 22px rgba(26, 188, 156, 0.12);
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        .banner-dark {
-            display: none;
+        .offer-code {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            margin-bottom: 8px;
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            background: #fff7e6;
+            color: #d35400;
+            font-size: 0.95em;
+            font-weight: 800;
+            letter-spacing: 0;
         }
 
-        .dark-theme .banner-light {
-            display: none;
+        .offer-text {
+            margin: 0;
+            color: #2c3e50;
+            font-size: clamp(0.95em, 1.35vw, 1.08em);
+            font-weight: 700;
+            line-height: 1.35;
         }
 
-        .dark-theme .banner-dark {
-            display: block;
+        .offer-end {
+            margin: 6px 0 0;
+            color: #5d6d7e;
+            font-size: 0.9em;
+            line-height: 1.3;
+        }
+
+        .dark-theme .banner-offer {
+            border-color: rgba(26, 188, 156, 0.45);
+            background: linear-gradient(135deg, rgba(26, 188, 156, 0.18), rgba(22, 33, 62, 0.96));
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+        }
+
+        .dark-theme .offer-text {
+            color: #ecf0f1;
+        }
+
+        .dark-theme .offer-code {
+            background: rgba(243, 156, 18, 0.16);
+            color: #ffbd5a;
+        }
+
+        .dark-theme .offer-end {
+            color: #b8c7d8;
         }
 
         .dark-theme .continue-btn {
@@ -354,13 +399,17 @@
             </div>
         </div>
 
-        <div class="side-banner-wrapper">
+        <div class="side-banner-wrapper" data-offer-hide-after="2026-05-31">
             <div class="side-banner-section">
-                <div class="banner-caption" id="bounderlyCaption">Check out our new project!<br>Get premium with "FREE500" promo.</div>
+                <div class="banner-caption" id="bounderlyCaption">Check out our new project!</div>
                 <a href="https://bounderly.app" target="_blank" rel="noopener noreferrer" class="banner-card" title="Visit Bounderly">
-                    <img class="banner-light" src="../assets/images/bounderly_banner_light.jpg" alt="Bounderly">
-                    <img class="banner-dark" src="../assets/images/bounderly_banner_dark.jpg" alt="Bounderly">
+                    <img src="../assets/images/bounderly_banner_dark.jpg" alt="Bounderly">
                 </a>
+                <div class="banner-offer" aria-label="Bounderly premium offer">
+                    <div class="offer-code">FREE500</div>
+                    <p class="offer-text" id="bounderlyOfferText">Use "FREE500" to get free premium!</p>
+                    <p class="offer-end" id="bounderlyOfferEnd">Offer ends May 31.</p>
+                </div>
             </div>
         </div>
     </div>
