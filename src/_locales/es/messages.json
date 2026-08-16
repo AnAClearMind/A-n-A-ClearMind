@@ -59,12 +59,6 @@
   "bounderlyCaption": {
     "message": "¡Mira nuestro nuevo proyecto!"
   },
-  "bounderlyOfferText": {
-    "message": "¡Usa \"FREE500\" para obtener premium gratis!"
-  },
-  "bounderlyOfferEnd": {
-    "message": "La oferta termina el 31 de mayo."
-  },
   "continue_btn": {
     "message": "Continuar"
   }

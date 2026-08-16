@@ -59,12 +59,6 @@
   "bounderlyCaption": {
     "message": "Yeni projemize göz atın!"
   },
-  "bounderlyOfferText": {
-    "message": "Ücretsiz premium almak için \"FREE500\" kodunu kullanın!"
-  },
-  "bounderlyOfferEnd": {
-    "message": "Teklif 31 Mayıs'ta sona erer."
-  },
   "continue_btn": {
     "message": "Devam"
   }

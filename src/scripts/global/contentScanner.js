@@ -84,12 +84,10 @@
     }
 
     function getScannerSettings(callback) {
-        chrome.runtime.sendMessage({ action: 'getContentScanningEnabled' }, function (toggleResponse) {
-            chrome.storage.local.get(['contentScanAllowedDomains'], function (result) {
-                callback({
-                    enabled: toggleResponse ? toggleResponse.enabled !== false : true,
-                    allowedDomains: Array.isArray(result.contentScanAllowedDomains) ? result.contentScanAllowedDomains : []
-                });
+        chrome.storage.local.get(['contentScanningEnabled', 'contentScanAllowedDomains'], function (result) {
+            callback({
+                enabled: result && typeof result.contentScanningEnabled !== 'undefined' ? result.contentScanningEnabled !== false : true,
+                allowedDomains: Array.isArray(result && result.contentScanAllowedDomains) ? result.contentScanAllowedDomains : []
             });
         });
     }
@@ -127,9 +125,12 @@
                     lang[category] = keywords.map(function (kw) {
                         const normalized = normalizeText(kw);
                         const escaped = escapeRegex(normalized).replace(/\s+/g, '\\s+');
+                        const isCjk = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(kw);
                         return {
                             original: kw,
-                            regex: new RegExp('(^|[^\\p{L}\\p{N}])(' + escaped + ')([^\\p{L}\\p{N}]|$)', 'iu')
+                            regex: isCjk
+                                ? new RegExp(escaped, 'iu')
+                                : new RegExp('(^|[^\\p{L}\\p{N}])(' + escaped + ')([^\\p{L}\\p{N}]|$)', 'iu')
                         };
                     });
                 });
@@ -148,6 +149,7 @@
 
         if (result.score >= BLOCK_THRESHOLD) {
             scanFinished = true;
+            window.clearTimeout(mutationTimer);
             reportBlockedPage(result);
             return;
         }
@@ -242,12 +244,19 @@
         const linkButtonText = getElementsText('a, button');
         const bodyText = getBodyTextFast();
 
+        let safePath = location.pathname || '';
+        try {
+            safePath = decodeURIComponent(safePath);
+        } catch (e) {
+            console.warn('ClearMind: Failed to decode URI path in content scanner', e);
+        }
+
         return {
             titleMeta: limitText([document.title, metaDescription, metaKeywords].join(' '), 20000),
             headings: limitText(headingText, 20000),
             linksButtons: limitText(linkButtonText, 20000),
             body: limitText(bodyText, MAX_TEXT_LENGTH),
-            path: limitText(decodeURIComponent(location.pathname || ''), 5000)
+            path: limitText(safePath, 5000)
         };
     }
 
@@ -258,7 +267,7 @@
 
     function getElementsText(selector) {
         return Array.prototype.map.call(document.querySelectorAll(selector), function (element) {
-            return element.innerText || element.textContent || '';
+            return element.textContent || '';
         }).join(' ');
     }
 
@@ -316,6 +325,15 @@
     }
 
     function reportBlockedPage(result) {
+        if (document.documentElement) {
+            document.documentElement.style.display = 'none';
+        }
+        document.querySelectorAll('video, audio').forEach(function (media) {
+            try {
+                media.pause();
+            } catch (_) {}
+        });
+
         chrome.runtime.sendMessage({
             action: 'contentScanBlocked',
             url: location.href,

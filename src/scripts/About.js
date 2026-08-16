@@ -1,92 +1,12 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
-    hideExpiredOfferBanners();
-
     const data = await getDB();
     SetupDynamicDataFromDB(data.Sys_links);
     dataLoadFromBase(data.About);
-    const localizedMessages = await loadPreferredLocaleMessages();
-    localizeBounderlyOffer(localizedMessages);
 	setTimeout(function() {loadOperaAlert(data.About.static.OperaAlert); }, 500);
 });
 
-function hideExpiredOfferBanners() {
-    const today = new Date();
 
-    document.querySelectorAll('[data-offer-hide-after]').forEach((banner) => {
-        const [year, month, day] = banner.dataset.offerHideAfter.split('-').map(Number);
-        const hideFrom = new Date(year, month - 1, day + 1);
-
-        if (today >= hideFrom) {
-            banner.hidden = true;
-        }
-    });
-}
-
-function localizeBounderlyOffer(messages) {
-    const offerText = document.getElementById('bounderlyOfferText');
-    const offerEnd = document.getElementById('bounderlyOfferEnd');
-
-    if (offerText) {
-        offerText.textContent = getLocalizedMessage(messages, 'bounderlyOfferText')
-            || chrome.i18n.getMessage('bounderlyOfferText')
-            || 'Use "FREE500" to get free premium!';
-    }
-
-    if (offerEnd) {
-        offerEnd.textContent = getLocalizedMessage(messages, 'bounderlyOfferEnd')
-            || chrome.i18n.getMessage('bounderlyOfferEnd')
-            || 'Offer ends May 31.';
-    }
-}
-
-function getLocalizedMessage(messages, key) {
-    return messages && messages[key] && messages[key].message ? messages[key].message : '';
-}
-
-async function loadPreferredLocaleMessages() {
-    try {
-        const result = await new Promise((resolve) => {
-            chrome.storage.local.get('sys_language', resolve);
-        });
-        const preferredLang = (result.sys_language || chrome.i18n.getUILanguage() || 'en').toLowerCase();
-        const localeCandidates = buildLocaleCandidates(preferredLang);
-
-        for (const locale of localeCandidates) {
-            try {
-                const response = await fetch(chrome.runtime.getURL(`_locales/${locale}/messages.json`));
-                if (response.ok) {
-                    return await response.json();
-                }
-            } catch (error) {
-                /* try next locale */
-            }
-        }
-    } catch (error) {
-        /* fall back to chrome.i18n */
-    }
-
-    return null;
-}
-
-function buildLocaleCandidates(language) {
-    const normalized = String(language || 'en').replace('_', '-').toLowerCase();
-    const candidates = [];
-
-    if (normalized === 'zh' || normalized === 'zh-cn' || normalized === 'zh-hans') {
-        candidates.push('zh-Hans', 'zh_CN');
-    } else {
-        candidates.push(normalized);
-
-        const baseLanguage = normalized.split('-')[0];
-        if (baseLanguage && baseLanguage !== normalized) {
-            candidates.push(baseLanguage);
-        }
-    }
-
-    candidates.push('en');
-    return [...new Set(candidates)];
-}
 
 window.onload = async function () {
     document.getElementById('mainContainer').style.opacity = '1';
@@ -702,53 +622,24 @@ async function importBlocklist() {
                 return; // Stop import if limit exceeded
             }
 
-            let importSuccess = true; // Flag to track overall import success
-            let importErrors = [];
-            let successfulImports = 0;
-
-            for (const domain of domainsToAdd) {
-                await new Promise(resolve => { // Use promise to wait for each sendMessage response
-                    chrome.runtime.sendMessage({ action: "addDomain", domain: domain, silent: true }, function (response) {
-                        if (response && response.success) {
-                            console.log(`Domain "${domain}" added successfully: ${response.message}`);
-                            successfulImports++;
-                        } else {
-                            importSuccess = false;
-                            let errorMessage = `Domain "${domain}": `;
-                            if (response && response.error) {
-                                errorMessage += `${response.error}`;
-                                if (response.message) { // Include "type" text if available
-                                    errorMessage += ` (Type: ${response.message})`;
-                                }
-                            } else {
-                                errorMessage += 'Unknown error';
-                            }
-                            importErrors.push(errorMessage);
-                            console.log(`Error adding domain "${domain}": ${response ? response.error : 'Unknown error'}`, response);
-                        }
-                        resolve(); // Resolve promise to move to the next domain
-                    });
-                });
-            }
-
-            let message = "";
-            if (importSuccess) {
-                message = `Successfully imported ${successfulImports} domains.`;
-            } else {
-                message = `Import completed with errors.\n\n`;
-                message += `Successfully imported ${successfulImports} out of ${domainsToAdd.length} domains.\n\n`;
-                if (importErrors.length > 0) {
-                    message += `Errors encountered:\n`;
-                    importErrors.forEach(error => {
-                        message += `- ${error}\n`;
-                    });
-                    console.log("Import errors:", importErrors.join("\n")); // Log detailed errors in console
-                } else {
-                    message += `Unknown errors during import.`; // In case importSuccess is false but no errors are collected.
+            chrome.runtime.sendMessage({ action: "importDomains", domains: domainsToAdd }, function (response) {
+                if (chrome.runtime.lastError) {
+                    alert("Ошибка импорта: " + chrome.runtime.lastError.message);
+                    return;
                 }
-            }
-            alert(message);
-            loadCustomBlocklistEditor();
+
+                if (response && response.success) {
+                    const summary = `Импорт завершен!\n\n` +
+                        `• Добавлено новых: ${response.added}\n` +
+                        `• Пропущено (дубликаты): ${response.duplicates}\n` +
+                        `• Некорректные форматы: ${response.invalid}`;
+                    alert(summary);
+                    loadCustomBlocklistEditor();
+                } else {
+                    const errMsg = (response && response.error) ? response.error : "Неизвестная ошибка при импорте";
+                    alert("Ошибка импорта: " + errMsg);
+                }
+            });
         };
 
         reader.onerror = function(event) {

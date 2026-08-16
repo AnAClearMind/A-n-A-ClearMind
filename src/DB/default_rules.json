@@ -20653,25 +20653,6 @@
       }
     },
     {
-      "id": 101091,
-      "priority": 1,
-      "action": {
-        "type": "redirect",
-        "redirect": {
-          "extensionPath": "/pages/UrgeTest_initial.html?blocked=booth.pm"
-        }
-      },
-      "condition": {
-        "urlFilter": "||booth.pm^",
-        "resourceTypes": [
-          "main_frame",
-          "sub_frame",
-          "image",
-          "media"
-        ]
-      }
-    },
-    {
       "id": 101092,
       "priority": 1,
       "action": {

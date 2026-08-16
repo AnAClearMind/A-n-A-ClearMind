@@ -144,40 +144,12 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     }
 
     if (request.action === "addDomain") {
-        if (typeof request.domain !== 'string') {
+        const domain = normalizeDomain(request.domain);
+        if (!domain) {
             sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
             return false;
         }
 
-        let domain = request.domain.toLowerCase();
-
-        // Check if the input is a URL and extract the domain
-        try {
-            const url = new URL(domain);
-            domain = url.hostname;
-        } catch (e) {
-            // Not a valid URL, continue with domain as is
-        }
-
-        // Strip "www." if present
-        if (domain.startsWith("www.")) {
-            domain = domain.substring(4);
-        }
-
-        // Validate the domain format
-        const domainPattern = /^[a-z0-9.-]+\.[a-z]{2,}$/;
-        if (!domainPattern.test(domain)) {
-            sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
-            return false;
-        }
-
-        // Check if the domain is a simple word like "youtube"
-        if (!domain.includes('.')) {
-            sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
-            return false;
-        }
-
-        // Specific check for 'google'
         if (domain.includes('google')) {
             sendResponse({ success: false, error: chrome.i18n.getMessage("blockingGoogleNotAvailable") });
             return false;
@@ -188,88 +160,133 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             return false;
         }
 
-        if (!customBlockedDomains.includes(domain)) {
-            customBlockedDomains.push(domain);
-            saveCustomDomains();
-            updateRules().then(success => {
-                if (success) {
-                    if (request.silent) {
-                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain });
-                    } else {
-                        // Delay the reload to ensure rules are applied
-                        setTimeout(() => {
-                            console.log('Trigger page reload', domain);
-                            reloadActiveTab();
-                            sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain });
-                        }, 100); // 100ms delay, adjust if needed
-                    }
-                } else {
-                    sendResponse({ success: false, error: chrome.i18n.getMessage("failedToUpdateBlockingRules") });
-                }
-            });
-            console.log('Domain added to custom blocklist:', domain);
-            return true;
-        } else {
+        if (customBlockedDomains.includes(domain)) {
             sendResponse({ success: false, error: chrome.i18n.getMessage("domainAlreadyInBlocklist") });
+            return false;
         }
 
-        return false;
+        const candidateList = [...customBlockedDomains, domain];
+        updateRulesAtomic(candidateList).then(res => {
+            if (res.success) {
+                customBlockedDomains = candidateList;
+                saveCustomDomains();
+                if (request.silent) {
+                    sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain });
+                } else {
+                    setTimeout(() => {
+                        reloadActiveTab();
+                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain });
+                    }, 100);
+                }
+            } else {
+                sendResponse({ success: false, error: res.error || chrome.i18n.getMessage("failedToUpdateBlockingRules") });
+            }
+        });
+        return true;
     }
 
     if (request.action === "deleteDomain") {
-        if (typeof request.domain !== 'string') {
+        const domain = normalizeDomain(request.domain) || (typeof request.domain === 'string' ? request.domain.toLowerCase().trim() : '');
+        if (!domain) {
             sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
             return false;
         }
 
-        let domain = request.domain.toLowerCase();
-        try {
-            const url = new URL(domain);
-            domain = url.hostname;
-        } catch (e) {
-            // Not a valid URL, continue with domain as is
-        }
-
-        // Strip "www." if present
-        if (domain.startsWith("www.")) {
-            domain = domain.substring(4);
-        }
         const index = customBlockedDomains.indexOf(domain);
         if (index !== -1) {
-            customBlockedDomains.splice(index, 1);
-            saveCustomDomains();
-            updateRules().then(success => {
-                if (success) {
+            const candidateList = customBlockedDomains.filter(d => d !== domain);
+            updateRulesAtomic(candidateList).then(res => {
+                if (res.success) {
+                    customBlockedDomains = candidateList;
+                    saveCustomDomains();
                     if (request.silent) {
                         sendResponse({ success: true, message: chrome.i18n.getMessage("domainRemovedSuccessfully"), domain: domain });
                     } else {
-                        // Delay the reload to ensure rules are applied
                         setTimeout(() => {
-                            console.log('Trigger page reload', domain);
                             reloadActiveTab(domain);
                             sendResponse({ success: true, message: chrome.i18n.getMessage("domainRemovedSuccessfully"), domain: domain });
-                        }, 100); // 100ms delay, adjust if needed
+                        }, 100);
                     }
                 } else {
-                    sendResponse({ success: false, error: chrome.i18n.getMessage("failedToUpdateBlockingRules") });
+                    sendResponse({ success: false, error: res.error || chrome.i18n.getMessage("failedToUpdateBlockingRules") });
                 }
             });
-            console.log('Domain removed from custom blocklist:', domain);
             return true;
         } else {
-            if (blockedDomains.includes(domain)) {
-                sendResponse({ success: false, error: chrome.i18n.getMessage("domainNotBlockedByUserRule") });
-            } else {
-                sendResponse({ success: false, error: chrome.i18n.getMessage("domainNotFoundInCustomBlocklist") });
-            }
+            sendResponse({ success: false, error: "Domain not in blocklist" });
+            return false;
+        }
+    }
+
+    if (request.action === "importDomains") {
+        if (!Array.isArray(request.domains)) {
+            sendResponse({ success: false, error: "Invalid payload: domains must be an array" });
+            return true;
         }
 
-        return false;
+        let addedCount = 0;
+        let duplicateCount = 0;
+        let invalidCount = 0;
+
+        const existingSet = new Set(customBlockedDomains);
+        const newDomainsToAdd = [];
+
+        request.domains.forEach(rawDomain => {
+            const normalized = normalizeDomain(rawDomain);
+            if (!normalized || normalized.includes('google')) {
+                invalidCount++;
+                return;
+            }
+
+            if (existingSet.has(normalized)) {
+                duplicateCount++;
+            } else {
+                existingSet.add(normalized);
+                newDomainsToAdd.push(normalized);
+                addedCount++;
+            }
+        });
+
+        if (newDomainsToAdd.length === 0) {
+            sendResponse({
+                success: true,
+                added: 0,
+                duplicates: duplicateCount,
+                invalid: invalidCount
+            });
+            return true;
+        }
+
+        const candidateList = [...customBlockedDomains, ...newDomainsToAdd];
+
+        updateRulesAtomic(candidateList).then(result => {
+            if (result.success) {
+                customBlockedDomains = candidateList;
+                saveCustomDomains();
+                sendResponse({
+                    success: true,
+                    added: addedCount,
+                    duplicates: duplicateCount,
+                    invalid: invalidCount
+                });
+            } else {
+                sendResponse({
+                    success: false,
+                    error: result.error
+                });
+            }
+        });
+
+        return true;
     }
 
     if (request.action === 'loadData') {
         loadData().then(() => {
-            sendResponse({ status: 'success', data: jsonData });
+            if (jsonData) {
+                sendResponse({ status: 'success', data: jsonData });
+            } else {
+                sendResponse({ status: 'error', message: 'Failed to load localization data' });
+            }
         }).catch(error => {
             sendResponse({ status: 'error', message: error.message });
         });
@@ -328,7 +345,7 @@ function reloadActiveTab(unblockedDomain) {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         if (tabs[0]) {
             if (unblockedDomain) {
-                const url = `http://${unblockedDomain}`;
+                const url = `https://${unblockedDomain}`;
                 chrome.tabs.update(tabs[0].id, { url: url });
             } else {
                 chrome.tabs.reload(tabs[0].id);
@@ -374,26 +391,38 @@ function handleContentScanBlocked(request, sender, sendResponse) {
             sendResponse({ success: false, error: chrome.runtime.lastError.message });
             return;
         }
-
-        sendResponse({ success: true });
+            sendResponse({ success: true });
     });
 }
 
-function normalizeScannedHostname(value) {
-    if (typeof value !== 'string') {
-        return '';
-    }
+function normalizeDomain(input) {
+    if (typeof input !== 'string') return null;
+    let trimmed = input.trim().toLowerCase();
+    if (!trimmed) return null;
 
-    let hostname = value.toLowerCase().trim();
     try {
-        hostname = new URL(hostname).hostname;
+        if (trimmed.includes('://')) {
+            const parsed = new URL(trimmed);
+            trimmed = parsed.hostname;
+        }
     } catch (e) {
-        // Continue with the provided hostname if it was not a full URL.
+        // Continue with raw trimmed string if URL parsing fails
     }
 
-    hostname = hostname.replace(/^www\./, '');
+    if (trimmed.startsWith('www.')) {
+        trimmed = trimmed.substring(4);
+    }
+
     const domainPattern = /^[a-z0-9.-]+\.[a-z]{2,}$/;
-    return domainPattern.test(hostname) ? hostname : '';
+    if (!domainPattern.test(trimmed)) {
+        return null;
+    }
+
+    return trimmed;
+}
+
+function normalizeScannedHostname(value) {
+    return normalizeDomain(value) || '';
 }
 
 function saveContentScanDetection(detection) {
@@ -404,98 +433,122 @@ function saveContentScanDetection(detection) {
     });
 }
 
-async function setupBlockingRules() {
-    const settings = await chrome.storage.local.get(['domainPatternBlockingEnabled', 'safeSearchEnabled']);
-    const domainPatternBlockingEnabled = settings.domainPatternBlockingEnabled !== false;
-    const safeSearchEnabled = settings.safeSearchEnabled !== false;
-    const allDomains = blockedDomains.concat(customBlockedDomains);
-    const rules = allDomains.flatMap((domain, index) => {
-        const baseRuleId = (index + 1);
-        domainRuleIds[domain] = baseRuleId;
+async function updateRulesAtomic(targetCustomDomains) {
+    try {
+        const activeCustomDomains = targetCustomDomains !== undefined ? targetCustomDomains : customBlockedDomains;
+        const settings = await chrome.storage.local.get(['domainPatternBlockingEnabled', 'safeSearchEnabled']);
+        const domainPatternBlockingEnabled = settings.domainPatternBlockingEnabled !== false;
+        const safeSearchEnabled = settings.safeSearchEnabled !== false;
+        const allDomains = blockedDomains.concat(activeCustomDomains);
 
-        return [
-            {
-                id: baseRuleId,
-                priority: 1,
-                action: {
-                    type: 'redirect',
-                    redirect: {
-                        url: getRedirectUrl(`http://${domain}`)
+        const rules = allDomains.flatMap((domain, index) => {
+            const frameRuleId = (index * 2) + 1;
+            const blockRuleId = (index * 2) + 2;
+            domainRuleIds[domain] = frameRuleId;
+
+            return [
+                {
+                    id: frameRuleId,
+                    priority: 1,
+                    action: {
+                        type: 'redirect',
+                        redirect: {
+                            url: getRedirectUrl(`https://${domain}`)
+                        }
+                    },
+                    condition: {
+                        urlFilter: `||${domain}^`,
+                        resourceTypes: ['main_frame', 'sub_frame']
                     }
                 },
-                condition: {
-                    urlFilter: `||${domain}^`,
-                    resourceTypes: ['main_frame', 'sub_frame', 'image', 'media', 'script', 'object', 'websocket']
-                }
-            }
-        ];
-    });
-
-    if (domainPatternBlockingEnabled) {
-        DOMAIN_PATTERN_RULES.forEach(function (patternRule) {
-            rules.push({
-                id: allDomains.length + patternRule.idSuffix,
-                priority: 1,
-                action: {
-                    type: 'redirect',
-                    redirect: {
-                        url: getPatternRedirectUrl(patternRule.blockedLabel)
+                {
+                    id: blockRuleId,
+                    priority: 1,
+                    action: {
+                        type: 'block'
+                    },
+                    condition: {
+                        urlFilter: `||${domain}^`,
+                        resourceTypes: ['image', 'media', 'script', 'object', 'websocket']
                     }
-                },
-                condition: {
-                    regexFilter: patternRule.regexFilter,
-                    resourceTypes: ['main_frame', 'sub_frame']
                 }
-            });
+            ];
         });
-    }
 
-    if (safeSearchEnabled) {
-        const SAFE_SEARCH_CONFIGS = [
-            { id: 8001, domains: ['google.com'], param: 'safe', value: 'active' },
-            { id: 8002, domains: ['bing.com'], param: 'adlt', value: 'strict' },
-            { id: 8003, domains: ['duckduckgo.com'], param: 'kp', value: '1' },
-            { id: 8004, domains: ['yahoo.com'], param: 'vm', value: 'r' },
-            { id: 8005, domains: ['ya.ru', 'yandex.ru', 'yandex.com'], param: 'family', value: 'yes' },
-            { id: 8006, domains: ['brave.com', 'search.brave.com'], param: 'safesearch', value: 'strict' },
-            { id: 8007, domains: ['qwant.com'], param: 's', value: '2' },
-            { id: 8008, domains: ['mojeek.com'], param: 'safe', value: '1' }
-        ];
+        if (domainPatternBlockingEnabled) {
+            DOMAIN_PATTERN_RULES.forEach(function (patternRule) {
+                rules.push({
+                    id: allDomains.length * 2 + patternRule.idSuffix,
+                    priority: 1,
+                    action: {
+                        type: 'redirect',
+                        redirect: {
+                            url: getPatternRedirectUrl(patternRule.blockedLabel)
+                        }
+                    },
+                    condition: {
+                        regexFilter: patternRule.regexFilter,
+                        resourceTypes: ['main_frame', 'sub_frame']
+                    }
+                });
+            });
+        }
 
-        SAFE_SEARCH_CONFIGS.forEach((config, index) => {
-            rules.push({
-                id: allDomains.length + 8000 + index,
-                priority: 1,
-                action: {
-                    type: 'redirect',
-                    redirect: {
-                        transform: {
-                            queryTransform: {
-                                addOrReplaceParams: [
-                                    { key: config.param, value: config.value }
-                                ]
+        if (safeSearchEnabled) {
+            const SAFE_SEARCH_CONFIGS = [
+                { id: 8001, domains: ['google.com'], param: 'safe', value: 'active' },
+                { id: 8002, domains: ['bing.com'], param: 'adlt', value: 'strict' },
+                { id: 8003, domains: ['duckduckgo.com'], param: 'kp', value: '1' },
+                { id: 8004, domains: ['yahoo.com'], param: 'vm', value: 'r' },
+                { id: 8005, domains: ['ya.ru', 'yandex.ru', 'yandex.com'], param: 'family', value: 'yes' },
+                { id: 8006, domains: ['brave.com', 'search.brave.com'], param: 'safesearch', value: 'strict' },
+                { id: 8007, domains: ['qwant.com'], param: 's', value: '2' },
+                { id: 8008, domains: ['mojeek.com'], param: 'safe', value: '1' }
+            ];
+
+            SAFE_SEARCH_CONFIGS.forEach((config, index) => {
+                rules.push({
+                    id: allDomains.length * 2 + 8000 + index,
+                    priority: 1,
+                    action: {
+                        type: 'redirect',
+                        redirect: {
+                            transform: {
+                                queryTransform: {
+                                    addOrReplaceParams: [
+                                        { key: config.param, value: config.value }
+                                    ]
+                                }
                             }
                         }
+                    },
+                    condition: {
+                        requestDomains: config.domains,
+                        resourceTypes: ['main_frame', 'sub_frame']
                     }
-                },
-                condition: {
-                    requestDomains: config.domains,
-                    resourceTypes: ['main_frame', 'sub_frame']
-                }
+                });
             });
-        });
-    }
+        }
 
-    try {
+        const existingRules = await chrome.declarativeNetRequest.getDynamicRules();
+        const existingRuleIds = existingRules.map(rule => rule.id);
+
         await chrome.declarativeNetRequest.updateDynamicRules({
+            removeRuleIds: existingRuleIds,
             addRules: rules
         });
-        console.log('Blocking rules updated successfully');
-        return true;
+
+        console.log('Dynamic DNR rules updated atomically:', rules.length);
+        return { success: true };
     } catch (error) {
-        console.error('Error updating blocking rules:', error);
-        return false;
+        console.error('Error updating dynamic DNR rules atomically:', error);
+        return { success: false, error: error.message || 'DNR Rule update failed' };
     }
+}
+
+async function setupBlockingRules() {
+    const res = await updateRulesAtomic();
+    return res.success;
 }
 
 function escapeRegexForDnr(value) {
@@ -527,32 +580,49 @@ async function resetRules() {
 }
 
 async function updateRules() {
-    try {
-        await resetRules();
-        await setupBlockingRules();
-        console.log('Rules have been updated successfully');
-        return true;
-    } catch (error) {
-        console.error('Error updating rules:', error);
-        return false;
-    }
+    const res = await updateRulesAtomic();
+    return res.success;
 }
 
 async function loadData() {
+    const supportedLanguages = ['ru', 'en', 'de', 'es', 'fr', 'uk'];
+    let lang = 'en';
+
     try {
-        const language = await new Promise((resolve, reject) => {
-            chrome.storage.local.get('sys_language', (result) => {
-                if (result.sys_language) {
-                    resolve(result.sys_language); // resolve with the language value
-                } else {
-                    reject('Language not found in storage');
-                }
+        const storedLang = await new Promise(resolve => {
+            chrome.storage.local.get('sys_language', result => {
+                resolve(result && result.sys_language);
             });
         });
-        const response = await fetch(chrome.runtime.getURL(`../DB/${language}-DB.json`));
+
+        if (storedLang && supportedLanguages.includes(storedLang)) {
+            lang = storedLang;
+        }
+    } catch (e) {
+        console.warn('ClearMind: Error reading sys_language, fallback to en', e);
+    }
+
+    try {
+        const primaryUrl = chrome.runtime.getURL(`DB/${lang}-DB.json`);
+        const response = await fetch(primaryUrl);
+        if (!response.ok) {
+            throw new Error(`Failed to load ${lang}-DB.json, status: ${response.status}`);
+        }
         jsonData = await response.json();
-    } catch (error) {
-        console.error('Error loading JSON:', error);
+        console.log(`ClearMind: Loaded DB for locale '${lang}'`);
+    } catch (primaryErr) {
+        console.warn(`ClearMind: Primary DB load failed for '${lang}', attempting fallback to 'en-DB.json'`, primaryErr);
+        try {
+            const fallbackUrl = chrome.runtime.getURL('DB/en-DB.json');
+            const fallbackResponse = await fetch(fallbackUrl);
+            if (!fallbackResponse.ok) {
+                throw new Error(`Fallback en-DB.json load failed, status: ${fallbackResponse.status}`);
+            }
+            jsonData = await fallbackResponse.json();
+            console.log("ClearMind: Loaded fallback 'en-DB.json'");
+        } catch (fallbackErr) {
+            console.error("ClearMind: Critical error — failed to load both primary and fallback localization DBs", fallbackErr);
+        }
     }
 }
 

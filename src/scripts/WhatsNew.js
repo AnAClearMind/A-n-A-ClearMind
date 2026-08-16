@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    hideExpiredOfferBanners();
 
     // Fade in the container (consistent with other pages)
     const mainContainer = document.getElementById('mainContainer');
@@ -22,8 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         { id: 'whatsNewProtectionText',   messageName: 'whatsNewProtection' },
         { id: 'whatsNewLocalizationText', messageName: 'whatsNewLocalization' },
         { id: 'bounderlyCaption',     messageName: 'bounderlyCaption' },
-        { id: 'bounderlyOfferText',   messageName: 'bounderlyOfferText' },
-        { id: 'bounderlyOfferEnd',    messageName: 'bounderlyOfferEnd' },
+
     ];
 
     elementsToLocalize.forEach(({ id, messageName }) => {
@@ -60,19 +58,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 });
-
-function hideExpiredOfferBanners() {
-    const today = new Date();
-
-    document.querySelectorAll('[data-offer-hide-after]').forEach((banner) => {
-        const [year, month, day] = banner.dataset.offerHideAfter.split('-').map(Number);
-        const hideFrom = new Date(year, month - 1, day + 1);
-
-        if (today >= hideFrom) {
-            banner.hidden = true;
-        }
-    });
-}
 
 function getLocalizedMessage(messages, key) {
     return messages && messages[key] && messages[key].message ? messages[key].message : '';

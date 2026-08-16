@@ -19,46 +19,57 @@ function RegisterProgressTick() {
     });
 }
 
-async function UpdateProgressionAndProceed(proceedFunction) {
-    if (currentProgress < maxProgressValue) {
-        await RegisterProgressTick();
-        const nextDiv = scaleDivs[currentProgress];
-        nextDiv.classList.add('filled');
-        let rewardLevel = 0;
-        switch (currentProgress + 1) {
-            case 5: {
-                rewardLevel = 1;
-                break;
-            }
-            case 14: {
-                rewardLevel = 2;
-                break;
-            }
-            case 28: {
-                rewardLevel = 3;
-                break;
-            }
-            case 46: {
-                rewardLevel = 4;
-                break;
-            }
-            case 70: {
-                rewardLevel = 5;
-                break;
-            }
-        }
+let isProgressUpdateInFlight = false;
 
-        if (nextDiv.classList.contains('reward')) {
-            loadJSON().then(data => {
-                showPopup(proceedFunction, data.ProgressionPopup, data.ProgressionPopup.rewards[rewardLevel]);
-            });
-        }
-        else {
+async function UpdateProgressionAndProceed(proceedFunction) {
+    if (isProgressUpdateInFlight) {
+        console.warn('ClearMind: Progression update already in flight, ignoring click');
+        return;
+    }
+    isProgressUpdateInFlight = true;
+
+    try {
+        if (currentProgress < maxProgressValue) {
+            await RegisterProgressTick();
+            const nextDiv = scaleDivs ? scaleDivs[currentProgress] : null;
+            if (nextDiv) {
+                nextDiv.classList.add('filled');
+            }
+            let rewardLevel = 0;
+            switch (currentProgress + 1) {
+                case 5:
+                    rewardLevel = 1;
+                    break;
+                case 14:
+                    rewardLevel = 2;
+                    break;
+                case 28:
+                    rewardLevel = 3;
+                    break;
+                case 46:
+                    rewardLevel = 4;
+                    break;
+                case 70:
+                    rewardLevel = 5;
+                    break;
+            }
+
+            if (nextDiv && nextDiv.classList.contains('reward')) {
+                loadJSON().then(data => {
+                    showPopup(proceedFunction, data.ProgressionPopup, data.ProgressionPopup.rewards[rewardLevel]);
+                }).catch(() => {
+                    proceedFunction();
+                });
+            } else {
+                proceedFunction();
+            }
+        } else {
             proceedFunction();
         }
-    }
-    else {
-        proceedFunction();
+    } finally {
+        setTimeout(() => {
+            isProgressUpdateInFlight = false;
+        }, 300);
     }
 
     function showPopup(proceedFunction, ProgressionPopupData, rewardData) {
