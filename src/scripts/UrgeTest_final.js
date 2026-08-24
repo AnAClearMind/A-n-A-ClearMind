@@ -105,12 +105,16 @@ function confirmUrge() {
 
 
 async function resetUrge() {
-  chrome.storage.local.get(['cycleInSessionCounter'], (result) => {
-    const newValue = (result.cycleInSessionCounter || 0) + 1;
-    chrome.storage.local.set({ cycleInSessionCounter: newValue });
+  await new Promise((resolve) => {
+    chrome.storage.local.get(['cycleInSessionCounter'], (result) => {
+      const newValue = (result.cycleInSessionCounter || 0) + 1;
+      chrome.storage.local.set({ cycleInSessionCounter: newValue }, resolve);
+    });
   });
   await registerCardUsage_session();
-  chrome.storage.local.set({ urge_initial: Number(currentUrgeValue) });
+  await new Promise((resolve) => {
+    chrome.storage.local.set({ urge_initial: Number(currentUrgeValue) }, resolve);
+  });
   window.location.href = '../pages/CardSelection.html';
 }
 

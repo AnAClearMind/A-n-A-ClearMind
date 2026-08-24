@@ -1,6 +1,5 @@
 initializeDomains().then(updateRules).then(loadData);
 
-let blockedDomains = [];
 let customBlockedDomains = [];
 let domainRuleIds = {};
 let jsonData;
@@ -55,7 +54,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
         console.log('Extension installed');
 
         // Add isNewInstall parameter to the URL
-        chrome.tabs.create({ url: "../pages/About.html?isNewInstall=true" });
+        chrome.tabs.create({ url: chrome.runtime.getURL("pages/About.html?isNewInstall=true") });
 
         chrome.storage.local.set({ SlidesDataVar_Informational: 0 });
         chrome.storage.local.set({ SlidesDataVar_MessageToYourself: 0 });
@@ -76,7 +75,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
         const currentVersion = chrome.runtime.getManifest().version;
         if (currentVersion === '2.0' && details.previousVersion !== '2.0') {
-            chrome.tabs.create({ url: "../pages/WhatsNew.html" });
+            chrome.tabs.create({ url: chrome.runtime.getURL("pages/WhatsNew.html") });
         }
     }
 });
@@ -313,9 +312,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 // Load blocked domains when the extension starts
 async function initializeDomains() {
     const result = await chrome.storage.local.get('customBlockedDomains');
-    blockedDomains = [];
     customBlockedDomains = result.customBlockedDomains || [];
-    console.log('Blocked domains loaded:', blockedDomains);
     console.log('Custom blocked domains loaded:', customBlockedDomains);
 
     chrome.storage.local.get(['domainPatternBlockingEnabled'], function (settings) {
@@ -439,7 +436,7 @@ async function updateRulesAtomic(targetCustomDomains) {
         const settings = await chrome.storage.local.get(['domainPatternBlockingEnabled', 'safeSearchEnabled']);
         const domainPatternBlockingEnabled = settings.domainPatternBlockingEnabled !== false;
         const safeSearchEnabled = settings.safeSearchEnabled !== false;
-        const allDomains = blockedDomains.concat(activeCustomDomains);
+        const allDomains = activeCustomDomains;
 
         const rules = allDomains.flatMap((domain, index) => {
             const frameRuleId = (index * 2) + 1;
@@ -546,37 +543,11 @@ async function updateRulesAtomic(targetCustomDomains) {
     }
 }
 
-async function setupBlockingRules() {
-    const res = await updateRulesAtomic();
-    return res.success;
-}
-
-function escapeRegexForDnr(value) {
-    return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 // Function to save custom domains to storage
 function saveCustomDomains() {
     chrome.storage.local.set({ customBlockedDomains: customBlockedDomains }, function () {
         console.log('Custom domains saved:', customBlockedDomains);
     });
-}
-
-
-async function resetRules() {
-    try {
-        const currentRules = await chrome.declarativeNetRequest.getDynamicRules();
-        const ruleIdsToRemove = currentRules.map(rule => rule.id);
-
-        await chrome.declarativeNetRequest.updateDynamicRules({
-            removeRuleIds: ruleIdsToRemove
-        });
-
-        domainRuleIds = {};
-        console.log('All rules have been reset');
-    } catch (error) {
-        console.error('Error resetting rules:', error);
-    }
 }
 
 async function updateRules() {
@@ -585,7 +556,7 @@ async function updateRules() {
 }
 
 async function loadData() {
-    const supportedLanguages = ['ru', 'en', 'de', 'es', 'fr', 'uk'];
+    const supportedLanguages = ['en', 'es', 'fr', 'de', 'ru', 'hi', 'it', 'ja', 'ko', 'pl', 'pt', 'tr', 'zh-Hans'];
     let lang = 'en';
 
     try {

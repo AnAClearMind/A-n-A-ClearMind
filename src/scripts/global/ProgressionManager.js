@@ -1,21 +1,28 @@
-let currentProgress;
+let currentProgress = 0;
 let scaleDivs;
 const maxProgressValue = 70;
 
 function UpdateFooterState() {
     scaleDivs = document.querySelectorAll(".scale div");
-    chrome.storage.local.get(['progress'], function (result) {
-        let progress = Math.min(result.progress || 0, maxProgressValue);
-        currentProgress = progress;
-        for (let i = 0; i < progress && i < scaleDivs.length; i++) {
-            scaleDivs[i].classList.add('filled');
-        }
+    return new Promise((resolve) => {
+        chrome.storage.local.get(['progress'], function (result) {
+            let rawProgress = Number(result && result.progress);
+            let progress = Math.min(isNaN(rawProgress) || rawProgress < 0 ? 0 : rawProgress, maxProgressValue);
+            currentProgress = progress;
+            if (scaleDivs && scaleDivs.length) {
+                for (let i = 0; i < progress && i < scaleDivs.length; i++) {
+                    scaleDivs[i].classList.add('filled');
+                }
+            }
+            resolve(currentProgress);
+        });
     });
 }
 
 function RegisterProgressTick() {
     return new Promise((resolve) => {
-        chrome.storage.local.set({ progress: currentProgress + 1 }, resolve);
+        const safeCurrent = (typeof currentProgress === 'number' && !isNaN(currentProgress)) ? currentProgress : 0;
+        chrome.storage.local.set({ progress: safeCurrent + 1 }, resolve);
     });
 }
 
@@ -29,6 +36,10 @@ async function UpdateProgressionAndProceed(proceedFunction) {
     isProgressUpdateInFlight = true;
 
     try {
+        if (typeof currentProgress !== 'number' || isNaN(currentProgress)) {
+            await UpdateFooterState();
+        }
+
         if (currentProgress < maxProgressValue) {
             await RegisterProgressTick();
             const nextDiv = scaleDivs ? scaleDivs[currentProgress] : null;
@@ -54,9 +65,13 @@ async function UpdateProgressionAndProceed(proceedFunction) {
                     break;
             }
 
-            if (nextDiv && nextDiv.classList.contains('reward')) {
+            if (nextDiv && nextDiv.classList.contains('reward') && rewardLevel > 0) {
                 loadJSON().then(data => {
-                    showPopup(proceedFunction, data.ProgressionPopup, data.ProgressionPopup.rewards[rewardLevel]);
+                    if (data && data.ProgressionPopup && data.ProgressionPopup.rewards && data.ProgressionPopup.rewards[rewardLevel]) {
+                        showPopup(proceedFunction, data.ProgressionPopup, data.ProgressionPopup.rewards[rewardLevel]);
+                    } else {
+                        proceedFunction();
+                    }
                 }).catch(() => {
                     proceedFunction();
                 });

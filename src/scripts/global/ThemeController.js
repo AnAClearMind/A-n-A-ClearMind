@@ -177,4 +177,16 @@ function isSafeHref(href) {
     }
 }
 
+async function getDB() {
+    return new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage({ action: 'getData' }, (response) => {
+            if (response) {
+                resolve(response);
+            } else {
+                reject('Failed to load data');
+            }
+        });
+    });
+}
+
 

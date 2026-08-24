@@ -6,20 +6,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 window.addEventListener('load', async () => {
     document.getElementById('mainContainer').style.opacity = '1';
-    document.getElementById('quoteReflectionButton').addEventListener('click', function () { UpdateProgressionAndProceed(confirmReflection); });
-});
-
-async function getDB() {
-    return new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage({ action: 'getData' }, (response) => {
-            if (response) {
-                resolve(response);
-            } else {
-                reject('Failed to load data');
-            }
-        });
+    document.getElementById('quoteReflectionButton').addEventListener('click', function () {
+        UpdateProgressionAndProceed(() => completeCurrentCardAndProceed("Quote.html"));
     });
-}
+});
 
 function dataLoadFromBase(Quote) {
     const question = document.getElementById('question');
@@ -32,10 +22,10 @@ function dataLoadFromBase(Quote) {
 
     return new Promise((resolve, reject) => {
         chrome.storage.local.get('SlidesDataVar_Quote', (result) => {
-            const dataIndex = result.SlidesDataVar_Quote;
+            const dataIndex = result.SlidesDataVar_Quote || 0;
 
-            const fact = Quote.content[dataIndex];
-            const formattedText = fact.replace(/["']/g, (match) => `&quot;`);
+            const fact = Quote.content[dataIndex] || '';
+            const formattedText = fact.replace(/["']/g, () => `&quot;`);
 
             setSafeHTML(document.getElementById('quoteText'), formattedText);
 
@@ -46,22 +36,4 @@ function dataLoadFromBase(Quote) {
             });
         });
     });
-};
-
-function confirmReflection() {
-    var container = document.getElementById('mainContainer');
-    container.style.opacity = '0';
-    //
-    setTimeout(async function () {
-        await registerCardUsage_cycle("Quote.html");
-        const randomCard = await requestNextCard();
-        if (randomCard) {
-            console.log("Random card selected:", randomCard);
-            window.location.href = `${randomCard}`;
-        }
-        else {
-            console.log("No cards left, going to UrgeTest_final");
-            window.location.href = '../pages/UrgeTest_final.html';;
-        }
-    }, 1000);
 }

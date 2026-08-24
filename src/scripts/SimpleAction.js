@@ -9,28 +9,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 window.addEventListener('load', async () => {
 	document.getElementById('mainContainer').style.opacity = '1';
-	document.getElementById('confirmButton').addEventListener('click', function () { UpdateProgressionAndProceed(confirmPushups); });
+	document.getElementById('confirmButton').addEventListener('click', function () {
+		UpdateProgressionAndProceed(() => completeCurrentCardAndProceed("SimpleAction.html"));
+	});
 	startTimer();
 });
-
-async function getDB() {
-	return new Promise((resolve, reject) => {
-		chrome.runtime.sendMessage({ action: 'getData' }, (response) => {
-			if (response) {
-				resolve(response);
-			} else {
-				reject('Failed to load data');
-			}
-		});
-	});
-}
 
 function dataLoadFromBase(SimpleAction) {
 	return new Promise((resolve, reject) => {
 		chrome.storage.local.get('SlidesDataVar_SimpleAction', (result) => {
-			const dataIndex = result.SlidesDataVar_SimpleAction;
+			const dataIndex = result.SlidesDataVar_SimpleAction || 0;
 
-			const fact = SimpleAction.content[dataIndex];
+			const fact = SimpleAction.content[dataIndex] || '';
 
 			setSafeHTML(document.getElementById('actionText'), fact);
 
@@ -41,7 +31,7 @@ function dataLoadFromBase(SimpleAction) {
 			});
 		});
 	});
-};
+}
 
 function startTimer() {
 	const confirmButton = document.getElementById('confirmButton');
@@ -53,27 +43,6 @@ function startTimer() {
 			clearInterval(timerId);
 			confirmButton.disabled = false;
 			confirmButton.textContent = 'Confirm';
-		}
-	}, 1000);
-}
-
-function confirmPushups() {
-	var container = document.getElementById('mainContainer');
-	container.style.opacity = '0';
-
-
-	setTimeout(async function () {
-		console.log("Pushups confirmed");
-		await registerCardUsage_cycle("SimpleAction.html");
-		//
-		const randomCard = await requestNextCard();
-		if (randomCard) {
-			console.log("Random card selected:", randomCard);
-			window.location.href = `${randomCard}`;
-		}
-		else {
-			console.log("No cards left, going to UrgeTest_final");
-			window.location.href = '../pages/UrgeTest_final.html';;
 		}
 	}, 1000);
 }

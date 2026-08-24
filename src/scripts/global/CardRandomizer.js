@@ -154,3 +154,24 @@ function getCycleIterator() {
         });
     });
 }
+
+function completeCurrentCardAndProceed(cardFileName) {
+    const container = document.getElementById('mainContainer');
+    if (container) {
+        container.style.opacity = '0';
+    }
+
+    setTimeout(async function () {
+        if (cardFileName) {
+            await registerCardUsage_cycle(cardFileName);
+        }
+        const randomCard = await requestNextCard();
+        if (randomCard) {
+            console.log("Random card selected:", randomCard);
+            window.location.href = `${randomCard}`;
+        } else {
+            console.log("No cards left, going to UrgeTest_final");
+            window.location.href = '../pages/UrgeTest_final.html';
+        }
+    }, 1000);
+}

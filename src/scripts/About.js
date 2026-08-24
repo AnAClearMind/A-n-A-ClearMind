@@ -205,38 +205,75 @@ function openWebpage(url) {
     window.open(url, '_blank', 'noopener,noreferrer');
 }
 
-function saveUserContent(index) {
-    const fileInput = document.getElementById(`imageFile${index}`);
-    const file = fileInput.files[0];
-    const userText = document.getElementById(`userText${index}`).value;
-    const maxSizeInBytes = 2 * 1024 * 1024;
-
-    chrome.storage.local.get('userSlides', (result) => {
-        const slides = result.userSlides || [{}, {}, {}]; // Initialize if undefined
-        const currentSlide = slides[index - 1];
-
-        if (file && file.size > maxSizeInBytes) {
-            alert('Please, do not use image files above 2mb');
-            return;
+function compressImageFile(file, maxWidth = 1200, quality = 0.82) {
+    return new Promise((resolve, reject) => {
+        if (!file || !file.type.startsWith('image/')) {
+            return reject(new Error('Invalid image file'));
         }
 
         const reader = new FileReader();
-        reader.onload = function (event) {
-            const fileContent = event.target.result;
-            slides[index - 1] = { text: userText, image: fileContent };
-            chrome.storage.local.set({ userSlides: slides }, () => {
-                console.log(`Slide ${index} saved to extension storage.`);
-            });
-        };
+        reader.onload = function (e) {
+            const img = new Image();
+            img.onload = function () {
+                let width = img.width;
+                let height = img.height;
 
+                if (width > maxWidth || height > maxWidth) {
+                    if (width > height) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    } else {
+                        width = Math.round((width * maxWidth) / height);
+                        height = maxWidth;
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const compressed = canvas.toDataURL('image/jpeg', quality);
+                resolve(compressed);
+            };
+            img.onerror = () => reject(new Error('Failed to load image for compression'));
+            img.src = e.target.result;
+        };
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(file);
+    });
+}
+
+async function saveUserContent(index) {
+    const fileInput = document.getElementById(`imageFile${index}`);
+    const file = fileInput.files[0];
+    const userText = document.getElementById(`userText${index}`).value;
+    const maxSizeInBytes = 10 * 1024 * 1024;
+
+    if (file && file.size > maxSizeInBytes) {
+        alert('Please select an image smaller than 10MB.');
+        return;
+    }
+
+    chrome.storage.local.get('userSlides', async (result) => {
+        const slides = result.userSlides || [{}, {}, {}];
+        const currentSlide = slides[index - 1] || {};
+
+        let imageContent = currentSlide.image || '';
         if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            slides[index - 1] = { text: userText, image: currentSlide.image };
-            chrome.storage.local.set({ userSlides: slides }, () => {
-                console.log(`Slide ${index} saved to extension storage.`);
-            });
+            try {
+                imageContent = await compressImageFile(file);
+            } catch (err) {
+                console.error('ClearMind: Error compressing image:', err);
+                imageContent = currentSlide.image || '';
+            }
         }
+
+        slides[index - 1] = { text: userText, image: imageContent };
+        chrome.storage.local.set({ userSlides: slides }, () => {
+            console.log(`Slide ${index} saved to extension storage.`);
+        });
     });
 }
 
@@ -281,19 +318,20 @@ function openTab(tabIndex) {
     sessionStorage.setItem('cm_active_subtab', tabIndex);
 }
 
-function previewImage(index) {
+async function previewImage(index) {
     const fileInput = document.getElementById(`imageFile${index}`);
     const preview = document.getElementById(`imagePreview${index}`);
     const file = fileInput.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = function () {
-        preview.src = reader.result;
-        preview.style.display = 'block';
-    };
 
     if (file) {
-        reader.readAsDataURL(file);
+        try {
+            const compressed = await compressImageFile(file);
+            preview.src = compressed;
+            preview.style.display = 'block';
+        } catch (err) {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
     } else {
         preview.src = "";
         preview.style.display = 'none';
@@ -624,20 +662,20 @@ async function importBlocklist() {
 
             chrome.runtime.sendMessage({ action: "importDomains", domains: domainsToAdd }, function (response) {
                 if (chrome.runtime.lastError) {
-                    alert("Ошибка импорта: " + chrome.runtime.lastError.message);
+                    alert("Import error: " + chrome.runtime.lastError.message);
                     return;
                 }
 
                 if (response && response.success) {
-                    const summary = `Импорт завершен!\n\n` +
-                        `• Добавлено новых: ${response.added}\n` +
-                        `• Пропущено (дубликаты): ${response.duplicates}\n` +
-                        `• Некорректные форматы: ${response.invalid}`;
+                    const summary = `Import completed!\n\n` +
+                        `• Added: ${response.added}\n` +
+                        `• Skipped (duplicates): ${response.duplicates}\n` +
+                        `• Invalid format: ${response.invalid}`;
                     alert(summary);
                     loadCustomBlocklistEditor();
                 } else {
-                    const errMsg = (response && response.error) ? response.error : "Неизвестная ошибка при импорте";
-                    alert("Ошибка импорта: " + errMsg);
+                    const errMsg = (response && response.error) ? response.error : "Unknown import error";
+                    alert("Import error: " + errMsg);
                 }
             });
         };
