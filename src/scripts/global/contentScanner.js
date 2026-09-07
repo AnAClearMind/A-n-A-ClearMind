@@ -53,6 +53,22 @@
         strong: 6,
         medium: 5
     };
+    const SCRIPT_FILTERS = {
+        ru: /[а-яё]/i,
+        ar: /[\u0600-\u06FF]/,
+        hi: /[\u0900-\u097F]/,
+        'zh-Hans': /[\u3400-\u4DBF\u4E00-\u9FFF]/,
+        ja: /[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF]/,
+        ko: /[\uAC00-\uD7AF\u1100-\u11FF]/,
+        en: /[a-z]/i,
+        es: /[a-z]/i,
+        fr: /[a-z]/i,
+        de: /[a-z]/i,
+        pt: /[a-z]/i,
+        it: /[a-z]/i,
+        pl: /[a-z]/i,
+        tr: /[a-z]/i
+    };
 
 
     let keywordDb = null;
@@ -130,11 +146,16 @@
                         const normalized = normalizeText(kw);
                         const escaped = escapeRegex(normalized).replace(/\s+/g, '\\s+');
                         const isCjk = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(kw);
+                        const isLatinShortForeign = (langCode !== 'en' && normalized.length <= 4 && /^[a-z0-9\s-]+$/i.test(normalized));
                         return {
                             original: kw,
+                            isLatinShortForeign: isLatinShortForeign,
                             regex: isCjk
                                 ? new RegExp(escaped, 'iu')
-                                : new RegExp('(^|[^\\p{L}\\p{N}])(' + escaped + ')([^\\p{L}\\p{N}]|$)', 'iu')
+                                : new RegExp('(^|[^\\p{L}\\p{N}])(' + escaped + ')([^\\p{L}\\p{N}]|$)', 'iu'),
+                            globalRegex: isCjk
+                                ? new RegExp(escaped, 'giu')
+                                : new RegExp('(^|[^\\p{L}\\p{N}])(' + escaped + ')(?=[^\\p{L}\\p{N}]|$)', 'giu')
                         };
                     });
                 });
@@ -187,14 +208,19 @@
 
     function scanPage() {
         const sources = collectTextSources();
+        const pageLang = (document.documentElement && document.documentElement.lang ? document.documentElement.lang.toLowerCase() : '');
         const summary = {
             score: 0,
+            hasHeaderStrong: false,
             matchedLanguages: {},
             matchedCategories: {
                 strong: 0,
                 medium: 0
             },
-            matchedTerms: {}
+            matchedTerms: {},
+            languageTermCounts: {},
+            matchedLanguageTerms: {},
+            potentialForeignShortMatches: []
         };
 
         Object.keys(sources).forEach(function (sourceName) {
@@ -203,7 +229,19 @@
                 return;
             }
 
-            scoreTextSource(normalizedText, SOURCE_MULTIPLIERS[sourceName] || 1, summary);
+            scoreTextSource(normalizedText, SOURCE_MULTIPLIERS[sourceName] || 1, summary, sourceName);
+        });
+
+        // Prune isolated short foreign Latin terms on non-matching language pages to prevent false positives
+        summary.potentialForeignShortMatches.forEach(function (item) {
+            if (!pageLang.startsWith(item.lang) && (summary.languageTermCounts[item.lang] || 0) < 2) {
+                summary.score -= item.points;
+                summary.matchedCategories[item.category] -= 1;
+                delete summary.matchedTerms[item.termKey];
+                if (summary.languageTermCounts[item.lang] <= 1) {
+                    delete summary.matchedLanguages[item.lang];
+                }
+            }
         });
 
         if (!hasBlockingCombination(summary)) {
@@ -213,13 +251,32 @@
         summary.score = Math.round(summary.score);
         summary.matchedLanguages = Object.keys(summary.matchedLanguages);
         delete summary.matchedTerms;
+        delete summary.matchedLanguageTerms;
+        delete summary.languageTermCounts;
+        delete summary.potentialForeignShortMatches;
         return summary;
     }
 
     function hasBlockingCombination(summary) {
         const distinctTerms = Object.keys(summary.matchedTerms).length;
+        const score = summary.score;
 
-        return distinctTerms >= 5 || (distinctTerms >= 2 && summary.score >= BLOCK_THRESHOLD * 2);
+        if (distinctTerms >= 5) {
+            return true;
+        }
+        if (distinctTerms >= 4 && score >= BLOCK_THRESHOLD) {
+            return true;
+        }
+        if (distinctTerms >= 3 && score >= 50) {
+            return true;
+        }
+        if (distinctTerms >= 2 && score >= 70) {
+            return true;
+        }
+        if (summary.hasHeaderStrong && distinctTerms >= 2 && score >= BLOCK_THRESHOLD) {
+            return true;
+        }
+        return false;
     }
 
     function getBodyTextFast() {
@@ -244,8 +301,22 @@
     function collectTextSources() {
         const metaDescription = getMetaContent('description');
         const metaKeywords = getMetaContent('keywords');
+        const ogTitle = getMetaContent('og:title');
+        const ogDescription = getMetaContent('og:description');
+        const twitterTitle = getMetaContent('twitter:title');
+        const twitterDescription = getMetaContent('twitter:description');
+        const allTitleMeta = [
+            document.title,
+            metaDescription,
+            metaKeywords,
+            ogTitle,
+            ogDescription,
+            twitterTitle,
+            twitterDescription
+        ].filter(Boolean).join(' ');
+
         const headingText = getElementsText('h1, h2, h3');
-        const linkButtonText = getElementsText('a, button');
+        const linkButtonText = getLinksAndButtonsText() + ' ' + getImageAltText();
         const bodyText = getBodyTextFast();
 
         let safePath = location.pathname || '';
@@ -256,16 +327,16 @@
         }
 
         return {
-            titleMeta: limitText([document.title, metaDescription, metaKeywords].join(' '), 20000),
+            titleMeta: limitText(allTitleMeta, 20000),
             headings: limitText(headingText, 20000),
-            linksButtons: limitText(linkButtonText, 20000),
+            linksButtons: limitText(linkButtonText, 25000),
             body: limitText(bodyText, MAX_TEXT_LENGTH),
             path: limitText(safePath, 5000)
         };
     }
 
-    function getMetaContent(name) {
-        const element = document.querySelector('meta[name="' + name + '" i]');
+    function getMetaContent(nameOrProperty) {
+        const element = document.querySelector('meta[name="' + nameOrProperty + '" i], meta[property="' + nameOrProperty + '" i]');
         return element ? element.getAttribute('content') || '' : '';
     }
 
@@ -273,6 +344,38 @@
         return Array.prototype.map.call(document.querySelectorAll(selector), function (element) {
             return element.textContent || '';
         }).join(' ');
+    }
+
+    function getLinksAndButtonsText() {
+        const elements = document.querySelectorAll('a, button');
+        const parts = [];
+        const maxElements = Math.min(elements.length, 300);
+        for (let i = 0; i < maxElements; i++) {
+            const el = elements[i];
+            const text = el.textContent;
+            if (text) {
+                parts.push(text);
+            }
+            const title = el.getAttribute('title');
+            if (title && title !== text) {
+                parts.push(title);
+            }
+        }
+        return parts.join(' ');
+    }
+
+    function getImageAltText() {
+        const images = document.images || document.querySelectorAll('img');
+        const parts = [];
+        const maxImages = Math.min(images.length, 50);
+        const genericAlts = /^(image|photo|picture|thumbnail|logo|icon|avatar|star|full star|half star|empty star|banner|pic|img)$/i;
+        for (let i = 0; i < maxImages; i++) {
+            const alt = images[i].getAttribute('alt');
+            if (alt && alt.length > 2 && !genericAlts.test(alt.trim())) {
+                parts.push(alt);
+            }
+        }
+        return parts.join(' ');
     }
 
     function limitText(text, maxLength) {
@@ -290,11 +393,16 @@
             .trim();
     }
 
-    function scoreTextSource(text, sourceMultiplier, summary) {
+    function scoreTextSource(text, sourceMultiplier, summary, sourceName) {
         const languages = keywordDb.languages || {};
         const matchedKeywords = {};
 
         Object.keys(languages).forEach(function (languageCode) {
+            const filter = SCRIPT_FILTERS[languageCode];
+            if (filter && !filter.test(text)) {
+                return;
+            }
+
             const language = languages[languageCode];
 
             Object.keys(CATEGORY_WEIGHTS).forEach(function (category) {
@@ -314,10 +422,35 @@
                     if (kwObj.regex.test(text)) {
                         matchedKeywords[matchKey] = true;
                         categoryMatches += 1;
-                        summary.score += CATEGORY_WEIGHTS[category] * sourceMultiplier;
+
+                        const matchCount = (text.match(kwObj.globalRegex) || []).length;
+                        const extraMatches = Math.min(Math.max(0, matchCount - 1), 3);
+                        const repeatBonus = extraMatches * 1;
+                        const pointsAdded = (CATEGORY_WEIGHTS[category] + repeatBonus) * sourceMultiplier;
+
+                        summary.score += pointsAdded;
                         summary.matchedLanguages[languageCode] = true;
                         summary.matchedCategories[category] += 1;
                         summary.matchedTerms[matchKey] = true;
+
+                        const langTermKey = languageCode + ':' + kwObj.original;
+                        if (!summary.matchedLanguageTerms[langTermKey]) {
+                            summary.matchedLanguageTerms[langTermKey] = true;
+                            summary.languageTermCounts[languageCode] = (summary.languageTermCounts[languageCode] || 0) + 1;
+                        }
+
+                        if (category === 'strong' && (sourceName === 'titleMeta' || sourceName === 'headings')) {
+                            summary.hasHeaderStrong = true;
+                        }
+
+                        if (kwObj.isLatinShortForeign) {
+                            summary.potentialForeignShortMatches.push({
+                                lang: languageCode,
+                                termKey: matchKey,
+                                points: pointsAdded,
+                                category: category
+                            });
+                        }
                     }
                 });
             });
