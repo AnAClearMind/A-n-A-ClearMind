@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    const userImg = document.getElementById('userImage');
+    if (userImg) {
+        userImg.onerror = function () {
+            this.style.display = 'none';
+        };
+    }
     const data = await getDB();
     SetupDynamicDataFromDB(data.MessageToYourself);
     UpdateFooterState();

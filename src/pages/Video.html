@@ -27,6 +27,73 @@
         .video-container {
             margin-bottom: 20px;
         }
+        .video-preview {
+            width: 560px;
+            height: 315px;
+            max-width: 100%;
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            background-color: #000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+            user-select: none;
+        }
+        .video-preview:hover, .video-preview:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background-color: #1a1a1a;
+        }
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            transition: background 0.2s ease;
+        }
+        .video-preview:hover .video-overlay, .video-preview:focus-visible .video-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.7) 100%);
+        }
+        .play-button-wrapper {
+            transition: transform 0.2s ease, filter 0.2s ease;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+        }
+        .video-preview:hover .play-button-wrapper, .video-preview:focus-visible .play-button-wrapper {
+            transform: scale(1.12);
+        }
+        .video-watch-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            font-size: 0.95em;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 8px 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: background 0.2s ease;
+        }
+        .video-preview:hover .video-watch-badge, .video-preview:focus-visible .video-watch-badge {
+            background: rgba(0, 0, 0, 0.75);
+        }
 		button {
 			background-color: #1abc9c;
 			color: white;
@@ -156,7 +223,20 @@
 <body>
     <div class="container" id="mainContainer">
         <div class="video-container">
-            <iframe id="viewport" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="no-referrer" allowfullscreen></iframe>	
+            <div class="video-preview" id="videoPreview" role="button" tabindex="0" title="Watch on YouTube">
+                <img id="videoThumbnail" class="video-thumbnail" alt="Video thumbnail" src="">
+                <div class="video-overlay">
+                    <div class="play-button-wrapper">
+                        <svg class="play-icon" viewBox="0 0 68 48" width="68" height="48">
+                            <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#ff0000"></path>
+                            <path d="M 45,24 27,14 27,34" fill="#ffffff"></path>
+                        </svg>
+                    </div>
+                    <div class="video-watch-badge">
+                        <span>YouTube</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <button id="confirmVideoButton"></button>
     </div>
