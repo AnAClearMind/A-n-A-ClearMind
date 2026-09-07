@@ -115,14 +115,18 @@
             if (!response.ok) {
                 throw new Error('HTTP ' + response.status);
             }
-            return response.json();
-        }).then(function (db) {
-            const langs = db.languages || {};
+            return response.text();
+        }).then(function (rawJson) {
+            const parsed = JSON.parse(rawJson);
+            const compiledDb = { languages: {} };
+            const langs = parsed.languages || {};
+
             Object.keys(langs).forEach(function (langCode) {
+                compiledDb.languages[langCode] = {};
                 const lang = langs[langCode];
                 ['strong', 'medium'].forEach(function (category) {
                     const keywords = Array.isArray(lang[category]) ? lang[category] : [];
-                    lang[category] = keywords.map(function (kw) {
+                    compiledDb.languages[langCode][category] = keywords.map(function (kw) {
                         const normalized = normalizeText(kw);
                         const escaped = escapeRegex(normalized).replace(/\s+/g, '\\s+');
                         const isCjk = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(kw);
@@ -135,7 +139,7 @@
                     });
                 });
             });
-            return db;
+            return compiledDb;
         });
     }
 
