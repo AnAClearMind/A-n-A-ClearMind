@@ -155,7 +155,13 @@ function getCycleIterator() {
     });
 }
 
+let isCardTransitionInFlight = false;
+
 function completeCurrentCardAndProceed(cardFileName) {
+    if (isCardTransitionInFlight) {
+        return;
+    }
+    isCardTransitionInFlight = true;
     const container = document.getElementById('mainContainer');
     if (container) {
         container.style.opacity = '0';

@@ -15,7 +15,8 @@
     "message": "'google' 차단은 사용할 수 없습니다"
   },
   "customBlocklistLimitReached": {
-    "message": "사용자 지정 차단 목록 제한인 4900개 도메인에 도달했습니다"
+    "message": "사용자 지정 차단 목록 제한인 $LIMIT$개 도메인에 도달했습니다",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "차단 규칙 업데이트에 실패했습니다"

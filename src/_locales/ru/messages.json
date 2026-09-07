@@ -15,7 +15,8 @@
     "message": "Блокировка 'google' недоступна"
   },
   "customBlocklistLimitReached": {
-    "message": "Достигнут лимит пользовательского списка блокировки в 4900 доменов"
+    "message": "Достигнут лимит пользовательского списка блокировки в $LIMIT$ доменов",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "Не удалось обновить правила блокировки"

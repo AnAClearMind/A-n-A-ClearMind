@@ -6,6 +6,7 @@
     const MAX_RESCANS = 3;
     const RESCAN_DELAY_MS = 1500;
     const MUTATION_DEBOUNCE_MS = 1500;
+    const MUTATION_MAX_WAIT_MS = 5000;
     const BUILT_IN_ALLOWED_DOMAINS = [
         'google.com',
         'bing.com',
@@ -75,6 +76,8 @@
     let scanFinished = false;
     let scanCount = 0;
     let mutationTimer = null;
+    let pendingMutationSince = null;
+    let lastScanTime = 0;
 
     if (!shouldScanCurrentPage()) {
         return;
@@ -87,8 +90,8 @@
 
         loadKeywordDb().then(function (db) {
             keywordDb = db;
-            runScanWithRescan();
             observeDynamicContent();
+            runScanWithRescan();
         }).catch(function (error) {
             console.warn('ClearMind content scanner could not load keyword DB:', error);
         });
@@ -169,6 +172,9 @@
             return;
         }
 
+        window.clearTimeout(mutationTimer);
+        pendingMutationSince = null;
+        lastScanTime = Date.now();
         scanCount += 1;
         const result = scanPage();
 
@@ -180,8 +186,24 @@
         }
 
         if (result.score >= RESCAN_THRESHOLD && scanCount < MAX_RESCANS) {
-            window.setTimeout(runScanWithRescan, RESCAN_DELAY_MS);
+            mutationTimer = window.setTimeout(runScanWithRescan, RESCAN_DELAY_MS);
         }
+    }
+
+    function scheduleDynamicScan() {
+        if (scanFinished) {
+            return;
+        }
+        const now = Date.now();
+        if (pendingMutationSince === null) {
+            pendingMutationSince = now;
+        }
+        // Limit both scan frequency and how long continuous updates can postpone a scan.
+        const deadline = Math.max(lastScanTime + MUTATION_DEBOUNCE_MS,
+            Math.min(now + MUTATION_DEBOUNCE_MS, pendingMutationSince + MUTATION_MAX_WAIT_MS));
+        scanCount = 0;
+        window.clearTimeout(mutationTimer);
+        mutationTimer = window.setTimeout(runScanWithRescan, Math.max(0, deadline - now));
     }
 
     function observeDynamicContent() {
@@ -189,21 +211,24 @@
             return;
         }
 
-        const observer = new MutationObserver(function () {
-            if (scanFinished || scanCount >= MAX_RESCANS) {
-                observer.disconnect();
-                return;
-            }
+        const observer = new MutationObserver(scheduleDynamicScan);
 
-            window.clearTimeout(mutationTimer);
-            mutationTimer = window.setTimeout(runScanWithRescan, MUTATION_DEBOUNCE_MS);
-        });
-
-        observer.observe(document.body, {
+        observer.observe(document.documentElement, {
             childList: true,
             subtree: true,
-            characterData: true
+            characterData: true,
+            attributes: true,
+            attributeFilter: ['alt', 'title', 'content', 'lang']
         });
+
+        // pushState does not emit popstate, and a route can change without DOM mutations.
+        let lastUrl = location.href;
+        window.setInterval(function () {
+            if (location.href !== lastUrl) {
+                lastUrl = location.href;
+                scheduleDynamicScan();
+            }
+        }, MUTATION_DEBOUNCE_MS);
     }
 
     function scanPage() {
@@ -218,6 +243,7 @@
                 medium: 0
             },
             matchedTerms: {},
+            headerStrongTerms: {},
             languageTermCounts: {},
             matchedLanguageTerms: {},
             potentialForeignShortMatches: []
@@ -238,11 +264,13 @@
                 summary.score -= item.points;
                 summary.matchedCategories[item.category] -= 1;
                 delete summary.matchedTerms[item.termKey];
+                delete summary.headerStrongTerms[item.termKey];
                 if (summary.languageTermCounts[item.lang] <= 1) {
                     delete summary.matchedLanguages[item.lang];
                 }
             }
         });
+        summary.hasHeaderStrong = Object.keys(summary.headerStrongTerms).length > 0;
 
         if (!hasBlockingCombination(summary)) {
             summary.score = Math.min(summary.score, RESCAN_THRESHOLD - 1);
@@ -251,6 +279,7 @@
         summary.score = Math.round(summary.score);
         summary.matchedLanguages = Object.keys(summary.matchedLanguages);
         delete summary.matchedTerms;
+        delete summary.headerStrongTerms;
         delete summary.matchedLanguageTerms;
         delete summary.languageTermCounts;
         delete summary.potentialForeignShortMatches;
@@ -440,7 +469,7 @@
                         }
 
                         if (category === 'strong' && (sourceName === 'titleMeta' || sourceName === 'headings')) {
-                            summary.hasHeaderStrong = true;
+                            summary.headerStrongTerms[matchKey] = true;
                         }
 
                         if (kwObj.isLatinShortForeign) {
@@ -462,6 +491,8 @@
     }
 
     function reportBlockedPage(result) {
+        const root = document.documentElement;
+        const previousDisplay = root ? root.style.display : '';
         if (document.documentElement) {
             document.documentElement.style.display = 'none';
         }
@@ -471,13 +502,33 @@
             } catch (_) {}
         });
 
-        chrome.runtime.sendMessage({
-            action: 'contentScanBlocked',
-            url: location.href,
-            hostname: location.hostname,
-            score: result.score,
-            matchedLanguages: result.matchedLanguages,
-            matchedCategories: result.matchedCategories
-        });
+        function restorePage() {
+            if (root) {
+                root.style.display = previousDisplay;
+            }
+            scanFinished = false;
+        }
+
+        // Also recover if the background never answers (for example during an update).
+        const recoveryTimer = window.setTimeout(restorePage, 5000);
+        try {
+            chrome.runtime.sendMessage({
+                action: 'contentScanBlocked',
+                url: location.href,
+                hostname: location.hostname,
+                score: result.score,
+                matchedLanguages: result.matchedLanguages,
+                matchedCategories: result.matchedCategories
+            }, function (response) {
+                const error = chrome.runtime.lastError;
+                window.clearTimeout(recoveryTimer);
+                if (error || !response || !response.success) {
+                    restorePage();
+                }
+            });
+        } catch (_) {
+            window.clearTimeout(recoveryTimer);
+            restorePage();
+        }
     }
 }());

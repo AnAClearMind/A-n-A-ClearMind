@@ -15,7 +15,8 @@
     "message": "'google' engellemesi kullanılamıyor"
   },
   "customBlocklistLimitReached": {
-    "message": "Özel engelleme listesi sınırı olan 4900 alan adına ulaşıldı"
+    "message": "Özel engelleme listesi sınırı olan $LIMIT$ alan adına ulaşıldı",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "Engelleme kuralları güncellenemedi"

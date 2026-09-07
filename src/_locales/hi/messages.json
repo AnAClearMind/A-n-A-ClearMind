@@ -15,7 +15,8 @@
     "message": "'google' को ब्लॉक करना उपलब्ध नहीं है"
   },
   "customBlocklistLimitReached": {
-    "message": "कस्टम ब्लॉकलिस्ट की 4900 डोमेन की सीमा पूरी हो गई है"
+    "message": "कस्टम ब्लॉकलिस्ट की $LIMIT$ डोमेन की सीमा पूरी हो गई है",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "ब्लॉकिंग नियम अपडेट करने में विफल"

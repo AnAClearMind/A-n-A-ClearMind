@@ -3,3 +3,4 @@
 /src/_metadata
 /tests
 /test_sampels
+__pycache__/

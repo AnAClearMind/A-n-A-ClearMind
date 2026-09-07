@@ -1,28 +1,46 @@
 let currentProgress = 0;
 let scaleDivs;
+let progressReady;
 const maxProgressValue = 70;
 
 function UpdateFooterState() {
+    if (progressReady) {
+        return progressReady;
+    }
     scaleDivs = document.querySelectorAll(".scale div");
-    return new Promise((resolve) => {
+    progressReady = new Promise((resolve, reject) => {
         chrome.storage.local.get(['progress'], function (result) {
+            if (chrome.runtime.lastError) {
+                reject(new Error(chrome.runtime.lastError.message));
+                return;
+            }
             let rawProgress = Number(result && result.progress);
             let progress = Math.min(isNaN(rawProgress) || rawProgress < 0 ? 0 : rawProgress, maxProgressValue);
-            currentProgress = progress;
+            currentProgress = Math.floor(progress);
             if (scaleDivs && scaleDivs.length) {
-                for (let i = 0; i < progress && i < scaleDivs.length; i++) {
+                for (let i = 0; i < currentProgress && i < scaleDivs.length; i++) {
                     scaleDivs[i].classList.add('filled');
                 }
             }
             resolve(currentProgress);
         });
+    }).catch(error => {
+        progressReady = undefined;
+        throw error;
     });
+    return progressReady;
 }
 
 function RegisterProgressTick() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         const safeCurrent = (typeof currentProgress === 'number' && !isNaN(currentProgress)) ? currentProgress : 0;
-        chrome.storage.local.set({ progress: safeCurrent + 1 }, resolve);
+        chrome.storage.local.set({ progress: safeCurrent + 1 }, function () {
+            if (chrome.runtime.lastError) {
+                reject(new Error(chrome.runtime.lastError.message));
+            } else {
+                resolve();
+            }
+        });
     });
 }
 
@@ -34,11 +52,16 @@ async function UpdateProgressionAndProceed(proceedFunction) {
         return;
     }
     isProgressUpdateInFlight = true;
+    let hasProceeded = false;
+    const proceedOnce = function () {
+        if (!hasProceeded) {
+            hasProceeded = true;
+            proceedFunction();
+        }
+    };
 
     try {
-        if (typeof currentProgress !== 'number' || isNaN(currentProgress)) {
-            await UpdateFooterState();
-        }
+        await UpdateFooterState();
 
         if (currentProgress < maxProgressValue) {
             await RegisterProgressTick();
@@ -47,7 +70,8 @@ async function UpdateProgressionAndProceed(proceedFunction) {
                 nextDiv.classList.add('filled');
             }
             let rewardLevel = 0;
-            switch (currentProgress + 1) {
+            currentProgress += 1;
+            switch (currentProgress) {
                 case 5:
                     rewardLevel = 1;
                     break;
@@ -68,23 +92,22 @@ async function UpdateProgressionAndProceed(proceedFunction) {
             if (nextDiv && nextDiv.classList.contains('reward') && rewardLevel > 0) {
                 loadJSON().then(data => {
                     if (data && data.ProgressionPopup && data.ProgressionPopup.rewards && data.ProgressionPopup.rewards[rewardLevel]) {
-                        showPopup(proceedFunction, data.ProgressionPopup, data.ProgressionPopup.rewards[rewardLevel]);
+                        showPopup(proceedOnce, data.ProgressionPopup, data.ProgressionPopup.rewards[rewardLevel]);
                     } else {
-                        proceedFunction();
+                        proceedOnce();
                     }
                 }).catch(() => {
-                    proceedFunction();
+                    proceedOnce();
                 });
             } else {
-                proceedFunction();
+                proceedOnce();
             }
         } else {
-            proceedFunction();
+            proceedOnce();
         }
-    } finally {
-        setTimeout(() => {
-            isProgressUpdateInFlight = false;
-        }, 300);
+    } catch (error) {
+        isProgressUpdateInFlight = false;
+        throw error;
     }
 
     function showPopup(proceedFunction, ProgressionPopupData, rewardData) {

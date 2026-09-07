@@ -2,12 +2,12 @@
 """
 ClearMind Content Filter — HTML Sample Analyzer
 ================================================
-Analyzes saved .html page snapshots using the exact Content Scanner algorithm
+Analyzes saved .html page snapshots using the Content Scanner scoring rules
 and the current adult-keywords.json database.
 
 Features:
 - Single file or batch directory analysis
-- Exact parity with src/scripts/global/contentScanner.js
+- Scoring regression-tested against src/scripts/global/contentScanner.js
 - Human-readable CLI summary or clean JSON output for AI agents (--json)
 - Displays matched terms, repeat counts, score breakdown, and pruned foreign terms
 
@@ -24,8 +24,10 @@ import glob
 import json
 import re
 import argparse
+import math
 import unicodedata
 from pathlib import Path
+from urllib.parse import urlsplit, unquote
 
 try:
     from bs4 import BeautifulSoup
@@ -83,7 +85,7 @@ def normalize_text(text):
     if not text:
         return ""
     nfkd = unicodedata.normalize("NFD", str(text))
-    without_diacritics = "".join(c for c in nfkd if not unicodedata.combining(c))
+    without_diacritics = re.sub(r"[\u0300-\u036f]", "", nfkd)
     cleaned = without_diacritics.lower()
     cleaned = re.sub(r"[\x00-\x1f]+", " ", cleaned)
     cleaned = re.sub(r"[\-_./]+", " ", cleaned)
@@ -108,8 +110,7 @@ def load_and_compile_keywords(db_path):
             compiled_words = []
             for word in words:
                 norm = normalize_text(word)
-                escaped = re.escape(norm)
-                escaped = re.sub(r"\s+", r"\\s+", escaped)
+                escaped = r"\s+".join(re.escape(part) for part in norm.split())
                 is_cjk = bool(cjk_pattern.search(word))
                 is_latin_short_foreign = (
                     lang_code != "en" and
@@ -136,30 +137,25 @@ def load_and_compile_keywords(db_path):
     return compiled
 
 
-def extract_text_sources(soup, file_path=""):
+def extract_text_sources(soup, page_url=""):
     title = soup.title.string.strip() if soup.title and soup.title.string else ""
 
     meta_parts = []
-    for meta in soup.find_all("meta"):
-        key = (meta.get("name") or meta.get("property") or "").lower()
-        if key in [
-            "description", "keywords",
-            "og:title", "og:description",
-            "twitter:title", "twitter:description"
-        ]:
-            content = meta.get("content", "").strip()
-            if content:
-                meta_parts.append(content)
+    for key in ["description", "keywords", "og:title", "og:description", "twitter:title", "twitter:description"]:
+        meta = next((tag for tag in soup.find_all("meta") if
+                     tag.get("name", "").lower() == key or tag.get("property", "").lower() == key), None)
+        if meta and meta.get("content"):
+            meta_parts.append(meta["content"])
 
     headings_parts = []
     for h in soup.find_all(["h1", "h2", "h3"]):
-        txt = h.get_text(separator=" ", strip=True)
+        txt = h.get_text()
         if txt:
             headings_parts.append(txt)
 
     links_parts = []
     for el in soup.find_all(["a", "button"])[:300]:
-        t = el.get_text(separator=" ", strip=True)
+        t = el.get_text()
         if t:
             links_parts.append(t)
         title_attr = (el.get("title") or "").strip()
@@ -177,9 +173,11 @@ def extract_text_sources(soup, file_path=""):
 
     body_text = soup.body.get_text(separator=" ", strip=True) if soup.body else ""
 
-    path_text = ""
-    if file_path:
-        path_text = Path(file_path).name
+    path_text = urlsplit(page_url).path if page_url else ""
+    try:
+        path_text = unquote(path_text, errors="strict")
+    except UnicodeDecodeError:
+        pass
 
     all_title_meta = " ".join([title] + meta_parts)
     all_links = " ".join(links_parts + img_alts)
@@ -200,14 +198,14 @@ def extract_text_sources(soup, file_path=""):
     }
 
 
-def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD):
+def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD, page_url=""):
     with open(file_path, "r", encoding="utf-8", errors="replace") as f:
         html_content = f.read()
 
     soup = BeautifulSoup(html_content, "html.parser")
     page_lang = (soup.html.get("lang") or "").strip().lower() if soup.html else ""
 
-    sources = extract_text_sources(soup, file_path=file_path)
+    sources = extract_text_sources(soup, page_url=page_url)
     meta_info = sources.pop("_meta")
 
     summary = {
@@ -219,6 +217,7 @@ def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD):
         "matched_languages": {},
         "matched_categories": {"strong": 0, "medium": 0},
         "matched_terms": {},
+        "header_strong_terms": set(),
         "language_term_counts": {},
         "matched_language_terms": {},
         "potential_foreign_short_matches": []
@@ -270,7 +269,7 @@ def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD):
                             summary["language_term_counts"][lang_code] = summary["language_term_counts"].get(lang_code, 0) + 1
 
                         if category == "strong" and source_name in ["titleMeta", "headings"]:
-                            summary["has_header_strong"] = True
+                            summary["header_strong_terms"].add(match_key)
 
                         if match_key not in term_details:
                             term_details[match_key] = {
@@ -303,6 +302,7 @@ def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD):
             summary["score"] -= item["points"]
             summary["matched_categories"][item["category"]] -= 1
             summary["matched_terms"].pop(item["termKey"], None)
+            summary["header_strong_terms"].discard(item["termKey"])
             if summary["language_term_counts"].get(item["lang"], 0) <= 1:
                 summary["matched_languages"].pop(item["lang"], None)
             pruned_terms.append({
@@ -313,6 +313,7 @@ def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD):
             })
             term_details.pop(item["termKey"], None)
 
+    summary["has_header_strong"] = bool(summary["header_strong_terms"])
     distinct_terms_count = len(summary["matched_terms"])
     score = summary["score"]
 
@@ -338,16 +339,19 @@ def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD):
 
     if not is_blocked:
         score = min(score, RESCAN_THRESHOLD - 1)
+    score = math.floor(score + 0.5)  # Match JavaScript Math.round, including half points.
+    is_blocked = is_blocked and score >= block_threshold
 
     return {
         "file_path": str(file_path),
         "file_name": Path(file_path).name,
         "title": meta_info["title"],
         "page_lang": page_lang or "unspecified",
-        "score": round(score),
-        "raw_score": round(summary["raw_score"]),
+        "score": score,
+        "raw_score": math.floor(summary["raw_score"] + 0.5),
         "is_blocked": is_blocked,
-        "blocking_rule": rule_name,
+        "blocking_rule": rule_name if is_blocked else None,
+        "block_threshold": block_threshold,
         "distinct_terms_count": distinct_terms_count,
         "has_header_strong": summary["has_header_strong"],
         "matched_categories": summary["matched_categories"],
@@ -368,8 +372,8 @@ def format_cli_result(res):
         f"Lang:   {res['page_lang']}",
         "",
         f"Verdict: {status}",
-        f"Score:   {res['score']} pts (Raw: {res['raw_score']}) | Threshold: {BLOCK_THRESHOLD}",
-        f"Rule:    {res['blocking_rule'] or 'None (clamped to safe threshold)'}",
+        f"Score:   {res['score']} pts (Raw: {res['raw_score']}) | Threshold: {res['block_threshold']}",
+        f"Rule:    {res['blocking_rule'] or 'None (blocking criteria not met)'}",
         f"Header Strong: {'Yes' if res['has_header_strong'] else 'No'}",
         f"Distinct Terms ({res['distinct_terms_count']}):"
     ]
@@ -396,6 +400,7 @@ def main():
                         help="Path to an .html file or a folder of .html files (default: test_sampels/)")
     parser.add_argument("--json", action="store_true", help="Output results in JSON format")
     parser.add_argument("--threshold", type=int, default=BLOCK_THRESHOLD, help="Custom block threshold (default: 40)")
+    parser.add_argument("--url", default="", help="Original page URL for path scoring (single HTML file only)")
     parser.add_argument("--keywords-db", default=str(KEYWORDS_PATH), help="Path to adult-keywords.json")
     args = parser.parse_args()
 
@@ -423,7 +428,10 @@ def main():
             print(json.dumps({"error": f"No .html files found in '{args.target}'"}, indent=2))
         else:
             print(f"No .html files found at: {args.target}")
-        sys.exit(0)
+        sys.exit(1)
+
+    if args.url and len(html_files) != 1:
+        parser.error("--url requires exactly one HTML file")
 
     try:
         compiled_db = load_and_compile_keywords(args.keywords_db)
@@ -433,28 +441,31 @@ def main():
 
     results = []
     blocked_count = 0
+    error_count = 0
 
     for file_p in html_files:
         try:
-            res = analyze_html_file(file_p, compiled_db, block_threshold=args.threshold)
+            res = analyze_html_file(file_p, compiled_db, block_threshold=args.threshold, page_url=args.url)
             results.append(res)
             if res["is_blocked"]:
                 blocked_count += 1
             if not args.json:
                 print(format_cli_result(res))
         except Exception as e:
+            error_count += 1
             if args.json:
                 results.append({"file": str(file_p), "error": str(e)})
             else:
                 print(f"Error analyzing {file_p}: {e}", file=sys.stderr)
 
-    total = len(results)
+    total = len(html_files)
     if args.json:
         output = {
             "summary": {
                 "total_files": total,
                 "blocked_files": blocked_count,
-                "allowed_files": total - blocked_count,
+                "allowed_files": total - blocked_count - error_count,
+                "error_files": error_count,
                 "block_rate_percent": round((blocked_count / total * 100), 1) if total else 0
             },
             "results": results
@@ -464,6 +475,9 @@ def main():
         print("=" * 80)
         print(f"Batch Summary: {blocked_count}/{total} sample(s) blocked ({round(blocked_count / total * 100 if total else 0, 1)}%)")
         print("=" * 80)
+
+    if error_count:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

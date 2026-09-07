@@ -15,7 +15,8 @@
     "message": "Il blocco di 'google' non è disponibile"
   },
   "customBlocklistLimitReached": {
-    "message": "Raggiunto il limite della blocklist personalizzata di 4900 domini"
+    "message": "Raggiunto il limite della blocklist personalizzata di $LIMIT$ domini",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "Impossibile aggiornare le regole di blocco"

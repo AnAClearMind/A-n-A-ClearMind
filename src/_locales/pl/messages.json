@@ -15,7 +15,8 @@
     "message": "Blokowanie 'google' jest niedostępne"
   },
   "customBlocklistLimitReached": {
-    "message": "Osiągnięto limit 4900 domen dla niestandardowej listy blokowania"
+    "message": "Osiągnięto limit $LIMIT$ domen dla niestandardowej listy blokowania",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "Nie udało się zaktualizować reguł blokowania"

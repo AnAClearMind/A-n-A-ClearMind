@@ -35,6 +35,16 @@ const DOMAIN_PATTERN_RULES = [
         regexFilter: '^https?:\/\/[^\/]*bdsm[^\/]*(?::\d+)?(?:[\/?#]|$)'
     }
 ];
+const SAFE_SEARCH_CONFIGS = [
+    { id: 8001, domains: ['google.com'], param: 'safe', value: 'active' },
+    { id: 8002, domains: ['bing.com'], param: 'adlt', value: 'strict' },
+    { id: 8003, domains: ['duckduckgo.com'], param: 'kp', value: '1' },
+    { id: 8004, domains: ['yahoo.com'], param: 'vm', value: 'r' },
+    { id: 8005, domains: ['ya.ru', 'yandex.ru', 'yandex.com'], param: 'family', value: 'yes' },
+    { id: 8006, domains: ['brave.com', 'search.brave.com'], param: 'safesearch', value: 'strict' },
+    { id: 8007, domains: ['qwant.com'], param: 's', value: '2' },
+    { id: 8008, domains: ['mojeek.com'], param: 'safe', value: '1' }
+];
 
 chrome.runtime.onInstalled.addListener(function (details) {
     if (details.reason == "install") {
@@ -151,11 +161,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
         if (domain.includes('google')) {
             sendResponse({ success: false, error: chrome.i18n.getMessage("blockingGoogleNotAvailable") });
-            return false;
-        }
-
-        if (customBlockedDomains.length >= 4900) {
-            sendResponse({ success: false, error: chrome.i18n.getMessage("customBlocklistLimitReached") });
             return false;
         }
 
@@ -329,12 +334,6 @@ async function initializeDomains() {
 
     //
     chrome.storage.local.set({ lastInitializedBackworker: Date.now() });
-    chrome.storage.local.get(['lastInitializedBackworker', 'lastStartedWithBrowser'], function (data) {
-        if (data.lastInitializedBackworker - data.lastStartedWithBrowser > 60000) {
-            console.log('Extension was manually restarted by user. Resetting progress');
-            chrome.storage.local.set({ progress: 0 });
-        }
-    });
 }
 
 // Function to reload the active tab
@@ -419,7 +418,12 @@ function normalizeDomain(input) {
 }
 
 function normalizeScannedHostname(value) {
-    return normalizeDomain(value) || '';
+    try {
+        const url = new URL(value.includes('://') ? value : 'https://' + value);
+        return (url.protocol === 'http:' || url.protocol === 'https:') ? url.hostname : '';
+    } catch (_) {
+        return '';
+    }
 }
 
 function saveContentScanDetection(detection) {
@@ -492,17 +496,6 @@ async function updateRulesAtomic(targetCustomDomains) {
         }
 
         if (safeSearchEnabled) {
-            const SAFE_SEARCH_CONFIGS = [
-                { id: 8001, domains: ['google.com'], param: 'safe', value: 'active' },
-                { id: 8002, domains: ['bing.com'], param: 'adlt', value: 'strict' },
-                { id: 8003, domains: ['duckduckgo.com'], param: 'kp', value: '1' },
-                { id: 8004, domains: ['yahoo.com'], param: 'vm', value: 'r' },
-                { id: 8005, domains: ['ya.ru', 'yandex.ru', 'yandex.com'], param: 'family', value: 'yes' },
-                { id: 8006, domains: ['brave.com', 'search.brave.com'], param: 'safesearch', value: 'strict' },
-                { id: 8007, domains: ['qwant.com'], param: 's', value: '2' },
-                { id: 8008, domains: ['mojeek.com'], param: 'safe', value: '1' }
-            ];
-
             SAFE_SEARCH_CONFIGS.forEach((config, index) => {
                 rules.push({
                     id: allDomains.length * 2 + 8000 + index,
@@ -525,6 +518,17 @@ async function updateRulesAtomic(targetCustomDomains) {
                     }
                 });
             });
+        }
+
+        const dnr = chrome.declarativeNetRequest;
+        const dynamicLimit = dnr.MAX_NUMBER_OF_DYNAMIC_RULES || dnr.MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES || 5000;
+        const unsafeLimit = dnr.MAX_NUMBER_OF_UNSAFE_DYNAMIC_RULES || dynamicLimit;
+        // Reserve protection rules even when disabled so toggles can always be enabled again.
+        const protectionRuleCount = DOMAIN_PATTERN_RULES.length + SAFE_SEARCH_CONFIGS.length;
+        const domainLimit = Math.max(0, Math.min(Math.floor((dynamicLimit - protectionRuleCount) / 2),
+            unsafeLimit - protectionRuleCount));
+        if (allDomains.length > domainLimit) {
+            return { success: false, error: chrome.i18n.getMessage("customBlocklistLimitReached", String(domainLimit)) };
         }
 
         const existingRules = await chrome.declarativeNetRequest.getDynamicRules();

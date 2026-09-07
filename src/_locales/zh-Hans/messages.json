@@ -15,7 +15,8 @@
     "message": "无法封锁 'google'"
   },
   "customBlocklistLimitReached": {
-    "message": "已达到自定义封锁列表 4900 个域名的上限"
+    "message": "已达到自定义封锁列表 $LIMIT$ 个域名的上限",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "更新封锁规则失败"

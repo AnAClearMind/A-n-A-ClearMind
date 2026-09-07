@@ -15,7 +15,8 @@
     "message": "'google'のブロックは利用できません"
   },
   "customBlocklistLimitReached": {
-    "message": "カスタムブロックリストの制限である4900ドメインに達しました"
+    "message": "カスタムブロックリストの制限である$LIMIT$ドメインに達しました",
+    "placeholders": { "limit": { "content": "$1" } }
   },
   "failedToUpdateBlockingRules": {
     "message": "ブロックルールの更新に失敗しました"
