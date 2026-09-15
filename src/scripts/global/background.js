@@ -1,8 +1,11 @@
-initializeDomains().then(updateRules).then(loadData);
+const rulesReady = initializeDomains().then(updateRules);
+rulesReady.then(loadData);
 
 let customBlockedDomains = [];
 let domainRuleIds = {};
 let jsonData;
+let progressUpdateQueue = Promise.resolve();
+let ruleUpdateQueue = rulesReady;
 const DOMAIN_PATTERN_RULES = [
     {
         idSuffix: 9002,
@@ -110,12 +113,50 @@ async function loadDomainsFromFile(filename) {
 
 // Handle messages from extension pages.
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    const ruleActions = ['addDomain', 'deleteDomain', 'importDomains', 'setSafeSearchEnabled', 'setDomainPatternBlockingEnabled'];
+    if (request && ruleActions.includes(request.action)) {
+        // Settings and blocklist edits rebuild the same ruleset; keep complete operations in order.
+        ruleUpdateQueue = ruleUpdateQueue.catch(function () {}).then(function () {
+            return new Promise(function (resolve) {
+                try {
+                    handleMessage(request, sender, function (response) {
+                        sendResponse(response);
+                        resolve();
+                    });
+                } catch (error) {
+                    sendResponse({ success: false, error: error.message });
+                    resolve();
+                }
+            });
+        });
+        return true;
+    }
+    return handleMessage(request, sender, sendResponse);
+});
+
+function handleMessage(request, sender, sendResponse) {
     if (!request || !request.action) {
         return false;
     }
 
     if (request.action === "contentScanBlocked") {
         handleContentScanBlocked(request, sender, sendResponse);
+        return true;
+    }
+
+    if (request.action === 'registerProgressTick') {
+        const update = progressUpdateQueue.then(async function () {
+            const stored = await chrome.storage.local.get('progress');
+            const value = Number(stored.progress);
+            const previousProgress = Math.floor(Math.min(70, Math.max(0, isNaN(value) ? 0 : value)));
+            const progress = Math.min(70, previousProgress + 1);
+            await chrome.storage.local.set({ progress: progress });
+            return { success: true, previousProgress: previousProgress, progress: progress };
+        });
+        progressUpdateQueue = update.catch(function () {});
+        update.then(sendResponse, function (error) {
+            sendResponse({ success: false, error: error.message });
+        });
         return true;
     }
 
@@ -126,28 +167,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         return true;
     }
 
-    if (request.action === 'setDomainPatternBlockingEnabled') {
-        chrome.storage.local.set({ domainPatternBlockingEnabled: request.enabled !== false }, function () {
-            updateRules().then(function (success) {
-                if (success) {
-                    sendResponse({ success: true });
-                } else {
-                    sendResponse({ success: false, error: 'Failed to update blocking rules' });
-                }
-            });
-        });
-        return true;
-    }
-
-    if (request.action === 'setSafeSearchEnabled') {
-        chrome.storage.local.set({ safeSearchEnabled: request.enabled !== false }, function () {
-            updateRules().then(function (success) {
-                if (success) {
-                    sendResponse({ success: true });
-                } else {
-                    sendResponse({ success: false, error: 'Failed to update rules' });
-                }
-            });
+    if (request.action === 'setDomainPatternBlockingEnabled' || request.action === 'setSafeSearchEnabled') {
+        const key = request.action === 'setSafeSearchEnabled' ? 'safeSearchEnabled' : 'domainPatternBlockingEnabled';
+        updateProtectionSetting(key, request.enabled !== false).then(sendResponse, function (error) {
+            sendResponse({ success: false, error: error.message });
         });
         return true;
     }
@@ -312,7 +335,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     }
 
     return false;
-});
+}
 
 // Load blocked domains when the extension starts
 async function initializeDomains() {
@@ -360,7 +383,7 @@ function getPatternRedirectUrl(blockedLabel) {
     return chrome.runtime.getURL(`../pages/UrgeTest_initial.html?blocked=${encodeURIComponent(blockedLabel)}`);
 }
 
-function handleContentScanBlocked(request, sender, sendResponse) {
+async function handleContentScanBlocked(request, sender, sendResponse) {
     if (!sender || !sender.tab || typeof sender.tab.id !== 'number') {
         sendResponse({ success: false, error: 'No sender tab available' });
         return;
@@ -369,6 +392,23 @@ function handleContentScanBlocked(request, sender, sendResponse) {
     const hostname = normalizeScannedHostname(request.hostname || request.url);
     if (!hostname) {
         sendResponse({ success: false, error: 'Invalid scanned hostname' });
+        return;
+    }
+
+    let settings;
+    try {
+        settings = await chrome.storage.local.get(['contentScanningEnabled', 'contentScanAllowedDomains']);
+    } catch (error) {
+        sendResponse({ success: false, error: error.message });
+        return;
+    }
+    const allowedDomains = Array.isArray(settings.contentScanAllowedDomains) ? settings.contentScanAllowedDomains : [];
+    const normalizedHost = hostname.replace(/^www\./, '');
+    if (settings.contentScanningEnabled === false || allowedDomains.some(function (domain) {
+        const normalizedDomain = String(domain || '').toLowerCase().replace(/^www\./, '');
+        return normalizedHost === normalizedDomain || normalizedHost.endsWith('.' + normalizedDomain);
+    })) {
+        sendResponse({ success: false, error: 'Content scanning is disabled for this page' });
         return;
     }
 
@@ -393,28 +433,25 @@ function handleContentScanBlocked(request, sender, sendResponse) {
 
 function normalizeDomain(input) {
     if (typeof input !== 'string') return null;
-    let trimmed = input.trim().toLowerCase();
-    if (!trimmed) return null;
+    const trimmed = input.trim();
+    if (!trimmed || /[\u0000-\u0020\u007f\\]/.test(trimmed)) return null;
+    const isUrl = trimmed.includes('://');
+    if (!isUrl && /[/@?#]/.test(trimmed)) return null;
 
     try {
-        if (trimmed.includes('://')) {
-            const parsed = new URL(trimmed);
-            trimmed = parsed.hostname;
-        }
-    } catch (e) {
-        // Continue with raw trimmed string if URL parsing fails
-    }
-
-    if (trimmed.startsWith('www.')) {
-        trimmed = trimmed.substring(4);
-    }
-
-    const domainPattern = /^[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!domainPattern.test(trimmed)) {
+        const parsed = new URL(isUrl ? trimmed : 'https://' + trimmed);
+        if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password) return null;
+        const hostname = parsed.hostname.toLowerCase().replace(/^www\./, '').replace(/\.$/, '');
+        // URL validates bracketed IPv6 addresses and converts IDNs to ASCII.
+        if (hostname.startsWith('[') && hostname.endsWith(']')) return hostname;
+        const labels = hostname.split('.');
+        if (hostname.length > 253 || labels.length < 2 || !labels.every(function (label) {
+            return /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(label);
+        })) return null;
+        return hostname;
+    } catch (_) {
         return null;
     }
-
-    return trimmed;
 }
 
 function normalizeScannedHostname(value) {
@@ -434,10 +471,25 @@ function saveContentScanDetection(detection) {
     });
 }
 
-async function updateRulesAtomic(targetCustomDomains) {
+async function updateProtectionSetting(key, enabled) {
+    const previous = await chrome.storage.local.get(key);
+    const previousEnabled = previous[key] !== false;
+    const result = await updateRulesAtomic(undefined, { [key]: enabled });
+    if (!result.success) return { ...result, enabled: previousEnabled };
+    try {
+        await chrome.storage.local.set({ [key]: enabled });
+        return { success: true, enabled: enabled };
+    } catch (error) {
+        const rollback = await updateRulesAtomic(undefined, { [key]: previousEnabled });
+        return { success: false, enabled: previousEnabled,
+            error: error.message + (rollback.success ? '' : '; ' + rollback.error) };
+    }
+}
+
+async function updateRulesAtomic(targetCustomDomains, settingOverrides = {}) {
     try {
         const activeCustomDomains = targetCustomDomains !== undefined ? targetCustomDomains : customBlockedDomains;
-        const settings = await chrome.storage.local.get(['domainPatternBlockingEnabled', 'safeSearchEnabled']);
+        const settings = { ...await chrome.storage.local.get(['domainPatternBlockingEnabled', 'safeSearchEnabled']), ...settingOverrides };
         const domainPatternBlockingEnabled = settings.domainPatternBlockingEnabled !== false;
         const safeSearchEnabled = settings.safeSearchEnabled !== false;
         const allDomains = activeCustomDomains;

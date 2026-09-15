@@ -2,12 +2,6 @@ let selectedCard = -1;
 let poolOfCards = [];
 let data;
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await getDB();
-    StaticDataLoadFromBase(data.CardSelection);
-	UpdateFooterState();
-});
-
 async function getDB() {
     data = await new Promise((resolve, reject) => {
         chrome.runtime.sendMessage({ action: 'getData' }, (response) => {
@@ -31,15 +25,18 @@ function StaticDataLoadFromBase(CardSelection) {
 }
 
 window.onload = async function () {
-    setTimeout(() => { document.getElementById('mainContainer').style.opacity = '1'; }, 150);
+    await getDB();
+    StaticDataLoadFromBase(data.CardSelection);
+    await UpdateFooterState();
+    await ResetCycleVariables();
+    await GetCardsPool();
 
     document.getElementById('selectCard0').addEventListener('click', function () { selectCard(0); });
     document.getElementById('selectCard1').addEventListener('click', function () { selectCard(1); });
     document.getElementById('selectCard2').addEventListener('click', function () { selectCard(2); });
     document.getElementById('chooseCard').addEventListener('click', chooseCard);
     document.getElementById('confirmChoice').addEventListener('click', confirmChoice);
-    await ResetCycleVariables();
-    await GetCardsPool();
+    setTimeout(() => { document.getElementById('mainContainer').style.opacity = '1'; }, 150);
 };
 
 async function GetCardsPool() {

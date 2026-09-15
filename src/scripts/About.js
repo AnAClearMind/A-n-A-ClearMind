@@ -160,10 +160,7 @@ async function changeTheme(themeSelected) {
 }
 
 async function changeSafeSearchToggle(toggle) {
-    chrome.runtime.sendMessage({
-        action: 'setSafeSearchEnabled',
-        enabled: !!toggle.checked
-    });
+    changeProtectionToggle(toggle, 'setSafeSearchEnabled');
 }
 
 async function changeContentScanToggle(toggle) {
@@ -171,9 +168,21 @@ async function changeContentScanToggle(toggle) {
 }
 
 async function changeDomainPatternToggle(toggle) {
-    chrome.runtime.sendMessage({
-        action: 'setDomainPatternBlockingEnabled',
-        enabled: !!toggle.checked
+    changeProtectionToggle(toggle, 'setDomainPatternBlockingEnabled');
+}
+
+function changeProtectionToggle(toggle, action) {
+    const enabled = !!toggle.checked;
+    toggle.disabled = true;
+    chrome.runtime.sendMessage({ action: action, enabled: enabled }, function (response) {
+        const error = chrome.runtime.lastError;
+        toggle.disabled = false;
+        if (error || !response || !response.success) {
+            toggle.checked = response && typeof response.enabled === 'boolean' ? response.enabled : !enabled;
+            alert(error && error.message || response && response.error || chrome.i18n.getMessage('failedToUpdateBlockingRules'));
+        } else {
+            toggle.checked = response.enabled;
+        }
     });
 }
 

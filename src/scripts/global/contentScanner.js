@@ -39,10 +39,58 @@
         'searx.org',
         'wikipedia.org',
         'wikimedia.org',
+        'researchgate.net',
+        'pubmed.ncbi.nlm.nih.gov',
+        'pmc.ncbi.nlm.nih.gov',
+        'arxiv.org',
+        'biorxiv.org',
+        'medrxiv.org',
         'reddit.com',
+        'redd.it',
+        'nofap.com',
+        'forum.nofap.com',
+        'yourbrainonporn.com',
+        'rebootnation.org',
         'news.google.com',
-        'news.ycombinator.com'
+        'news.ycombinator.com',
+        'bbc.co.uk',
+        'bbc.com',
+        'cnn.com',
+        'reuters.com',
+        'apnews.com',
+        'theguardian.com',
+        'nytimes.com',
+        'washingtonpost.com',
+        'bloomberg.com',
+        'forbes.com',
+        'wsj.com',
+        'ft.com',
+        'independent.co.uk',
+        'telegraph.co.uk',
+        'dailymail.co.uk',
+        'usatoday.com',
+        'nbcnews.com',
+        'cbsnews.com',
+        'foxnews.com',
+        'abcnews.go.com',
+        'aljazeera.com',
+        'dw.com',
+        'euronews.com',
+        'lemonde.fr',
+        'spiegel.de',
+        'rbc.ru',
+        'ria.ru',
+        'tass.ru',
+        'kommersant.ru',
+        'vedomosti.ru',
+        'lenta.ru',
+        'gazeta.ru',
+        'interfax.ru',
+        'meduza.io',
+        'fontanka.ru',
+        'habr.com'
     ];
+    const SFW_AESTHETIC_REGEX = /(^|[^\p{L}\p{N}])(?:unix|desktop|food|earth|room|design|map|space)\s*porn(?:ography)?(?=[^\p{L}\p{N}]|$)/gu;
     const SOURCE_MULTIPLIERS = {
         titleMeta: 2,
         headings: 1.5,
@@ -78,24 +126,50 @@
     let mutationTimer = null;
     let pendingMutationSince = null;
     let lastScanTime = 0;
+    let scannerEnabled = false;
+    let settingsRevision = 0;
+    let observer = null;
+    let routeTimer = null;
+    let restoreBlockedPage = null;
 
     if (!shouldScanCurrentPage()) {
         return;
     }
 
-    getScannerSettings(function (settings) {
-        if (!settings.enabled || isAllowedDomain(location.hostname, settings.allowedDomains)) {
-            return;
+    chrome.storage.onChanged.addListener(function (changes, areaName) {
+        if (areaName === 'local' && ('contentScanningEnabled' in changes || 'contentScanAllowedDomains' in changes)) {
+            refreshScannerSettings();
         }
-
-        loadKeywordDb().then(function (db) {
-            keywordDb = db;
-            observeDynamicContent();
-            runScanWithRescan();
-        }).catch(function (error) {
-            console.warn('ClearMind content scanner could not load keyword DB:', error);
-        });
     });
+    refreshScannerSettings();
+
+    function refreshScannerSettings() {
+        const revision = ++settingsRevision;
+        getScannerSettings(function (settings) {
+            if (revision !== settingsRevision) return;
+            scannerEnabled = settings.enabled && !isAllowedDomain(location.hostname, settings.allowedDomains);
+            if (!scannerEnabled) {
+                window.clearTimeout(mutationTimer);
+                window.clearInterval(routeTimer);
+                if (observer) observer.disconnect();
+                observer = null;
+                pendingMutationSince = null;
+                if (restoreBlockedPage) restoreBlockedPage();
+                scanFinished = false;
+                return;
+            }
+            if (observer) return;
+            loadKeywordDb().then(function (db) {
+                keywordDb = db;
+                if (!scannerEnabled || observer) return;
+                scanCount = 0;
+                observeDynamicContent();
+                runScanWithRescan();
+            }).catch(function (error) {
+                console.warn('ClearMind content scanner could not load keyword DB:', error);
+            });
+        });
+    }
 
     function shouldScanCurrentPage() {
         const protocol = location.protocol;
@@ -138,6 +212,7 @@
         }).then(function (rawJson) {
             const parsed = JSON.parse(rawJson);
             const compiledDb = { languages: {} };
+            const contextRequired = new Set((parsed.contextRequired || []).map(normalizeText));
             const langs = parsed.languages || {};
 
             Object.keys(langs).forEach(function (langCode) {
@@ -152,6 +227,7 @@
                         const isLatinShortForeign = (langCode !== 'en' && normalized.length <= 4 && /^[a-z0-9\s-]+$/i.test(normalized));
                         return {
                             original: kw,
+                            requiresContext: contextRequired.has(normalized),
                             isLatinShortForeign: isLatinShortForeign,
                             regex: isCjk
                                 ? new RegExp(escaped, 'iu')
@@ -160,6 +236,9 @@
                                 ? new RegExp(escaped, 'giu')
                                 : new RegExp('(^|[^\\p{L}\\p{N}])(' + escaped + ')(?=[^\\p{L}\\p{N}]|$)', 'giu')
                         };
+                    }).sort(function (a, b) {
+                        // Spend the per-category match budget on explicit evidence first.
+                        return Number(a.requiresContext) - Number(b.requiresContext);
                     });
                 });
             });
@@ -168,7 +247,7 @@
     }
 
     function runScanWithRescan() {
-        if (scanFinished || !keywordDb) {
+        if (!scannerEnabled || scanFinished || !keywordDb) {
             return;
         }
 
@@ -191,7 +270,7 @@
     }
 
     function scheduleDynamicScan() {
-        if (scanFinished) {
+        if (!scannerEnabled || scanFinished) {
             return;
         }
         const now = Date.now();
@@ -211,7 +290,7 @@
             return;
         }
 
-        const observer = new MutationObserver(scheduleDynamicScan);
+        observer = new MutationObserver(scheduleDynamicScan);
 
         observer.observe(document.documentElement, {
             childList: true,
@@ -223,7 +302,7 @@
 
         // pushState does not emit popstate, and a route can change without DOM mutations.
         let lastUrl = location.href;
-        window.setInterval(function () {
+        routeTimer = window.setInterval(function () {
             if (location.href !== lastUrl) {
                 lastUrl = location.href;
                 scheduleDynamicScan();
@@ -287,6 +366,10 @@
     }
 
     function hasBlockingCombination(summary) {
+        // Ambiguous vocabulary can support other evidence, but cannot establish it alone.
+        if (!Object.values(summary.matchedTerms).some(Boolean)) {
+            return false;
+        }
         const distinctTerms = Object.keys(summary.matchedTerms).length;
         const score = summary.score;
 
@@ -342,7 +425,9 @@
             ogDescription,
             twitterTitle,
             twitterDescription
-        ].filter(Boolean).join(' ');
+        ].filter(Boolean).map(normalizeText);
+        // Social metadata commonly repeats the title/description verbatim.
+        const uniqueTitleMeta = Array.from(new Set(allTitleMeta)).join(' ');
 
         const headingText = getElementsText('h1, h2, h3');
         const linkButtonText = getLinksAndButtonsText() + ' ' + getImageAltText();
@@ -356,7 +441,7 @@
         }
 
         return {
-            titleMeta: limitText(allTitleMeta, 20000),
+            titleMeta: limitText(uniqueTitleMeta, 20000),
             headings: limitText(headingText, 20000),
             linksButtons: limitText(linkButtonText, 25000),
             body: limitText(bodyText, MAX_TEXT_LENGTH),
@@ -419,6 +504,8 @@
             .replace(/[\u0000-\u001f]+/g, ' ')
             .replace(/[\-_./]+/g, ' ')
             .replace(/\s+/g, ' ')
+            // Keep a separator token so removal cannot manufacture a keyword phrase.
+            .replace(SFW_AESTHETIC_REGEX, '$1\uFFFC')
             .trim();
     }
 
@@ -460,7 +547,7 @@
                         summary.score += pointsAdded;
                         summary.matchedLanguages[languageCode] = true;
                         summary.matchedCategories[category] += 1;
-                        summary.matchedTerms[matchKey] = true;
+                        summary.matchedTerms[matchKey] = !kwObj.requiresContext;
 
                         const langTermKey = languageCode + ':' + kwObj.original;
                         if (!summary.matchedLanguageTerms[langTermKey]) {
@@ -468,7 +555,7 @@
                             summary.languageTermCounts[languageCode] = (summary.languageTermCounts[languageCode] || 0) + 1;
                         }
 
-                        if (category === 'strong' && (sourceName === 'titleMeta' || sourceName === 'headings')) {
+                        if (category === 'strong' && !kwObj.requiresContext && (sourceName === 'titleMeta' || sourceName === 'headings')) {
                             summary.headerStrongTerms[matchKey] = true;
                         }
 
@@ -503,6 +590,9 @@
         });
 
         function restorePage() {
+            if (restoreBlockedPage !== restorePage) return;
+            window.clearTimeout(recoveryTimer);
+            restoreBlockedPage = null;
             if (root) {
                 root.style.display = previousDisplay;
             }
@@ -511,6 +601,7 @@
 
         // Also recover if the background never answers (for example during an update).
         const recoveryTimer = window.setTimeout(restorePage, 5000);
+        restoreBlockedPage = restorePage;
         try {
             chrome.runtime.sendMessage({
                 action: 'contentScanBlocked',
@@ -521,6 +612,7 @@
                 matchedCategories: result.matchedCategories
             }, function (response) {
                 const error = chrome.runtime.lastError;
+                if (restoreBlockedPage !== restorePage) return;
                 window.clearTimeout(recoveryTimer);
                 if (error || !response || !response.success) {
                     restorePage();

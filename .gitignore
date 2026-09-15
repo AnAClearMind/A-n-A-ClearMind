@@ -4,3 +4,4 @@
 /tests
 /test_sampels
 __pycache__/
+(cicd)/test_build.py

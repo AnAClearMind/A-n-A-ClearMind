@@ -33,12 +33,13 @@ function UpdateFooterState() {
 
 function RegisterProgressTick() {
     return new Promise((resolve, reject) => {
-        const safeCurrent = (typeof currentProgress === 'number' && !isNaN(currentProgress)) ? currentProgress : 0;
-        chrome.storage.local.set({ progress: safeCurrent + 1 }, function () {
+        chrome.runtime.sendMessage({ action: 'registerProgressTick' }, function (result) {
             if (chrome.runtime.lastError) {
                 reject(new Error(chrome.runtime.lastError.message));
+            } else if (!result || !result.success) {
+                reject(new Error(result && result.error || 'Failed to update progress'));
             } else {
-                resolve();
+                resolve(result);
             }
         });
     });
@@ -63,14 +64,16 @@ async function UpdateProgressionAndProceed(proceedFunction) {
     try {
         await UpdateFooterState();
 
-        if (currentProgress < maxProgressValue) {
-            await RegisterProgressTick();
-            const nextDiv = scaleDivs ? scaleDivs[currentProgress] : null;
-            if (nextDiv) {
-                nextDiv.classList.add('filled');
+        const result = await RegisterProgressTick();
+        currentProgress = result.progress;
+        if (scaleDivs) {
+            for (let i = 0; i < currentProgress && i < scaleDivs.length; i++) {
+                scaleDivs[i].classList.add('filled');
             }
+        }
+        if (result.progress > result.previousProgress) {
+            const nextDiv = scaleDivs ? scaleDivs[currentProgress - 1] : null;
             let rewardLevel = 0;
-            currentProgress += 1;
             switch (currentProgress) {
                 case 5:
                     rewardLevel = 1;

@@ -25,12 +25,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             return '';
         }
         else{
-            const domain = urlObj.hostname;
-            const domainPattern = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (domainPattern.test(domain)) {
-                return domain;
-            }
-            return '';
+            // Validation and IDN normalization are handled by the background.
+            return ['http:', 'https:'].includes(urlObj.protocol) ? urlObj.hostname : '';
         }
     }
 

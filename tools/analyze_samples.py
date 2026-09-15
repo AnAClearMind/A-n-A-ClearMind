@@ -80,6 +80,11 @@ GENERIC_ALTS = re.compile(
     re.IGNORECASE
 )
 
+SFW_AESTHETIC_REGEX = re.compile(
+    r"(^|[\W_])(?:unix|desktop|food|earth|room|design|map|space)\s*porn(?:ography)?(?=[\W_]|$)",
+    re.IGNORECASE
+)
+
 
 def normalize_text(text):
     if not text:
@@ -90,6 +95,7 @@ def normalize_text(text):
     cleaned = re.sub(r"[\x00-\x1f]+", " ", cleaned)
     cleaned = re.sub(r"[\-_./]+", " ", cleaned)
     cleaned = re.sub(r"\s+", " ", cleaned)
+    cleaned = SFW_AESTHETIC_REGEX.sub(r"\g<1>" + "\uFFFC", cleaned)
     return cleaned.strip()
 
 
@@ -101,6 +107,7 @@ def load_and_compile_keywords(db_path):
         data = json.load(f)
 
     compiled = {"languages": {}}
+    context_required = {normalize_text(term) for term in data.get("contextRequired", [])}
     cjk_pattern = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]")
 
     for lang_code, categories in data.get("languages", {}).items():
@@ -128,11 +135,12 @@ def load_and_compile_keywords(db_path):
                 compiled_words.append({
                     "original": word,
                     "normalized": norm,
+                    "requires_context": norm in context_required,
                     "is_latin_short_foreign": is_latin_short_foreign,
                     "regex": regex,
                     "global_regex": global_regex
                 })
-            compiled["languages"][lang_code][category] = compiled_words
+            compiled["languages"][lang_code][category] = sorted(compiled_words, key=lambda word: word["requires_context"])
 
     return compiled
 
@@ -179,7 +187,7 @@ def extract_text_sources(soup, page_url=""):
     except UnicodeDecodeError:
         pass
 
-    all_title_meta = " ".join([title] + meta_parts)
+    all_title_meta = " ".join(dict.fromkeys(normalize_text(part) for part in [title] + meta_parts if part))
     all_links = " ".join(links_parts + img_alts)
 
     return {
@@ -261,14 +269,14 @@ def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD, p
                         summary["raw_score"] += pts
                         summary["matched_languages"][lang_code] = True
                         summary["matched_categories"][category] += 1
-                        summary["matched_terms"][match_key] = True
+                        summary["matched_terms"][match_key] = not kw_obj["requires_context"]
 
                         lang_term_key = f"{lang_code}:{kw_obj['original']}"
                         if lang_term_key not in summary["matched_language_terms"]:
                             summary["matched_language_terms"][lang_term_key] = True
                             summary["language_term_counts"][lang_code] = summary["language_term_counts"].get(lang_code, 0) + 1
 
-                        if category == "strong" and source_name in ["titleMeta", "headings"]:
+                        if category == "strong" and not kw_obj["requires_context"] and source_name in ["titleMeta", "headings"]:
                             summary["header_strong_terms"].add(match_key)
 
                         if match_key not in term_details:
@@ -321,7 +329,9 @@ def analyze_html_file(file_path, compiled_db, block_threshold=BLOCK_THRESHOLD, p
     is_blocked = False
     rule_name = None
 
-    if distinct_terms_count >= 5:
+    if not any(summary["matched_terms"].values()):
+        pass  # Ambiguous vocabulary alone cannot establish adult context.
+    elif distinct_terms_count >= 5:
         is_blocked = True
         rule_name = "distinct_terms_gte_5"
     elif distinct_terms_count >= 4 and score >= block_threshold:
