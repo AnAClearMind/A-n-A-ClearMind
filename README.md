@@ -1,7 +1,7 @@
 # ClearMind
 
 <p align="center">
-  <img src="src/assets/icons/icon128.png" alt="ClearMind icon" width="128" height="128">
+  <img src="readme_assets/icon512.png" alt="ClearMind icon" width="512" height="512">
 </p>
 
 <p align="center">
