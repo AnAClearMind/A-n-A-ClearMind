@@ -1,7 +1,15 @@
 /builds
 /docs
 /src/_metadata
-/tests
 /test_sampels
 __pycache__/
 (cicd)/test_build.py
+/tests
+/.artifacts
+
+# Optional local scanner regression tools and reports
+/tools/fixtures/content-scanner-baseline.js
+/tools/fixtures/scanner-comparison.json
+/tools/fixtures/scanner-pages.json
+/tools/scanner-browser-tests.js
+/tools/test-scanner.html
