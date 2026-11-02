@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "Devam"
+  },
+  "blockScopeLabel": {
+    "message": "Engelle"
+  },
+  "blockScopeSite": {
+    "message": "Tüm site"
+  },
+  "blockScopeSection": {
+    "message": "Sayfa / bölüm"
+  },
+  "blockScopeHint": {
+    "message": "Alt sayfaları, iki protokolü ve alt alan adlarını içerir. Yol büyük/küçük harfe duyarlı değildir. ? veya # olmadan adres girin."
+  },
+  "invalidSectionFormat": {
+    "message": "? veya # olmadan yol içeren bir adres girin. Kök adres için Tüm site seçin."
+  },
+  "sectionRuleLimitReached": {
+    "message": "Bölüm kuralı sınırına ulaşıldı. Bir bölümü kaldırıp yeniden deneyin."
   }
 }

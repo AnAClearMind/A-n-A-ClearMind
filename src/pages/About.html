@@ -1040,6 +1040,12 @@
 
                 <!-- Add domain -->
                 <div class="blocklist-add-card">
+                    <label for="customBlockScope" id="customBlockScopeLabel">Block</label>
+                    <select id="customBlockScope" style="padding: 8px; border-radius: 6px; max-width: 100%;">
+                    <option value="site">Whole site</option>
+                    <option value="section">Page / section</option>
+                    </select>
+                    <p id="customBlockScopeHint" style="font-size: 0.85em;">Sections include nested pages. Use an address without ? or #. Path matching ignores letter case.</p>
                     <div class="blocklist-toolbar">
                         <input type="text" id="customDomainInput" placeholder="domain.com or https://domain.com/page">
                         <button id="addCustomDomainButton">

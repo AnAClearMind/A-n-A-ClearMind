@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-ClearMind Content Filter — HTML Sample Analyzer
+ClearMind Content Filter — Legacy HTML Sample Analyzer (scanner v1)
 ================================================
 Analyzes saved .html page snapshots using the Content Scanner scoring rules
-and the current adult-keywords.json database.
+and the frozen v8 keyword database. For the current DOM scanner, use
+the installed extension (see tools/README.md).
 
 Features:
 - Single file or batch directory analysis
-- Scoring regression-tested against src/scripts/global/contentScanner.js
+- Historical scanner v1 scoring rules
 - Human-readable CLI summary or clean JSON output for AI agents (--json)
 - Displays matched terms, repeat counts, score breakdown, and pruned foreign terms
 
@@ -37,7 +38,7 @@ except ImportError:
 
 # Paths
 REPO_ROOT = Path(__file__).resolve().parent.parent
-KEYWORDS_PATH = REPO_ROOT / "src" / "DB" / "adult-keywords.json"
+KEYWORDS_PATH = REPO_ROOT / "tools" / "fixtures" / "adult-keywords-baseline.json"
 DEFAULT_SAMPLES_DIR = REPO_ROOT / "test_sampels"
 
 # Algorithm Constants (matching contentScanner.js)
@@ -405,6 +406,7 @@ def format_cli_result(res):
 
 
 def main():
+    print("Legacy scanner v1 comparison only. Use the installed extension for the current DOM scanner.", file=sys.stderr)
     parser = argparse.ArgumentParser(description="ClearMind Content Scanner HTML Snapshot Analyzer")
     parser.add_argument("target", nargs="?", default=str(DEFAULT_SAMPLES_DIR),
                         help="Path to an .html file or a folder of .html files (default: test_sampels/)")

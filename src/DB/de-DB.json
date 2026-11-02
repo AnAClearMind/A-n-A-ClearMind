@@ -347,7 +347,7 @@
 	},
 	"ProgressionPopup": {
 		"static": {
-			"p": "Glückwunsch, Sir! Hier ist ein mächtiges Artefakt, das dir auf deiner Reise helfen wird!",
+			"p": "Glückwunsch! Hier ist ein mächtiges Artefakt, das dir auf deiner Reise helfen wird!",
 			"closeButton": "Weiter",
 			"claimButton": "Hol es dir!"
 		},

@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "Continuer"
+  },
+  "blockScopeLabel": {
+    "message": "Bloquer"
+  },
+  "blockScopeSite": {
+    "message": "Tout le site"
+  },
+  "blockScopeSection": {
+    "message": "Page / section"
+  },
+  "blockScopeHint": {
+    "message": "Inclut les sous-pages, les deux protocoles et les sous-domaines. La casse du chemin est ignorée. Adresse sans ? ni #."
+  },
+  "invalidSectionFormat": {
+    "message": "Saisissez une adresse avec un chemin, sans ? ni #. Pour la racine, choisissez Tout le site."
+  },
+  "sectionRuleLimitReached": {
+    "message": "Limite de règles de sections atteinte. Supprimez une section et réessayez."
   }
 }

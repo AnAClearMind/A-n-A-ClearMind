@@ -40,8 +40,8 @@ function dataLoadFromBase(UrgeTest_initial) {
     const urlParams = new URLSearchParams(window.location.search);
     const blockedDomain = urlParams.get('blocked');
     if (blockedDomain) {
-        document.getElementById('blockedDomain').textContent = decodeURIComponent(blockedDomain);
-        document.getElementById('blockedDomainOverlay').textContent = decodeURIComponent(blockedDomain);
+        document.getElementById('blockedDomain').textContent = blockedDomain;
+        document.getElementById('blockedDomainOverlay').textContent = blockedDomain;
     } else {
         document.getElementById('blockedDomain').textContent = 'Unknown';
         document.getElementById('blockedDomainOverlay').textContent = 'Unknown';

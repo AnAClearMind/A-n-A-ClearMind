@@ -103,6 +103,10 @@ window.onload = async function () {
         document.getElementById(`imageFile${index}`).addEventListener('change', () => previewImage(index));
     });
     //
+    document.getElementById('customBlockScopeLabel').textContent = chrome.i18n.getMessage('blockScopeLabel');
+    document.querySelector('#customBlockScope [value="site"]').textContent = chrome.i18n.getMessage('blockScopeSite');
+    document.querySelector('#customBlockScope [value="section"]').textContent = chrome.i18n.getMessage('blockScopeSection');
+    document.getElementById('customBlockScopeHint').textContent = chrome.i18n.getMessage('blockScopeHint');
     document.getElementById('exportBlocklistButton').addEventListener('click', exportBlocklist);
     document.getElementById('importBlocklistButton').addEventListener('click', importBlocklist);
     document.getElementById('addCustomDomainButton').addEventListener('click', addCustomDomainFromEditor);
@@ -523,7 +527,7 @@ function renderCustomBlocklist() {
 
         const domainText = document.createElement('span');
         domainText.className = 'blocklist-domain';
-        domainText.textContent = domain;
+        domainText.textContent = domain + ' — ' + chrome.i18n.getMessage(domain.includes('/') ? 'blockScopeSection' : 'blockScopeSite');
 
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
@@ -541,7 +545,7 @@ function renderCustomBlocklist() {
         list.appendChild(item);
     });
 
-    const totalText = customBlocklistDomains.length === 1 ? '1 domain' : `${customBlocklistDomains.length} domains`;
+    const totalText = String(customBlocklistDomains.length);
     count.textContent = query
         ? `${filteredDomains.length} / ${totalText}`
         : totalText;
@@ -582,7 +586,7 @@ function addCustomDomainFromEditor() {
         return;
     }
 
-    chrome.runtime.sendMessage({ action: 'addDomain', domain: domain, silent: true }, function (response) {
+    chrome.runtime.sendMessage({ action: 'addDomain', domain: domain, scope: document.getElementById('customBlockScope').value, silent: true }, function (response) {
         if (response && response.success) {
             input.value = '';
             setBlocklistStatus(response.message || 'Domain added.');
@@ -594,7 +598,7 @@ function addCustomDomainFromEditor() {
 }
 
 function deleteCustomDomainFromEditor(domain) {
-    chrome.runtime.sendMessage({ action: 'deleteDomain', domain: domain, silent: true }, function (response) {
+    chrome.runtime.sendMessage({ action: 'deleteDomain', domain: domain, scope: domain.includes('/') ? 'section' : 'site', silent: true }, function (response) {
         if (response && response.success) {
             setBlocklistStatus(response.message || 'Domain removed.');
             loadCustomBlocklistEditor();
@@ -608,8 +612,8 @@ function deleteCustomDomainFromEditor(domain) {
 async function exportBlocklist() {
     chrome.storage.local.get('customBlockedDomains', function(result) {
         let domains = result.customBlockedDomains || [];
-        let formatString = "# Format: domainName.domainZone, e.g. site.com, 1 per line.";
-        let text = formatString + '\n' + domains.join('\n');
+        let formatString = "# ClearMind blocklist v2: site.com or section: site.com/path, one per line.";
+        let text = formatString + '\n' + domains.map(domain => domain.includes('/') ? 'section: ' + domain : domain).join('\n');
         let filename = "customBlockedDomains.txt";
         let blob = new Blob([text], { type: 'text/plain' });
         let downloadLink = URL.createObjectURL(blob);
@@ -662,11 +666,6 @@ async function importBlocklist() {
             if (domainsToAdd.length === 0) {
                 alert("No domains to add found in the file.");
                 return;
-            }
-
-            if (domainsToAdd.length > 4900) {
-                alert("Import limit exceeded.\n\nDue to technical limitations, you can import a maximum of 4900 custom blocks.\n\nPlease reduce the number of entries in your file and try again.");
-                return; // Stop import if limit exceeded
             }
 
             chrome.runtime.sendMessage({ action: "importDomains", domains: domainsToAdd }, function (response) {

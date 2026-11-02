@@ -45,7 +45,6 @@
         'arxiv.org',
         'biorxiv.org',
         'medrxiv.org',
-        'reddit.com',
         'redd.it',
         'nofap.com',
         'forum.nofap.com',
@@ -96,7 +95,8 @@
         headings: 1.5,
         linksButtons: 1,
         body: 1,
-        path: 0.5
+        path: 0.5,
+        navigation: 0.35
     };
     const CATEGORY_WEIGHTS = {
         strong: 6,
@@ -211,7 +211,7 @@
             return response.text();
         }).then(function (rawJson) {
             const parsed = JSON.parse(rawJson);
-            const compiledDb = { languages: {} };
+            const compiledDb = { version: parsed.version, languages: {} };
             const contextRequired = new Set((parsed.contextRequired || []).map(normalizeText));
             const langs = parsed.languages || {};
 
@@ -227,6 +227,8 @@
                         const isLatinShortForeign = (langCode !== 'en' && normalized.length <= 4 && /^[a-z0-9\s-]+$/i.test(normalized));
                         return {
                             original: kw,
+                            normalized: normalized,
+                            isCjk: isCjk,
                             requiresContext: contextRequired.has(normalized),
                             isLatinShortForeign: isLatinShortForeign,
                             regex: isCjk
@@ -297,7 +299,7 @@
             subtree: true,
             characterData: true,
             attributes: true,
-            attributeFilter: ['alt', 'title', 'content', 'lang']
+            attributeFilter: ['alt', 'title', 'content', 'lang', 'class', 'style', 'hidden', 'open', 'name', 'nsfw', 'data-nsfw', 'post-title']
         });
 
         // pushState does not emit popstate, and a route can change without DOM mutations.
@@ -311,266 +313,265 @@
     }
 
     function scanPage() {
-        const sources = collectTextSources();
-        const pageLang = (document.documentElement && document.documentElement.lang ? document.documentElement.lang.toLowerCase() : '');
-        const summary = {
-            score: 0,
-            hasHeaderStrong: false,
-            matchedLanguages: {},
-            matchedCategories: {
-                strong: 0,
-                medium: 0
-            },
-            matchedTerms: {},
-            headerStrongTerms: {},
-            languageTermCounts: {},
-            matchedLanguageTerms: {},
-            potentialForeignShortMatches: []
-        };
-
-        Object.keys(sources).forEach(function (sourceName) {
-            const normalizedText = normalizeText(sources[sourceName]);
-            if (!normalizedText) {
-                return;
+        const isReddit = /(^|\.)reddit\.com$/i.test(location.hostname);
+        if (!isReddit) {
+            const result = scoreBlocks(collectTextSources(document.body, true));
+            const rating = getAdultRating();
+            if (rating) {
+                result.score = Math.max(BLOCK_THRESHOLD, result.score);
+                result.rule = rating;
             }
-
-            scoreTextSource(normalizedText, SOURCE_MULTIPLIERS[sourceName] || 1, summary, sourceName);
-        });
-
-        // Prune isolated short foreign Latin terms on non-matching language pages to prevent false positives
-        summary.potentialForeignShortMatches.forEach(function (item) {
-            if (!pageLang.startsWith(item.lang) && (summary.languageTermCounts[item.lang] || 0) < 2) {
-                summary.score -= item.points;
-                summary.matchedCategories[item.category] -= 1;
-                delete summary.matchedTerms[item.termKey];
-                delete summary.headerStrongTerms[item.termKey];
-                if (summary.languageTermCounts[item.lang] <= 1) {
-                    delete summary.matchedLanguages[item.lang];
-                }
-            }
-        });
-        summary.hasHeaderStrong = Object.keys(summary.headerStrongTerms).length > 0;
-
-        if (!hasBlockingCombination(summary)) {
-            summary.score = Math.min(summary.score, RESCAN_THRESHOLD - 1);
+            return result;
         }
 
-        summary.score = Math.round(summary.score);
-        summary.matchedLanguages = Object.keys(summary.matchedLanguages);
-        delete summary.matchedTerms;
-        delete summary.headerStrongTerms;
-        delete summary.matchedLanguageTerms;
-        delete summary.languageTermCounts;
-        delete summary.potentialForeignShortMatches;
-        return summary;
+        // Never combine unrelated posts, comments, or sidebar recommendations.
+        const postId = (location.pathname.match(/\/comments\/([a-z0-9]+)/i) || [])[1];
+        const posts = Array.from(document.querySelectorAll('shreddit-post, .thing.link, [data-testid="post-container"]'));
+        let best = scoreBlocks([]);
+        posts.forEach(function (post) {
+            if (post.closest('aside, nav, footer, [slot="related-posts"]') || !isVisible(post)) return;
+            if (postId) {
+                const id = (post.getAttribute('data-fullname') || post.getAttribute('id') || '').replace(/^(?:thing_)?t3_/, '');
+                const permalink = post.getAttribute('permalink') || '';
+                if (id !== postId && !permalink.includes('/comments/' + postId + '/')) return;
+            }
+            let blocks = collectTextSources(post, false);
+            const postTitle = post.getAttribute('post-title');
+            if (postTitle) {
+                blocks = blocks.filter(function (block) {
+                    return block.source !== 'headings' || normalizeText(block.text) !== normalizeText(postTitle);
+                });
+                blocks.push({ source: 'titleMeta', text: postTitle });
+            }
+            const result = scoreBlocks(blocks);
+            const nsfw = (post.hasAttribute('nsfw') && post.getAttribute('nsfw') !== 'false') ||
+                post.getAttribute('data-nsfw') === 'true' || post.classList.contains('over18');
+            const confident = result.score >= (nsfw ? BLOCK_THRESHOLD : 60) && result.matchedCategories.strong > 0;
+            if (confident) result.rule = 'reddit_post_' + result.rule;
+            else result.score = Math.min(result.score, RESCAN_THRESHOLD - 1);
+            if (result.score > best.score) best = result;
+        });
+        return best;
     }
 
-    function hasBlockingCombination(summary) {
-        // Ambiguous vocabulary can support other evidence, but cannot establish it alone.
-        if (!Object.values(summary.matchedTerms).some(Boolean)) {
-            return false;
+    function getAdultRating() {
+        if (!document.head) return null;
+        const tags = document.head.querySelectorAll('meta[name="rating" i]');
+        for (const tag of tags) {
+            const value = (tag.getAttribute('content') || '').trim().toLowerCase();
+            if (value === 'adult') return 'meta_rating_adult';
+            if (value === 'rta-5042-1996-1400-1577-rta') return 'meta_rating_rta';
         }
-        const distinctTerms = Object.keys(summary.matchedTerms).length;
-        const score = summary.score;
-
-        if (distinctTerms >= 5) {
-            return true;
-        }
-        if (distinctTerms >= 4 && score >= BLOCK_THRESHOLD) {
-            return true;
-        }
-        if (distinctTerms >= 3 && score >= 50) {
-            return true;
-        }
-        if (distinctTerms >= 2 && score >= 70) {
-            return true;
-        }
-        if (summary.hasHeaderStrong && distinctTerms >= 2 && score >= BLOCK_THRESHOLD) {
-            return true;
-        }
-        return false;
+        return null;
     }
 
-    function getBodyTextFast() {
-        if (!document.body) return '';
-        let text = '';
-        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-            acceptNode: function(node) {
-                const tag = node.parentNode ? node.parentNode.nodeName : '';
-                if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') {
-                    return NodeFilter.FILTER_REJECT;
-                }
-                return NodeFilter.FILTER_ACCEPT;
-            }
+    function scoreBlocks(blocks) {
+        const pageLang = (document.documentElement.lang || '').toLowerCase();
+        const languageTerms = {};
+        const matchesByBlock = blocks.map(function (block) {
+            const text = normalizeText(block.text);
+            const matches = [];
+            Object.keys(keywordDb.languages).sort().forEach(function (lang) {
+                if (SCRIPT_FILTERS[lang] && !SCRIPT_FILTERS[lang].test(text)) return;
+                ['strong', 'medium'].forEach(function (category) {
+                    keywordDb.languages[lang][category].forEach(function (kw) {
+                        kw.globalRegex.lastIndex = 0;
+                        let match;
+                        while ((match = kw.globalRegex.exec(text))) {
+                            const start = match.index + (kw.isCjk ? 0 : match[1].length);
+                            const length = kw.isCjk ? match[0].length : match[2].length;
+                            matches.push({ start: start, end: start + length, kw: kw, lang: lang, category: category });
+                            if (!languageTerms[lang]) languageTerms[lang] = new Set();
+                            languageTerms[lang].add(kw.normalized);
+                        }
+                    });
+                });
+            });
+            return { block: block, text: text, matches: matches };
         });
-        let currentNode;
-        while (currentNode = walker.nextNode()) {
-            text += currentNode.nodeValue + ' ';
+
+        const evidence = new Map();
+        matchesByBlock.forEach(function (entry) {
+            const matches = entry.matches.filter(function (m) {
+                return !m.kw.isLatinShortForeign || pageLang.startsWith(m.lang) || languageTerms[m.lang].size >= 2;
+            });
+            // Resolve shared spans before counting distinct terms. Exact duplicate translations
+            // prefer the declared language; otherwise tie-breaking is independent of JSON order.
+            matches.sort(function (a, b) {
+                return (b.end - b.start) - (a.end - a.start) ||
+                    Number(a.kw.requiresContext) - Number(b.kw.requiresContext) ||
+                    CATEGORY_WEIGHTS[b.category] - CATEGORY_WEIGHTS[a.category] ||
+                    Number(pageLang.startsWith(b.lang)) - Number(pageLang.startsWith(a.lang)) ||
+                    (a.kw.normalized + a.lang).localeCompare(b.kw.normalized + b.lang);
+            });
+            const occupied = new Uint8Array(entry.text.length);
+            const accepted = [];
+            matches.forEach(function (m) {
+                if (occupied.subarray(m.start, m.end).some(Boolean)) return;
+                occupied.fill(1, m.start, m.end);
+                accepted.push(m);
+            });
+            const anchors = accepted.filter(function (m) { return !m.kw.requiresContext; });
+            accepted.forEach(function (m) {
+                if (m.kw.requiresContext && !anchors.some(function (anchor) {
+                    return Math.max(0, anchor.start - m.end, m.start - anchor.end) <= 150;
+                })) return;
+                const termKey = m.category + ':' + m.kw.normalized;
+                const key = entry.block.source + ':' + termKey;
+                if (!evidence.has(key)) evidence.set(key, {
+                    term: m.kw.normalized, category: m.category, language: m.lang,
+                    source: entry.block.source, requiresContext: m.kw.requiresContext, occurrences: 0
+                });
+                evidence.get(key).occurrences++;
+            });
+        });
+
+        const candidates = Array.from(evidence.values());
+        candidates.forEach(function (item) {
+            item.points = (CATEGORY_WEIGHTS[item.category] + Math.min(item.occurrences - 1, 3)) * SOURCE_MULTIPLIERS[item.source];
+        });
+        candidates.sort(function (a, b) {
+            return Number(a.requiresContext) - Number(b.requiresContext) || b.points - a.points ||
+                (a.term + a.language + a.source).localeCompare(b.term + b.language + b.source);
+        });
+        const budgets = {};
+        const selected = candidates.filter(function (item) {
+            const key = item.source + ':' + item.language + ':' + item.category;
+            budgets[key] = (budgets[key] || 0) + 1;
+            return budgets[key] <= 5;
+        });
+        const terms = new Set(selected.map(function (item) { return item.category + ':' + item.term; }));
+        const rawScore = selected.reduce(function (sum, item) { return sum + item.points; }, 0);
+        const hasHeaderStrong = selected.some(function (item) {
+            return item.category === 'strong' && !item.requiresContext && ['titleMeta', 'headings'].includes(item.source);
+        });
+        const distinctTerms = terms.size;
+        let rule = 'insufficient_combination';
+        if (selected.some(function (item) { return !item.requiresContext; })) {
+            if (distinctTerms >= 5) rule = 'five_terms';
+            else if (distinctTerms >= 4 && rawScore >= 40) rule = 'four_terms_40';
+            else if (distinctTerms >= 3 && rawScore >= 50) rule = 'three_terms_50';
+            else if (distinctTerms >= 2 && rawScore >= 70) rule = 'two_terms_70';
+            else if (hasHeaderStrong && distinctTerms >= 2 && rawScore >= 40) rule = 'strong_header_40';
         }
-        return text;
-    }
-
-    function collectTextSources() {
-        const metaDescription = getMetaContent('description');
-        const metaKeywords = getMetaContent('keywords');
-        const ogTitle = getMetaContent('og:title');
-        const ogDescription = getMetaContent('og:description');
-        const twitterTitle = getMetaContent('twitter:title');
-        const twitterDescription = getMetaContent('twitter:description');
-        const allTitleMeta = [
-            document.title,
-            metaDescription,
-            metaKeywords,
-            ogTitle,
-            ogDescription,
-            twitterTitle,
-            twitterDescription
-        ].filter(Boolean).map(normalizeText);
-        // Social metadata commonly repeats the title/description verbatim.
-        const uniqueTitleMeta = Array.from(new Set(allTitleMeta)).join(' ');
-
-        const headingText = getElementsText('h1, h2, h3');
-        const linkButtonText = getLinksAndButtonsText() + ' ' + getImageAltText();
-        const bodyText = getBodyTextFast();
-
-        let safePath = location.pathname || '';
-        try {
-            safePath = decodeURIComponent(safePath);
-        } catch (e) {
-            console.warn('ClearMind: Failed to decode URI path in content scanner', e);
-        }
-
         return {
-            titleMeta: limitText(uniqueTitleMeta, 20000),
-            headings: limitText(headingText, 20000),
-            linksButtons: limitText(linkButtonText, 25000),
-            body: limitText(bodyText, MAX_TEXT_LENGTH),
-            path: limitText(safePath, 5000)
+            score: Math.round(rule === 'insufficient_combination' ? Math.min(rawScore, 23) : rawScore),
+            rawScore: Math.round(rawScore * 100) / 100,
+            rule: rule,
+            scannerVersion: 2,
+            keywordVersion: keywordDb.version,
+            distinctTerms: distinctTerms,
+            hasHeaderStrong: hasHeaderStrong,
+            matchedLanguages: Array.from(new Set(selected.map(function (item) { return item.language; }))).sort(),
+            matchedCategories: {
+                strong: selected.filter(function (item) { return item.category === 'strong'; }).length,
+                medium: selected.filter(function (item) { return item.category === 'medium'; }).length
+            },
+            topTerms: selected.slice().sort(function (a, b) { return b.points - a.points || a.term.localeCompare(b.term); })
+                .slice(0, 8).map(function (item) {
+                    return { term: item.term, source: item.source, points: item.points, occurrences: item.occurrences };
+                })
         };
+    }
+
+    function isVisible(element) {
+        if (!element) return true;
+        // display:contents has visible descendants; aria-hidden is not visual hiding.
+        for (let current = element; current; current = current.parentElement) {
+            if (current.hidden) return false;
+            const style = window.getComputedStyle(current);
+            if (style.display === 'none' || style.contentVisibility === 'hidden' || style.opacity === '0') return false;
+            if (current.tagName === 'DETAILS' && !current.open) {
+                const summary = Array.from(current.children).find(function (child) { return child.tagName === 'SUMMARY'; });
+                if (!summary || !summary.contains(element)) return false;
+            }
+        }
+        const visibility = window.getComputedStyle(element).visibility;
+        return visibility !== 'hidden' && visibility !== 'collapse';
+    }
+
+    function collectTextSources(root, includePageMetadata) {
+        const blocks = [];
+        if (includePageMetadata) {
+            const metadata = [document.title, getMetaContent('description'), getMetaContent('keywords'),
+                getMetaContent('og:title'), getMetaContent('og:description'), getMetaContent('twitter:title'), getMetaContent('twitter:description')];
+            const unique = Array.from(new Set(metadata.map(normalizeText).filter(Boolean)));
+            let remaining = 20000;
+            unique.filter(function (text) {
+                return !unique.some(function (other) { return other !== text && other.includes(text); });
+            }).forEach(function (text) {
+                blocks.push({ source: 'titleMeta', text: text.slice(0, remaining) });
+                remaining = Math.max(0, remaining - text.length);
+            });
+            let path = location.pathname;
+            try { path = decodeURIComponent(path); } catch (_) {}
+            blocks.push({ source: 'path', text: path.slice(0, 5000) });
+        }
+        if (!root) return blocks;
+        let previousOwner = null;
+        let previousSource = null;
+        let currentBlock = null;
+        const visibility = new Map();
+        const budgets = { body: MAX_TEXT_LENGTH, headings: 20000, linksButtons: 25000, navigation: 20000 };
+        function add(element, text, attribute) {
+            if (!text || element.closest('script, style, noscript, template')) return;
+            if (root !== document.body && element.closest('shreddit-comment, .comment, [data-testid="comment"], aside, nav, footer')) return;
+            if (!visibility.has(element)) visibility.set(element, isVisible(element));
+            if (!visibility.get(element)) return;
+            const navigation = element.closest('nav, footer, aside, [role="navigation"], [role="contentinfo"]');
+            const heading = element.closest('h1, h2, h3');
+            const link = element.closest('a, button');
+            const source = navigation ? 'navigation' : attribute ? 'linksButtons' : heading ? 'headings' : link ? 'linksButtons' : 'body';
+            if (budgets[source] <= 0) return;
+            // Attributes are individual contexts, not neighbours of unrelated DOM text.
+            const owner = attribute ? {} : element.closest('p, li, div, section, article, td, th, h1, h2, h3, pre, figcaption') || root;
+            if (previousOwner !== owner || previousSource !== source) {
+                currentBlock = { source: source, text: '' };
+                blocks.push(currentBlock);
+            }
+            previousOwner = owner;
+            previousSource = source;
+            const part = (text + ' ').slice(0, budgets[source]);
+            currentBlock.text += part;
+            budgets[source] -= part.length;
+        }
+        // A shared DOM prefix bounds traversal. Each text node contributes to one zone only.
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        let consumed = 0;
+        let node;
+        while (consumed < MAX_TEXT_LENGTH && (node = walker.nextNode())) {
+            const parent = node.parentElement;
+            if (!parent || parent.closest('script, style, noscript, template')) continue;
+            const part = (node.nodeValue + ' ').slice(0, MAX_TEXT_LENGTH - consumed);
+            consumed += part.length;
+            add(parent, part.trimEnd(), false);
+        }
+        Array.from(root.querySelectorAll('a[title], button[title]')).slice(0, 300).forEach(function (element) {
+            const title = element.getAttribute('title');
+            if (normalizeText(title) !== normalizeText(element.textContent)) add(element, title, true);
+        });
+        Array.from(root.querySelectorAll('img[alt]')).slice(0, 50).forEach(function (element) {
+            const alt = element.getAttribute('alt');
+            if (alt.length > 2 && !/^(image|photo|picture|thumbnail|logo|icon|avatar|star|full star|half star|empty star|banner|pic|img)$/i.test(alt.trim())) add(element, alt, true);
+        });
+        return blocks;
     }
 
     function getMetaContent(nameOrProperty) {
-        const element = document.querySelector('meta[name="' + nameOrProperty + '" i], meta[property="' + nameOrProperty + '" i]');
+        const element = document.head && document.head.querySelector('meta[name="' + nameOrProperty + '" i], meta[property="' + nameOrProperty + '" i]');
         return element ? element.getAttribute('content') || '' : '';
-    }
-
-    function getElementsText(selector) {
-        return Array.prototype.map.call(document.querySelectorAll(selector), function (element) {
-            return element.textContent || '';
-        }).join(' ');
-    }
-
-    function getLinksAndButtonsText() {
-        const elements = document.querySelectorAll('a, button');
-        const parts = [];
-        const maxElements = Math.min(elements.length, 300);
-        for (let i = 0; i < maxElements; i++) {
-            const el = elements[i];
-            const text = el.textContent;
-            if (text) {
-                parts.push(text);
-            }
-            const title = el.getAttribute('title');
-            if (title && title !== text) {
-                parts.push(title);
-            }
-        }
-        return parts.join(' ');
-    }
-
-    function getImageAltText() {
-        const images = document.images || document.querySelectorAll('img');
-        const parts = [];
-        const maxImages = Math.min(images.length, 50);
-        const genericAlts = /^(image|photo|picture|thumbnail|logo|icon|avatar|star|full star|half star|empty star|banner|pic|img)$/i;
-        for (let i = 0; i < maxImages; i++) {
-            const alt = images[i].getAttribute('alt');
-            if (alt && alt.length > 2 && !genericAlts.test(alt.trim())) {
-                parts.push(alt);
-            }
-        }
-        return parts.join(' ');
-    }
-
-    function limitText(text, maxLength) {
-        return String(text || '').slice(0, maxLength);
     }
 
     function normalizeText(text) {
         return String(text || '')
-            .normalize('NFD')
+            .normalize('NFKD')
             .replace(/[\u0300-\u036f]/g, '')
             .toLowerCase()
             .replace(/[\u0000-\u001f]+/g, ' ')
             .replace(/[\-_./]+/g, ' ')
             .replace(/\s+/g, ' ')
-            // Keep a separator token so removal cannot manufacture a keyword phrase.
             .replace(SFW_AESTHETIC_REGEX, '$1\uFFFC')
             .trim();
-    }
-
-    function scoreTextSource(text, sourceMultiplier, summary, sourceName) {
-        const languages = keywordDb.languages || {};
-        const matchedKeywords = {};
-
-        Object.keys(languages).forEach(function (languageCode) {
-            const filter = SCRIPT_FILTERS[languageCode];
-            if (filter && !filter.test(text)) {
-                return;
-            }
-
-            const language = languages[languageCode];
-
-            Object.keys(CATEGORY_WEIGHTS).forEach(function (category) {
-                const keywordObjs = Array.isArray(language[category]) ? language[category] : [];
-                let categoryMatches = 0;
-
-                keywordObjs.forEach(function (kwObj) {
-                    if (categoryMatches >= 5) {
-                        return;
-                    }
-
-                    const matchKey = category + ':' + kwObj.original;
-                    if (matchedKeywords[matchKey]) {
-                        return;
-                    }
-
-                    if (kwObj.regex.test(text)) {
-                        matchedKeywords[matchKey] = true;
-                        categoryMatches += 1;
-
-                        const matchCount = (text.match(kwObj.globalRegex) || []).length;
-                        const extraMatches = Math.min(Math.max(0, matchCount - 1), 3);
-                        const repeatBonus = extraMatches * 1;
-                        const pointsAdded = (CATEGORY_WEIGHTS[category] + repeatBonus) * sourceMultiplier;
-
-                        summary.score += pointsAdded;
-                        summary.matchedLanguages[languageCode] = true;
-                        summary.matchedCategories[category] += 1;
-                        summary.matchedTerms[matchKey] = !kwObj.requiresContext;
-
-                        const langTermKey = languageCode + ':' + kwObj.original;
-                        if (!summary.matchedLanguageTerms[langTermKey]) {
-                            summary.matchedLanguageTerms[langTermKey] = true;
-                            summary.languageTermCounts[languageCode] = (summary.languageTermCounts[languageCode] || 0) + 1;
-                        }
-
-                        if (category === 'strong' && !kwObj.requiresContext && (sourceName === 'titleMeta' || sourceName === 'headings')) {
-                            summary.headerStrongTerms[matchKey] = true;
-                        }
-
-                        if (kwObj.isLatinShortForeign) {
-                            summary.potentialForeignShortMatches.push({
-                                lang: languageCode,
-                                termKey: matchKey,
-                                points: pointsAdded,
-                                category: category
-                            });
-                        }
-                    }
-                });
-            });
-        });
     }
 
     function escapeRegex(value) {
@@ -609,7 +610,9 @@
                 hostname: location.hostname,
                 score: result.score,
                 matchedLanguages: result.matchedLanguages,
-                matchedCategories: result.matchedCategories
+                matchedCategories: result.matchedCategories,
+                diagnostics: { scannerVersion: result.scannerVersion, keywordVersion: result.keywordVersion,
+                    rule: result.rule, rawScore: result.rawScore, distinctTerms: result.distinctTerms, topTerms: result.topTerms }
             }, function (response) {
                 const error = chrome.runtime.lastError;
                 if (restoreBlockedPage !== restorePage) return;

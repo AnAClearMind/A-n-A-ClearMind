@@ -347,7 +347,7 @@
 	},
 	"ProgressionPopup": {
 		"static": {
-			"p": "Congratulations, sir! Here is some powerful artifact to help in your journey!",
+			"p": "Congratulations! Here is some powerful artifact to help in your journey!",
 			"closeButton": "Continue",
 			"claimButton": "Get it!"
 		},

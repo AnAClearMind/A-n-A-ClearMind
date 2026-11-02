@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "जारी रखें"
+  },
+  "blockScopeLabel": {
+    "message": "ब्लॉक करें"
+  },
+  "blockScopeSite": {
+    "message": "पूरी साइट"
+  },
+  "blockScopeSection": {
+    "message": "पेज / अनुभाग"
+  },
+  "blockScopeHint": {
+    "message": "उपपेज, दोनों प्रोटोकॉल और उपडोमेन शामिल हैं। पथ में बड़े/छोटे अक्षरों का अंतर नहीं है। ? या # के बिना पता दें।"
+  },
+  "invalidSectionFormat": {
+    "message": "पथ वाला पता दें, ? या # के बिना। मूल पते के लिए पूरी साइट चुनें।"
+  },
+  "sectionRuleLimitReached": {
+    "message": "अनुभाग नियमों की सीमा पूरी हो गई। एक अनुभाग हटाकर फिर प्रयास करें।"
   }
 }

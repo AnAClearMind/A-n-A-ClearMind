@@ -347,7 +347,7 @@
 	},
 	"ProgressionPopup": {
 		"static": {
-			"p": "恭喜你，先生！这是一个可以帮助你旅程的强大神器！",
+			"p": "恭喜你！这是一个可以帮助你旅程的强大神器！",
 			"closeButton": "继续",
 			"claimButton": "领取！"
 		},

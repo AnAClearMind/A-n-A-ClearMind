@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "続行"
+  },
+  "blockScopeLabel": {
+    "message": "ブロック"
+  },
+  "blockScopeSite": {
+    "message": "サイト全体"
+  },
+  "blockScopeSection": {
+    "message": "ページ / セクション"
+  },
+  "blockScopeHint": {
+    "message": "下位ページ、両プロトコル、サブドメインを含みます。パスの大文字と小文字は区別しません。? や # を含まないアドレスを入力してください。"
+  },
+  "invalidSectionFormat": {
+    "message": "? や # を含まないパス付きアドレスを入力してください。ルートには「サイト全体」を選択してください。"
+  },
+  "sectionRuleLimitReached": {
+    "message": "セクションルールの上限に達しました。セクションを削除して再試行してください。"
   }
 }

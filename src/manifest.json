@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "2.1.9",
+  "version": "2.2.0",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "storage",
     "tabs",
+    "webNavigation",
     "declarativeNetRequest",
     "declarativeNetRequestFeedback",
     "contextMenus"

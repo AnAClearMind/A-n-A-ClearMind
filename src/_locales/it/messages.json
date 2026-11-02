@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "Continua"
+  },
+  "blockScopeLabel": {
+    "message": "Blocca"
+  },
+  "blockScopeSite": {
+    "message": "Intero sito"
+  },
+  "blockScopeSection": {
+    "message": "Pagina / sezione"
+  },
+  "blockScopeHint": {
+    "message": "Include sottopagine, entrambi i protocolli e sottodomini. Ignora maiuscole nel percorso. Usa un indirizzo senza ? o #."
+  },
+  "invalidSectionFormat": {
+    "message": "Inserisci un indirizzo con percorso, senza ? o #. Per la radice scegli Intero sito."
+  },
+  "sectionRuleLimitReached": {
+    "message": "Limite delle regole di sezione raggiunto. Rimuovi una sezione e riprova."
   }
 }

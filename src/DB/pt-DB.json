@@ -347,7 +347,7 @@
 	},
 	"ProgressionPopup": {
 		"static": {
-			"p": "Parabéns, senhor! Aqui está um artefato poderoso para te ajudar na sua jornada!",
+			"p": "Parabéns! Aqui está um artefato poderoso para te ajudar na sua jornada!",
 			"closeButton": "Continuar",
 			"claimButton": "Reivindicar!"
 		},

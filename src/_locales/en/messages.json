@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "Continue"
+  },
+  "blockScopeLabel": {
+    "message": "Block"
+  },
+  "blockScopeSite": {
+    "message": "Whole site"
+  },
+  "blockScopeSection": {
+    "message": "Page / section"
+  },
+  "blockScopeHint": {
+    "message": "Includes nested pages, both protocols and subdomains. Path matching ignores letter case. Use an address without ? or #."
+  },
+  "invalidSectionFormat": {
+    "message": "Enter a page/section address with a path, without ? or #. For the root address, choose Whole site."
+  },
+  "sectionRuleLimitReached": {
+    "message": "Section rule limit reached. Remove a section and try again."
   }
 }

@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "继续"
+  },
+  "blockScopeLabel": {
+    "message": "屏蔽"
+  },
+  "blockScopeSite": {
+    "message": "整个网站"
+  },
+  "blockScopeSection": {
+    "message": "页面 / 分区"
+  },
+  "blockScopeHint": {
+    "message": "包括下级页面、两种协议和子域名。路径不区分大小写。请输入不含 ? 或 # 的地址。"
+  },
+  "invalidSectionFormat": {
+    "message": "请输入带路径且不含 ? 或 # 的地址。根地址请选择“整个网站”。"
+  },
+  "sectionRuleLimitReached": {
+    "message": "已达到分区规则数量上限。请删除一个分区后重试。"
   }
 }

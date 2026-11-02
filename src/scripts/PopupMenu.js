@@ -6,6 +6,24 @@ document.addEventListener('DOMContentLoaded', async function () {
     const deleteDomainBtn = document.getElementById('deleteDomainBtn');
     const domainInput = document.getElementById('domainInput');
     const message = document.getElementById('message');
+    const scope = document.getElementById('customBlockScope');
+    let currentUrl = '';
+    document.getElementById('customBlockScopeLabel').textContent = chrome.i18n.getMessage('blockScopeLabel');
+    scope.options[0].textContent = chrome.i18n.getMessage('blockScopeSite');
+    scope.options[1].textContent = chrome.i18n.getMessage('blockScopeSection');
+    document.getElementById('customBlockScopeHint').textContent = chrome.i18n.getMessage('blockScopeHint');
+    scope.addEventListener('change', function () {
+        if (!currentUrl) return;
+        const sourceUrl = new URL(currentUrl);
+        let url;
+        try {
+            url = ['http:', 'https:'].includes(sourceUrl.protocol) ? sourceUrl : new URL('https://' + domainInput.value);
+        } catch (_) { return; }
+        if (['http:', 'https:'].includes(url.protocol)) {
+            domainInput.value = scope.value === 'section' ? url.hostname + url.pathname : url.hostname;
+            toggleButtons();
+        }
+    });
     document.getElementById('settingsButton').addEventListener('click', function () {
         window.open('About.html');
     });
@@ -17,9 +35,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     function extractDomain(url) {
         const urlObj = new URL(url);
         console.log(urlObj.origin);
-        if (urlObj.origin.includes('chrome-extension://') || urlObj.origin.includes('moz-extension://')) {
+        if (urlObj.href.startsWith(chrome.runtime.getURL('pages/UrgeTest_initial.html') + '?')) {
             const blockedDomain = urlObj.searchParams.get('blocked');
             if (blockedDomain) {
+                scope.value = blockedDomain.includes('/') ? 'section' : 'site';
                 return blockedDomain ? blockedDomain : '';
             }
             return '';
@@ -33,7 +52,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get current tab's URL and fill in the domain
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         if (tabs[0] && tabs[0].url) {
-            const currentDomain = extractDomain(tabs[0].url);
+            currentUrl = tabs[0].url;
+            const currentDomain = extractDomain(currentUrl);
             domainInput.value = currentDomain;
             toggleButtons();
         }
@@ -51,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     addDomainBtn.addEventListener('click', function () {
         const domain = domainInput.value.trim();
         if (domain) {
-            chrome.runtime.sendMessage({ action: "addDomain", domain: domain }, function (response) {
+            chrome.runtime.sendMessage({ action: "addDomain", domain: domain, scope: scope.value }, function (response) {
                 if (response.success) {
                     message.textContent = response.message;
                     domainInput.value = '';
@@ -68,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     deleteDomainBtn.addEventListener('click', function () {
         const domain = domainInput.value.trim();
         if (domain) {
-            chrome.runtime.sendMessage({ action: "deleteDomain", domain: domain }, function (response) {
+            chrome.runtime.sendMessage({ action: "deleteDomain", domain: domain, scope: scope.value }, function (response) {
                 if (response.success) {
                     message.textContent = response.message;
                     domainInput.value = '';

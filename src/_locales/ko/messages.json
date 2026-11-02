@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "계속"
+  },
+  "blockScopeLabel": {
+    "message": "차단"
+  },
+  "blockScopeSite": {
+    "message": "전체 사이트"
+  },
+  "blockScopeSection": {
+    "message": "페이지 / 섹션"
+  },
+  "blockScopeHint": {
+    "message": "하위 페이지, 두 프로토콜 및 하위 도메인을 포함합니다. 경로의 대소문자를 구분하지 않습니다. ? 또는 # 없이 주소를 입력하세요."
+  },
+  "invalidSectionFormat": {
+    "message": "? 또는 # 없이 경로가 있는 주소를 입력하세요. 루트 주소는 전체 사이트를 선택하세요."
+  },
+  "sectionRuleLimitReached": {
+    "message": "섹션 규칙 한도에 도달했습니다. 섹션을 삭제하고 다시 시도하세요."
   }
 }

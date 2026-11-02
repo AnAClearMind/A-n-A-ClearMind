@@ -347,7 +347,7 @@
 	},
 	"ProgressionPopup": {
 		"static": {
-			"p": "Tebrikler beyefendi! İşte yolculuğunuzda size yardımcı olacak güçlü bir eser!",
+			"p": "Tebrikler! İşte yolculuğunuzda size yardımcı olacak güçlü bir eser!",
 			"closeButton": "Devam Et",
 			"claimButton": "Al!"
 		},

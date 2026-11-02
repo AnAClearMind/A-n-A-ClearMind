@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "Continuar"
+  },
+  "blockScopeLabel": {
+    "message": "Bloquear"
+  },
+  "blockScopeSite": {
+    "message": "Todo el sitio"
+  },
+  "blockScopeSection": {
+    "message": "Página / sección"
+  },
+  "blockScopeHint": {
+    "message": "Incluye subpáginas, ambos protocolos y subdominios. No distingue mayúsculas en la ruta. Usa una dirección sin ? ni #."
+  },
+  "invalidSectionFormat": {
+    "message": "Introduce una dirección con ruta, sin ? ni #. Para la raíz, selecciona Todo el sitio."
+  },
+  "sectionRuleLimitReached": {
+    "message": "Límite de reglas de secciones alcanzado. Elimina una sección e inténtalo de nuevo."
   }
 }

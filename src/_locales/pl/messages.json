@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "Kontynuuj"
+  },
+  "blockScopeLabel": {
+    "message": "Blokuj"
+  },
+  "blockScopeSite": {
+    "message": "Cała witryna"
+  },
+  "blockScopeSection": {
+    "message": "Strona / sekcja"
+  },
+  "blockScopeHint": {
+    "message": "Obejmuje podstrony, oba protokoły i subdomeny. Wielkość liter w ścieżce jest ignorowana. Adres bez ? i #."
+  },
+  "invalidSectionFormat": {
+    "message": "Podaj adres ze ścieżką, bez ? i #. Dla adresu głównego wybierz Cała witryna."
+  },
+  "sectionRuleLimitReached": {
+    "message": "Osiągnięto limit reguł sekcji. Usuń sekcję i spróbuj ponownie."
   }
 }

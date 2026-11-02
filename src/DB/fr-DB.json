@@ -347,7 +347,7 @@
 	},
 	"ProgressionPopup": {
 		"static": {
-			"p": "Félicitations, monsieur ! Voici un artefact puissant pour vous aider dans votre voyage !",
+			"p": "Félicitations ! Voici un artefact puissant pour vous aider dans votre voyage !",
 			"closeButton": "Continuer",
 			"claimButton": "Obtenez-le !"
 		},

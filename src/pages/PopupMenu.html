@@ -227,6 +227,12 @@
     <div class="container">
         <h2></h2>
 		<div class="separator"></div>
+        <label for="customBlockScope" id="customBlockScopeLabel">Block</label>
+        <select id="customBlockScope" style="padding: 8px; border-radius: 6px; max-width: 100%;">
+            <option value="site">Whole site</option>
+            <option value="section">Page / section</option>
+        </select>
+        <p id="customBlockScopeHint" style="font-size: 0.85em;">Sections include nested pages. Use an address without ? or #. Path matching ignores letter case.</p>
         <input type="text" id="domainInput" placeholder="*domain_name*">
         <button id="addDomainBtn" disabled></button>
         <button id="deleteDomainBtn" disabled></button>

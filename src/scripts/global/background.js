@@ -176,13 +176,13 @@ function handleMessage(request, sender, sendResponse) {
     }
 
     if (request.action === "addDomain") {
-        const domain = normalizeDomain(request.domain);
+        const domain = normalizeBlockTarget(request.domain, request.scope === undefined ? 'site' : request.scope);
         if (!domain) {
-            sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
+            sendResponse({ success: false, error: chrome.i18n.getMessage(request.scope === 'section' ? 'invalidSectionFormat' : 'invalidDomainFormat') });
             return false;
         }
 
-        if (domain.includes('google')) {
+        if (normalizeDomain('https://' + domain).includes('google')) {
             sendResponse({ success: false, error: chrome.i18n.getMessage("blockingGoogleNotAvailable") });
             return false;
         }
@@ -193,16 +193,14 @@ function handleMessage(request, sender, sendResponse) {
         }
 
         const candidateList = [...customBlockedDomains, domain];
-        updateRulesAtomic(candidateList).then(res => {
+        commitCustomDomains(candidateList).then(res => {
             if (res.success) {
-                customBlockedDomains = candidateList;
-                saveCustomDomains();
                 if (request.silent) {
-                    sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain });
+                    sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain, scope: domain.includes('/') ? 'section' : 'site' });
                 } else {
                     setTimeout(() => {
                         reloadActiveTab();
-                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain });
+                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainAddedSuccessfully"), domain: domain, scope: domain.includes('/') ? 'section' : 'site' });
                     }, 100);
                 }
             } else {
@@ -213,25 +211,23 @@ function handleMessage(request, sender, sendResponse) {
     }
 
     if (request.action === "deleteDomain") {
-        const domain = normalizeDomain(request.domain) || (typeof request.domain === 'string' ? request.domain.toLowerCase().trim() : '');
+        const domain = normalizeBlockTarget(request.domain, request.scope === undefined ? 'site' : request.scope);
         if (!domain) {
-            sendResponse({ success: false, error: chrome.i18n.getMessage("invalidDomainFormat") });
+            sendResponse({ success: false, error: chrome.i18n.getMessage(request.scope === 'section' ? 'invalidSectionFormat' : 'invalidDomainFormat') });
             return false;
         }
 
         const index = customBlockedDomains.indexOf(domain);
         if (index !== -1) {
             const candidateList = customBlockedDomains.filter(d => d !== domain);
-            updateRulesAtomic(candidateList).then(res => {
+            commitCustomDomains(candidateList).then(res => {
                 if (res.success) {
-                    customBlockedDomains = candidateList;
-                    saveCustomDomains();
                     if (request.silent) {
-                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainRemovedSuccessfully"), domain: domain });
+                        sendResponse({ success: true, message: chrome.i18n.getMessage("domainRemovedSuccessfully"), domain: domain, scope: domain.includes('/') ? 'section' : 'site' });
                     } else {
                         setTimeout(() => {
                             reloadActiveTab(domain);
-                            sendResponse({ success: true, message: chrome.i18n.getMessage("domainRemovedSuccessfully"), domain: domain });
+                            sendResponse({ success: true, message: chrome.i18n.getMessage("domainRemovedSuccessfully"), domain: domain, scope: domain.includes('/') ? 'section' : 'site' });
                         }, 100);
                     }
                 } else {
@@ -259,8 +255,9 @@ function handleMessage(request, sender, sendResponse) {
         const newDomainsToAdd = [];
 
         request.domains.forEach(rawDomain => {
-            const normalized = normalizeDomain(rawDomain);
-            if (!normalized || normalized.includes('google')) {
+            const section = typeof rawDomain === 'string' && rawDomain.startsWith('section: ');
+            const normalized = normalizeBlockTarget(section ? rawDomain.slice(9) : rawDomain, section ? 'section' : 'site');
+            if (!normalized || normalizeDomain('https://' + normalized).includes('google')) {
                 invalidCount++;
                 return;
             }
@@ -286,10 +283,8 @@ function handleMessage(request, sender, sendResponse) {
 
         const candidateList = [...customBlockedDomains, ...newDomainsToAdd];
 
-        updateRulesAtomic(candidateList).then(result => {
+        commitCustomDomains(candidateList).then(result => {
             if (result.success) {
-                customBlockedDomains = candidateList;
-                saveCustomDomains();
                 sendResponse({
                     success: true,
                     added: addedCount,
@@ -417,7 +412,8 @@ async function handleContentScanBlocked(request, sender, sendResponse) {
         timestamp: Date.now(),
         score: Number(request.score) || 0,
         matchedLanguages: Array.isArray(request.matchedLanguages) ? request.matchedLanguages : [],
-        matchedCategories: request.matchedCategories || {}
+        matchedCategories: request.matchedCategories || {},
+        diagnostics: sanitizeScanDiagnostics(request.diagnostics)
     });
 
     chrome.tabs.update(sender.tab.id, {
@@ -471,6 +467,23 @@ function saveContentScanDetection(detection) {
     });
 }
 
+function sanitizeScanDiagnostics(value) {
+    if (!value || typeof value !== 'object') return null;
+    const finite = function (number) { return Number.isFinite(number) ? Math.max(0, number) : 0; };
+    return {
+        scannerVersion: finite(value.scannerVersion),
+        keywordVersion: finite(value.keywordVersion),
+        rule: String(value.rule || '').slice(0, 80),
+        rawScore: finite(value.rawScore),
+        distinctTerms: finite(value.distinctTerms),
+        topTerms: (Array.isArray(value.topTerms) ? value.topTerms : []).slice(0, 8).map(function (term) {
+            term = term || {};
+            return { term: String(term.term || '').slice(0, 100), source: String(term.source || '').slice(0, 30),
+                points: finite(term.points), occurrences: finite(term.occurrences) };
+        })
+    };
+}
+
 async function updateProtectionSetting(key, enabled) {
     const previous = await chrome.storage.local.get(key);
     const previousEnabled = previous[key] !== false;
@@ -499,6 +512,13 @@ async function updateRulesAtomic(targetCustomDomains, settingOverrides = {}) {
             const blockRuleId = (index * 2) + 2;
             domainRuleIds[domain] = frameRuleId;
 
+            if (domain.includes('/')) {
+                const url = new URL('https://' + domain);
+                return [{ id: frameRuleId, priority: 2 + url.pathname.length,
+                    action: { type: 'redirect', redirect: { url: getCustomBlockRedirectUrl(domain) } },
+                    condition: { requestDomains: [url.hostname], regexFilter: sectionRegex(url.pathname),
+                        isUrlFilterCaseSensitive: false, resourceTypes: ['main_frame', 'sub_frame'] } }];
+            }
             return [
                 {
                     id: frameRuleId,
@@ -579,7 +599,13 @@ async function updateRulesAtomic(targetCustomDomains, settingOverrides = {}) {
         const protectionRuleCount = DOMAIN_PATTERN_RULES.length + SAFE_SEARCH_CONFIGS.length;
         const domainLimit = Math.max(0, Math.min(Math.floor((dynamicLimit - protectionRuleCount) / 2),
             unsafeLimit - protectionRuleCount));
-        if (allDomains.length > domainLimit) {
+        const sectionCount = allDomains.filter(domain => domain.includes('/')).length;
+        const siteCount = allDomains.length - sectionCount;
+        if (sectionCount + DOMAIN_PATTERN_RULES.length > (dnr.MAX_NUMBER_OF_REGEX_RULES || 1000)) {
+            return { success: false, error: chrome.i18n.getMessage('sectionRuleLimitReached') };
+        }
+        if (2 * siteCount + sectionCount + protectionRuleCount > dynamicLimit ||
+            siteCount + sectionCount + protectionRuleCount > unsafeLimit) {
             return { success: false, error: chrome.i18n.getMessage("customBlocklistLimitReached", String(domainLimit)) };
         }
 
@@ -599,11 +625,19 @@ async function updateRulesAtomic(targetCustomDomains, settingOverrides = {}) {
     }
 }
 
-// Function to save custom domains to storage
-function saveCustomDomains() {
-    chrome.storage.local.set({ customBlockedDomains: customBlockedDomains }, function () {
-        console.log('Custom domains saved:', customBlockedDomains);
-    });
+// A list edit owns both the network rules and durable configuration.
+async function commitCustomDomains(candidate) {
+    const result = await updateRulesAtomic(candidate);
+    if (!result.success) return result;
+    try {
+        await chrome.storage.local.set({ customBlockedDomains: candidate });
+    } catch (error) {
+        const rollback = await updateRulesAtomic(customBlockedDomains);
+        return { success: false, error: error.message + (rollback.success ? '' : '; ' + rollback.error) };
+    }
+    customBlockedDomains = candidate;
+    checkOpenCustomTabs();
+    return { success: true };
 }
 
 async function updateRules() {
@@ -667,3 +701,72 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         chrome.tabs.create({ url: chrome.runtime.getURL("../pages/UrgeTest_initial.html?blocked=via alert button") });
     }
 });
+
+// Explicit scope keeps existing callers and old TXT files domain-only.
+function normalizeBlockTarget(input, scope) {
+    if (scope === 'site') return normalizeDomain(input);
+    if (scope !== 'section' || typeof input !== 'string') return null;
+    const value = input.trim();
+    if (!value || /[\u0000-\u0020\u007f\\]/.test(value)) return null;
+    try {
+        const url = new URL(value.includes('://') ? value : 'https://' + value);
+        const hostname = normalizeDomain(url.href);
+        if (!hostname || url.search || url.hash || /%(?![a-f0-9]{2})/i.test(url.pathname)) return null;
+        const path = url.pathname.replace(/\/+$/, '').toLowerCase();
+        return path ? hostname + path : null;
+    } catch (_) { return null; }
+}
+
+function sectionRegex(path) {
+    return '^https?://[^/]+' + path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([/?#]|$)';
+}
+
+function getCustomBlockRedirectUrl(key) {
+    return chrome.runtime.getURL('pages/UrgeTest_initial.html?blocked=' + encodeURIComponent(key));
+}
+
+function matchingCustomTarget(value) {
+    try {
+        const url = new URL(value);
+        if (!['http:', 'https:'].includes(url.protocol)) return null;
+        const host = url.hostname.toLowerCase().replace(/\.$/, '');
+        const path = url.pathname.toLowerCase();
+        return customBlockedDomains.filter(key => {
+            const target = new URL('https://' + key);
+            if (host !== target.hostname && !host.endsWith('.' + target.hostname)) return false;
+            return !key.includes('/') || path === target.pathname || path.startsWith(target.pathname + '/');
+        }).sort((a, b) => new URL('https://' + b).pathname.length - new URL('https://' + a).pathname.length)[0] || null;
+    } catch (_) { return null; }
+}
+
+async function enforceCustomNavigation(details) {
+    if (details.frameId !== 0 || details.tabId < 0) return;
+    try {
+        await rulesReady;
+        if (!matchingCustomTarget(details.url)) return;
+        const tab = await chrome.tabs.get(details.tabId);
+        if (tab.url !== details.url || (tab.pendingUrl && tab.pendingUrl !== tab.url)) return;
+        const key = matchingCustomTarget(tab.url);
+        if (key) await chrome.tabs.update(tab.id, { url: getCustomBlockRedirectUrl(key) });
+    } catch (_) { /* The tab may close or navigate during an asynchronous check. */ }
+}
+
+async function checkOpenCustomTabs() {
+    try {
+        const tabs = await chrome.tabs.query({});
+        await Promise.all(tabs.map(tab => enforceCustomNavigation({ tabId: tab.id, frameId: 0, url: tab.url })));
+    } catch (_) { /* Browser shutdown can invalidate tabs. */ }
+}
+
+// Top-level registration is necessary to wake a suspended MV3 worker.
+chrome.webNavigation.onHistoryStateUpdated.addListener(enforceCustomNavigation);
+chrome.webNavigation.onCommitted.addListener(enforceCustomNavigation);
+chrome.webNavigation.onReferenceFragmentUpdated.addListener(enforceCustomNavigation);
+chrome.webNavigation.onTabReplaced.addListener(async function (details) {
+    try {
+        const tab = await chrome.tabs.get(details.tabId);
+        await enforceCustomNavigation({ tabId: tab.id, frameId: 0, url: tab.url });
+    } catch (_) { /* Tab no longer exists. */ }
+});
+chrome.runtime.onStartup.addListener(checkOpenCustomTabs);
+chrome.runtime.onInstalled.addListener(checkOpenCustomTabs);

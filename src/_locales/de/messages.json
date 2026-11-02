@@ -62,5 +62,23 @@
   },
   "continue_btn": {
     "message": "Weiter"
+  },
+  "blockScopeLabel": {
+    "message": "Sperren"
+  },
+  "blockScopeSite": {
+    "message": "Gesamte Website"
+  },
+  "blockScopeSection": {
+    "message": "Seite / Bereich"
+  },
+  "blockScopeHint": {
+    "message": "Umfasst Unterseiten, beide Protokolle und Subdomains. Groß-/Kleinschreibung im Pfad wird ignoriert. Adresse ohne ? oder # eingeben."
+  },
+  "invalidSectionFormat": {
+    "message": "Seitenadresse mit Pfad ohne ? oder # eingeben. Für die Startadresse Gesamte Website wählen."
+  },
+  "sectionRuleLimitReached": {
+    "message": "Limit für Bereichsregeln erreicht. Einen Bereich entfernen und erneut versuchen."
   }
 }
